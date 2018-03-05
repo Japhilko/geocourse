@@ -1,7 +1,7 @@
 ---
-title: "Einleitung und Motivation"
+title: "Introduction and motivation"
 author: "Jan-Philipp Kolb"
-date: "22 Februar 2017"
+date: "22 February 2018"
 output:
   beamer_presentation:
     colortheme: beaver
@@ -22,38 +22,38 @@ knitr::opts_chunk$set(echo = TRUE,message=F,warning=F,cache=T)
 
 ```{r,echo=F,eval=F}
 library(ggmap)
-qmap("Mannheim A5,6",zoom=18, maptype = "satellite")
+qmap("Firenze",zoom=18, maptype = "satellite")
 ```
 
 
-![](figure/mzesma.PNG)
+![](figure/firstpic_firenze.pdf)
 
 
-## Gliederung
+## Outline
 
-- Spatial Turn - warum dieser Kurs
-- Fragestellungen
-- Verfügbare Daten
-- Neogeograpie
-- Realisierung
+- Spatial Turn - why this course
+- Research questions
+- Available data
+- Neogeograpy
+- Realisation
 
 
 ## Motivation 
 
-- Räumliche Darstellungen haben eine lange Geschichte
-- Beispiel: Fra Mauro map
+- Spatial representations have a long history.
+- Example: Fra Mauro map
 
-![Di Mauro Map - entstanden um 1450 - erstaunliche Detailtreue ](https://raw.githubusercontent.com/Japhilko/GeoData/master/data/figure/FraMauroDetailedMap.jpeg.jpg)
+![Di Mauro Map - created around 1450 - amazing details ](https://raw.githubusercontent.com/Japhilko/GeoData/master/data/figure/FraMauroDetailedMap.jpeg.jpg)
 
-Quelle: <https://en.wikipedia.org/wiki/Fra_Mauro_map>
+Source: <https://en.wikipedia.org/wiki/Fra_Mauro_map>
 
-## Motivation - aktuelle Phänomene
+## Motivation - recent phenomena
 
-- Die räumliche Darstellung hilft beim Verstehen (aktueller)  Phänomene.
+- The spatial representation helps to understand (current) phenomena.
 
-![Vorwahlen zur US-Präsidenten Wahl in Florida](figure/FloridaPresPrim.png)
+![US presidential primary elections in Florida](figure/FloridaPresPrim.png)
 
-Quelle: <http://www.arilamstein.com/blog/2016/03/21/mapping-election-results-r-choroplethr/>
+Source: <http://www.arilamstein.com/blog/2016/03/21/mapping-election-results-r-choroplethr/>
 
 
 
@@ -61,13 +61,13 @@ Quelle: <http://www.arilamstein.com/blog/2016/03/21/mapping-election-results-r-c
 
 ## [Laws of Spatial Sience](http://de.slideshare.net/rheimann04/big-social-data-the-spatial-turn-in-big-data)
 
-[Tobler's Gesetz](https://en.wikipedia.org/wiki/Tobler's_first_law_of_geography)
+[Tobler's law](https://en.wikipedia.org/wiki/Tobler's_first_law_of_geography)
 
 > everything is related to everything else, but near things are more related than distant things.
 
 ## [Spatial Turn](https://de.wikipedia.org/wiki/Spatial_turn)
 
-> Als Spatial turn wird seit Ende der 1980er-Jahre ein Paradigmenwechsel in den Kultur- und Sozialwissenschaften bezeichnet, der den Raum bzw. den geographischen Raum als kulturelle Größe wieder wahrnimmt.
+> Spatial turn is a term used to describe an intellectual movement that places emphasis on place and space in social science and the humanities.
 
 [Englisches Wikipedia](https://en.wikipedia.org/wiki/Spatial_turn)
 
@@ -78,7 +78,7 @@ Quelle: <http://www.arilamstein.com/blog/2016/03/21/mapping-election-results-r-c
 - ... big infrastructure projects
 
 
-## Attraktiver Output - Beispiel [Wind Map](http://hint.fm/wind/)
+## Nice output - example [Wind Map](http://hint.fm/wind/)
 
 <http://hint.fm/wind/>
 
@@ -89,14 +89,14 @@ Quelle: <http://www.arilamstein.com/blog/2016/03/21/mapping-election-results-r-c
 ![Wind map USA](figure/windfm.PNG)
 
 
-## Verfügbarkeit der Daten - Beispiel 
+## Availability of data - Example 
 
 <http://www.driven-by-data.net/>
 
 ![](http://driven-by-data.net/images/working-women-full.png)
 
 
-## Verfügbarkeit der Daten - Beispiel Zensus Atlas
+## Availability of data - Example Census Atlas
 
 <https://atlas.zensus2011.de/>
 ![](https://raw.githubusercontent.com/Japhilko/GeoData/master/data/figure/Zensus_Mannheim2.png)
