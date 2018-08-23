@@ -1,0 +1,74 @@
+---
+title: "Choroplethen - maptools"
+author: "Jan-Philipp Kolb"
+date: "23 August 2018"
+output: slidy_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(message=F,warning=F)
+library(knitr)
+```
+
+
+## Das Paket `maptools`
+
+- Datensatz wrld_simpl aus dem Paket `maptools`
+- Polygone für fast alle Staaten der Erde
+
+```{r}
+library(maptools)
+data(wrld_simpl)
+```
+
+```{r}
+kable(head(wrld_simpl@data))
+```
+
+## Hallo Welt
+
+```{r}
+plot(wrld_simpl)
+```
+
+
+## [Daten zum Gini Index](https://datahub.io/core/gini-index#data)
+
+```{r}
+gini <- read.csv("../data/gini-index_csv.csv")
+```
+
+```{r,echo=F}
+kable(head(gini))
+```
+
+## Der Gini Index im Jahr 2012
+
+```{r}
+gini12 <- gini[gini$Year==2012,]
+summary(gini12$Value)
+```
+
+## Die Daten matchen
+
+```{r}
+ind <- match(gini12$Country.Code,wrld_simpl$ISO3)
+ind2 <- ind[!is.na(ind)]
+```
+
+```{r}
+ginimap <- wrld_simpl[ind2,]
+ginimap@data$gini12 <- gini12$Value[!is.na(ind)]
+```
+
+## Die Daten plotten
+
+```{r}
+library(sp)
+spplot(ginimap,"gini12")
+```
+
+## Aufgabe
+
+- Lade Datensatz xy herunter
+- Erzeuge mit der Variable yx folgende Karte:

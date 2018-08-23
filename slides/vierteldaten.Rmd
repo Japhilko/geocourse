@@ -1,0 +1,19 @@
+---
+title: "osmdata Beispiel"
+author: "Jan-Philipp Kolb"
+date: "23 August 2018"
+output: beamer_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## [Szeneviertel in Deutschland](http://www.spiegel.de/wirtschaft/soziales/deutschland-das-sind-die-szeneviertel-in-den-grossstaedten-a-1223648.html)
+
+```{r}
+c("Berlin Friedrichshain","Berlin Kreuzberg","Berlin Neukölln", "Hamburg Schanzenviertel","Hamburg Karoviertel", "Hamburg St. Pauli","München Glockenbachviertel","München Westend","Köln Ehrenfeld","Köln Belgisches Viertel","Frankfurt Bahnhofsviertel","Stuttgart Süd","Stuttgart Heusteigviertel","Stuttgart West","Düsseldorf Flingern")
+
+c("Düsseldorf Kiefernstraße","Berlin Bergmannstraße","Berlin Karl-Marx-Straße","Berlin Maybachufer","Köln Brüsseler Platz","Stuttgart Tübinger Straße")
+```
+
