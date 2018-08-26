@@ -1,15 +1,29 @@
 ---
-title: "Choroplethen - maptools"
+title: "Choroplethen - Das Paket maptools"
 author: "Jan-Philipp Kolb"
-date: "23 August 2018"
-output: slidy_presentation
+date: "22 Oktober 2018"
+output:
+  beamer_presentation:
+    colortheme: beaver
+    fonttheme: structurebold
+    highlight: tango
+    fig_caption: no
+    keep_tex: yes
+    theme: CambridgeUS
+  slidy_presentation: default
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(message=F,warning=F)
+knitr::opts_chunk$set(message=F,warning=F,cache=T)
 library(knitr)
 ```
 
+
+## Inhalt dieses Kapitels
+
+- Der Beispieldatensatz `wrld_simpl` im Paket `maptools` wird vorgestellt.
+- Es wird gezeigt, wie man Daten aus anderen Quellen mit Kartendaten verbinden kann.
+- Mit dieser Verbindung ist es dann möglich thematische Karten - so genannte Choroplethen - zu erstellen
 
 ## Das Paket `maptools`
 
@@ -21,8 +35,8 @@ library(maptools)
 data(wrld_simpl)
 ```
 
-```{r}
-kable(head(wrld_simpl@data))
+```{r,echo=F}
+kable(head(wrld_simpl@data[,c("ISO2","NAME","AREA","POP2005")]))
 ```
 
 ## Hallo Welt
