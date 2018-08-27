@@ -17,3 +17,68 @@ c("Berlin Friedrichshain","Berlin Kreuzberg","Berlin Neukölln", "Hamburg Schanz
 c("Düsseldorf Kiefernstraße","Berlin Bergmannstraße","Berlin Karl-Marx-Straße","Berlin Maybachufer","Köln Brüsseler Platz","Stuttgart Tübinger Straße")
 ```
 
+```{r}
+library(osmdata)
+city <- 'Stuttgart'
+bb <- getbb(city)
+q <- opq(bbox = bb)
+```
+
+##
+
+```{r}
+library(tmap)
+bb_poly <- getbb(place_name = "Frankfurt", 
+                 format_out = "polygon")
+plot(bb_poly)
+```
+
+
+
+
+## Information - `r city`
+
+```{r,eval=F}
+keyI <- 'amenity'
+q <- opq (bbox = city)
+q <- add_osm_feature (q, key = keyI)
+osmdata_xml (q, paste0("../data/",city,"_",keyI,".osm"))
+```
+
+
+## Was dahinter steckt:
+
+```{r,eval=F}
+dat <- sf::st_read (paste0("../data/",city,"_",keyI,".osm"), 
+                    layer = 'points', 
+                    quiet = TRUE)
+```
+
+
+```{r}
+head(dat)
+```
+
+
+```{r,eval=F,echo=F}
+?sf::st_read
+```
+
+
+
+## Plot `geometry`
+
+- [**Plotting Simple Features**](https://r-spatial.github.io/sf/articles/sf5.html)
+
+```{r}
+library(sf)
+
+plot(st_geometry(dat$geometry))
+```
+
+
+## Links
+
+- [Manipulating Simple Feature Geometries](https://cran.r-project.org/web/packages/sf/vignettes/sf3.html)
+
+
