@@ -40,3 +40,6 @@ bla <- substr(agsmap$ags,1,2)
 plot(agsmap[bla=="11",])
 ```
 
+## Links
+
+- [Früherer Kurs zum Thema](https://github.com/Japhilko/GeoData/blob/master/2017/slides/polygonSources.md)
