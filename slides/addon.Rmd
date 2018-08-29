@@ -18,3 +18,7 @@ knitr::opts_chunk$set(echo = FALSE)
 ```{r,eval=F,echo=F}
 VG250 <- readOGR ("VG250_L.shp","VG250_L")
 ```
+
+## Links
+
+- [ggmap does not work with plot_sf/geom_sf](https://github.com/r-spatial/sf/issues/336)
