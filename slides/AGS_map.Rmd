@@ -1,0 +1,45 @@
+---
+title: "Karte Gemeinden"
+author: "Jan-Philipp Kolb"
+date: "29 August 2018"
+output: beamer_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## [Shapefile mit Regionalschlüssel](http://www.geodatenzentrum.de/geodaten/gdz_rahmen.gdz_div?gdz_spr=deu&gdz_akt_zeile=5&gdz_anz_zeile=1&gdz_unt_zeile=13&gdz_user_id=0) herunterladen
+
+```{r,eval=F}
+setwd("J:/Work/GESISPanel_DATA/01_post_processing/c01/e_2017/ee/01_wave/data/com/geodata/vg250/vg250_kompakt")
+```
+
+```{r}
+library(rgdal)
+```
+
+```{r,eval=F,echo=F}
+VG250 <- readOGR ("VG250_F.shp","VG250_F")
+head(VG250@data)
+```
+
+- [Informationen zum AGS](https://de.wikipedia.org/wiki/Amtlicher_Gemeindeschl%C3%BCssel)
+
+```{r}
+rs <- as.character(VG250@data$RS)
+nchar_rs <- nchar(rs)
+
+agsmap <- VG250[nchar_rs==12,]
+agsmap$ags <- paste0(substr(as.character(agsmap@data$RS),1,5),substr(as.character(agsmap@data$RS),10,12))
+```
+
+```{r}
+bla <- substr(agsmap$ags,1,2)
+
+plot(agsmap[bla=="11",])
+```
+
+## Links
+
+- [Früherer Kurs zum Thema](https://github.com/Japhilko/GeoData/blob/master/2017/slides/polygonSources.md)
