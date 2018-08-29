@@ -12,3 +12,9 @@ knitr::opts_chunk$set(echo = FALSE)
 ## 
 
 - [Mapping the Prevalence of Alzheimer Disease Mortality in the USA](https://www.r-bloggers.com/mapping-the-prevalence-of-alzheimer-disease-mortality-in-the-usa/)
+
+## Addon zu AGS Karten
+
+```{r,eval=F,echo=F}
+VG250 <- readOGR ("VG250_L.shp","VG250_L")
+```
