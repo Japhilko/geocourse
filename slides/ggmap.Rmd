@@ -1,0 +1,53 @@
+---
+title: "Das ggmap Paket"
+author: "Jan-Philipp Kolb"
+date: "28 8 2018"
+output: beamer_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## 
+
+```{r}
+library(ggmap)
+```
+
+```{r,eval=F}
+?qmap
+```
+
+```{r triermap,eval=F}
+triermap <- qmap(location = "Trier", zoom = 14,scale=2)
+```
+
+```{r,eval=F,echo=F}
+pdf("figure/triermap.pdf")
+triermap
+dev.off()
+```
+
+
+
+## [Eine Karte für die USA](https://blog.dominodatalab.com/geographic-visualization-with-rs-ggmaps/)
+
+```{r USAMap}
+usa_center = as.numeric(geocode("United States"))
+USAMap = ggmap(get_googlemap(center=usa_center, scale=2, zoom=4), extent="normal")
+USAMap
+```
+
+```{r,eval=F,echo=F}
+pdf("figure/USAMap.pdf")
+USAMap
+dev.off()
+```
+
+```{r,eval=F}
+OSM_scale_lookup(zoom = 10)
+qmap(location = "Trier", zoom = 10, source = "osm",scale=575000)
+
+```
+
