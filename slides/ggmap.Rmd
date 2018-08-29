@@ -51,3 +51,10 @@ qmap(location = "Trier", zoom = 10, source = "osm",scale=575000)
 
 ```
 
+```{r}
+
+```
+
+
+
+
