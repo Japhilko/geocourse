@@ -1,0 +1,42 @@
+---
+title: "Geokodierung"
+author: "Jan-Philipp Kolb"
+date: "30 August 2018"
+output: beamer_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = T)
+```
+
+## Daten einlesen
+
+```{r}
+(load("../data/addr_list_t_68239.RData"))
+head(addr_list_t)
+```
+
+## Geokdierung mit dem Paket `tmaptools`
+
+```{r}
+library("tmaptools")
+```
+
+
+```{r}
+geocode_OSM(addr_list_t[1])
+```
+
+
+## Alle Adressen geokodieren
+
+
+```{r,eval=F}
+
+gc_list <- list()
+
+for (i in 1:length(addr_list_t)){
+  gc_list[[i]] <- geocode_OSM(addr_list_t[i])
+}
+```
+

@@ -19,6 +19,28 @@ knitr::opts_chunk$set(echo = FALSE)
 VG250 <- readOGR ("VG250_L.shp","VG250_L")
 ```
 
+
+## Adressenliste erstellen
+
+```{r,eval=F}
+addr_list <- spatsamp$adress
+  # Adressen raus nehmen, die NA sind
+addr_list <- as.character(addr_list[!is.na(addr_list)])
+addr_list2 <- strsplit(x = addr_list,split = " ")
+addr_list2b <- unlist(lapply(addr_list2,length))
+ind_ua <- which(addr_list2b<3)
+addr_list3 <- unlist(lapply(addr_list2,function(x)x[1]))
+  # Adressen rauß nehmen, die Landstraßen 
+  # oder Autobahnen sind
+addr_list3 <- tolower(addr_list3)
+ind_str <- grep("^[a-z][1-9]", addr_list3, value = F)
+
+addr_list_t <- addr_list[-c(ind_str,ind_ua)]
+```
+
+
+
+
 ## Links
 
 - [ggmap does not work with plot_sf/geom_sf](https://github.com/r-spatial/sf/issues/336)
