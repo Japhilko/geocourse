@@ -7,17 +7,18 @@ output: beamer_presentation
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
-athome=T
+GESIS <- T
+athome <- !GESIS
 ```
 
 ## [Shapefile mit Regionalschlüssel](http://www.geodatenzentrum.de/geodaten/gdz_rahmen.gdz_div?gdz_spr=deu&gdz_akt_zeile=5&gdz_anz_zeile=1&gdz_unt_zeile=13&gdz_user_id=0) herunterladen
 
-```{r,eval=F}
-setwd("J:/Work/GESISPanel_DATA/01_post_processing/c01/e_2017/ee/01_wave/data/com/geodata/vg250/vg250_kompakt")
+```{r,eval=GESIS,echo=F}
+vg250path <- "J:/Work/GESISPanel_DATA/01_post_processing/c01/e_2017/ee/01_wave/data/com/geodata/vg250/"
 ```
 
 ```{r,eval=athome,echo=F}
-setwd("D:/GESIS/data/vg250_3112.utm32s.shape.ebenen/vg250_ebenen")
+vg250path <- "D:/GESIS/data/vg250_3112.utm32s.shape.ebenen/vg250_ebenen"
 ```
 
 
@@ -26,7 +27,8 @@ library(rgdal)
 ```
 
 
-```{r,eval=athome}
+```{r}
+setwd(vg250path)
 VG250 <- readOGR ("VG250_GEM.shp","VG250_GEM")
 ```
 
@@ -45,7 +47,9 @@ spatsamp <- spsample(VG250[bla=="11",], 100,type="random")
 ```{r}
 # EPSG: 3857
 newData<-spTransform(spatsamp, CRS("+init=epsg:3857"))
-                        
+#sp::proj4string(poi) <- sp::CRS("+init=epsg:4326")
+# res <- spTransform(poi, CRS("+init=epsg:3035"))
+                      
 ```
 
 
