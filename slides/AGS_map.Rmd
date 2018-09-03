@@ -32,51 +32,45 @@ setwd(vg250path)
 VG250 <- readOGR ("VG250_GEM.shp","VG250_GEM")
 ```
 
-```{r,eval=athome}
+```{r,eval=GESIS}
 bla <- substr(VG250@data$AGS_0,1,2)
+```
+
+
+## A map for Berlin
+
+```{r}
 plot(VG250[bla=="11",])
 ```
+
 
 
 ## [Räumliche Stichprobe](https://www.rdocumentation.org/packages/sp/versions/1.3-1/topics/spsample)
 
 ```{r}
-spatsamp <- spsample(VG250[bla=="11",], 100,type="random")
+spatsamp <- spsample(VG250, 100,type="random")
 ```
+
+
+## Point in Polygon
+
+```{r}
+tmp <- sp::over(spatsamp, VG250)
+```
+
+
+
+
 
 ```{r}
 # EPSG: 3857
 newData<-spTransform(spatsamp, CRS("+init=epsg:3857"))
-#sp::proj4string(poi) <- sp::CRS("+init=epsg:4326")
-# res <- spTransform(poi, CRS("+init=epsg:3035"))
-                      
+# res <- spTransform(spatsamp, CRS("+proj=utm +zone=51 ellps=WGS84"))
 ```
 
-
-
-
-
-```{r,eval=F,echo=F}
-VG250 <- readOGR ("VG250_F.shp","VG250_F")
-head(VG250@data)
-```
-
-- [Informationen zum AGS](https://de.wikipedia.org/wiki/Amtlicher_Gemeindeschl%C3%BCssel)
-
-```{r}
-rs <- as.character(VG250@data$RS)
-nchar_rs <- nchar(rs)
-
-agsmap <- VG250[nchar_rs==12,]
-agsmap$ags <- paste0(substr(as.character(agsmap@data$RS),1,5),substr(as.character(agsmap@data$RS),10,12))
-```
-
-```{r}
-bla <- substr(agsmap$ags,1,2)
-
-plot(agsmap[bla=="11",])
-```
 
 ## Links
 
 - [Früherer Kurs zum Thema](https://github.com/Japhilko/GeoData/blob/master/2017/slides/polygonSources.md)
+
+- [Informationen zum AGS](https://de.wikipedia.org/wiki/Amtlicher_Gemeindeschl%C3%BCssel)

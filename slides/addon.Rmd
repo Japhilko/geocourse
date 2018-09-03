@@ -38,7 +38,38 @@ ind_str <- grep("^[a-z][1-9]", addr_list3, value = F)
 addr_list_t <- addr_list[-c(ind_str,ind_ua)]
 ```
 
+## 
 
+```{r}
+#sp::proj4string(poi) <- sp::CRS("+init=epsg:4326")
+# res <- spTransform(poi, CRS("+init=epsg:3035"))
+```
+
+
+
+
+```{r,eval=F,echo=F}
+VG250 <- readOGR ("VG250_F.shp","VG250_F")
+head(VG250@data)
+```
+
+
+
+```{r}
+bla <- substr(agsmap$ags,1,2)
+
+plot(agsmap[bla=="11",])
+```
+
+
+
+```{r}
+rs <- as.character(VG250@data$RS)
+nchar_rs <- nchar(rs)
+
+agsmap <- VG250[nchar_rs==12,]
+agsmap$ags <- paste0(substr(as.character(agsmap@data$RS),1,5),substr(as.character(agsmap@data$RS),10,12))
+```
 
 
 ## Links
