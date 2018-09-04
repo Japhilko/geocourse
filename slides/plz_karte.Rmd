@@ -6,26 +6,49 @@ output: beamer_presentation
 ---
 
 ```{r setup, include=FALSE}
+<<<<<<< HEAD
 knitr::opts_chunk$set(echo = FALSE)
 GESIS <- F
 athome <- !GESIS
 ```
 
 ## Den Datensatz einlesen
-
-```{r}
-setwd("D:/GESIS/data/")
+=======
+knitr::opts_chunk$set(echo = T,warning=F,message=F)
+GESIS <- T
+athome <- !GESIS
 ```
+
+## PLZ Datensatz einlesen
+>>>>>>> 923b79efa30cfda9a1441bf6c456d2cf16cf986a
+
+- [**Quelle**](http://arnulf.us/PLZ) für PLZ Shapefiles
+
+```{r,eval=athome,echo=F}
+data_path <- "D:/GESIS/data/"
+```
+
+```{r,eval=GESIS,echo=F}
+data_path <- "D:/Daten/Daten/GeoDaten/"
+```
+
 
 ```{r}
 library(rgdal)
 ```
 
 
-```{r,eval=athome}
+```{r}
+setwd(data_path)
 plz <- readOGR ("post_pl.shp","post_pl")
 ```
 
+## Die Daten plotten
+
+```{r}
+plzbereich <- substr(plz@data$PLZ99,1,2)
+plot(plz[plzbereich=="68",])
+```
 
 
 ## [Räumliche Stichprobe](https://www.rdocumentation.org/packages/sp/versions/1.3-1/topics/spsample)
@@ -33,20 +56,78 @@ plz <- readOGR ("post_pl.shp","post_pl")
 ```{r}
 set.seed(323)
 n <- 100
-spatsamp <- spsample(plz[plz@data$PLZ99=="68239",], n,type="random")
+sampplz <- "68239"
+spatsamp <- spsample(plz[plz@data$PLZ99==sampplz,], 
+                     n,type="random")
 ```
+
+
+## Reverse Geokodierung
 
 ```{r}
 library(ggmap)
-spatlist <- list()
-for (i in 1:n){
-  spatlist[[i]] <- ggmap::revgeocode(c(spatsamp[i,]$x,spatsamp[i,]$y))  
-}
 ```
 
-```{r}
+
+```{r,eval=F}
+spatlist <- list()
+for (i in 1:n){
+  spatlist[[i]] <- ggmap::revgeocode(c(spatsamp[i,]$x,
+                                       spatsamp[i,]$y))  
+}
+
 spatvec <- unlist(spatlist)
 spatsamp$adress <- spatvec
-save(spatsamp,file="../data/spatsamp_68239.RData")
+```
+
+```{r,eval=F,echo=F}
+save(spatsamp,file=paste0("../data/spatsamp_",sampplz,".RData"))
+```
+
+```{r,echo=F}
+load(paste0("../data/spatsamp_",sampplz,".RData"))
+```
+
+## Die räumliche Stichprobe plotten
+
+```{r}
+plot(plz[plz@data$PLZ99==sampplz,])
+points(spatsamp)
+```
+
+
+## Nur tatsächliche Adressen
+
+- [**Reguläre Ausdrücke**](http://stat545.com/block022_regular-expression.html) in R
+
+```{r}
+addr_list <- spatsamp$adress
+  # Adressen raus nehmen, die NA sind
+indna <- which(is.na(addr_list))
+addr_list <- as.character(addr_list)
+addr_list2 <- strsplit(x = addr_list,split = " ")
+addr_list2b <- unlist(lapply(addr_list2,length))
+ind_ua <- which(addr_list2b<3)
+addr_list3 <- unlist(lapply(addr_list2,function(x)x[1]))
+  # Adressen rauß nehmen, die Landstraßen 
+  # oder Autobahnen sind
+addr_list3 <- tolower(addr_list3)
+ind_str <- grep("^[a-z][1-9]", addr_list3, value = F)
+
+addr_list_t <- addr_list[-c(ind_str,ind_ua,indna)]
+```
+
+```{r,eval=F,echo=F}
+save(addr_list_t,file=paste0("../data/addr_list_t_",sampplz,".RData"))
+```
+
+## Das Ergebnis plotten
+
+```{r}
+plot(plz[plz@data$PLZ99==sampplz,])
+points(spatsamp,pch=20)
+points(spatsamp[ind_str,],pch=20,col="green")
+points(spatsamp[ind_ua,],pch=20,col="purple")
+points(spatsamp[indna,],pch=20,col="red")
 ```
 
