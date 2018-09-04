@@ -7,9 +7,11 @@ output: beamer_presentation
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
+GESIS <- F
+athome <- !GESIS
 ```
 
-## 
+## Den Datensatz einlesen
 
 ```{r}
 setwd("D:/GESIS/data/")
