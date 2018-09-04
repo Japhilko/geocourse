@@ -6,21 +6,13 @@ output: beamer_presentation
 ---
 
 ```{r setup, include=FALSE}
-<<<<<<< HEAD
 knitr::opts_chunk$set(echo = FALSE)
 GESIS <- F
 athome <- !GESIS
 ```
 
-## Den Datensatz einlesen
-=======
-knitr::opts_chunk$set(echo = T,warning=F,message=F)
-GESIS <- T
-athome <- !GESIS
-```
 
 ## PLZ Datensatz einlesen
->>>>>>> 923b79efa30cfda9a1441bf6c456d2cf16cf986a
 
 - [**Quelle**](http://arnulf.us/PLZ) für PLZ Shapefiles
 
