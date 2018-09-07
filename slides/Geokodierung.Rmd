@@ -11,6 +11,8 @@ knitr::opts_chunk$set(echo = T)
 
 ## Daten einlesen
 
+- Hier wird ein Beispieldatensatz eingelesen, den ich über räumliche Stichproben und reverse geocoding erzeugt habe. 
+
 ```{r}
 (load("../data/addr_list_t_68239.RData"))
 head(addr_list_t)
@@ -40,3 +42,12 @@ for (i in 1:length(addr_list_t)){
 }
 ```
 
+## Geokodierung mit dem R-Paket `opencage`
+
+- Um dieses Paket zu nutzen muss man sich vorher bei der API registrieren
+
+```{r}
+
+```
+
+- [opencage Tutorial](https://ropensci.org/tutorials/opencage_tutorial/)

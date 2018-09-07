@@ -59,9 +59,6 @@ tmp <- sp::over(spatsamp, VG250)
 ```
 
 
-
-
-
 ```{r}
 # EPSG: 3857
 newData<-spTransform(spatsamp, CRS("+init=epsg:3857"))
