@@ -13,4 +13,10 @@ knitr::opts_chunk$set(echo = FALSE)
 
 - [Rweekly](https://rweekly.org/page10/)
 
+
+
+
 - [Making beautiful maps](http://www.tylermw.com/making-beautiful-maps/)
+
+
+file:///D:/Downloads/cartography.pdf
