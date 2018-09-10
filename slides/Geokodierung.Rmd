@@ -47,7 +47,50 @@ for (i in 1:length(addr_list_t)){
 - Um dieses Paket zu nutzen muss man sich vorher bei der API registrieren
 
 ```{r}
+library(opencage)
+```
 
+
+
+```{r,eval=F}
+gc_info <- opencage_forward(placename = "Amsterdam, Van Woustraat")
 ```
 
 - [opencage Tutorial](https://ropensci.org/tutorials/opencage_tutorial/)
+
+## Das Paket [`geonames`](https://github.com/ropensci/geonames)
+
+<!--
+https://cran.r-project.org/web/packages/geonames/README.html
+-->
+
+
+- Ein Account ist notwendig um die meisten Funktionen des Paketes `geonames`zu nutzen.
+
+```{r}
+library(geonames)
+```
+
+```{r,eval=F}
+options(geonamesUsername="myusername")
+```
+
+- [Login für Geonames](http://www.geonames.org/login)
+
+- [Link um mit den Geodaten zu arbeiten](http://www.geonames.org/enablefreewebservice)
+
+- [Informationen über den Download](http://www.geonames.org/export/ws-overview.html)
+
+```{r}
+library(osmdata)
+bbox <- getbb("Mannheim")
+```
+
+<!--
+x -lon - ost-West Richtung
+-->
+
+```{r,eval=F}
+erg <- geonames::GNcities(49.649591,8.627236,49.329591,8.307236)
+```
+

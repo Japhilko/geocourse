@@ -9,11 +9,11 @@ output: beamer_presentation
 knitr::opts_chunk$set(echo = T,cache=T,eval=T)
 ```
 
-## [Das `osmdata` Paket](https://github.com/ropensci/osmdata)
+## [The `osmdata` package](https://github.com/ropensci/osmdata)
 
 ![](figure/osmdatatitle.png)
 
-## Das `osmdata` Paket
+## The `osmdata` package
 
 ```{r,eval=F}
 install.packages("osmdata")
@@ -25,7 +25,7 @@ library(osmdata)
 citation("osmdata")
 ```
 
-## Eine bounding box definieren um Daten zu bekommen
+## Getting data within a bounding box
 
 
 ```{r opq,eval=F}
@@ -62,7 +62,7 @@ https://wiki.openstreetmap.org/wiki/Map_Features
 ```{r,eval=F}
 q <- opq (bbox = 'Mannheim, Seckenheim')
 q <- add_osm_feature (q, key = 'amenity')
-osmdata_xml(q, 'data/Mannheim_se.osm')
+osmdata_xml (q, 'data/Mannheim_se.osm')
 ```
 
 
@@ -274,12 +274,7 @@ set_overpass_url(api_list[api_to_use])
 install.packages("colourpicker")
 ```
 
-## Die wichtigsten Funktionen im Paket `osmdata`
-
-
-
 ## Links
 
 - [Github repo of the `osmdata` package](https://github.com/ropensci/osmdata)
 - [Vignette for the package `osmdata`](https://cran.r-project.org/web/packages/osmdata/vignettes/osmdata.html) on [github](https://github.com/ropensci/osmdata/blob/master/vignettes/osmdata.Rmd)
-- [osmdata Homepage](https://ropensci.github.io/osmdata/)
