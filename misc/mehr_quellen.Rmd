@@ -11,12 +11,15 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## 
 
+- [Introduction to visualising spatial data in R](https://cran.r-project.org/doc/contrib/intro-spatial-rl.pdf)
+
 - [Rweekly](https://rweekly.org/page10/)
-
-
-
 
 - [Making beautiful maps](http://www.tylermw.com/making-beautiful-maps/)
 
 
-file:///D:/Downloads/cartography.pdf
+
+https://www.r-pkg.org/pkg/viridisLite
+
+
+https://stackoverflow.com/questions/44283774/flow-maptravel-path-using-lat-and-long-in-r

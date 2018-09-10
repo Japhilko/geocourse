@@ -6,7 +6,7 @@ output: beamer_presentation
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = T)
+knitr::opts_chunk$set(echo = T,eval=F)
 ```
 
 ## Daten einlesen
@@ -18,7 +18,7 @@ knitr::opts_chunk$set(echo = T)
 head(addr_list_t)
 ```
 
-## Geokdierung mit dem Paket `tmaptools`
+## Geokodierung mit dem Paket `tmaptools`
 
 ```{r}
 library("tmaptools")
@@ -91,6 +91,50 @@ x -lon - ost-West Richtung
 -->
 
 ```{r,eval=F}
-erg <- geonames::GNcities(49.649591,8.627236,49.329591,8.307236)
+erg <- geonames::GNcities(49.649591,8.627236,
+                          49.329591,8.307236)
+```
+
+<!--
+https://cengel.github.io/rspatial/5_Geocoding.nb.html
+http://www.datasciencetoolkit.org/
+
+https://github.com/cengel/ArcGIS_geocoding
+-->
+
+## Das Paket `googleway`
+
+> Accesses Google Maps APIs to Retrieve Data and Plot Maps
+
+```{r,eval=F,echo=F}
+install.packages("googleway")
+```
+
+```{r}
+library(googleway)
+```
+
+- Ein API Schlüssel ist notwendig um die meisten Funktionen des Paketes zu nutzen. 
+
+
+```{r,eval=F,echo=F}
+install.packages("rgeolocate")
+# install.packages("ipapi")
+install.packages("geoparser")
+install.packages("geosapi")
+```
+
+<!--
+Abschnitt zu Geocoding in diesem Task View:
+
+https://cran.r-project.org/web/views/WebTechnologies.html
+-->
+
+
+```{r,eval=F,echo=F}
+library(devtools)
+install_github("trestletech/rydn")
+devtools::install_github("hrbrmstr/ipapi") # https://github.com/hrbrmstr/ipapi/
+devtools::install_github("erzk/PostcodesioR") # https://github.com/ropensci/PostcodesioR/
 ```
 
