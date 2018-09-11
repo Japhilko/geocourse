@@ -9,6 +9,11 @@ output: beamer_presentation
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
+## Youtube
+
+- [Large Scale Data Visualisation with Deck.gl and Shiny](https://www.youtube.com/watch?v=s0k_Hwn5Slg)
+
+
 ## 
 
 - [Introduction to visualising spatial data in R](https://cran.r-project.org/doc/contrib/intro-spatial-rl.pdf)

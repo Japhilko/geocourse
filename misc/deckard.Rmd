@@ -1,0 +1,48 @@
+---
+title: "deck.gl"
+author: "Jan-Philipp Kolb"
+date: "11 9 2018"
+output: beamer_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,warning=F,message=F)
+```
+
+## Das Paket `deckard`
+
+
+- [Mapping the Parisian trees](https://medium.com/vis-gl/mapping-the-parisian-trees-6dc30f6aabc7)
+
+```{r,eval=F}
+library(devtools)
+devtools::install_github("ihansel/deckard")
+```
+
+```{r}
+install.packages("deckard")
+```
+
+
+- Deckgl uses vector tilesets and not raster tilesets like `leaflet` does it. 
+
+## Informationen über `deckard`
+
+```{r}
+citation("deckard")
+```
+
+- Vignette deckard
+
+## Einen Datensatz einlesen
+
+```{r}
+(load("../data/spatsamp_68239.RData"))
+library(deckard)
+deckard_point(data=spatsamp)
+```
+
+
+<!--
+Ich stimme dem Reviewer zu, dass die Kombination aus R und deck.gl viel Potential hat. Allerdings hat das Paket deckard aktuell keine verwendbaren Hilfeseiten. Da ich Ende Oktober eine Deadline für dieses Paper habe, kann ich das Paket leider nur kurs aufnehmen. 
+-->
