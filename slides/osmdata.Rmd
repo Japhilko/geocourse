@@ -53,11 +53,12 @@ q <- opq(bbox = bb)
 
 ## Einrichtungen (amenity) in Amsterdam
 
-- any named objects
-- you can find most of them here:
+- alle benannten Objekte
+- die meisten sind hier zu finden:
 
 https://wiki.openstreetmap.org/wiki/Map_Features
 
+- Achtung, wenn man bspw. alle Objekte mit dem Schlüssel `amenity` für eine Stadt heraussucht, bekommt man einen recht großen Datensatz
 
 ```{r,eval=F}
 q <- add_osm_feature (q, key = 'amenity')
@@ -68,7 +69,7 @@ osmdata_xml(q, '../data/Amsterdam_amenity.osm')
 ## Sehen was dahinter steckt
 
 ```{r,eval=F}
-dat <- sf::st_read ('data/Mannheim_se.osm', 
+dat <- sf::st_read ('../data/Amsterdam_amenity.osm', 
                     layer = 'points', 
                     quiet = TRUE)
 ```
