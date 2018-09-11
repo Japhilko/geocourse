@@ -22,36 +22,36 @@ install.packages("osmdata")
 
 ```{r}
 library(osmdata)
+```
+
+```{r,eval=F}
 citation("osmdata")
 ```
 
+
 ## Eine bounding box definieren um Daten zu bekommen
 
+- Die Bounding Box kann entweder erstellt werden, indem die Koordinaten angegeben werden 
 
 ```{r opq,eval=F}
-q <- opq(bbox = c(51.1, 0.1, 51.2, 0.2))
+q <- opq(bbox = c(52.3, 4.7, 52.4, 5.1))
 ```
 
-
-
-## Getting data for place of interest
+- oder indem man den Befehl `getbb` verwendet:
 
 ```{r,eval=F}
-bb <- getbb('Greater London, U.K.')
+bb <- getbb('Amsterdam')
+```
+
+- Befehl `opq` - eine Overpass Anfrage erstellen
+
+```{r}
 q <- opq(bbox = bb)
 ```
 
+- Als Ergebnis bekommt man aber noch keine Daten
 
-## The boundary for Mannheim
-
-```{r}
-bb_poly <- getbb(place_name = "Mannheim", 
-                 format_out = "polygon")
-plot(bb_poly)
-```
-
-
-## Amenity points in Mannheim Seckenheim
+## Einrichtungen (amenity) in Amsterdam
 
 - any named objects
 - you can find most of them here:
@@ -60,13 +60,12 @@ https://wiki.openstreetmap.org/wiki/Map_Features
 
 
 ```{r,eval=F}
-q <- opq (bbox = 'Mannheim, Seckenheim')
 q <- add_osm_feature (q, key = 'amenity')
-osmdata_xml(q, 'data/Mannheim_se.osm')
+osmdata_xml(q, '../data/Amsterdam_amenity.osm')
 ```
 
 
-## See what`s behind
+## Sehen was dahinter steckt
 
 ```{r,eval=F}
 dat <- sf::st_read ('data/Mannheim_se.osm', 
@@ -114,6 +113,15 @@ nrow(dat_bus)
 
 ```{r,eval=F}
 ?sf::st_read
+```
+
+
+## Die Grenze von Mannheim 
+
+```{r}
+bb_poly <- getbb(place_name = "Mannheim", 
+                 format_out = "polygon")
+plot(bb_poly)
 ```
 
 
