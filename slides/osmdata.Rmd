@@ -1,5 +1,5 @@
 ---
-title: "The package osmdata"
+title: "Das osmdata Paket"
 author: "Jan-Philipp Kolb"
 date: "18 Juni 2018"
 output: beamer_presentation
@@ -29,9 +29,9 @@ citation("osmdata")
 ```
 
 
-## Eine bounding box definieren um Daten zu bekommen
+## Einen Rahmen definieren um Daten zu bekommen
 
-- Die Bounding Box kann entweder erstellt werden, indem die Koordinaten angegeben werden 
+- Der Rahmen kann entweder erstellt werden, indem die Koordinaten angegeben werden:
 
 ```{r opq,eval=F}
 q <- opq(bbox = c(52.3, 4.7, 52.4, 5.1))
@@ -51,6 +51,16 @@ q <- opq(bbox = bb)
 
 - Als Ergebnis bekommt man aber noch keine Daten
 
+## Die Grenze von Mannheim 
+
+```{r}
+bb_poly <- getbb(place_name = "Amsterdam", 
+                 format_out = "polygon")
+library(tmap)
+qtm(bb_poly)
+```
+
+
 ## Einrichtungen (amenity) in Amsterdam
 
 - alle benannten Objekte
@@ -65,6 +75,29 @@ q <- add_osm_feature (q, key = 'amenity')
 osmdata_xml(q, '../data/Amsterdam_amenity.osm')
 ```
 
+## 
+
+- [OSM map features](https://wiki.openstreetmap.org/wiki/Map_Features#Highway)
+
+```{r,eval=F}
+q <- add_osm_feature (q, key = 'amenity',value = "bicycle_parking")
+osmdata_xml(q, '../data/Amsterdam_amenity_bicycle_parking.osm')
+```
+
+```{r}
+dat <- sf::st_read ('../data/Amsterdam_amenity_bicycle_parking.osm', 
+                    layer = 'points', 
+                    quiet = TRUE)
+```
+
+## 
+
+```{r}
+library(tmap)
+qtm(dat)
+```
+
+
 
 ## Sehen was dahinter steckt
 
@@ -73,6 +106,11 @@ dat <- sf::st_read ('../data/Amsterdam_amenity.osm',
                     layer = 'points', 
                     quiet = TRUE)
 ```
+
+
+
+
+
 
 
 ```{r,eval=F}
@@ -114,15 +152,6 @@ nrow(dat_bus)
 
 ```{r,eval=F}
 ?sf::st_read
-```
-
-
-## Die Grenze von Mannheim 
-
-```{r}
-bb_poly <- getbb(place_name = "Mannheim", 
-                 format_out = "polygon")
-plot(bb_poly)
 ```
 
 
@@ -292,3 +321,8 @@ install.packages("colourpicker")
 - [Github repo of the `osmdata` package](https://github.com/ropensci/osmdata)
 - [Vignette for the package `osmdata`](https://cran.r-project.org/web/packages/osmdata/vignettes/osmdata.html) on [github](https://github.com/ropensci/osmdata/blob/master/vignettes/osmdata.Rmd)
 - [osmdata Homepage](https://ropensci.github.io/osmdata/)
+- [Overpass API - query form](http://overpass-api.de/query_form.html)
+- [Overpass API/Language Guide](https://wiki.openstreetmap.org/wiki/DE:Overpass_API/Language_Guide)
+<!--
+https://cran.r-project.org/web/packages/osmdata/osmdata.pdf
+-->

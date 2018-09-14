@@ -28,3 +28,10 @@ https://www.r-pkg.org/pkg/viridisLite
 
 
 https://stackoverflow.com/questions/44283774/flow-maptravel-path-using-lat-and-long-in-r
+
+
+
+```{r}
+# install.packages("cartography")
+library(cartography)
+```

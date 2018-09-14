@@ -7,9 +7,7 @@ output:
     keep_md: yes
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+
 
 
 
@@ -22,13 +20,28 @@ Dieser Workshop beschäftigt sich mit der Erfassung und Verarbeitung von räumli
 
 - __(A2) Use of R package [ggmap](http://journal.r-project.org/archive/2013-1/kahle-wickham.pdf)__ zur Erzeugung verschiedener Kartentypen. ([Browser](slides/ggmap.md) | [pdf](slides/ggmap.pdf) | [rcode](slides/ggmap.R) )
 
-- __(A3) Eine thematische Karte erzeugen__ ([Github](slides/Chorplethen.md))
-
-
 - Beispiel: *Points of interest* ([poi](https://rpossib.wordpress.com/2015/09/15/points-of-interest-for-backpackers/)) für Backpacker in Amsterdam
 
 Aufgabe: [Nutzung von  `ggmap`](https://github.com/Japhilko/GeoData/blob/master/2017/tutorial/Aufgabe_Nutzung_ggmap.Rmd)
 
+Datenquellen
+---------------------
+
+- __(B1) Politische und thematische Karten mit dem R-Paket [maps](https://cran.r-project.org/web/packages/maps/index.html)__ ([Browser ](slides/maps.md) |  [pdf](https://github.com/Japhilko/GeoData/blob/master/2017/slides/maps.pdf) | [blog](https://rpossib.wordpress.com/2015/09/18/political-maps-with-r/) | [rcode](sildes/maps.R) )
+
+- __(B2) Choroplethen mit dem R-Paket maptools__ ([Browser](slides/maptools.md) | [pdf](slides/maptools.pdf)
+| [rcode](slides/maptools.R))
+
+- __(B3) Internetquellen für Geodaten__ ([Browser](slides/polygonSources.md)| [pdf](https://github.com/Japhilko/GeoData/blob/master/2017/slides/polygonSources.pdf)|
+[rcode](slides/polygonSources.R))
+
+- __(B4) OpenStreetMap als Datenquelle__ ([Browser](slides/osm_data.md) |
+[pdf](https://github.com/Japhilko/GeoData/blob/master/2017/slides/osm_data.pdf) | [rcode](slides/OpenStreetMap.R))
+
+- __(B5) Öffentliche Daten zur freien Verfügung__  ([Browser](slides/DataPUF.md) | 
+[pdf](https://github.com/Japhilko/GeoData/blob/master/2017/slides/DataPUF.pdf) |
+[rcode](https://raw.githubusercontent.com/Japhilko/GeoData/master/2016/rcode/slidesD2_DataPUF.R)
+)
 
 Aufgabe: [Deutschlands Gemeinden](https://github.com/Japhilko/GeoData/blob/master/2016/tutorial/Aufgabe_Zensus_Ergebnisse.md)
 

@@ -1,0 +1,186 @@
+---
+title: "Javascript libraries"
+author: "Jan-Philipp Kolb"
+date: "13 9 2018"
+output: beamer_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+htmlpres <- F
+```
+
+## Das Paket `mapview`
+
+```{r}
+load("../data/spatsamp_68239.RData")
+```
+
+```{r}
+library(mapview)
+mapview(spatsamp)
+```
+
+```{r,eval=F,echo=F}
+library(sf)
+locations_sf <- st_as_sf(locations, coords = c("lon", "lat"), crs = 4326)
+```
+
+
+## Das Paket `leaflet`
+
+```{r}
+library("tmaptools")
+gc_tma <- geocode_OSM("Mannheim, GESIS")
+```
+
+
+
+```{r}
+library(leaflet)
+library(magrittr)
+m <- leaflet() %>%
+addTiles() %>%
+addMarkers(lng=8.463061 , lat=49.485736 , popup="GESIS Mannheim")
+m
+```
+
+
+
+## Das Paket `geojsonR`
+
+- JavaScript Object Notation
+
+<!--
+https://cran.r-project.org/web/packages/geojsonR/vignettes/the_geojsonR_package.html
+
+ma:geojsonr
+
+https://wiki.openstreetmap.org/wiki/Overpass_turbo/GeoJSON
+https://github.com/tyrasd/osmtogeojson
+
+https://www.compose.com/articles/how-to-transform-and-use-openstreetmap-data-into-geojson-using-gdal/
+-->
+
+```{r,eval=F}
+install.packages("geojsonR")
+citation("geojsonR")
+```
+
+## Wo bekomme ich ein geojson
+
+- Ein [**OSM map feature**](https://wiki.openstreetmap.org/wiki/Map_Features) heraus suchen 
+- z.B. `key=highway`, `value=bus_stop`
+- Auf [**Overpass Turbo**](https://overpass-turbo.eu/) gehen und das Objekt herunterladen
+
+```{r}
+bus_stops <- geojsonio::geojson_read("../data/Amsterdam_bus_stop.geojson",
+  what = "sp")
+```
+
+
+## Die Punkte plotten
+
+```{r}
+sp::plot(bus_stops)
+```
+
+<!--
+## Eine direkte Abfrage
+
+```{r,eval=F}
+# http://overpass-api.de/query_form.html
+firstpart <- "http://overpass-api.de/api/interpreter?data="
+gcs <- geojsonio::geojson_read(paste0(firstpart,"node['name'='Gielgen'](50.7,7.1,50.8,7.2);out;",
+                               what="sp",method="web"))
+
+
+
+gcs <- geojsonio::geojson_read("http://nominatim.openstreetmap.org/search?format=json&addressdetails=1&extratags=1&q=Amsterdam+Niederlande+Rozengracht+1",what="sp")
+```
+-->
+## [Das Paket `lawn`](https://cran.r-project.org/web/packages/lawn/index.html)
+
+- [**Vignette**](https://cran.r-project.org/web/packages/lawn/vignettes/lawn_vignette.html) für das Paket `lawn`
+
+- Mit dem Paket `lawn` kann die Javascript-Bibliothek turf.js in R eingebunden werden. 
+- Weitere genutzte Javascript Bibliotheken (geojson-random und geojsonhint), werden verwendet um GeoJSON-Objekte zufällig zu erzeugen bzw. um die GeoJSON Objekte einzufärben.
+
+```{r,eval=F}
+install.packages("lawn")
+citation("lawn")
+```
+
+
+```{r}
+library(lawn)
+```
+
+
+## Ein zufälliges Beispiel Objekt erstellen
+
+- Mit der Funktion `gr_polygon` kann ein Beispielobjekt erzeugt werden. 
+- Anschließend kann man sich das Objekt mit der generischen Funktion `view` plotten.
+
+```{r,eval=htmlpres}
+a <- gr_polygon(n = 1, vertices = 5, max_radial_length = 5)
+view(a)
+```
+
+```{r,eval=htmlpres}
+b <- gr_polygon(n = 1)
+view(b)
+```
+
+<!--
+https://github.com/node-geojson/geojson-random
+
+https://wiki.openstreetmap.org/wiki/Overpass_turbo/GeoJSON
+
+https://wiki.openstreetmap.org/wiki/GeoJSON
+
+-->
+
+## Interaktive Deutschland Karte 
+
+```{r}
+gcs <- geojsonio::geojson_read("../data/ddat.geojson")
+view(gcs)
+```
+
+## Das Paket `jsonlite`
+
+- A Robust, High Performance JSON Parser and Generator for R
+
+```{r}
+library(jsonlite)
+geoc <- read_json("../data/ddat.geojson")
+```
+
+<!--
+https://github.com/Robinlovelace/Creating-maps-in-R/blob/master/R/shp-to-geojson.R
+-->
+
+```{r}
+citation("jsonlite")
+```
+
+
+## Das Paket `RJSONIO`
+
+```{r}
+library("RJSONIO")
+con <- url("http://nominatim.openstreetmap.org/search?format=json&
+addressdetails=1&extratags=1&q=Amsterdam+Niederlande+Rozengracht+1")
+geoc <- fromJSON(paste(readLines(con,warn=F), 
+                       collapse = ''))
+close(con)
+```
+
+## Links
+
+- [github Ordner für das lwan Paket](https://github.com/ropensci/lawn)
+
+<!--
+https://github.com/tyrasd/osmtogeojson
+-->

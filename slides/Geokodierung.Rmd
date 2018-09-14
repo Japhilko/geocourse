@@ -1,12 +1,20 @@
 ---
 title: "Geokodierung"
 author: "Jan-Philipp Kolb"
-date: "30 August 2018"
-output: beamer_presentation
+date: "22 Oktober 2018"
+output:
+  beamer_presentation:
+    colortheme: beaver
+    fonttheme: structurebold
+    highlight: tango
+    fig_caption: no
+    keep_tex: yes
+    theme: CambridgeUS
+  slidy_presentation: default
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = T,eval=F)
+knitr::opts_chunk$set(echo = T,eval=T,message=F,warning=F)
 ```
 
 ## Daten einlesen
@@ -14,11 +22,41 @@ knitr::opts_chunk$set(echo = T,eval=F)
 - Hier wird ein Beispieldatensatz eingelesen, den ich über räumliche Stichproben und reverse geocoding erzeugt habe. 
 
 ```{r}
-(load("../data/addr_list_t_68239.RData"))
+load("../data/addr_list_t_68239.RData")
 head(addr_list_t)
 ```
 
+
+```{r,eval=F,echo=F}
+(load("../data/addr_list_t_Deutschland_samp1.RData"))
+head(addr_list_t)
+addr_dat <- data.frame(address = addr_list_t)
+# gc_addr <- mutate_geocode(addr_dat, address)
+```
+
+
+## Geokodierung mit dem Paket `ggmap`
+
+- Einer der ersten Ansätze Geokodierung mit R durchzuführen
+- Wenn Geokodierung mit R durchgeführt wird dieses Paket wohl am häufigsten verwendet. 
+- Das führt auch dazu, dass im Internet zahlreiche Anwendungsbeispiele zu finden sind. 
+
+```{r,eval=F}
+library(ggmap)
+geocode("Heidelberg")
+```
+
+```
+Information from URL : http://maps.googleapis.com/maps/api/geocode/json?address=Heidelberg&sensor=false
+       lon      lat
+1 8.672434 49.39875
+```
+
+
 ## Geokodierung mit dem Paket `tmaptools`
+
+- Beim Paket `tmaptools` wird die Nominatim API zur Geokodierung verwendet.
+- Diese Funktion hat den Vorteil, dass eine Projektion ausgewählt werden kann, in der die Geokodierungen zurück gegeben werden. 
 
 ```{r}
 library("tmaptools")
@@ -29,12 +67,14 @@ library("tmaptools")
 geocode_OSM(addr_list_t[1])
 ```
 
+```{r,eval=F,echo=F}
+?geocode_OSM
+```
 
 ## Alle Adressen geokodieren
 
 
 ```{r,eval=F}
-
 gc_list <- list()
 
 for (i in 1:length(addr_list_t)){
@@ -53,10 +93,11 @@ library(opencage)
 
 
 ```{r,eval=F}
-gc_info <- opencage_forward(placename = "Amsterdam, Van Woustraat")
+gc_info<-opencage_forward(placename = 
+                              "Amsterdam, Van Woustraat")
 ```
 
-- [opencage Tutorial](https://ropensci.org/tutorials/opencage_tutorial/)
+- Hinweise, wie das Paket genutzt erden kann sind im [**opencage Tutorial**](https://ropensci.org/tutorials/opencage_tutorial/) zu finden. 
 
 ## Das Paket [`geonames`](https://github.com/ropensci/geonames)
 
@@ -64,6 +105,9 @@ gc_info <- opencage_forward(placename = "Amsterdam, Van Woustraat")
 https://cran.r-project.org/web/packages/geonames/README.html
 -->
 
+```{r,eval=F}
+install.packages("geonames")
+```
 
 - Ein Account ist notwendig um die meisten Funktionen des Paketes `geonames`zu nutzen.
 
@@ -74,6 +118,22 @@ library(geonames)
 ```{r,eval=F}
 options(geonamesUsername="myusername")
 ```
+
+```{r,eval=F}
+MAwiki<-GNfindNearbyWikipedia(postalcode=68239,country="DE",
+                              radius=10)
+```
+
+```{r,eval=F,echo=F}
+save(MAwiki,file="../data/MAwiki.RData")
+```
+
+```{r,echo=F}
+load("../data/MAwiki.RData")
+library(knitr)
+kable(MAwiki)
+```
+
 
 - [Login für Geonames](http://www.geonames.org/login)
 
@@ -138,3 +198,36 @@ devtools::install_github("hrbrmstr/ipapi") # https://github.com/hrbrmstr/ipapi/
 devtools::install_github("erzk/PostcodesioR") # https://github.com/ropensci/PostcodesioR/
 ```
 
+## Das Paket `bbox` 
+
+- Das Paket `bbox` ist auf github zu finden.
+
+```{r,eval=F,echo=F}
+devtools::install_github("ropensci/bbox") # https://github.com/ropensci/PostcodesioR/
+```
+
+- Beispieldatensatz laden:
+
+```{r}
+load("../data/ddat.RData")
+```
+
+- Rahmen für das räumliche Objekt bestimmen:
+
+```{r,eval=T}
+library(bbox)
+b_box(ddat)
+```
+
+```{r,eval=F}
+citation("bbox")
+```
+
+
+<!--
+https://github.com/ropensci/bbox
+-->
+
+## Links
+
+- [Geokodierung mit R](https://www.jessesadler.com/post/geocoding-with-r/)

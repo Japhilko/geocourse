@@ -1,0 +1,24 @@
+---
+title: "mapdeck"
+author: "Jan-Philipp Kolb"
+date: "11 9 2018"
+output: beamer_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Das Paket `mapdeck` 
+
+- Mit diesen Paketen ist es möglich viele unterschiedliche interaktive Graphiken zu erzeugen. 
+
+```{r,eval=F}
+install.packages("mapdeck")
+```
+
+
+```{r}
+library(mapdeck)
+```
+

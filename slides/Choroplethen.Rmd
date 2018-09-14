@@ -19,7 +19,7 @@ library(knitr)
 ```
 
 
-## Inhalt dieses Kapitels
+## Inhalt dieses Abschnitts
 
 - Der Beispieldatensatz `wrld_simpl` im Paket `maptools` wird vorgestellt.
 - Es wird gezeigt, wie man Daten aus anderen Quellen mit Kartendaten verbinden kann.
