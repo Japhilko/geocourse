@@ -14,7 +14,7 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(message=F,warning=F,cache=T)
+knitr::opts_chunk$set(message=F,warning=F,cache=T, fig.height=4)
 library(knitr)
 ```
 
