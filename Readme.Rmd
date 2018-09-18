@@ -33,14 +33,24 @@ Aufgabe: [Nutzung von  `ggmap`](https://github.com/Japhilko/GeoData/blob/master/
 Aufgabe: [Deutschlands Gemeinden](https://github.com/Japhilko/GeoData/blob/master/2016/tutorial/Aufgabe_Zensus_Ergebnisse.md)
 
 
+<<<<<<< HEAD
 ## Verbindung, Editierung und Einfärbung
+=======
+>>>>>>> origin/master
 
-- __(C1) Verbindung von Daten__ ([Browser](slides/Matching.md) | [pdf](slides/Matching.pdf) |
-[rcode](slides/Matching.R))
-of data sources
 
-- __(C2) Das R-Paket `spplot` und Farbkodierung__  ([Browser](slides/spplot.md)|  [pdf](slides/spplot.pdf) | 
-[rcode](slides/spplot.R))
+
+
+- Openstreetmap Daten 
+
+- __(D5) Interaktive Karten mit Javascript Bibliotheken__ ([Github](slides/using_javascript.md) | [pdf](slides/using_javascript.pdf)
+| [rcode](rcode/using_javascript.R))
+Beispiel - [Campingplätze](http://rpubs.com/Japhilko82/Campsites)
+
+
+
+Verbindung, Editierung und Einfärbung
+---------------------
 
 - __(C3) Shapefiles zusammenfassen__ ([Browser](slides/BeispielONB.md) |  [pdf](slides/BeispielONB.pdf) |
 [rcode](https://raw.githubusercontent.com/Japhilko/GeoData/master/2016/rcode/slidesE3_CombineShapefiles.R)
@@ -69,9 +79,6 @@ OpenStreetMap und räumliche Statistik
 - __(D2) Die Nutzung von Programmierschnittstellen__ ([Browser](https://github.com/Japhilko/GeoData/blob/master/2017/slides/UsageAPI.md)| [pdf](slides/UsageAPI.pdf) | 
 [rcode](https://raw.githubusercontent.com/Japhilko/GeoData/master/2016/rcode/slidesG1_UsageAPI.R))
 
-- __(D3) Das R-Paket `osmar`__ ([Browser](https://github.com/Japhilko/GeoData/blob/master/2016/slides/osmar.md) | [pdf](slides/osmar.pdf) | 
-[rcode](https://raw.githubusercontent.com/Japhilko/GeoData/master/2016/rcode/slidesG3_osmar.R))
-
 - Beispiel Hostels in Madrid ([Browser](https://github.com/Japhilko/GeoData/blob/master/2016/slides/Madrid_hostels.Rmd)), [Energieerzeugung](https://rpossib.wordpress.com/2015/11/20/use-openstreetmap-date/)
 
 Aufgabe: [Darstellung von OSM Daten mit tmap](https://github.com/Japhilko/GeoData/blob/master/2016/tutorial/Aufgabe_osmar.Rmd)
@@ -80,8 +87,5 @@ Aufgabe: [Darstellung von OSM Daten mit tmap](https://github.com/Japhilko/GeoDat
 [rcode](https://raw.githubusercontent.com/Japhilko/GeoData/master/2016/rcode/slidesH1_spdep.R))
 
 
-- __(D5) Interaktive Karten und Präsentation__ ([Browser](https://github.com/Japhilko/GeoData/blob/master/2017/slides/InteractiveMaps.md) | [pdf](slides/InteractiveMaps.pdf)
-| [rcode](https://raw.githubusercontent.com/Japhilko/GeoData/master/2016/rcode/slidesH2_Interaktiv.R))
-Beispiel - [Campingplätze](http://rpubs.com/Japhilko82/Campsites)
 
 Aufgabe: [Distanzberechnung](https://github.com/Japhilko/GeoData/blob/master/2016/tutorial/Aufgabe_Distanzberechnung.Rmd)

@@ -1,0 +1,249 @@
+---
+title: "Postleitzahlen Karten"
+author: "Jan-Philipp Kolb"
+date: "23 Oktober 2018"
+output:
+  beamer_presentation:
+    colortheme: beaver
+    fonttheme: structurebold
+    highlight: tango
+    fig_caption: no
+    keep_tex: yes
+    theme: CambridgeUS
+  slidy_presentation: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,cache=T)
+GESIS <- T
+athome <- !GESIS
+```
+
+
+## Worum geht es in diesem Abschnitt
+
+- Shapefiles mit Vorwahl- und PLZ-Bereichen importieren
+- PLZ-Bereiche zusammenfassen
+- Eine räumliche Stichprobe ziehen
+- Adressen für die gezogenen Punkte bestimmen
+- Adressdatensatz bereinigen
+- Entfernung zum Hauptbahnhof bestimmen
+
+
+## Ortsnetzbereiche
+
+Quelle: [Bundesnetzagentur](http://www.bundesnetzagentur.de/DE/Sachgebiete/Telekommunikation/Unternehmen_Institutionen/Nummerierung/Rufnummern/ONVerzeichnisse/GISDaten_ONBGrenzen/ONBGrenzen_Basepage.html)
+
+
+```{r,echo=T,eval=GESIS}
+setwd("D:/Daten/Daten/GeoDaten/")
+library(maptools)
+onb <- readShapePoly("onb_grenzen.shp")
+```
+
+## Die Karte zeichnen
+
+```{r,eval=GESIS}
+par(mai=c(0,0,0,0))
+plot(onb)
+```
+
+![onbD](https://raw.githubusercontent.com/Japhilko/GeoData/master/data/figure/onbGermany.png)
+
+## Einen Vorwahlbereich ausschneiden
+
+```{r,eval=GESIS}
+vwb <- onb@data$ONB_NUMMER
+vwb1 <- substr(vwb, 1,1)
+```
+
+```{r,eval=GESIS}
+barchart(table(vwb1),col="royalblue",
+         xlab="Häufigkeit")
+```
+
+<!--
+![vwb1freq](https://raw.githubusercontent.com/Japhilko/GeoData/master/data/figure/vwb1freq.png)
+-->
+
+## Vorwahlbereich ausschneiden
+
+```{r,eval=GESIS}
+vwb6 <- onb[vwb1==6,]
+plot(vwb6)
+```
+
+<!--
+![vwb6](https://raw.githubusercontent.com/Japhilko/GeoData/master/data/figure/vwb6.png)
+-->
+
+## Shapefiles zusammenfassen
+
+```{r,eval=GESIS}
+vwb6c <- unionSpatialPolygons(vwb6,
+              rep(1,length(vwb6)))
+plot(vwb6c,col="royalblue")
+```
+
+<!--
+![vwb6c](https://raw.githubusercontent.com/Japhilko/GeoData/master/data/figure/vwb6c.png)
+-->
+
+
+## PLZ Datensatz einlesen
+
+- [**Quelle**](http://arnulf.us/PLZ) für PLZ Shapefiles
+
+```{r,eval=athome,echo=F}
+data_path <- "D:/GESIS/data/"
+```
+
+```{r,eval=GESIS,echo=F}
+data_path <- "D:/Daten/Daten/GeoDaten/"
+```
+
+
+```{r}
+library(rgdal)
+```
+
+
+```{r}
+setwd(data_path)
+plz <- readOGR ("post_pl.shp","post_pl")
+```
+
+## Die Daten plotten
+
+```{r}
+plzbereich <- substr(plz@data$PLZ99,1,2)
+plot(plz[plzbereich=="68",])
+```
+
+
+## Die Grenze von Mannheim
+
+```{r}
+ma_map <- plz[plz$PLZORT99=="Mannheim",]
+plot(ma_map)
+```
+
+## Die PLZ-Bereiche von Mannheim zusammenfassen
+
+- Wir nutzen den Befehl `unionSpatialPolygons` im Paket `maptools`
+
+```{r}
+library(maptools)
+ma_map2 <- unionSpatialPolygons(SpP = ma_map,
+                                IDs = rep(1,length(ma_map)))
+plot(ma_map2)
+```
+
+
+## Der Grenze von Deutschland
+
+```{r}
+ddat <- maptools::unionSpatialPolygons(SpP = plz,
+                                IDs = rep(1,length(plz)))
+
+```
+
+
+```{r,eval=F,echo=F}
+save(ddat,file="../data/ddat.RData")
+```
+
+
+
+## [Räumliche Stichprobe](https://www.rdocumentation.org/packages/sp/versions/1.3-1/topics/spsample)
+
+```{r}
+# set.seed(323)
+set.seed(5)
+n <- 1000
+spatsamp <- spsample(ddat,n,type="random")
+```
+
+
+## Reverse Geokodierung
+
+```{r}
+library(ggmap)
+```
+
+
+```{r,eval=F}
+spatlist <- list()
+for (i in 1:n){
+  spatlist[[i]] <- ggmap::revgeocode(c(spatsamp[i,]$x,
+                                       spatsamp[i,]$y))  
+}
+
+spatvec <- unlist(spatlist)
+spatsamp$adress <- spatvec
+```
+
+```{r,eval=F,echo=F}
+plz_place <- "Deutschland"
+save(spatsamp,file=paste0("../data/spatsamp_",plz_place,".RData"))
+```
+
+```{r,echo=F}
+load(paste0("../data/spatsamp_",sampplz,".RData"))
+```
+
+## Die räumliche Stichprobe plotten
+
+```{r}
+plot(ddat)
+points(spatsamp)
+```
+
+
+## Nur tatsächliche Adressen
+
+- [**Reguläre Ausdrücke**](http://stat545.com/block022_regular-expression.html) in R
+
+```{r}
+addr_list <- spatsamp$adress
+  # Adressen raus nehmen, die NA sind
+indna <- which(is.na(addr_list))
+addr_list <- as.character(addr_list)
+addr_list2 <- strsplit(x = addr_list,split = " ")
+addr_list2b <- unlist(lapply(addr_list2,length))
+ind_ua <- which(addr_list2b<3)
+addr_list3 <- unlist(lapply(addr_list2,function(x)x[1]))
+  # Adressen rauß nehmen, die Landstraßen 
+  # oder Autobahnen sind
+addr_list3 <- tolower(addr_list3)
+ind_str <- grep("^[a-z][1-9]", addr_list3, value = F)
+ind_str2 <- agrep("unnamed", addr_list3, value = F)
+
+
+addr_list_t <- addr_list[-c(ind_str,ind_str2,ind_ua,indna)]
+```
+
+```{r,eval=F,echo=F}
+save(addr_list_t,file=paste0("../data/addr_list_t_",plz_place,"_samp1",".RData"))
+```
+
+## Das Ergebnis plotten
+
+```{r}
+plot(plz[plz@data$PLZ99==sampplz,])
+points(spatsamp,pch=20)
+points(spatsamp[ind_str,],pch=20,col="green")
+points(spatsamp[ind_ua,],pch=20,col="purple")
+points(spatsamp[indna,],pch=20,col="red")
+```
+
+## Distanzen berechnen
+
+```{r}
+library("SoDA")
+```
+
+```{r}
+?geoDist
+```
+
