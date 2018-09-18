@@ -1,13 +1,52 @@
 ---
 title: "Das osmdata Paket"
 author: "Jan-Philipp Kolb"
-date: "18 Juni 2018"
-output: beamer_presentation
+date: "22 Oktober 2018"
+output:
+  beamer_presentation:
+    colortheme: beaver
+    fonttheme: structurebold
+    highlight: tango
+    fig_caption: no
+    keep_tex: yes
+    theme: CambridgeUS
+  slidy_presentation: default
 ---
 
 ```{r, include=FALSE}
 knitr::opts_chunk$set(echo = T,cache=T,eval=T)
 ```
+
+## Themen dieses Abschnitts
+
+- Vorstellung des Openstreetmap (OSM) Projekts
+- Vorstellung von Forschung die mit OSM-Daten durchgeführt wurde
+- Welche OSM-Daten sind erhältlich?
+- Die Overpass API
+- Das Paket `osmdata`
+
+## Das Openstreetmap Projekt...
+
+- Durch kollaboratives Mapping ist eine riesige Datenmenge zugänglich. 
+- Viele Menschen tragen jeden Tag Informationen bei.
+- ... ermöglicht Zugang zu Big Data der Geographie.
+- Die wachsende Menge an Geodaten wird von Freiwilligen gesammelt oder über Crowd-sourcing gewonnen.
+
+## Global patterns of current and future road infrastructure
+
+### Study by Johan Meijer, Mark AJ Huijbregts,  Kees Schotten,  and Aafke Schipper
+
+![](figure/GRIP_globalroads.PNG)
+
+<!--
+@article{meijer2018global,
+  title={Global patterns of current and future road infrastructure},
+  author={Meijer, Johan and Huijbregts, Mark AJ and Schotten, Kees and Schipper, Aafke},
+  journal={Environmental Research Letters},
+  year={2018},
+  publisher={IOP Publishing}
+}
+-->
 
 ## [Das `osmdata` Paket](https://github.com/ropensci/osmdata)
 
