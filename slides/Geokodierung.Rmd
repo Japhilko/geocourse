@@ -53,6 +53,104 @@ Information from URL : http://maps.googleapis.com/maps/api/geocode/json?address=
 ```
 
 
+## Geokodierung
+
+> Geocoding (...) uses a description of a location, most typically a postal address or place name, to find geographic coordinates from spatial reference data ... 
+
+[Wikipedia - Geocoding](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#blockquotes)
+
+```{r,message=F,eval=F,warning=F}
+library(ggmap)
+geocode("Mannheim",source="google")
+```
+
+```{r,echo=F,message=F,warning=F}
+MAgc <- geocode("Mannheim B2,5",source="google")
+kable(MAgc)
+```
+
+
+## Latitude und Longitude
+
+![LatLon](figure/definition-of-latitude-longitude.jpg)
+
+[http://modernsurvivalblog.com](http://modernsurvivalblog.com/survival-skills/basic-map-reading-latitude-longitude/)
+
+## Koordinaten verschiedener Orte in Deutschland
+
+```{r,echo=F,message=F}
+cities <- c("Hamburg","Koeln","Dresden","Muenchen")
+lon <- vector()
+lat <- vector()
+for (i in 1:length(cities)){
+  gc <- geocode(cities[i],source="google")
+  lon[i] <- gc$lon
+  lat[i] <- gc$lat
+}
+
+Dat <- data.frame(cities,lon,lat)
+kable(Dat)
+```
+
+
+## Reverse Geokodierung
+
+> Reverse geocoding is the process of back (reverse) coding of a point location (latitude, longitude) to a readable address or place name. This permits the identification of nearby street addresses, places, and/or areal subdivisions such as neighbourhoods, county, state, or country.
+
+Quelle: [Wikipedia](https://en.wikipedia.org/wiki/Reverse_geocoding)
+
+```{r,cache=T,message=F}
+revgeocode(c(48,8))
+```
+
+
+
+## Die Distanz zwischen zwei Punkten
+
+```{r,message=F}
+mapdist("Q1, 4 Mannheim","B2, 1 Mannheim")
+```
+
+```{r,message=F}
+mapdist("Q1, 4 Mannheim","B2, 1 Mannheim",mode="walking")
+```
+
+
+## Eine andere Distanz bekommen
+
+```{r,message=F}
+mapdist("Q1, 4 Mannheim","B2, 1 Mannheim",mode="bicycling")
+```
+
+
+## Geokodierung - verschiedene Punkte von Interesse
+
+```{r,message=F,warning=F}
+POI1 <- geocode("B2, 1 Mannheim",source="google")
+POI2 <- geocode("Hbf Mannheim",source="google")
+POI3 <- geocode("Mannheim, Friedrichsplatz",source="google")
+ListPOI <-rbind(POI1,POI2,POI3)
+POI1;POI2;POI3
+```
+
+
+## Punkte in der Karte
+
+```{r,message=F,warning=F }
+MA_map +
+geom_point(aes(x = lon, y = lat),
+data = ListPOI)
+```
+
+## Punkte in der Karte
+
+```{r,message=F,warning=F }
+MA_map +
+geom_point(aes(x = lon, y = lat),col="red",
+data = ListPOI)
+```
+
+
 ## Geokodierung mit dem Paket `tmaptools`
 
 - Beim Paket `tmaptools` wird die Nominatim API zur Geokodierung verwendet.

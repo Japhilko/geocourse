@@ -20,11 +20,11 @@ Dieser Workshop beschäftigt sich mit der Erfassung und Verarbeitung von räumli
 
 ### __(A1) Einleitung__ ([Github](slides/Intro.md)) - [Regional information](http://rpubs.com/Japhilko82/mapFirenze)
 
-- __(A2) Use of R package [ggmap](http://journal.r-project.org/archive/2013-1/kahle-wickham.pdf)__ zur Erzeugung verschiedener Kartentypen. ([Browser](slides/ggmap.md) | [pdf](slides/ggmap.pdf) | [rcode](slides/ggmap.R) )
+- __(A2) Das Paket [ggmap](http://journal.r-project.org/archive/2013-1/kahle-wickham.pdf)__ zur Erzeugung verschiedener Kartentypen. ([Browser](slides/ggmap.md) | [pdf](slides/ggmap.pdf) | [rcode](slides/ggmap.R) )
 
 - __(A3) Eine thematische Karte erzeugen__ ([Github](slides/Chorplethen.md))
 
-
+- osmdata Paket
 - Beispiel: *Points of interest* ([poi](https://rpossib.wordpress.com/2015/09/15/points-of-interest-for-backpackers/)) für Backpacker in Amsterdam
 
 Aufgabe: [Nutzung von  `ggmap`](https://github.com/Japhilko/GeoData/blob/master/2017/tutorial/Aufgabe_Nutzung_ggmap.Rmd)
@@ -33,8 +33,7 @@ Aufgabe: [Nutzung von  `ggmap`](https://github.com/Japhilko/GeoData/blob/master/
 Aufgabe: [Deutschlands Gemeinden](https://github.com/Japhilko/GeoData/blob/master/2016/tutorial/Aufgabe_Zensus_Ergebnisse.md)
 
 
-Verbindung, Editierung und Einfärbung
----------------------
+## Verbindung, Editierung und Einfärbung
 
 - __(C1) Verbindung von Daten__ ([Browser](slides/Matching.md) | [pdf](slides/Matching.pdf) |
 [rcode](slides/Matching.R))
@@ -46,7 +45,6 @@ of data sources
 - __(C3) Shapefiles zusammenfassen__ ([Browser](slides/BeispielONB.md) |  [pdf](slides/BeispielONB.pdf) |
 [rcode](https://raw.githubusercontent.com/Japhilko/GeoData/master/2016/rcode/slidesE3_CombineShapefiles.R)
 )
-
 
 Aufgabe: [Zensus Ergebnisse und Karte miteinander verbinden und einfärben](https://github.com/Japhilko/GeoData/blob/master/2017/tutorial/Aufgabe_Verbindung.Rmd)
 

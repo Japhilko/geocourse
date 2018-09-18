@@ -1,0 +1,93 @@
+#' ---
+#' title: "Choroplethen - Das Paket maptools"
+#' author: "Jan-Philipp Kolb"
+#' date: "22 Oktober 2018"
+#' output:
+#'   beamer_presentation:
+#'     colortheme: beaver
+#'     fonttheme: structurebold
+#'     highlight: tango
+#'     fig_caption: no
+#'     keep_tex: yes
+#'     theme: CambridgeUS
+#'   slidy_presentation: default
+#' ---
+#' 
+## ----setup, include=FALSE------------------------------------------------
+knitr::opts_chunk$set(message=F,warning=F,cache=T)
+library(knitr)
+
+#' 
+#' 
+#' ## Inhalt dieses Abschnitts
+#' 
+#' - Der Beispieldatensatz `wrld_simpl` im Paket `maptools` wird vorgestellt.
+#' - Es wird gezeigt, wie man Daten aus anderen Quellen mit Kartendaten verbinden kann.
+#' - Mit dieser Verbindung ist es dann möglich thematische Karten - so genannte Choroplethen - zu erstellen
+#' 
+#' ## Das Paket `maptools`
+#' 
+#' - Datensatz wrld_simpl aus dem Paket `maptools`
+#' - Polygone für fast alle Staaten der Erde
+#' 
+## ------------------------------------------------------------------------
+library(maptools)
+data(wrld_simpl)
+
+#' 
+## ----echo=F--------------------------------------------------------------
+kable(head(wrld_simpl@data[,c("ISO2","NAME","AREA","POP2005")]))
+
+#' 
+#' ## Hallo Welt
+#' 
+## ------------------------------------------------------------------------
+plot(wrld_simpl)
+
+#' 
+#' 
+#' ## [Daten zum Gini Index](https://datahub.io/core/gini-index#data)
+#' 
+#' - Daten von [**datahub.io**](https://datahub.io/core/gini-index#data)
+#' - Statistisches Maß zur Darstellung von [Ungleichverteilungen](https://de.wikipedia.org/wiki/Gini-Koeffizient)
+#' 
+## ------------------------------------------------------------------------
+gini <- read.csv("../data/gini-index_csv.csv")
+
+#' 
+## ----echo=F--------------------------------------------------------------
+kable(head(gini))
+
+#' 
+#' ## Der Gini Index im Jahr 2012
+#' 
+#' - Für das Jahr 2012 sind am meisten Beobachtungen vorhanden. 
+#' 
+## ------------------------------------------------------------------------
+gini12 <- gini[gini$Year==2012,]
+summary(gini12$Value)
+
+#' 
+#' ## Die Daten matchen
+#' 
+## ------------------------------------------------------------------------
+ind <- match(gini12$Country.Code,wrld_simpl$ISO3)
+ind2 <- ind[!is.na(ind)]
+
+#' 
+## ------------------------------------------------------------------------
+ginimap <- wrld_simpl[ind2,]
+ginimap@data$gini12 <- gini12$Value[!is.na(ind)]
+
+#' 
+#' ## Die Daten plotten
+#' 
+## ------------------------------------------------------------------------
+library(sp)
+spplot(ginimap,"gini12")
+
+#' 
+#' ## Aufgabe
+#' 
+#' - Lade Datensatz xy herunter
+#' - Erzeuge mit der Variable yx folgende Karte:

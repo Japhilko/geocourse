@@ -37,7 +37,7 @@
 }
 \usepackage{hyperref}
 \hypersetup{
-            pdftitle={Choroplethen - Das Paket maptools},
+            pdftitle={Choroplethen - Die Pakete maptools und choreplethr},
             pdfauthor={Jan-Philipp Kolb},
             pdfborder={0 0 0},
             breaklinks=true}
@@ -142,15 +142,15 @@
 \makeatother
 
 
-\title{Choroplethen - Das Paket maptools}
+\title{Choroplethen - Die Pakete \texttt{maptools} und \texttt{choreplethr}}
 \author{Jan-Philipp Kolb}
 \date{22 Oktober 2018}
 
 \begin{document}
 \frame{\titlepage}
 
-\begin{frame}[fragile]{Inhalt dieses Kapitels}
-\protect\hypertarget{inhalt-dieses-kapitels}{}
+\begin{frame}[fragile]{Inhalt dieses Abschnitts}
+\protect\hypertarget{inhalt-dieses-abschnitts}{}
 
 \begin{itemize}
 \tightlist
@@ -163,7 +163,27 @@
 \item
   Mit dieser Verbindung ist es dann möglich thematische Karten - so
   genannte Choroplethen - zu erstellen
+\item
+  Zudem wird das Paket \texttt{choroplethr} vorgestellt.
 \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Was ist ein Choropleth}
+\protect\hypertarget{was-ist-ein-choropleth}{}
+
+Ein Choropleth ist eine Karte, die
+
+\begin{itemize}
+\tightlist
+\item
+  geografische Grenzen zeigt.
+\item
+  bei denen Bereiche basierend auf Metriken eingefärbt werden.
+\end{itemize}
+
+Choroplethen sind nützlich für die Visualisierung von Daten, wo
+geografische Grenzen eine natürliche Einheit der Aggregation sind.
 
 \end{frame}
 
@@ -218,6 +238,16 @@ AGO & AO & Angola & 124670 & 16095214\tabularnewline
 zum Gini Index}}
 \protect\hypertarget{daten-zum-gini-index}{}
 
+\begin{itemize}
+\tightlist
+\item
+  Daten von
+  \href{https://datahub.io/core/gini-index\#data}{\textbf{datahub.io}}
+\item
+  Statistisches Maß zur Darstellung von
+  \href{https://de.wikipedia.org/wiki/Gini-Koeffizient}{Ungleichverteilungen}
+\end{itemize}
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{gini <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"../data/gini-index_csv.csv"}\NormalTok{)}
@@ -243,6 +273,12 @@ Algeria & DZA & 1988 & 40.2\tabularnewline
 \begin{frame}[fragile]{Der Gini Index im Jahr 2012}
 \protect\hypertarget{der-gini-index-im-jahr-2012}{}
 
+\begin{itemize}
+\tightlist
+\item
+  Für das Jahr 2012 sind am meisten Beobachtungen vorhanden.
+\end{itemize}
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{gini12 <-}\StringTok{ }\NormalTok{gini[gini}\OperatorTok{$}\NormalTok{Year}\OperatorTok{==}\DecValTok{2012}\NormalTok{,]}
@@ -257,19 +293,71 @@ Algeria & DZA & 1988 & 40.2\tabularnewline
 
 \end{frame}
 
+\begin{frame}[fragile]{Exkurs: der Befehl \texttt{match}}
+\protect\hypertarget{exkurs-der-befehl-match}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vec_a <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"A"}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{1}\NormalTok{,}\StringTok{"C"}\NormalTok{)}
+\NormalTok{vec_b <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\StringTok{"C"}\NormalTok{,}\DecValTok{2}\NormalTok{)}
+
+\KeywordTok{match}\NormalTok{(vec_a,vec_b)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] NA  3 NA  1  2
+\end{verbatim}
+
+\end{frame}
+
 \begin{frame}[fragile]{Die Daten matchen}
 \protect\hypertarget{die-daten-matchen}{}
+
+\begin{itemize}
+\tightlist
+\item
+  WIr matchen die Gini-Daten mit den Kartendaten
+\end{itemize}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{ind <-}\StringTok{ }\KeywordTok{match}\NormalTok{(gini12}\OperatorTok{$}\NormalTok{Country.Code,wrld_simpl}\OperatorTok{$}\NormalTok{ISO3)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Wir nehmen die Länder raus, für die keine Daten vorhanden sind:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \NormalTok{ind2 <-}\StringTok{ }\NormalTok{ind[}\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(ind)]}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{itemize}
+\tightlist
+\item
+  Eine neue Karte wird erstellt:
+\end{itemize}
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{ginimap <-}\StringTok{ }\NormalTok{wrld_simpl[ind2,]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Die Gini-Daten werden in den Datenslot geschrieben
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \NormalTok{ginimap}\OperatorTok{@}\NormalTok{data}\OperatorTok{$}\NormalTok{gini12 <-}\StringTok{ }\NormalTok{gini12}\OperatorTok{$}\NormalTok{Value[}\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(ind)]}
 \end{Highlighting}
 \end{Shaded}
@@ -286,7 +374,7 @@ Algeria & DZA & 1988 & 40.2\tabularnewline
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Choroplethen_files/figure-beamer/unnamed-chunk-9-1.pdf}
+\includegraphics{Choroplethen_files/figure-beamer/unnamed-chunk-12-1.pdf}
 
 \end{frame}
 
@@ -300,6 +388,333 @@ Algeria & DZA & 1988 & 40.2\tabularnewline
 \item
   Erzeuge mit der Variable yx folgende Karte:
 \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Das Paket \texttt{choroplethr}}
+\protect\hypertarget{das-paket-choroplethr}{}
+
+\begin{itemize}
+\item
+  \href{https://cran.r-project.org/web/packages/choroplethr/index.html}{\textbf{\texttt{choroplethr}}}
+  - Vereinfachung der Erstellung von Choroplethen in R
+\item
+  Paket von \href{http://www.arilamstein.com/}{\textbf{Ari Lamstein}}
+\item
+  World Development Indicators
+  \href{https://cran.r-project.org/web/packages/WDI/index.html}{\textbf{\texttt{WDI}}}
+  (World Bank)
+\item
+  Die folgenden Beispiele basieren auf der
+  \href{https://cran.r-project.org/web/packages/choroplethr/index.html}{\textbf{Vignette}}
+  des \texttt{choroplethr}-Paketes
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Bevölkerungsschätzungen für den US-Staaten}
+\protect\hypertarget{bevolkerungsschatzungen-fur-den-us-staaten}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"choroplethr"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\texttt{df\_pop\_state} ist ein Datensatz , der in dem Paket
+\texttt{choroplethr} enthalten ist, es enthält Schätzungen zu den
+US-Staaten für das Jahr 2012.
+
+\begin{longtable}[]{@{}lr@{}}
+\toprule
+region & value\tabularnewline
+\midrule
+\endhead
+alabama & 4777326\tabularnewline
+alaska & 711139\tabularnewline
+arizona & 6410979\tabularnewline
+arkansas & 2916372\tabularnewline
+california & 37325068\tabularnewline
+colorado & 5042853\tabularnewline
+\bottomrule
+\end{longtable}
+
+\end{frame}
+
+\begin{frame}[fragile]{\texttt{choroplethr} -
+\href{http://mirrors.softliste.de/cran/web/packages/choroplethr/vignettes/a-introduction.html}{Hallo
+Welt}}
+\protect\hypertarget{choroplethr---hallo-welt}{}
+
+Die Karte zeigt die US Bevölkerungsschätzung für die US-Staaten und das
+Jahr 2012:
+
+Wir bekommen eine Choroplethenkarte mit nur einem Argument:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{state_choropleth}\NormalTok{(df_pop_state)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Choroplethen_files/figure-beamer/unnamed-chunk-18-1.pdf}
+
+Aber wir können auch einen Titel erstellen und die Legende benennen:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{state_choropleth}\NormalTok{(df_pop_state, }\DataTypeTok{title=}\StringTok{"2012 US State Population Estimates"}\NormalTok{, }\DataTypeTok{legend=}\StringTok{"Population"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Choroplethen_files/figure-beamer/unnamed-chunk-19-1.pdf}
+
+\end{frame}
+
+\begin{frame}[fragile]{\href{http://mirrors.softliste.de/cran/web/packages/choroplethr/vignettes/b-state-choropleth.html}{Nur
+drei Staaten darstellen}}
+\protect\hypertarget{nur-drei-staaten-darstellen}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{state_choropleth}\NormalTok{(df_pop_state,}
+                 \DataTypeTok{title      =} \StringTok{"2012 Population Estimates"}\NormalTok{,}
+                 \DataTypeTok{legend     =} \StringTok{"Population"}\NormalTok{,}
+                 \DataTypeTok{num_colors =} \DecValTok{1}\NormalTok{,}
+                 \DataTypeTok{zoom       =} \KeywordTok{c}\NormalTok{(}\StringTok{"california"}\NormalTok{, }\StringTok{"washington"}\NormalTok{, }\StringTok{"oregon"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Choroplethen_files/figure-beamer/unnamed-chunk-20-1.pdf}
+
+\end{frame}
+
+\begin{frame}[fragile]{US County Chroplethen}
+\protect\hypertarget{us-county-chroplethen}{}
+
+\href{http://mirrors.softliste.de/cran/web/packages/choroplethr/vignettes/c-county-choropleth.html}{Choroplethen
+der US Counties}
+
+\url{http://mirrors.softliste.de/cran/web/packages/choroplethr/vignettes/c-county-choropleth.html}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{?df_pop_county}
+\NormalTok{?county_choropleth}
+\end{Highlighting}
+\end{Shaded}
+
+\end{frame}
+
+\begin{frame}[fragile]{Eine Karte der US Counties}
+\protect\hypertarget{eine-karte-der-us-counties}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{data}\NormalTok{(df_pop_county)}
+\KeywordTok{county_choropleth}\NormalTok{(df_pop_county)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Choroplethen_files/figure-beamer/unnamed-chunk-22-1.pdf}
+
+\end{frame}
+
+\begin{frame}[fragile]{\href{http://mirrors.softliste.de/cran/web/packages/choroplethr/vignettes/d-country-choropleth.html}{Choroplethen
+Länder}}
+\protect\hypertarget{choroplethen-lander}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{data}\NormalTok{(df_pop_country)}
+\KeywordTok{country_choropleth}\NormalTok{(df_pop_country,}
+              \DataTypeTok{title      =} \StringTok{"2012 Population Estimates"}\NormalTok{,}
+              \DataTypeTok{legend     =} \StringTok{"Population"}\NormalTok{,}
+              \DataTypeTok{num_colors =} \DecValTok{1}\NormalTok{,}
+              \DataTypeTok{zoom       =} \KeywordTok{c}\NormalTok{(}\StringTok{"united states of america"}\NormalTok{,}
+                             \StringTok{"mexico"}\NormalTok{, }\StringTok{"canada"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\end{frame}
+
+\begin{frame}{\href{http://mirrors.softliste.de/cran/web/packages/choroplethr/vignettes/d-country-choropleth.html}{Choroplethen
+Länder}}
+\protect\hypertarget{choroplethen-lander-1}{}
+
+\includegraphics{Choroplethen_files/figure-beamer/unnamed-chunk-24-1.pdf}
+
+\end{frame}
+
+\begin{frame}[fragile]{Weltbank Daten}
+\protect\hypertarget{weltbank-daten}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(choroplethr)}
+\KeywordTok{library}\NormalTok{(WDI) }
+\KeywordTok{choroplethr_wdi}\NormalTok{(}\DataTypeTok{code=}\StringTok{"SP.POP.TOTL"}\NormalTok{, }\DataTypeTok{year=}\DecValTok{2012}\NormalTok{, }
+                \DataTypeTok{title=}\StringTok{"2012 Population"}\NormalTok{, }
+                \DataTypeTok{num_colors=}\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Choroplethen_files/figure-beamer/unnamed-chunk-25-1.pdf}
+
+\end{frame}
+
+\begin{frame}[fragile]{\href{http://mirrors.softliste.de/cran/web/packages/choroplethr/vignettes/f-world-bank-data.html}{Lebenserwartung}}
+\protect\hypertarget{lebenserwartung}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(WDI) }
+\KeywordTok{choroplethr_wdi}\NormalTok{(}\DataTypeTok{code=}\StringTok{"SP.DYN.LE00.IN"}\NormalTok{, }\DataTypeTok{year=}\DecValTok{2012}\NormalTok{,}
+                \DataTypeTok{title=}\StringTok{"2012 Life Expectancy"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Choroplethen_files/figure-beamer/unnamed-chunk-26-1.pdf}
+
+\end{frame}
+
+\begin{frame}[fragile]{Ein weiterer Datensatz}
+\protect\hypertarget{ein-weiterer-datensatz}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{data}\NormalTok{(df_president_ts)}
+\end{Highlighting}
+\end{Shaded}
+
+Mit dem Fragezeichen bekommen wir Hilfe
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{?df_president_ts}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{kable}\NormalTok{(df_president_ts[}\DecValTok{1}\OperatorTok{:}\DecValTok{8}\NormalTok{,}\DecValTok{1}\OperatorTok{:}\DecValTok{8}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}llllllll@{}}
+\toprule
+region & 1789 & 1792 & 1796 & 1800 & 1804 & 1808 & 1812\tabularnewline
+\midrule
+\endhead
+alabama & NA & NA & NA & NA & NA & NA & NA\tabularnewline
+alaska & NA & NA & NA & NA & NA & NA & NA\tabularnewline
+arizona & NA & NA & NA & NA & NA & NA & NA\tabularnewline
+arkansas & NA & NA & NA & NA & NA & NA & NA\tabularnewline
+california & NA & NA & NA & NA & NA & NA & NA\tabularnewline
+colorado & NA & NA & NA & NA & NA & NA & NA\tabularnewline
+connecticut & GW & GW & F & F & F & F & F\tabularnewline
+delaware & GW & GW & F & F & F & F & F\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# install.packages("choroplethrMaps")}
+\KeywordTok{library}\NormalTok{(}\StringTok{"choroplethrMaps"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{frame}
+
+\begin{frame}[fragile]{Resourcen}
+\protect\hypertarget{resourcen}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{citation}\NormalTok{(}\StringTok{"choroplethr"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## To cite package 'choroplethr' in publications use:
+## 
+##   Ari Lamstein (2018). choroplethr: Simplify the Creation of
+##   Choropleth Maps in R. R package version 3.6.3.
+##   https://CRAN.R-project.org/package=choroplethr
+## 
+## A BibTeX entry for LaTeX users is
+## 
+##   @Manual{,
+##     title = {choroplethr: Simplify the Creation of Choropleth Maps in R},
+##     author = {Ari Lamstein},
+##     year = {2018},
+##     note = {R package version 3.6.3},
+##     url = {https://CRAN.R-project.org/package=choroplethr},
+##   }
+\end{verbatim}
+
+\end{frame}
+
+\begin{frame}[fragile]{Resources / Links}
+\protect\hypertarget{resources-links}{}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://cran.r-project.org/web/packages/choroplethr/vignettes/a-introduction.html}{Einführung
+  - Was sind Choroplethen}
+\end{itemize}
+
+\url{https://cran.r-project.org/web/packages/choroplethr/vignettes/a-introduction.html}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{http://radar.oreilly.com/2014/01/new-choropleth-package-in-r.html}{Beschreibung}
+  der Nutzung des \texttt{choroplethr} Paketes
+\end{itemize}
+
+\url{http://radar.oreilly.com/2014/01/new-choropleth-package-in-r.html}
+- Plot the
+\href{https://cran.r-project.org/web/packages/choroplethr/vignettes/b-state-choropleth.html}{US
+states} with \texttt{choroplethr}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://cran.r-project.org/web/packages/choroplethr/vignettes/f-world-bank-data.html}{Weltbankdaten
+  in Karten darstellen} mit \texttt{choroplethr}
+\end{itemize}
+
+\url{https://cran.r-project.org/web/packages/choroplethr/vignettes/f-world-bank-data.html}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{http://blog.revolutionanalytics.com/2014/01/easy-data-maps-with-r-the-choroplethr-package-.html}{Revolutions-blog}
+  über das \texttt{choroplethr} Paket
+\end{itemize}
+
+\url{http://blog.revolutionanalytics.com/2014/01/easy-data-maps-with-r-the-choroplethr-package-.html}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{http://www.trulia.com/tech/2014/01/15/the-choroplethr-package-for-r/}{trulia}-blog
+  über das \texttt{choroplethr} Paket
+\end{itemize}
+
+\url{http://www.trulia.com/tech/2014/01/15/the-choroplethr-package-for-r/}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{http://www.r-bloggers.com/slides-for-my-upcoming-talk-mapping-census-data-in-r/}{Präsentation
+  von Ari Lamstein} über das \texttt{choroplethr} Paket
+\end{itemize}
+
+\url{http://www.r-bloggers.com/slides-for-my-upcoming-talk-mapping-census-data-in-r/}
 
 \end{frame}
 

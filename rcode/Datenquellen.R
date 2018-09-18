@@ -1,0 +1,14 @@
+#' ---
+#' title: "Datenquellen"
+#' author: "Jan-Philipp Kolb"
+#' date: "23 August 2018"
+#' output: html_document
+#' ---
+#' 
+## ----setup, include=FALSE------------------------------------------------
+knitr::opts_chunk$set(echo = TRUE)
+
+#' 
+#' ## 
+#' 
+#' - [Pharmaceutical Drug Spending by countries](https://datahub.io/core/pharmaceutical-drug-spending)
