@@ -44,6 +44,8 @@ Aufgabe: [Darstellung von Eurostat Daten mit `choroplethr`](https://github.com/J
 
 ## OpenStreetMap 
 
+### __Openstreetmap__ [Github](slides/OpenStreetMap.md)
+
 ### __Overpass__ ([Github](slides/Overpass.md))
 
 ### __(B1) `osmdata` Paket__ ([Github](slides/osmdata.md))
