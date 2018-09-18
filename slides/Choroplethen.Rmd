@@ -14,11 +14,7 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-<<<<<<< HEAD
 knitr::opts_chunk$set(message=F,warning=F,cache=T,fig.height=4)
-=======
-knitr::opts_chunk$set(message=F,warning=F,cache=T, fig.height=4)
->>>>>>> origin/master
 library(knitr)
 ```
 

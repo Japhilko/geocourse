@@ -1,0 +1,131 @@
+---
+title: "Die Nutzung von Programmierschnittstellen"
+author: "Jan-Philipp Kolb"
+date: "22 Februar 2017"
+output: 
+  ioslides_presentation: 
+    keep_md: yes
+  beamer_presentation: 
+    colortheme: beaver
+    fonttheme: structurebold
+    highlight: tango
+    theme: Warsaw
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,cache=T,eval=T,message=F)
+```
+
+
+
+## The Overpass API
+
+![Logo Overpass API](figure/400px-Overpass_API_logo.svg.png)
+
+>The Overpass API is a read-only API that serves up custom selected parts of the OSM map data.
+
+(<http://wiki.openstreetmap.org/wiki/Overpass_API>)
+
+## Wichtige Information 
+
+<http://wiki.openstreetmap.org/wiki/Map_Features>
+
+![osm map features](figure/overpass-osm-disney.png)
+
+
+## Beispiel: Nutzung der Overpass API
+
+![Spielplätze Mannheim](figure/BSPoverpassMannheim.PNG)
+
+## Export der Rohdaten
+
+![Export Rohdaten](figure/OverpassExportRohdaten.PNG)
+
+## Import von der Overpass API zu R
+
+```{r,echo=F}
+Link1 <- "http://www.overpass-api.de/api/interpreter?data=[maxsize:1073741824][timeout:900];area[name=\""
+```
+
+```{r,eval=F}
+Link1 <- "http://www.overpass-api.de/api/interpreter?
+data=[maxsize:1073741824][timeout:900];area[name=\""
+```
+
+```{r}
+library(XML)
+place <- "Mannheim"
+type_obj <- "node"
+object <- "leisure=playground"
+
+InfoList <- xmlParse(paste(Link1,place,"\"];",
+type_obj,"(area)[",object,"];out;",sep=""))
+```
+
+
+```{r,echo=F,eval=F}
+setwd("C:/Users/kolbjp/Documents/GitHub/GeoData/2017/data")
+saveXML(InfoList,file="saveXML.xml")
+```
+
+## XML Output
+
+![Spielplätze in Mannheim](figure/xmlPlaygorung.PNG)
+
+## Das Arbeiten mit XML Daten (xpath)
+
+Die Liste der ID's mit dem Wert *playground*:
+
+```{r,eval=F}
+node_id <- xpathApply(InfoList,
+"//tag[@v= 'playground']/parent::node/@ id")
+## node_id[[1]]
+```
+
+![Erste node id](figure/nodeid.PNG)
+
+## latitude und longitude bekommen
+
+```{r,eval=F}
+lat_x <- xpathApply(InfoList,
+"//tag[@v= 'playground']/parent::node/@ lat")
+# lat_x[[1]];lat_x[[2]]
+```
+
+```{r,eval=F}
+lat_x <- xpathApply(InfoList,
+"//tag[@v= 'playground']/parent::node/@ lon")
+```
+
+![Latitude Koordinate](figure/latpoi.PNG)
+
+## Paket auf Github
+
+```{r,eval=F}
+library(devtools)
+install_github("Japhilko/gosmd")
+```
+
+```{r getplaygrounds,eval=T}
+library(gosmd)
+pg_MA <- get_osm_nodes(object="leisure=playground",
+                       "Mannheim")
+info <- extract_osm_nodes(OSM.Data=pg_MA,
+                          value="playground")
+```
+
+## Ausschnitt der Ergebnisse
+
+```{r produceinttable,echo=F}
+library(knitr)
+kable(head(info[,c("leisure","lat","lon","note")]))
+```
+
+
+
+## Link
+
+- [Tutorial zur Nutzung der Overpass API](http://osmlab.github.io/learnoverpass/en/exercises/intro/1/)
+
+- [Vignette xml2](https://cran.r-project.org/web/packages/xml2/vignettes/modification.html)

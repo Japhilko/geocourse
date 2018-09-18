@@ -1,13 +1,20 @@
 ---
 title: "Karte Gemeinden"
 author: "Jan-Philipp Kolb"
-date: "29 August 2018"
-output: beamer_presentation
+date: "22 Oktober 2018"
+output: 
+  beamer_presentation: 
+    colortheme: beaver
+    fonttheme: structurebold
+    highlight: tango
+    theme: Warsaw
+  ioslides_presentation: 
+    keep_md: yes
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
-GESIS <- T
+knitr::opts_chunk$set(echo = FALSE,message = F,warning = F,fig.height=4)
+GESIS <- F
 athome <- !GESIS
 ```
 
@@ -32,7 +39,7 @@ setwd(vg250path)
 VG250 <- readOGR ("VG250_GEM.shp","VG250_GEM")
 ```
 
-```{r,eval=GESIS}
+```{r,eval=T}
 bla <- substr(VG250@data$AGS_0,1,2)
 ```
 

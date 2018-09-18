@@ -20,72 +20,58 @@ Dieser Workshop beschäftigt sich mit der Erfassung und Verarbeitung von räumli
 
 ### __(A1) Einleitung__ ([Github](slides/Intro.md)) - [Regional information](http://rpubs.com/Japhilko82/mapFirenze)
 
-- __(A2) Das Paket [ggmap](http://journal.r-project.org/archive/2013-1/kahle-wickham.pdf)__ zur Erzeugung verschiedener Kartentypen. ([Browser](slides/ggmap.md) | [pdf](slides/ggmap.pdf) | [rcode](slides/ggmap.R) )
-
-- __(A3) Eine thematische Karte erzeugen__ ([Github](slides/Chorplethen.md))
-
-- osmdata Paket
-- Beispiel: *Points of interest* ([poi](https://rpossib.wordpress.com/2015/09/15/points-of-interest-for-backpackers/)) für Backpacker in Amsterdam
+### __(A2) Das Paket [ggmap](http://journal.r-project.org/archive/2013-1/kahle-wickham.pdf)__ zur Erzeugung verschiedener Kartentypen. ([Browser](slides/ggmap.md) | [pdf](slides/ggmap.pdf) | [rcode](slides/ggmap.R) )
 
 Aufgabe: [Nutzung von  `ggmap`](https://github.com/Japhilko/GeoData/blob/master/2017/tutorial/Aufgabe_Nutzung_ggmap.Rmd)
 
 
-Aufgabe: [Deutschlands Gemeinden](https://github.com/Japhilko/GeoData/blob/master/2016/tutorial/Aufgabe_Zensus_Ergebnisse.md)
+### __(A3) Thematische Karten mit dem R-Paket `tmap`__ 
+([Browser](slides/tmap.md) | [pdf](slides/tmap.pdf) | 
+[pdf](slides/tmap.pdf) | [rcode](rcode/tmap.R))
 
 
-<<<<<<< HEAD
-## Verbindung, Editierung und Einfärbung
-=======
->>>>>>> origin/master
+### __(A4) Eine thematische Karte erzeugen__ ([Github](slides/Choroplethen.md))
 
 
-
-
-- Openstreetmap Daten 
-
-- __(D5) Interaktive Karten mit Javascript Bibliotheken__ ([Github](slides/using_javascript.md) | [pdf](slides/using_javascript.pdf)
-| [rcode](rcode/using_javascript.R))
-Beispiel - [Campingplätze](http://rpubs.com/Japhilko82/Campsites)
-
-
-
-Verbindung, Editierung und Einfärbung
----------------------
-
-- __(C3) Shapefiles zusammenfassen__ ([Browser](slides/BeispielONB.md) |  [pdf](slides/BeispielONB.pdf) |
-[rcode](https://raw.githubusercontent.com/Japhilko/GeoData/master/2016/rcode/slidesE3_CombineShapefiles.R)
-)
+### __(A5) Die Nutzung von Shapefiles__ ([Github](slides/AGS_map.md))
 
 Aufgabe: [Zensus Ergebnisse und Karte miteinander verbinden und einfärben](https://github.com/Japhilko/GeoData/blob/master/2017/tutorial/Aufgabe_Verbindung.Rmd)
-
-- __(C4) Thematische Karten mit dem R-Paket `tmap`__ 
-([Browser](slides/tmap.md) | [pdf](slides/tmap.pdf) | 
-[pdf](https://github.com/Japhilko/GeoData/blob/master/2017/slides/tmap.pdf) |
-[rcode](https://raw.githubusercontent.com/Japhilko/GeoData/master/2016/rcode/slidesF1_tmap.R))
-
-- __(C5) Das R-Paket `choroplethr`__ ([Browser](https://github.com/Japhilko/GeoData/blob/master/2017/slides/Choroplethr.md) | 
-[pdf](https://github.com/Japhilko/GeoData/blob/master/2017/slides/Choroplethr.pdf) | 
-[rcode](https://raw.githubusercontent.com/Japhilko/GeoData/master/2016/rcode/slidesF2_choroplethr.R))
 
 
 Aufgabe: [Darstellung von Eurostat Daten mit `choroplethr`](https://github.com/Japhilko/GeoData/blob/master/2016/tutorial/Aufgabe_choroplethr.Rmd)
 
+### __(A6) Geokodierung__ ([Github](slides/Geokodierung.md))
 
-OpenStreetMap und räumliche Statistik
----------------------
+## OpenStreetMap 
 
-- __(D1) Das Arbeiten mit XML-Dateien__ ([Browser](https://github.com/Japhilko/GeoData/blob/master/2017/slides/OpenStreetMap.md)| [pdf](slides/OpenStreetMap.pdf))
+### __Overpass__ ([Github](slides/Overpass.md))
 
-- __(D2) Die Nutzung von Programmierschnittstellen__ ([Browser](https://github.com/Japhilko/GeoData/blob/master/2017/slides/UsageAPI.md)| [pdf](slides/UsageAPI.pdf) | 
-[rcode](https://raw.githubusercontent.com/Japhilko/GeoData/master/2016/rcode/slidesG1_UsageAPI.R))
+### __(B1) `osmdata` Paket__ ([Github](slides/osmdata.md))
 
-- Beispiel Hostels in Madrid ([Browser](https://github.com/Japhilko/GeoData/blob/master/2016/slides/Madrid_hostels.Rmd)), [Energieerzeugung](https://rpossib.wordpress.com/2015/11/20/use-openstreetmap-date/)
+Beispiel: *Points of interest* ([poi](https://rpossib.wordpress.com/2015/09/15/points-of-interest-for-backpackers/)) für Backpacker in Amsterdam
 
-Aufgabe: [Darstellung von OSM Daten mit tmap](https://github.com/Japhilko/GeoData/blob/master/2016/tutorial/Aufgabe_osmar.Rmd)
+Aufgabe: [Deutschlands Gemeinden](https://github.com/Japhilko/GeoData/blob/master/2016/tutorial/Aufgabe_Zensus_Ergebnisse.md)
 
-- __(D4) Das R-Paket `spdep` - Nachbarschaft und Distanz__ ([Browser](https://github.com/Japhilko/GeoData/blob/master/2017/slides/spdep.md) | [pdf](slides/spdep.pdf) |
+### __(B2) Das Arbeiten mit XML-Dateien__ ([Browser](https://github.com/Japhilko/GeoData/blob/master/2017/slides/OpenStreetMap.md)| [pdf](slides/OpenStreetMap.pdf))
+
+### __(B3) Die Nutzung von Programmierschnittstellen__ ([Browser](slides/UsageAPI.md)| [pdf](slides/UsageAPI.pdf) | [rcode](rcode/UsageAPI.R))
+
+**Beispiel Hostels in Madrid** ([Browser](https://github.com/Japhilko/GeoData/blob/master/2016/slides/Madrid_hostels.Rmd)), [Energieerzeugung](https://rpossib.wordpress.com/2015/11/20/use-openstreetmap-date/)
+
+**Aufgabe:** [Darstellung von OSM Daten mit tmap](https://github.com/Japhilko/GeoData/blob/master/2016/tutorial/Aufgabe_osmar.Rmd)
+
+## Interaktive Karten
+
+### __(C1) Interaktive Karten mit Javascript Bibliotheken__ ([Github](slides/using_javascript.md) | [pdf](slides/using_javascript.pdf)
+| [rcode](rcode/using_javascript.R))
+Beispiel - [Campingplätze](http://rpubs.com/Japhilko82/Campsites)
+
+## Räumliche Analysen/Statistik
+
+### __(D1) Das R-Paket `spdep` - Nachbarschaft und Distanz__ ([Browser](https://github.com/Japhilko/GeoData/blob/master/2017/slides/spdep.md) | [pdf](slides/spdep.pdf) |
 [rcode](https://raw.githubusercontent.com/Japhilko/GeoData/master/2016/rcode/slidesH1_spdep.R))
 
-
-
 Aufgabe: [Distanzberechnung](https://github.com/Japhilko/GeoData/blob/master/2016/tutorial/Aufgabe_Distanzberechnung.Rmd)
+
+### __Simple Features__ ([Github](slides/simple_features.md) | [pdf](slides/simple_features.pdf)
+| [rcode](rcode/simple_features.R))
