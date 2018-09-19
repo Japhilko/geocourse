@@ -35,3 +35,6 @@ https://stackoverflow.com/questions/44283774/flow-maptravel-path-using-lat-and-l
 # install.packages("cartography")
 library(cartography)
 ```
+
+
+http://openjournals.wu.ac.at/ojs/index.php/region/article/view/107

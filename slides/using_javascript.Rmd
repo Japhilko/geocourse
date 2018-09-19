@@ -222,6 +222,40 @@ m1
 ![Als Website speichern](figure/snapshot2.png)
 
 
+## Das Paket `mapview` - Beispieldatensatz Franken
+
+```{r}
+library(mapview)
+
+mapview(franconia)
+```
+
+![](figure/franconia.PNG)
+
+
+## GADM und `mapview`
+
+```{r,eval=}
+mapview(leaflet::gadmCHE)
+```
+
+## Das Paket `mapview`
+
+<!--
+folgendes stammt aus dem Helpfile
+-->
+
+```{r,eval=htmlpres}
+library(mapedit)
+library(magrittr)
+
+lf <- mapview()
+drawing <- lf %>%
+  editMap()
+```
+
+![](figure/editmap.PNG)
+
 
 ## Das Paket `mapview`
 
@@ -238,6 +272,14 @@ mapview(spatsamp)
 library(sf)
 locations_sf <- st_as_sf(locations, coords = c("lon", "lat"), crs = 4326)
 ```
+
+
+```{r,eval=F,echo=F}
+install.packages("lwgeom")
+```
+
+
+
 
 
 ## Das Paket `leaflet`
@@ -257,7 +299,6 @@ addTiles() %>%
 addMarkers(lng=8.463061 , lat=49.485736 , popup="GESIS Mannheim")
 m
 ```
-
 
 
 ## Das Paket `geojsonR`

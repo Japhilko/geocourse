@@ -18,7 +18,7 @@ Dieser Workshop beschäftigt sich mit der Erfassung und Verarbeitung von räumli
 ## Erste Schritte
 
 
-### __(A1) Einleitung__ ([Github](slides/Intro.md)) - [Regional information](http://rpubs.com/Japhilko82/mapFirenze)
+### __(A1) Einleitung__ ([Github](slides/Intro.md) | [pdf](slides/Intro.pdf)) - [Regional information](http://rpubs.com/Japhilko82/mapFirenze)
 
 ### __(A2) Das Paket [ggmap](http://journal.r-project.org/archive/2013-1/kahle-wickham.pdf)__ zur Erzeugung verschiedener Kartentypen. ([Browser](slides/ggmap.md) | [pdf](slides/ggmap.pdf) | [rcode](slides/ggmap.R) )
 

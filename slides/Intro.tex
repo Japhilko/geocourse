@@ -1,8 +1,4 @@
-\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
-\PassOptionsToPackage{hyphens}{url}
-%
 \documentclass[ignorenonframetext,]{beamer}
-\usepackage{pgfpages}
 \setbeamertemplate{caption}[numbered]
 \setbeamertemplate{caption label separator}{: }
 \setbeamercolor{caption name}{fg=normal text.fg}
@@ -14,86 +10,70 @@
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
-  \usepackage{textcomp} % provides euro and other symbols
 \else % if luatex or xelatex
-  \usepackage{unicode-math}
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
   \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
 \fi
+\usetheme[]{CambridgeUS}
 \usecolortheme{beaver}
-\usefonttheme{professionalfonts}
+\usefonttheme{structurebold}
 % use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 % use microtype if available
 \IfFileExists{microtype.sty}{%
-\usepackage[]{microtype}
+\usepackage{microtype}
 \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
 }{}
-\IfFileExists{parskip.sty}{%
-\usepackage{parskip}
-}{% else
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{6pt plus 2pt minus 1pt}
-}
-\usepackage{hyperref}
+\newif\ifbibliography
 \hypersetup{
             pdftitle={Einleitung und Motivation},
             pdfauthor={Jan-Philipp Kolb},
             pdfborder={0 0 0},
             breaklinks=true}
 \urlstyle{same}  % don't use monospace font for urls
-\newif\ifbibliography
 \usepackage{graphicx,grffile}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
-\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight0.8\textheight\else\Gin@nat@height\fi}
 \makeatother
 % Scale images if necessary, so that they will not overflow the page
 % margins by default, and it is still possible to overwrite the defaults
 % using explicit options in \includegraphics[width, height, ...]{}
 \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+
 % Prevent slide breaks in the middle of a paragraph:
 \widowpenalties 1 10000
 \raggedbottom
-\setbeamertemplate{part page}{
-\centering
-\begin{beamercolorbox}[sep=16pt,center]{part title}
-  \usebeamerfont{part title}\insertpart\par
-\end{beamercolorbox}
-}
-\setbeamertemplate{section page}{
-\centering
-\begin{beamercolorbox}[sep=12pt,center]{part title}
-  \usebeamerfont{section title}\insertsection\par
-\end{beamercolorbox}
-}
-\setbeamertemplate{subsection page}{
-\centering
-\begin{beamercolorbox}[sep=8pt,center]{part title}
-  \usebeamerfont{subsection title}\insertsubsection\par
-\end{beamercolorbox}
-}
+
 \AtBeginPart{
+  \let\insertpartnumber\relax
+  \let\partname\relax
   \frame{\partpage}
 }
 \AtBeginSection{
   \ifbibliography
   \else
+    \let\insertsectionnumber\relax
+    \let\sectionname\relax
     \frame{\sectionpage}
   \fi
 }
 \AtBeginSubsection{
+  \let\insertsubsectionnumber\relax
+  \let\subsectionname\relax
   \frame{\subsectionpage}
 }
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
 \setlength{\emergencystretch}{3em}  % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{0}
-
-% set default figure placement to htbp
-\makeatletter
-\def\fps@figure{htbp}
-\makeatother
-
 
 \title{Einleitung und Motivation}
 \author{Jan-Philipp Kolb}
@@ -102,8 +82,24 @@
 \begin{document}
 \frame{\titlepage}
 
+\begin{frame}{Ziel dieses Kurses}
+
+\begin{itemize}
+\tightlist
+\item
+  Es werden Möglichkeiten für den Download, den Import, die Verarbeitung
+  und die Visualisierung von Geodaten vorgestellt.
+\end{itemize}
+
+\begin{itemize}
+\tightlist
+\item
+  Die wichtigsten APIs werden vorgestellt
+\end{itemize}
+
+\end{frame}
+
 \begin{frame}{Start}
-\protect\hypertarget{start}{}
 
 \url{http://rpubs.com/Japhilko82/gesis_mannheim}
 
@@ -112,7 +108,6 @@
 \end{frame}
 
 \begin{frame}{Outline}
-\protect\hypertarget{outline}{}
 
 \begin{itemize}
 \tightlist
@@ -132,7 +127,6 @@
 
 \begin{frame}{\href{http://de.slideshare.net/rheimann04/big-social-data-the-spatial-turn-in-big-data}{Laws
 of Spatial Sience}}
-\protect\hypertarget{laws-of-spatial-sience}{}
 
 \href{https://en.wikipedia.org/wiki/Tobler's_first_law_of_geography}{Tobler's
 law}
@@ -146,7 +140,6 @@ related than distant things.
 
 \begin{frame}{\href{https://de.wikipedia.org/wiki/Spatial_turn}{Spatial
 Turn}}
-\protect\hypertarget{spatial-turn}{}
 
 \begin{quote}
 Spatial turn is a term used to describe an intellectual movement that
@@ -159,7 +152,6 @@ places emphasis on place and space in social science and the humanities.
 
 \begin{frame}{Regional/geographical differences in the perception
 of\ldots{}}
-\protect\hypertarget{regionalgeographical-differences-in-the-perception-of}{}
 
 \begin{itemize}
 \tightlist
@@ -172,33 +164,12 @@ of\ldots{}}
 \end{frame}
 
 \begin{frame}{Availability of data - Example Census Atlas}
-\protect\hypertarget{availability-of-data---example-census-atlas}{}
 
 \url{https://atlas.zensus2011.de/}
-\includegraphics{https://raw.githubusercontent.com/Japhilko/GeoData/master/data/figure/Zensus_Mannheim2.png}
-
-\end{frame}
-
-\begin{frame}{Verfügbarkeit der Daten - Beispiel
-\href{http://michael-hoerz.de/maps/berlin-bike/}{Fahrradunfälle in
-Berlin}}
-\protect\hypertarget{verfugbarkeit-der-daten---beispiel-fahrradunfalle-in-berlin}{}
-
-\url{http://www.sowirdberlin.de/}
-\includegraphics{https://asset0.torial.com/system/portfolio_item_images/production/2014/07/21/m5we1vmq6_preview_image_9678.jpg}
-
-\end{frame}
-
-\begin{frame}{Heterogener Datenbestand - Beispiel
-\url{http://names.mappinglondon.co.uk/}}
-\protect\hypertarget{heterogener-datenbestand---beispiel-httpnames.mappinglondon.co.uk}{}
-
-\includegraphics{http://mappinglondon.co.uk/wp-content/uploads/2011/11/surnames1.png}
 
 \end{frame}
 
 \begin{frame}{Motivation - Warum die Darstellung in Karten}
-\protect\hypertarget{motivation---warum-die-darstellung-in-karten}{}
 
 \begin{itemize}
 \item
@@ -225,40 +196,22 @@ Berlin}}
 
 \end{frame}
 
-\begin{frame}{Übersicht - \href{http://www.edureka.co/}{warum R}}
-\protect\hypertarget{ubersicht---warum-r}{}
-
-\includegraphics{http://d287f0h5fel5hu.cloudfront.net/blog/wp-content/uploads/2013/06/bar-learn-r-img11.png}
-
-\end{frame}
-
-\begin{frame}{\href{http://blog.revolutionanalytics.com/}{R Nutzer rund
-um die Welt}}
-\protect\hypertarget{r-nutzer-rund-um-die-welt}{}
-
-\includegraphics{http://revolution-computing.typepad.com/.a/6a010534b1db25970b0191035099d8970c-pi}
-
-\end{frame}
-
-\begin{frame}{\href{http://spatial.ly/}{Wo sind die aktivsten Nutzer?}}
-\protect\hypertarget{wo-sind-die-aktivsten-nutzer}{}
-
-\includegraphics{http://spatial.ly/wp-content/uploads/2013/06/r_activity.png}
-
-\end{frame}
-
 \begin{frame}{Was ist das Ziel - Straßen in Berlin}
-\protect\hypertarget{was-ist-das-ziel---straen-in-berlin}{}
 
 Dargestellt werden OpenStreetMap Daten, die mit der Overpass API
 heruntergeladen wurden.
 
-\includegraphics{https://raw.githubusercontent.com/Japhilko/GeoData/master/data/figure/streets_Berlin2.png}
+\includegraphics{figure/streets_Berlin2.png}
+
+\end{frame}
+
+\begin{frame}{Openstreetmap Projekt}
+
+\includegraphics{figure/Buldings_Paris.PNG}
 
 \end{frame}
 
 \begin{frame}{Links mit Beispielen}
-\protect\hypertarget{links-mit-beispielen}{}
 
 \begin{itemize}
 \item

@@ -1,8 +1,4 @@
-\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
-\PassOptionsToPackage{hyphens}{url}
-%
 \documentclass[ignorenonframetext,]{beamer}
-\usepackage{pgfpages}
 \setbeamertemplate{caption}[numbered]
 \setbeamertemplate{caption label separator}{: }
 \setbeamercolor{caption name}{fg=normal text.fg}
@@ -14,9 +10,12 @@
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
-  \usepackage{textcomp} % provides euro and other symbols
 \else % if luatex or xelatex
-  \usepackage{unicode-math}
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
   \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
 \fi
 \usetheme[]{CambridgeUS}
@@ -26,23 +25,16 @@
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 % use microtype if available
 \IfFileExists{microtype.sty}{%
-\usepackage[]{microtype}
+\usepackage{microtype}
 \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
 }{}
-\IfFileExists{parskip.sty}{%
-\usepackage{parskip}
-}{% else
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{6pt plus 2pt minus 1pt}
-}
-\usepackage{hyperref}
+\newif\ifbibliography
 \hypersetup{
             pdftitle={Das ggmap Paket},
             pdfauthor={Jan-Philipp Kolb},
             pdfborder={0 0 0},
             breaklinks=true}
 \urlstyle{same}  % don't use monospace font for urls
-\newif\ifbibliography
 \usepackage{color}
 \usepackage{fancyvrb}
 \newcommand{\VerbBar}{|}
@@ -52,129 +44,116 @@
 \usepackage{framed}
 \definecolor{shadecolor}{RGB}{248,248,248}
 \newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
-\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
-\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
-\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\BuiltInTok}[1]{#1}
-\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
 \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
 \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
-\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
 \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\ImportTok}[1]{#1}
-\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\NormalTok}[1]{#1}
-\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
-\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
-\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
 \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
 \usepackage{graphicx,grffile}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
-\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight0.8\textheight\else\Gin@nat@height\fi}
 \makeatother
 % Scale images if necessary, so that they will not overflow the page
 % margins by default, and it is still possible to overwrite the defaults
 % using explicit options in \includegraphics[width, height, ...]{}
 \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+
 % Prevent slide breaks in the middle of a paragraph:
 \widowpenalties 1 10000
 \raggedbottom
-\setbeamertemplate{part page}{
-\centering
-\begin{beamercolorbox}[sep=16pt,center]{part title}
-  \usebeamerfont{part title}\insertpart\par
-\end{beamercolorbox}
-}
-\setbeamertemplate{section page}{
-\centering
-\begin{beamercolorbox}[sep=12pt,center]{part title}
-  \usebeamerfont{section title}\insertsection\par
-\end{beamercolorbox}
-}
-\setbeamertemplate{subsection page}{
-\centering
-\begin{beamercolorbox}[sep=8pt,center]{part title}
-  \usebeamerfont{subsection title}\insertsubsection\par
-\end{beamercolorbox}
-}
+
 \AtBeginPart{
+  \let\insertpartnumber\relax
+  \let\partname\relax
   \frame{\partpage}
 }
 \AtBeginSection{
   \ifbibliography
   \else
+    \let\insertsectionnumber\relax
+    \let\sectionname\relax
     \frame{\sectionpage}
   \fi
 }
 \AtBeginSubsection{
+  \let\insertsubsectionnumber\relax
+  \let\subsectionname\relax
   \frame{\subsectionpage}
 }
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
 \setlength{\emergencystretch}{3em}  % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{0}
 
-% set default figure placement to htbp
-\makeatletter
-\def\fps@figure{htbp}
-\makeatother
-
-
-\title{Das ggmap Paket}
+\title{Das \texttt{ggmap} Paket}
 \author{Jan-Philipp Kolb}
 \date{22 Oktober 2018}
 
 \begin{document}
 \frame{\titlepage}
 
-\begin{frame}{Inhalt dieses Abschnitts}
-\protect\hypertarget{inhalt-dieses-abschnitts}{}
+\begin{frame}[fragile]{Inhalt dieses Abschnitts}
 
 Arten von räumlichen Daten:
 
 \begin{itemize}
 \tightlist
 \item
-  \href{https://www.nceas.ucsb.edu/~frazier/RSpatialGuides/ggmap/ggmapCheatsheet.pdf}{Straßenkarten}
+  \href{https://www.nceas.ucsb.edu/~frazier/RSpatialGuides/ggmap/ggmapCheatsheet.pdf}{\textbf{Straßenkarten}}
 \item
-  \href{http://www.mostlymuppet.com/tag/maps/}{Satelliten Bilder}
+  \href{http://www.mostlymuppet.com/tag/maps/}{\textbf{Satelliten
+  Bilder}}
 \item
-  \href{http://gis.stackexchange.com/questions/3083/what-makes-a-map-beautiful/45518\#45518}{Physische
-  Daten und Karten}
+  \href{http://gis.stackexchange.com/questions/3083/what-makes-a-map-beautiful/45518\#45518}{\textbf{Physische
+  Daten und Karten}}
 \item
-  \href{http://www.designfaves.com/2014/03/abstracted-maps-reveal-cities-personalities}{Abstrakte
-  Karten}
+  \href{http://www.designfaves.com/2014/03/abstracted-maps-reveal-cities-personalities}{\textbf{Abstrakte
+  Karten}}
 \item
   \ldots{}
 \end{itemize}
 
 Das R-paket
-\href{http://journal.r-project.org/archive/2013-1/kahle-wickham.pdf}{ggmap}
+\href{http://journal.r-project.org/archive/2013-1/kahle-wickham.pdf}{\textbf{\texttt{ggmap}}}
 wird im folgenden genutzt um verschiedene Kartentypen darzustellen.
 
-Mit \href{http://www.inside-r.org/packages/cran/ggmap/docs/qmap}{qmap}
+Mit
+\href{http://www.inside-r.org/packages/cran/ggmap/docs/qmap}{\textbf{\texttt{qmap}}}
 kann man eine schnelle Karte erzeugen.
 
 \end{frame}
 
 \begin{frame}[fragile]{Installieren des Paketes}
-\protect\hypertarget{installieren-des-paketes}{}
 
 \begin{itemize}
 \tightlist
@@ -193,7 +172,6 @@ kann man eine schnelle Karte erzeugen.
 \end{frame}
 
 \begin{frame}[fragile]{Paket ggmap - Hallo Welt}
-\protect\hypertarget{paket-ggmap---hallo-welt}{}
 
 \begin{itemize}
 \tightlist
@@ -219,15 +197,19 @@ Und schon kann die erste Karte erstellt werden:
 
 \end{frame}
 
-\begin{frame}{Karte für eine Sehenswürdigkeit}
-\protect\hypertarget{karte-fur-eine-sehenswurdigkeit}{}
+\begin{frame}[fragile]{Karte für eine Sehenswürdigkeit}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{qmap}\NormalTok{(}\StringTok{"Berlin Brandenburger Tor"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 \includegraphics{figure/BBT_ggmap.pdf}
 
 \end{frame}
 
 \begin{frame}[fragile]{Karte für einen ganzen Staat}
-\protect\hypertarget{karte-fur-einen-ganzen-staat}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -241,19 +223,16 @@ Und schon kann die erste Karte erstellt werden:
   Wir brauchen ein anderes \emph{zoom level}
 \end{itemize}
 
+\includegraphics{figure/germany.pdf}
+
 \end{frame}
 
 \begin{frame}[fragile]{Ein anderes \emph{zoom level}}
-\protect\hypertarget{ein-anderes-zoom-level}{}
 
 \begin{itemize}
 \tightlist
 \item
-  level 3 - Kontinent
-\item
-  level 10 - Stadt
-\item
-  level 21 - Gebäude
+  level 3 - Kontinent / level 10 - Stadt / level 21 - Gebäude
 \end{itemize}
 
 \begin{Shaded}
@@ -262,12 +241,9 @@ Und schon kann die erste Karte erstellt werden:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ggmap_files/figure-beamer/unnamed-chunk-9-1.pdf}
-
 \end{frame}
 
 \begin{frame}[fragile]{Hilfe bekommen wir mit dem Fragezeichen}
-\protect\hypertarget{hilfe-bekommen-wir-mit-dem-fragezeichen}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -298,11 +274,10 @@ Verschiedene Abschnitte in der Hilfe:
 \end{frame}
 
 \begin{frame}[fragile]{Ganz nah dran}
-\protect\hypertarget{ganz-nah-dran}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{qmap}\NormalTok{(}\StringTok{'Hamburg'}\NormalTok{, }\DataTypeTok{zoom =} \DecValTok{20}\NormalTok{)}
+\KeywordTok{qmap}\NormalTok{(}\StringTok{'Mannheim'}\NormalTok{, }\DataTypeTok{zoom =} \DecValTok{20}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -310,8 +285,7 @@ Verschiedene Abschnitte in der Hilfe:
 
 \end{frame}
 
-\begin{frame}[fragile]{ggmap - maptype satellite}
-\protect\hypertarget{ggmap---maptype-satellite}{}
+\begin{frame}[fragile]{\texttt{ggmap} - maptype satellite}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -323,8 +297,7 @@ Verschiedene Abschnitte in der Hilfe:
 
 \end{frame}
 
-\begin{frame}[fragile]{ggmap - maptype satellite zoom 20}
-\protect\hypertarget{ggmap---maptype-satellite-zoom-20}{}
+\begin{frame}[fragile]{\texttt{ggmap} - maptype satellite zoom 20}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -337,7 +310,6 @@ Verschiedene Abschnitte in der Hilfe:
 \end{frame}
 
 \begin{frame}{Terrain/physical maps}
-\protect\hypertarget{terrainphysical-maps}{}
 
 \begin{itemize}
 \item
@@ -349,23 +321,8 @@ Verschiedene Abschnitte in der Hilfe:
 
 \end{frame}
 
-\begin{frame}[fragile]{ggmap - terrain map}
-\protect\hypertarget{ggmap---terrain-map}{}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{qmap}\NormalTok{(}\StringTok{'Arequipa'}\NormalTok{, }\DataTypeTok{zoom =} \DecValTok{14}\NormalTok{,}
- \DataTypeTok{maptype=}\StringTok{"terrain"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{figure/Areqipa.png}
-
-\end{frame}
-
 \begin{frame}{Abstrahierte Karten
 (\href{http://www.designfaves.com/2014/03/abstracted-maps-reveal-cities-personalities}{http://www.designfaves.com})}
-\protect\hypertarget{abstrahierte-karten-httpwww.designfaves.com}{}
 
 \includegraphics{figure/NYabstracted.jpg}
 
@@ -384,7 +341,6 @@ Verschiedene Abschnitte in der Hilfe:
 \end{frame}
 
 \begin{frame}[fragile]{ggmap - maptype watercolor}
-\protect\hypertarget{ggmap---maptype-watercolor}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -398,14 +354,12 @@ Verschiedene Abschnitte in der Hilfe:
 \end{frame}
 
 \begin{frame}{Graphiken speichern}
-\protect\hypertarget{graphiken-speichern}{}
 
 \includegraphics{figure/RstudioExport.PNG}
 
 \end{frame}
 
 \begin{frame}[fragile]{ggmap - ein Objekt erzeugen}
-\protect\hypertarget{ggmap---ein-objekt-erzeugen}{}
 
 \begin{itemize}
 \tightlist
@@ -430,7 +384,6 @@ Verschiedene Abschnitte in der Hilfe:
 
 \begin{frame}[fragile]{\href{https://blog.dominodatalab.com/geographic-visualization-with-rs-ggmaps/}{Eine
 Karte für die USA}}
-\protect\hypertarget{eine-karte-fur-die-usa}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -450,7 +403,6 @@ Karte für die USA}}
 \end{frame}
 
 \begin{frame}{Cheatsheet}
-\protect\hypertarget{cheatsheet}{}
 
 \begin{itemize}
 \tightlist
@@ -467,21 +419,18 @@ Karte für die USA}}
 \end{frame}
 
 \begin{frame}[fragile]{Resourcen und Literatur}
-\protect\hypertarget{resourcen-und-literatur}{}
 
 \begin{itemize}
 \item
-  \href{http://journal.r-project.org/archive/2013-1/kahle-wickham.pdf}{Artikel
-  von David Kahle und Hadley Wickham} zur Nutzung von \texttt{ggmap}.
+  Artikel von
+  \href{http://journal.r-project.org/archive/2013-1/kahle-wickham.pdf}{\textbf{David
+  Kahle und Hadley Wickham}} zur Nutzung von \texttt{ggmap}.
 \item
-  \href{http://rpackages.ianhowson.com/cran/ggmap/man/get_map.html}{Schnell
-  eine Karte bekommen}
+  \href{http://rpackages.ianhowson.com/cran/ggmap/man/get_map.html}{\textbf{Schnell
+  eine Karte bekommen}}
 \item
-  \href{http://www.kevjohnson.org/making-maps-in-r-part-2/}{Karten
-  machen mit R}
-\item
-  \href{http://stackoverflow.com/questions/40642850/ggmap-error-geomrasterann-was-built-with-an-incompatible-version-of-ggproto}{Problem
-  mit der Installation von ggmap}
+  \href{http://www.kevjohnson.org/making-maps-in-r-part-2/}{\textbf{Karten
+  machen mit R}}
 \end{itemize}
 
 \end{frame}

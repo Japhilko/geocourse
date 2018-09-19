@@ -42,7 +42,9 @@ Aufgabe: [Darstellung von Eurostat Daten mit `choroplethr`](https://github.com/J
 
 ## OpenStreetMap 
 
-### Openstreetmap Daten
+### __Openstreetmap__ [Github](slides/OpenStreetMap.md)
+
+### __Overpass__ ([Github](slides/Overpass.md))
 
 ### __(B1) `osmdata` Paket__ ([Github](slides/osmdata.md))
 
@@ -70,3 +72,6 @@ Beispiel - [Campingplätze](http://rpubs.com/Japhilko82/Campsites)
 [rcode](https://raw.githubusercontent.com/Japhilko/GeoData/master/2016/rcode/slidesH1_spdep.R))
 
 Aufgabe: [Distanzberechnung](https://github.com/Japhilko/GeoData/blob/master/2016/tutorial/Aufgabe_Distanzberechnung.Rmd)
+
+### __Simple Features__ ([Github](slides/simple_features.md) | [pdf](slides/simple_features.pdf)
+| [rcode](rcode/simple_features.R))

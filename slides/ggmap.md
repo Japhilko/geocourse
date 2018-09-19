@@ -1,5 +1,5 @@
 ---
-title: "Das ggmap Paket"
+title: "Das `ggmap` Paket"
 author: "Jan-Philipp Kolb"
 date: "22 Oktober 2018"
 output:
@@ -24,15 +24,15 @@ output:
 
 Arten von räumlichen Daten: 
 
-- [Straßenkarten](https://www.nceas.ucsb.edu/~frazier/RSpatialGuides/ggmap/ggmapCheatsheet.pdf) 
-- [Satelliten Bilder](http://www.mostlymuppet.com/tag/maps/)
-- [Physische Daten und Karten](http://gis.stackexchange.com/questions/3083/what-makes-a-map-beautiful/45518#45518)
-- [Abstrakte Karten](http://www.designfaves.com/2014/03/abstracted-maps-reveal-cities-personalities)
+- [**Straßenkarten**](https://www.nceas.ucsb.edu/~frazier/RSpatialGuides/ggmap/ggmapCheatsheet.pdf) 
+- [**Satelliten Bilder**](http://www.mostlymuppet.com/tag/maps/)
+- [**Physische Daten und Karten**](http://gis.stackexchange.com/questions/3083/what-makes-a-map-beautiful/45518#45518)
+- [**Abstrakte Karten**](http://www.designfaves.com/2014/03/abstracted-maps-reveal-cities-personalities)
 - ...
 
-Das R-paket [ggmap](http://journal.r-project.org/archive/2013-1/kahle-wickham.pdf) wird im folgenden genutzt um verschiedene Kartentypen darzustellen.
+Das R-paket [**`ggmap`**](http://journal.r-project.org/archive/2013-1/kahle-wickham.pdf) wird im folgenden genutzt um verschiedene Kartentypen darzustellen.
 
-Mit [qmap](http://www.inside-r.org/packages/cran/ggmap/docs/qmap) kann man eine schnelle Karte erzeugen.
+Mit [**`qmap`**](http://www.inside-r.org/packages/cran/ggmap/docs/qmap) kann man eine schnelle Karte erzeugen.
 
 ## Installieren des Paketes
 
@@ -69,6 +69,13 @@ qmap("Mannheim")
 ## Karte für eine Sehenswürdigkeit
 
 
+```r
+qmap("Berlin Brandenburger Tor")
+```
+
+
+
+
 
 
 ![](figure/BBT_ggmap.pdf)
@@ -82,21 +89,19 @@ qmap("Germany")
 
 
 
-
 - Wir brauchen ein anderes *zoom level*
+
+![](figure/germany.pdf)
+
 
 ## Ein anderes *zoom level*
 
-- level 3 - Kontinent
-- level 10 - Stadt
-- level 21 - Gebäude
+- level 3 - Kontinent / level 10 - Stadt / level 21 - Gebäude
 
 
 ```r
 qmap("Germany", zoom = 6)
 ```
-
-![](ggmap_files/figure-slidy/unnamed-chunk-9-1.png)<!-- -->
 
 
 
@@ -135,7 +140,7 @@ qmap("Hamburg", zoom = 12)
 
 
 ```r
-qmap('Hamburg', zoom = 20)
+qmap('Mannheim', zoom = 20)
 ```
 
 
@@ -143,7 +148,7 @@ qmap('Hamburg', zoom = 20)
 ![](figure/ham_map_z20.pdf)
 
 
-## ggmap - maptype satellite
+## `ggmap` - maptype satellite
 
 
 ```r
@@ -155,7 +160,7 @@ qmap('Hamburg', zoom = 14, maptype="satellite")
 ![](figure/ham_map_sat.pdf)
 
 
-## ggmap - maptype satellite zoom 20
+## `ggmap` - maptype satellite zoom 20
 
 
 ```r
@@ -173,20 +178,24 @@ qmap('Hamburg', zoom = 20, maptype="hybrid")
 
 - Farben werden oft genutzt um Höhenunterschiede zu visualisieren
 
-
-## ggmap - terrain map
+<!--
+### `ggmap` - terrain map
 
 
 ```r
-qmap('Arequipa', zoom = 14,
- maptype="terrain")
+qmap('Donnersberg', zoom = 14, maptype="terrain")
 ```
+
+
+-->
+
 
 <!--
 
 -->
-
-![](figure/Areqipa.png)
+<!--
+![](figure/Schriesheim.pdf)
+-->
 
 ## Abstrahierte Karten ([http://www.designfaves.com](http://www.designfaves.com/2014/03/abstracted-maps-reveal-cities-personalities))
 
@@ -317,16 +326,13 @@ qmap(location = "Trier", zoom = 10, source = "osm",scale=575000)
 ## Resourcen und Literatur
 
 
-- [Artikel von David Kahle und Hadley Wickham](http://journal.r-project.org/archive/2013-1/kahle-wickham.pdf) zur Nutzung von `ggmap`.
+- Artikel von [**David Kahle und Hadley Wickham**](http://journal.r-project.org/archive/2013-1/kahle-wickham.pdf) zur Nutzung von `ggmap`.
 
 
-- [Schnell eine Karte bekommen ](http://rpackages.ianhowson.com/cran/ggmap/man/get_map.html)
+- [**Schnell eine Karte bekommen** ](http://rpackages.ianhowson.com/cran/ggmap/man/get_map.html)
 
 
-- [Karten machen mit R](http://www.kevjohnson.org/making-maps-in-r-part-2/)
-
-- [Problem mit der Installation von ggmap ](http://stackoverflow.com/questions/40642850/ggmap-error-geomrasterann-was-built-with-an-incompatible-version-of-ggproto)
-
+- [**Karten machen mit R**](http://www.kevjohnson.org/making-maps-in-r-part-2/)
 
 
 
