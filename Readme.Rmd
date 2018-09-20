@@ -48,7 +48,7 @@ Aufgabe: [Darstellung von Eurostat Daten mit `choroplethr`](https://github.com/J
 
 ### __Overpass__ ([Github](slides/Overpass.md))
 
-### __(B1) `osmdata` Paket__ ([Github](slides/osmdata.md))
+### __(B3) `osmdata` Paket__ ([Github](slides/osmdata.md))
 
 Beispiel: *Points of interest* ([poi](https://rpossib.wordpress.com/2015/09/15/points-of-interest-for-backpackers/)) für Backpacker in Amsterdam
 

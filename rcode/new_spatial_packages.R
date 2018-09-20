@@ -31,11 +31,17 @@ lf <- mapview()
 drawing <- lf %>%
   editMap()
 
+####################
+# FedData
 
+# install.packages("FedData")
+
+library(FedData)
 
 #####################
 # further packages
 
+# 2018-09-19  maptools	Tools for Handling Spatial Objects
 # 2018-09-10	BalancedSampling	Balanced and Spatially Balanced Sampling
 # 2018-09-10	CARBayes	Spatial Generalised Linear Mixed Models for Areal Unit Data
 # 2018-09-10	spagmix	Artificial Spatial and Spatiotemporal Densities on Bounded Windows
@@ -50,3 +56,6 @@ drawing <- lf %>%
 # 2018-08-19	geogrid	Turn Geospatial Polygons into Regular or Hexagonal Grids
 # 2018-08-16	AST	Age-Spatial-Temporal Model
 # 2018-08-16	mapedit	Interactive Editing of Spatial Data in R
+# 2018-08-14	vapour	Lightweight Access to the 'Geospatial Data Abstraction Library' ('GDAL')
+# 2018-08-09	FedData	Functions to Automate Downloading Geospatial Data Available from Several Federated Data Sources
+

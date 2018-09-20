@@ -14,39 +14,20 @@ output:
 ---
 
 ```{r, include=FALSE}
-knitr::opts_chunk$set(echo = T,cache=T,eval=T)
+knitr::opts_chunk$set(echo = T,cache=T,eval=T,message=F,warning=F,fig.height=4)
+Ex <- T
 ```
 
 ## Themen dieses Abschnitts
 
+<!--
 - Vorstellung des Openstreetmap (OSM) Projekts
 - Vorstellung von Forschung die mit OSM-Daten durchgeführt wurde
 - Welche OSM-Daten sind erhältlich?
-- Die Overpass API
-- Das Paket `osmdata`
-
-## Das Openstreetmap Projekt...
-
-- Durch kollaboratives Mapping ist eine riesige Datenmenge zugänglich. 
-- Viele Menschen tragen jeden Tag Informationen bei.
-- ... ermöglicht Zugang zu Big Data der Geographie.
-- Die wachsende Menge an Geodaten wird von Freiwilligen gesammelt oder über Crowd-sourcing gewonnen.
-
-## Global patterns of current and future road infrastructure
-
-### Study by Johan Meijer, Mark AJ Huijbregts,  Kees Schotten,  and Aafke Schipper
-
-![](figure/GRIP_globalroads.PNG)
-
-<!--
-@article{meijer2018global,
-  title={Global patterns of current and future road infrastructure},
-  author={Meijer, Johan and Huijbregts, Mark AJ and Schotten, Kees and Schipper, Aafke},
-  journal={Environmental Research Letters},
-  year={2018},
-  publisher={IOP Publishing}
-}
 -->
+
+- Downlaod von OSM-Daten mit dem Paket `osmdata`
+
 
 ## [Das `osmdata` Paket](https://github.com/ropensci/osmdata)
 
@@ -78,8 +59,8 @@ q <- opq(bbox = c(52.3, 4.7, 52.4, 5.1))
 
 - oder indem man den Befehl `getbb` verwendet:
 
-```{r,eval=F}
-bb <- getbb('Amsterdam')
+```{r,eval=Ex}
+bb <- getbb('Ladenburg')
 ```
 
 - Befehl `opq` - eine Overpass Anfrage erstellen
@@ -90,14 +71,41 @@ q <- opq(bbox = bb)
 
 - Als Ergebnis bekommt man aber noch keine Daten
 
+
 ## Die Grenze von Mannheim 
 
-```{r}
-bb_poly <- getbb(place_name = "Amsterdam", 
+- Erst mit dem Befehl `getbb` erhält man das Polygon:
+
+```{r,eval=F}
+bb_poly <- getbb(place_name = "Ladenburg", 
                  format_out = "polygon")
+
+```
+
+
+## 
+
+```{r}
+library(sf)
+```
+
+- [**Vignette für das Paket `sf`**](https://cran.r-project.org/web/packages/sf/vignettes/sf3.html)
+
+
+
+```{r}
+library(dplyr)
+ls <- st_linestring(bb_poly)
+(sfc <- st_sfc(ls))
+```
+
+
+
+```{r}
 library(tmap)
 qtm(bb_poly)
 ```
+
 
 
 ## Einrichtungen (amenity) in Amsterdam
@@ -111,12 +119,26 @@ https://wiki.openstreetmap.org/wiki/Map_Features
 
 ```{r,eval=F}
 q <- add_osm_feature (q, key = 'amenity')
-osmdata_xml(q, '../data/Amsterdam_amenity.osm')
+osmdata_xml(q, '../data/Ladenburg_amenity.osm')
 ```
 
-## 
 
-- [OSM map features](https://wiki.openstreetmap.org/wiki/Map_Features#Highway)
+##
+
+```{r,echo=F}
+dat <- sf::st_read ('../data/Ladenburg_amenity.osm', 
+                    layer = 'points', 
+                    quiet = TRUE)
+```
+
+
+
+
+
+
+## Beispiel Fahrradparkplätze
+
+- [**OSM map features**](https://wiki.openstreetmap.org/wiki/Map_Features#Highway)
 
 ```{r,eval=F}
 q <- add_osm_feature (q, key = 'amenity',value = "bicycle_parking")
@@ -129,7 +151,7 @@ dat <- sf::st_read ('../data/Amsterdam_amenity_bicycle_parking.osm',
                     quiet = TRUE)
 ```
 
-## 
+## Die Daten plotten
 
 ```{r}
 library(tmap)
@@ -145,12 +167,6 @@ dat <- sf::st_read ('../data/Amsterdam_amenity.osm',
                     layer = 'points', 
                     quiet = TRUE)
 ```
-
-
-
-
-
-
 
 ```{r,eval=F}
 nrow(dat)
@@ -169,7 +185,7 @@ q <- add_osm_feature (q, key ="amenity",value = 'bar')
 osmdata_xml (q, 'data/Mannheim_bar.osm')
 ```
 
-```{r}
+```{r,eval=F}
 dat_bar <- sf::st_read ('../data/Mannheim_bar.osm', 
                         layer = 'points', quiet = TRUE)
 ```
@@ -183,7 +199,7 @@ q <- add_osm_feature (q, key ="amenity",
 osmdata_xml (q, 'data/Amsterdam_bus_station.osm')
 ```
 
-```{r}
+```{r,eval=F}
 dat_bus <- sf::st_read ('../data/Amsterdam_bus_station.osm', 
                         layer = 'points', quiet = TRUE)
 nrow(dat_bus)
@@ -206,7 +222,7 @@ q <- add_osm_feature (q, key ="public_transport",
 osmdata_xml (q, '../data/Amsterdam_bus_pubtrans.osm')
 ```
 
-```{r}
+```{r,eval=F}
 dat_bus <- sf::st_read ('../data/Amsterdam_bus_pubtrans.osm', 
                         layer = 'points', quiet = TRUE)
 nrow(dat_bus)
@@ -252,7 +268,7 @@ dat3 <- opq(bbox = 'Amsterdam') %>%
 save(dat3,file="../data/osf_Amsterdam_tramstop.RData")
 ```
 
-```{r,echo=F}
+```{r,echo=F,eval=F}
 load("../data/osf_Amsterdam_tramstop.RData")
 ```
 
@@ -264,13 +280,13 @@ library(knitr)
 # names(dat3$osm_points)
 ```
 
-```{r}
+```{r,eval=F}
 dat3$osm_points$geometry
 ```
 
 ## Plotting the result
 
-```{r,echo=F}
+```{r,echo=F,eval=F}
 library(ggmap)
   # Amsterdam: 
 AMmap <- qmap("Rotterdam")
@@ -321,7 +337,9 @@ map <- add_osm_objects(map, dat3$osm_points, col = c("red"))
 print_osm_map(map)
 ```
 
+<!--
 ![](figure/tramhighway_amsterdam.pdf)
+-->
 
 ## Get an overview of the available features
 
@@ -366,3 +384,12 @@ install.packages("colourpicker")
 <!--
 https://cran.r-project.org/web/packages/osmdata/osmdata.pdf
 -->
+
+
+### Die Vignetten für das Paket `sf`
+
+https://r-spatial.github.io/sf/reference/st_as_sf.html
+
+https://r-spatial.github.io/sf/reference/st_read.html
+
+https://r-spatial.github.io/sf/articles/sf1.html

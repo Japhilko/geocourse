@@ -1,19 +1,22 @@
 ---
 title: "Das Arbeiten mit OSM Daten"
 author: "Jan-Philipp Kolb"
-date: "22 Februar 2017"
+date: "22 Oktober 2018"
 output: 
-  ioslides_presentation: 
-    keep_md: yes
-  beamer_presentation: 
+  beamer_presentation:
     colortheme: beaver
     fonttheme: structurebold
     highlight: tango
-    theme: Warsaw
+    fig_caption: no
+    keep_tex: yes
+    theme: CambridgeUS
+  ioslides_presentation: 
+    keep_md: yes
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE,cache=T,eval=T,warning=F,message=F)
+Ex <- F
 ```
 
 
@@ -158,7 +161,7 @@ url <- "http://api.openstreetmap.org/api/0.6/relation/62422"
 ```
 
 
-```{r}
+```{r,eval=Ex}
 BE <- xmlParse(url)
 ```
 
@@ -168,7 +171,7 @@ BE <- xmlParse(url)
 
 - [Tobi Bosede - Working with XML Data in R](http://www.informit.com/articles/article.aspx?p=2215520)
 
-```{r}
+```{r,eval=Ex}
 xmltop = xmlRoot(BE)
 class(xmltop)
 xmlSize(xmltop)
@@ -180,7 +183,7 @@ xmlSize(xmltop[[1]])
 
 > [Xpath](https://de.wikipedia.org/wiki/XPath), the XML Path Language, is a query language for selecting nodes from an XML document. 
 
-```{r}
+```{r,eval=Ex}
 xpathApply(BE,"//tag[@k = 'population']")
 ```
 
@@ -344,6 +347,25 @@ citation("XML")
 ```{r}
 citation("xml2")
 ```
+
+
+
+## Global patterns of current and future road infrastructure
+
+### Study by Johan Meijer, Mark AJ Huijbregts,  Kees Schotten,  and Aafke Schipper
+
+![](figure/GRIP_globalroads.PNG)
+
+<!--
+@article{meijer2018global,
+  title={Global patterns of current and future road infrastructure},
+  author={Meijer, Johan and Huijbregts, Mark AJ and Schotten, Kees and Schipper, Aafke},
+  journal={Environmental Research Letters},
+  year={2018},
+  publisher={IOP Publishing}
+}
+-->
+
 
 ## Links
 

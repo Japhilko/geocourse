@@ -20,72 +20,42 @@ output:
 knitr::opts_chunk$set(echo = TRUE,message=F,warning=F,cache=T)
 ```
 
+<!--
+Background Maps - Download via Tile Servers
+-->
+
+
 
 ## Ziel dieses Kurses
 
-<!--
-In this paper, various approaches to download and process geodata, e.g., from OSM are shown. 
-The data on OSM is released under the Open Database License (ODbL) 1.0. That allows multiple uses of the data \citep{schmidt2013extraction}. The study of \cite{barrington2017world} shows that the data quality of OSM is already sufficient in many countries to use it for scientific and analytic purposes.
-See for example the Simulation of Urban MObility (SUMO) project (\citealt{behrisch2011sumo}). Much more research, carried out in various countries, is listed at \cite{wiki:research}.
+### Vorgestellt wird:
 
-The focus is on the most important APIs, which are listed in the individual chapters below. The significant advantage of using these specific APIs is that we can obtain data free of charge. Short examples are used to describe how the data can be imported into R and processed. 
-In the next section (Background Maps - Download via Map Tile Servers), hints on the download of static maps from so-called map tile servers are presented. These maps can be used as background information for geographic visualization and may be used to highlight positions of so called points of interest (poi). I discuss an example where I am interested in public transportation in Amsterdam.  A prerequisite for this kind of visualisation is the availability of coordinates for points of interest. In the third chapter (Geocoding - Using the Google Maps and Nominatim API) the functionality of the Google Maps and OSM Nominatim API is used to realize geocoding. It is shown, how the Nominatim API can be used to search OSM data by name and address (\citealt{wiki:nominatim}).  
-If it is the target to get coordinates for many points of interest, it can be useful to utilize the \href{http://wiki.openstreetmap.org/wiki/Overpass_API}{Overpass API}. This API is perfect to download data on very particular topics. Some functions of the \CRANpkg{osmdata} package, which also uses the Overpass API, are described in the fourth chapter (Map Features - Using the Overpass API). 
-The usage of the main OSM-API is presented in the fifth chapter (Geodata - Using the main OpenStreetMap API). In the \CRANpkg{osmar}-package the main OSM API (\citealt{at:osmar}) is used. A summary follows at the end.
--->
-
-- Es werden Möglichkeiten für den Download, den Import, die Verarbeitung und die Visualisierung von Geodaten vorgestellt. 
+- Möglichkeiten für den Download, den Import, die Verarbeitung und die Visualisierung von Geodaten 
 
 <!--
 Die Daten auf OSM werden unter der Open Database License (ODbL) 1.0 freigegeben. Das ermöglicht eine Mehrfachverwendung der Daten \citep{schmidt2013extraction}. Die Studie von \cite{barrington2017world} zeigt, dass die Datenqualität von OSM in vielen Ländern bereits ausreichend ist, um sie für wissenschaftliche und analytische Zwecke zu nutzen.
 Siehe zum Beispiel das Projekt Simulation of Urban MObility (SUMO) (\citealt{behrisch2011sumo}). Viel mehr Forschung, die in verschiedenen Ländern durchgeführt wird, ist unter \cite{wiki:research} aufgeführt.
 -->
 
-- Die wichtigsten APIs werden vorgestellt
+- Die wichtigsten Programmierschnittstellen (APIs) um die Daten zu bekommen
+
+- R-Pakete um diese Daten zu verarbeiten und zu visualisieren
 
 <!--
-Der wesentliche Vorteil der Verwendung dieser spezifischen APIs besteht darin, dass wir Daten kostenlos beziehen können. Anhand kurzer Beispiele wird beschrieben, wie die Daten in R importiert und verarbeitet werden können. 
-Im nächsten Abschnitt (Hintergrundkarten - Download über Map Tile Server) werden Hinweise zum Download von statischen Karten von sogenannten Map Tile Servern gegeben. Diese Karten können als Hintergrundinformationen für die geografische Visualisierung verwendet werden und können verwendet werden, um Positionen von sogenannten Points of Interest (Poi) hervorzuheben. Ich diskutiere ein Beispiel, bei dem ich mich für den öffentlichen Verkehr in Amsterdam interessiere.  Voraussetzung für diese Art der Visualisierung ist die Verfügbarkeit von Koordinaten für Points of Interest. Im dritten Kapitel (Geocoding - Using the Google Maps and Nominatim API) wird die Funktionalität der Google Maps and OSM Nominatim API zur Realisierung der Geocodierung genutzt. Es wird gezeigt, wie die Nominatim API verwendet werden kann, um OSM-Daten nach Name und Adresse zu suchen (\citealt{wiki:nominatim}).  
-Wenn es das Ziel ist, Koordinaten für viele interessante Punkte zu erhalten, kann es nützlich sein, die \href{http://wiki.openstreetmap.org/wiki/Overpass_API}{Overpass API} zu verwenden. Diese API ist perfekt, um Daten zu sehr speziellen Themen herunterzuladen. Einige Funktionen des Pakets \CRANpkg{osmdata}, das auch die Overpass API verwendet, werden im vierten Kapitel (Map Features - Using the Overpass API) beschrieben. 
-Die Verwendung der wichtigsten OSM-API wird im fünften Kapitel (Geodaten - Verwendung der wichtigsten OpenStreetMap-API) vorgestellt. Im \CRANpkg{osmar}-Paket wird die Haupt OSM-API (\citealt{at:osmar}) verwendet. 
--->
-
-<!--
-
--->
-## Start
-
-```{r,echo=F,eval=F}
-library(ggmap)
-qmap("Firenze",zoom=18, maptype = "satellite")
-```
-
-http://rpubs.com/Japhilko82/gesis_mannheim
-
-![](figure/Amsterdam_osmplotr_highways.pdf)
+## Inhalt dieses Abschnitts
 
 
-## Outline
+Einerseits die Daten vorstellen, die vorhanden sind
 
-- Spatial Turn - why this course
-- Research questions
-- Available data
-- Neogeograpy
-- Realisation
+Zensus, IÖR Daten
 
-
-
-<!--
-## Motivation - recent phenomena
-
-- The spatial representation helps to understand (current) phenomena.
-
-![US presidential primary elections in Florida](figure/FloridaPresPrim.png)
-
-Source: <http://www.arilamstein.com/blog/2016/03/21/mapping-election-results-r-choroplethr/>
+Andererseits neue Entwicklungen in R vorstellen
 
 -->
 
+## [Openstreetmap Tags](https://wiki.openstreetmap.org/wiki/Tags)
+
+![](figure/osm_tag.png)
 
 
 ## [Laws of Spatial Sience](http://de.slideshare.net/rheimann04/big-social-data-the-spatial-turn-in-big-data)
@@ -228,6 +198,12 @@ https://hal.inria.fr/hal-01852585/document
 
 -->
 
+## Das Openstreetmap Projekt...
+
+- Durch kollaboratives Mapping ist eine riesige Datenmenge zugänglich. 
+- Viele Menschen tragen jeden Tag Informationen bei.
+- ... ermöglicht Zugang zu Big Data der Geographie.
+- Die wachsende Menge an Geodaten wird von Freiwilligen gesammelt oder über Crowd-sourcing gewonnen.
 
 
 ```{r,eval=F,echo=F}
