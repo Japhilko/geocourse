@@ -1,5 +1,5 @@
 ---
-title: "Das osmdata Paket"
+title: "Das `osmdata` Paket"
 author: "Jan-Philipp Kolb"
 date: "22 Oktober 2018"
 output:
@@ -28,17 +28,23 @@ Ex <- T
 
 - Downlaod von OSM-Daten mit dem Paket `osmdata`
 
+- Verarbeitung der OSM-Daten mit dem Paket `sf`
 
 ## [Das `osmdata` Paket](https://github.com/ropensci/osmdata)
 
 ![](figure/osmdatatitle.png)
 
+> Mark Padgham - Import 'OpenStreetMap' Data as Simple Features or Spatial
+        Objects
+
 ## Das `osmdata` Paket
+
+- Mit dem Paket kann man Daten von OpenStreetMap importieren
+- Die OSM Daten sind unter [**ODbL licence**](https://www.openstreetmap.org/copyright) zu haben 
 
 ```{r,eval=F}
 install.packages("osmdata")
 ```
-
 
 ```{r}
 library(osmdata)
@@ -76,14 +82,14 @@ q <- opq(bbox = bb)
 
 - Erst mit dem Befehl `getbb` erhält man das Polygon:
 
-```{r,eval=F}
+```{r,eval=Ex}
 bb_poly <- getbb(place_name = "Ladenburg", 
                  format_out = "polygon")
 
 ```
 
 
-## 
+## Das Paket für simple feature (`sf`) 
 
 ```{r}
 library(sf)
@@ -96,24 +102,24 @@ library(sf)
 ```{r}
 library(dplyr)
 ls <- st_linestring(bb_poly)
-(sfc <- st_sfc(ls))
+sfc <- st_sfc(ls)
 ```
 
 
 
 ```{r}
 library(tmap)
-qtm(bb_poly)
+qtm(sfc)
 ```
 
 
 
-## Einrichtungen (amenity) in Amsterdam
+## Einrichtungen (amenity)
 
-- alle benannten Objekte
-- die meisten sind hier zu finden:
 
-https://wiki.openstreetmap.org/wiki/Map_Features
+### [**OSM map features**](https://wiki.openstreetmap.org/wiki/Map_Features)
+
+- Alle benannten Objekte findet man, wenn man OSM map features in eine Suchmaschine eingibt. 
 
 - Achtung, wenn man bspw. alle Objekte mit dem Schlüssel `amenity` für eine Stadt heraussucht, bekommt man einen recht großen Datensatz
 
@@ -123,15 +129,35 @@ osmdata_xml(q, '../data/Ladenburg_amenity.osm')
 ```
 
 
-##
+## Was dahinter steckt
 
-```{r,echo=F}
+```{r,echo=F,eval=F}
 dat <- sf::st_read ('../data/Ladenburg_amenity.osm', 
                     layer = 'points', 
                     quiet = TRUE)
 ```
 
 
+```{r,eval=F,echo=F}
+nrow(dat)
+?osmdata_sf
+```
+
+## Die Funktion `osmdata_sf`
+
+- Die Funktion `osmdata_sf` gibt ein `osmdata` ObjeKt im `sf` Format.
+
+
+```{r shop_bakery}
+library(magrittr)
+dat1 <- opq(bbox = 'Ladenburg') %>%
+    add_osm_feature(key = 'shop', value = 'bakery') %>%
+    osmdata_sf ()
+```
+
+```{r}
+unlist(lapply(dat1,nrow))
+```
 
 
 

@@ -2,3 +2,6 @@ base
 osmdata
 tmap
 knitr
+sf
+dplyr
+magrittr
