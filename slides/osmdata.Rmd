@@ -26,9 +26,11 @@ Ex <- T
 - Welche OSM-Daten sind erhältlich?
 -->
 
-- Downlaod von OSM-Daten mit dem Paket `osmdata`
+- Downlaod von OSM-Daten mit dem Paket `osmdata`, das auf der [**Overpass API**](https://wiki.openstreetmap.org/wiki/Overpass_API) beruht. 
 
 - Verarbeitung der OSM-Daten mit dem Paket `sf`
+
+- Das Plotten der Ergebnisse
 
 ## [Das `osmdata` Paket](https://github.com/ropensci/osmdata)
 
@@ -69,18 +71,21 @@ q <- opq(bbox = c(52.3, 4.7, 52.4, 5.1))
 bb <- getbb('Ladenburg')
 ```
 
+- In `bb` sind nun vier Werte gespeichert, die den Rahmen definieren
+
 - Befehl `opq` - eine Overpass Anfrage erstellen
 
 ```{r}
 q <- opq(bbox = bb)
 ```
 
+<!--
 - Als Ergebnis bekommt man aber noch keine Daten
-
+-->
 
 ## Die Grenze von Mannheim 
 
-- Erst mit dem Befehl `getbb` erhält man das Polygon:
+- Erst mit dem Argument `format_out=polygon` Befehl `getbb` erhält man das Polygon:
 
 ```{r,eval=Ex}
 bb_poly <- getbb(place_name = "Ladenburg", 
@@ -88,8 +93,19 @@ bb_poly <- getbb(place_name = "Ladenburg",
 
 ```
 
+- Das Ergebnis ist sind zwei Vektoren mit den Longitude und Latitude Koordinaten.
+
+```{r,echo=F}
+bb_poly[1:4,]
+```
+
+
 
 ## Das Paket für simple feature (`sf`) 
+
+> Simple Features for R
+
+- Das Paket `sf` ist ein Paket um geometrische Operationen durchzuführen. 
 
 ```{r}
 library(sf)
@@ -97,18 +113,32 @@ library(sf)
 
 - [**Vignette für das Paket `sf`**](https://cran.r-project.org/web/packages/sf/vignettes/sf3.html)
 
+![](figure/rsimplefeatures.png)
 
+## Die Funktion `st_linestring`
+
+> Create simple feature from a numeric vector, matrix or list
 
 ```{r}
-library(dplyr)
+library(sf)
 ls <- st_linestring(bb_poly)
 sfc <- st_sfc(ls)
 ```
+
+```{r,echo=F,eval=F}
+# https://github.com/r-spatial/sf
+?st_linestring
+```
+
+
 
 ```{r,echo=F}
 sfc2 <- st_cast(sfc, "MULTILINESTRING")
 ab <- st_geometrycollection(sfc)
 ```
+
+
+## Den `linestring` plotten
 
 
 ```{r}

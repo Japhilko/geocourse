@@ -126,9 +126,13 @@
 
 \begin{itemize}
 \item
-  Downlaod von OSM-Daten mit dem Paket \texttt{osmdata}
+  Downlaod von OSM-Daten mit dem Paket \texttt{osmdata}, das auf der
+  \href{https://wiki.openstreetmap.org/wiki/Overpass_API}{\textbf{Overpass
+  API}} beruht.
 \item
   Verarbeitung der OSM-Daten mit dem Paket \texttt{sf}
+\item
+  Das Plotten der Ergebnisse
 \end{itemize}
 
 \end{frame}
@@ -205,7 +209,9 @@ Objects
 \end{Shaded}
 
 \begin{itemize}
-\tightlist
+\item
+  In \texttt{bb} sind nun vier Werte gespeichert, die den Rahmen
+  definieren
 \item
   Befehl \texttt{opq} - eine Overpass Anfrage erstellen
 \end{itemize}
@@ -216,12 +222,6 @@ Objects
 \end{Highlighting}
 \end{Shaded}
 
-\begin{itemize}
-\tightlist
-\item
-  Als Ergebnis bekommt man aber noch keine Daten
-\end{itemize}
-
 \end{frame}
 
 \begin{frame}[fragile]{Die Grenze von Mannheim}
@@ -229,7 +229,8 @@ Objects
 \begin{itemize}
 \tightlist
 \item
-  Erst mit dem Befehl \texttt{getbb} erhält man das Polygon:
+  Erst mit dem Argument \texttt{format\_out=polygon} Befehl
+  \texttt{getbb} erhält man das Polygon:
 \end{itemize}
 
 \begin{Shaded}
@@ -239,9 +240,35 @@ Objects
 \end{Highlighting}
 \end{Shaded}
 
+\begin{itemize}
+\tightlist
+\item
+  Das Ergebnis ist sind zwei Vektoren mit den Longitude und Latitude
+  Koordinaten.
+\end{itemize}
+
+\begin{verbatim}
+##          [,1]     [,2]
+## [1,] 8.569720 49.49107
+## [2,] 8.569858 49.49101
+## [3,] 8.569999 49.49096
+## [4,] 8.570342 49.49085
+\end{verbatim}
+
 \end{frame}
 
 \begin{frame}[fragile]{Das Paket für simple feature (\texttt{sf})}
+
+\begin{quote}
+Simple Features for R
+\end{quote}
+
+\begin{itemize}
+\tightlist
+\item
+  Das Paket \texttt{sf} ist ein Paket um geometrische Operationen
+  durchzuführen.
+\end{itemize}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -264,6 +291,10 @@ Objects
 \end{Highlighting}
 \end{Shaded}
 
+\end{frame}
+
+\begin{frame}[fragile]{Den \texttt{linestring} plotten}
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(tmap)}
@@ -271,7 +302,7 @@ Objects
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{osmdata_files/figure-beamer/unnamed-chunk-11-1.pdf}
+\includegraphics{osmdata_files/figure-beamer/unnamed-chunk-12-1.pdf}
 
 \end{frame}
 
@@ -390,7 +421,7 @@ Start mit dem Paket \texttt{tmap}}}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{osmdata_files/figure-beamer/unnamed-chunk-19-1.pdf}
+\includegraphics{osmdata_files/figure-beamer/unnamed-chunk-20-1.pdf}
 
 \end{frame}
 
