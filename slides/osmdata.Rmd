@@ -105,6 +105,10 @@ ls <- st_linestring(bb_poly)
 sfc <- st_sfc(ls)
 ```
 
+```{r,echo=F}
+sfc2 <- st_cast(sfc, "MULTILINESTRING")
+ab <- st_geometrycollection(sfc)
+```
 
 
 ```{r}
@@ -163,7 +167,7 @@ unlist(lapply(dat1,nrow))
 
 ### [**Der Start mit dem Paket `tmap`](https://cran.r-project.org/web/packages/tmap/vignettes/tmap-getstarted.html)
 
-```{r}
+```{r,eval=F}
 library(tmap)
 tm_shape(sfc) 
 tm_bubbles(dat, size=2)
