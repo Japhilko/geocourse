@@ -22,7 +22,7 @@ Dieser Workshop beschäftigt sich mit der Erfassung und Verarbeitung von räumli
 
 ### __(A2) Das Paket [ggmap](http://journal.r-project.org/archive/2013-1/kahle-wickham.pdf)__ zur Erzeugung verschiedener Kartentypen. ([Browser](slides/ggmap.md) | [pdf](slides/ggmap.pdf) | [rcode](slides/ggmap.R) )
 
-Aufgabe: [Nutzung von  `ggmap`](https://github.com/Japhilko/GeoData/blob/master/2017/tutorial/Aufgabe_Nutzung_ggmap.Rmd)
+Aufgabe: [Nutzung von  `ggmap`](exercises/Aufgabe_Nutzung_ggmap.Rmd)
 
 
 ### __(A3) Thematische Karten mit dem R-Paket `tmap`__ ([Browser](slides/tmap.md) | [pdf](slides/tmap.pdf) | 

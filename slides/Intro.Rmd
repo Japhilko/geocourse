@@ -26,6 +26,25 @@ Background Maps - Download via Tile Servers
 
 
 
+<!--
+## Inhalt dieses Abschnitts
+
+
+Einerseits die Daten vorstellen, die vorhanden sind
+
+Zensus, IÖR Daten
+
+Andererseits neue Entwicklungen in R vorstellen
+
+-->
+
+
+## 
+
+![](figure/BildRatSWDBericht.png)
+
+
+
 ## Ziel dieses Kurses
 
 ### Vorgestellt wird:
@@ -41,22 +60,13 @@ Siehe zum Beispiel das Projekt Simulation of Urban MObility (SUMO) (\citealt{beh
 
 - R-Pakete um diese Daten zu verarbeiten und zu visualisieren
 
-<!--
-## Inhalt dieses Abschnitts
 
+## Motivation
 
-Einerseits die Daten vorstellen, die vorhanden sind
-
-Zensus, IÖR Daten
-
-Andererseits neue Entwicklungen in R vorstellen
-
--->
-
-## [Openstreetmap Tags](https://wiki.openstreetmap.org/wiki/Tags)
-
-![](figure/osm_tag.png)
-
+- Sekundäranalyse für bestehenden Daten 
+- Raumbezug herstellen/nutzen
+- Analysepotentiale der Geokodierung vorstellen
+- Verbindung von sozial- mit raumwissenschaftlichen Daten
 
 ## [Laws of Spatial Sience](http://de.slideshare.net/rheimann04/big-social-data-the-spatial-turn-in-big-data)
 
@@ -89,12 +99,41 @@ Andererseits neue Entwicklungen in R vorstellen
 ![Wind map USA](figure/windfm.PNG)
 -->
 
-
+<!--
 ## Availability of data - Example Census Atlas
+-->
+
+## Ergebnisse des Zensus 2011 zum [**Download**](https://www.zensus2011.de/SharedDocs/Aktuelles/Ergebnisse/DemografischeGrunddaten.html?nn=3065474)
+
+<!--
+## Verfügbarkeit von Daten - Beispiel Zensus Atlas
 
 <https://atlas.zensus2011.de/>
+-->
 
 
+![](figure/zensus2011_logo.jpg)
+
+
+### Gemeindeebene
+
+- Bevölkerung nach Geschlecht, Altersgruppe, Familienstatus, Staatsangehörigkeit und Religion
+
+###  1 $\text{km}^2$ Raster
+
+- Bevölkerung, Leerstandsquote, Wohnfläche und Haushaltsgröße
+
+###  100 $\text{m}^2$ Raster
+
+Bevölkerung
+
+## Zensus Ergebnisse
+
+Beispiel Anteil der Personen aus EU27 Land an Einwohnerzahl pro
+Gemeinde in Oberfranken
+
+
+![](figure/KRSBamberg_EWZ.pdf)
 <!--
 ## Verfügbarkeit der Daten - Beispiel [Fahrradunfälle in Berlin](http://michael-hoerz.de/maps/berlin-bike/)
 
@@ -139,11 +178,10 @@ Andererseits neue Entwicklungen in R vorstellen
 ![](http://spatial.ly/wp-content/uploads/2013/06/r_activity.png)
 -->
 
-## Was ist das Ziel - Straßen in Berlin
+## [Openstreetmap Tags](https://wiki.openstreetmap.org/wiki/Tags)
 
-Dargestellt werden OpenStreetMap Daten, die mit der Overpass API heruntergeladen wurden.
+![](figure/osm_tag.png)
 
-![](figure/streets_Berlin2.png)
 
 ## Openstreetmap Projekt
 
@@ -160,6 +198,16 @@ https://hal.inria.fr/hal-01852585/document
 
 ![](figure/shinyApp.PNG)
 -->
+
+
+## Was ist das Ziel - Straßen in Berlin
+
+Dargestellt werden OpenStreetMap Daten, die mit der Overpass API heruntergeladen wurden.
+
+![](figure/streets_Berlin2.png)
+
+
+
 
 ## Links mit Beispielen
 

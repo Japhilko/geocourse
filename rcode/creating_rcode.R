@@ -25,7 +25,8 @@ library(lme4)
 # Define paths
 #-------------------------------------------------#
 
-main_path <- "D:/github/geocourse/"
+main_path <- "D:/github/geocourse/" # zu Hause
+main_path <- "D:/Daten/GitHub/geocourse/"
 slide_path <- paste0(main_path,"slides/")
 rcode_path <- paste0(main_path,"rcode/")
 
