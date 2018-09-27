@@ -43,6 +43,13 @@ Choroplethen sind nützlich für die Visualisierung von Daten, wo geografische G
 - Datensatz wrld_simpl aus dem Paket `maptools`
 - Polygone für fast alle Staaten der Erde
 
+```{r,eval=F,echo=F}
+install.packages("acs")
+install.packages("choroplethr")
+install.packages("choroplethrMaps")
+```
+
+
 ```{r}
 library(maptools)
 data(wrld_simpl)
@@ -127,10 +134,17 @@ library(sp)
 spplot(ginimap,"gini12")
 ```
 
-## Aufgabe
+## Aufgabe A4A - Eine Chorplethenkarte erzeugen
 
 - Lade Datensatz xy herunter
 - Erzeuge mit der Variable yx folgende Karte:
+
+
+```{r,eval=F,echo=F}
+
+```
+
+
 
 
 

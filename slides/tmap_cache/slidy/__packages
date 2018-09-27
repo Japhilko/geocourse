@@ -1,0 +1,10 @@
+base
+ggplot2
+ggmap
+knitr
+rmarkdown
+Matrix
+lme4
+DT
+tmap
+XML

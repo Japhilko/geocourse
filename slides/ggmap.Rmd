@@ -120,12 +120,14 @@ dev.off()
 - level 3 - Kontinent / level 10 - Stadt / level 21 - Gebäude
 
 ```{r,message=F,eval=Ex}
-qmap("Germany", zoom = 6)
+qmap("England", zoom = 6)
 ```
 
 ```{r,echo=F}
 # https://www.nceas.ucsb.edu/~frazier/RSpatialGuides/ggmap/ggmapCheatsheet.pdf
 ```
+
+![](figure/EnglandMap.PNG)
 
 
 ## Hilfe bekommen wir mit dem Fragezeichen
@@ -241,6 +243,15 @@ dev.off()
 - Aus Physischen Karten kann man Informationen über Berge, Flüsse und Seen ablesen. 
 
 - Farben werden oft genutzt um Höhenunterschiede zu visualisieren
+
+```{r,eval=F}
+qmap('Arequipa', maptype="terrain")
+```
+
+
+## Eine physische Karte von Arequipa
+
+![](figure/Areqipa.pdf)
 
 <!--
 ### `ggmap` - terrain map
@@ -371,7 +382,7 @@ dev.off()
 
 ## [Eine Karte für die USA](https://blog.dominodatalab.com/geographic-visualization-with-rs-ggmaps/)
 
-```{r USAMap,eval=F}
+```{r USAMap,eval=F,echo=F}
 usa_center = as.numeric(geocode("United States"))
 USAMap = ggmap(get_googlemap(center=usa_center, scale=2, 
                              zoom=4), extent="normal")

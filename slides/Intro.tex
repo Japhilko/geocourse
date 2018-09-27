@@ -82,46 +82,37 @@
 \begin{document}
 \frame{\titlepage}
 
+\begin{frame}
+
+\end{frame}
+
 \begin{frame}{Ziel dieses Kurses}
 
-\begin{itemize}
-\tightlist
-\item
-  Es werden Möglichkeiten für den Download, den Import, die Verarbeitung
-  und die Visualisierung von Geodaten vorgestellt.
-\end{itemize}
+\begin{block}{Vorgestellt wird:}
 
 \begin{itemize}
 \tightlist
 \item
-  Die wichtigsten APIs werden vorgestellt
+  Möglichkeiten für den Download, den Import, die Verarbeitung und die
+  Visualisierung von Geodaten
 \end{itemize}
+
+\begin{itemize}
+\item
+  Die wichtigsten Programmierschnittstellen (APIs) um die Daten zu
+  bekommen
+\item
+  R-Pakete um diese Daten zu verarbeiten und zu visualisieren
+\end{itemize}
+
+\end{block}
 
 \end{frame}
 
-\begin{frame}{Start}
+\begin{frame}{\href{https://wiki.openstreetmap.org/wiki/Tags}{Openstreetmap
+Tags}}
 
-\url{http://rpubs.com/Japhilko82/gesis_mannheim}
-
-\includegraphics{figure/Amsterdam_osmplotr_highways.pdf}
-
-\end{frame}
-
-\begin{frame}{Outline}
-
-\begin{itemize}
-\tightlist
-\item
-  Spatial Turn - why this course
-\item
-  Research questions
-\item
-  Available data
-\item
-  Neogeograpy
-\item
-  Realisation
-\end{itemize}
+\includegraphics{figure/osm_tag.png}
 
 \end{frame}
 
@@ -163,9 +154,48 @@ of\ldots{}}
 
 \end{frame}
 
-\begin{frame}{Availability of data - Example Census Atlas}
+\begin{frame}{Verfügbarkeit von Daten - Beispiel Zensus Atlas}
 
 \url{https://atlas.zensus2011.de/}
+
+\includegraphics{figure/zensus2011_logo.jpg}
+
+\begin{itemize}
+\tightlist
+\item
+  Ergebnisse des Zensus 2011 zum
+  \href{https://www.zensus2011.de/SharedDocs/Aktuelles/Ergebnisse/DemografischeGrunddaten.html?nn=3065474}{\textbf{Download}}
+\end{itemize}
+
+\begin{block}{Gemeindeebene}
+
+\begin{itemize}
+\tightlist
+\item
+  Bevölkerung nach Geschlecht, Altersgruppe, Familienstatus,
+  Staatsangehörigkeit und Religion
+\end{itemize}
+
+\end{block}
+
+\begin{block}{1 \(\text{km}^2\) Raster}
+
+\begin{itemize}
+\tightlist
+\item
+  Bevölkerung, Leerstandsquote, Wohnfläche und Haushaltsgröße
+\end{itemize}
+
+\end{block}
+
+\end{frame}
+
+\begin{frame}{Zensus Ergebnisse}
+
+Beispiel Anteil der Personen aus EU27 Land an Einwohnerzahl pro Gemeinde
+in Oberfranken
+
+\includegraphics{figure/KRSBamberg_EWZ.pdf}
 
 \end{frame}
 
@@ -216,47 +246,72 @@ heruntergeladen wurden.
 \begin{itemize}
 \item
   Shiny App zu
-  \href{https://japhilko.shinyapps.io/Choropleths/}{Indikatoren} für
-  Europa
+  \href{https://japhilko.shinyapps.io/Choropleths/}{\textbf{Indikatoren}}
+  für Europa
 \item
   Räumliche Visualisierung in den USA -
-  \href{https://rpubs.com/Radcliffe/walmart}{Walmarts in den USA}
+  \href{https://rpubs.com/Radcliffe/walmart}{\textbf{Walmarts in den
+  USA}}
 \item
-  \href{http://www.nytimes.com/interactive/2014/09/03/us/the-race-gap-in-americas-police-departments.html?_r=0}{Race
-  Gap Police USA} - \href{http://fivethirtyeight.com/}{Wahl USA}
+  \href{http://www.nytimes.com/interactive/2014/09/03/us/the-race-gap-in-americas-police-departments.html?_r=0}{\textbf{Race
+  Gap Police USA}} - \href{http://fivethirtyeight.com/}{\textbf{Wahl
+  USA}}
 \item
   Zeit Artikel zum Zustand der
-  \href{http://detektor.fm/digital/datenjournalismus-interaktive-karte-zeigt-marode-deutsche-bahn-bruecken}{Eisenbahnbrücken}
+  \href{http://detektor.fm/digital/datenjournalismus-interaktive-karte-zeigt-marode-deutsche-bahn-bruecken}{\textbf{Eisenbahnbrücken}}
 \item
-  \href{http://michael-hoerz.de/maps/berlin-bike/}{Fahrradunfälle} in
-  Berlin
+  \href{http://michael-hoerz.de/maps/berlin-bike/}{\textbf{Fahrradunfälle}}
+  in Berlin
 \item
-  \href{http://interaktiv.morgenpost.de/beta-fussballkarte/\#7/51.258/10.756}{Verteilung
-  Fußballfans}
+  \href{http://interaktiv.morgenpost.de/beta-fussballkarte/\#7/51.258/10.756}{\textbf{Verteilung
+  Fußballfans}}
 \item
-  \href{http://news.nationalgeographic.com/news/2014/07/140715-ocean-plastic-debris-trash-pacific-garbage-patch/}{Plastiktüten
-  im Meer}
+  \href{http://news.nationalgeographic.com/news/2014/07/140715-ocean-plastic-debris-trash-pacific-garbage-patch/}{\textbf{Plastiktüten
+  im Meer}}
 \end{itemize}
 
-Datenquellen:
+\begin{block}{Datenquellen:}
 
 \begin{itemize}
 \tightlist
 \item
-  \href{https://www.pegelonline.wsv.de/gast/start}{Pegelstände} in
-  Deutschland
+  Datensätze zu
+  \href{https://www.pegelonline.wsv.de/gast/start}{\textbf{Pegelständen}}
+  in Deutschland
 \item
-  \href{http://driven-by-data.net/}{driven by data}
+  Viele Datensätze auf \href{http://driven-by-data.net/}{\textbf{driven
+  by data}}
 \end{itemize}
 
-Resourcen
+\end{block}
+
+\begin{block}{Resourcen}
 
 \begin{itemize}
 \tightlist
 \item
   Andreas Plank -
-  \href{http://www.chironomidaeproject.com/fileadmin/downloads/Formeln_in_R.pdf}{Grafiken
-  und Statistik in R}
+  \href{http://www.chironomidaeproject.com/fileadmin/downloads/Formeln_in_R.pdf}{\textbf{Grafiken
+  und Statistik in R}}
+\end{itemize}
+
+\end{block}
+
+\end{frame}
+
+\begin{frame}{Das Openstreetmap Projekt\ldots{}}
+
+\begin{itemize}
+\tightlist
+\item
+  Durch kollaboratives Mapping ist eine riesige Datenmenge zugänglich.
+\item
+  Viele Menschen tragen jeden Tag Informationen bei.
+\item
+  \ldots{} ermöglicht Zugang zu Big Data der Geographie.
+\item
+  Die wachsende Menge an Geodaten wird von Freiwilligen gesammelt oder
+  über Crowd-sourcing gewonnen.
 \end{itemize}
 
 \end{frame}

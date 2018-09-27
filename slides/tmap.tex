@@ -1,8 +1,4 @@
-\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
-\PassOptionsToPackage{hyphens}{url}
-%
 \documentclass[ignorenonframetext,]{beamer}
-\usepackage{pgfpages}
 \setbeamertemplate{caption}[numbered]
 \setbeamertemplate{caption label separator}{: }
 \setbeamercolor{caption name}{fg=normal text.fg}
@@ -14,9 +10,12 @@
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
-  \usepackage{textcomp} % provides euro and other symbols
 \else % if luatex or xelatex
-  \usepackage{unicode-math}
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
   \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
 \fi
 \usetheme[]{CambridgeUS}
@@ -26,23 +25,16 @@
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 % use microtype if available
 \IfFileExists{microtype.sty}{%
-\usepackage[]{microtype}
+\usepackage{microtype}
 \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
 }{}
-\IfFileExists{parskip.sty}{%
-\usepackage{parskip}
-}{% else
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{6pt plus 2pt minus 1pt}
-}
-\usepackage{hyperref}
+\newif\ifbibliography
 \hypersetup{
             pdftitle={Das R-Paket tmap},
             pdfauthor={Jan-Philipp Kolb},
             pdfborder={0 0 0},
             breaklinks=true}
 \urlstyle{same}  % don't use monospace font for urls
-\newif\ifbibliography
 \usepackage{color}
 \usepackage{fancyvrb}
 \newcommand{\VerbBar}{|}
@@ -52,37 +44,37 @@
 \usepackage{framed}
 \definecolor{shadecolor}{RGB}{248,248,248}
 \newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
-\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
-\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
-\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\BuiltInTok}[1]{#1}
-\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
 \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
 \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
-\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
 \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\ImportTok}[1]{#1}
-\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\NormalTok}[1]{#1}
-\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
-\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
-\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
 \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
 \usepackage{longtable,booktabs}
 \usepackage{caption}
 % These lines are needed to make table captions work with longtable:
@@ -92,55 +84,42 @@
 \usepackage{graphicx,grffile}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
-\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight0.8\textheight\else\Gin@nat@height\fi}
 \makeatother
 % Scale images if necessary, so that they will not overflow the page
 % margins by default, and it is still possible to overwrite the defaults
 % using explicit options in \includegraphics[width, height, ...]{}
 \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+
 % Prevent slide breaks in the middle of a paragraph:
 \widowpenalties 1 10000
 \raggedbottom
-\setbeamertemplate{part page}{
-\centering
-\begin{beamercolorbox}[sep=16pt,center]{part title}
-  \usebeamerfont{part title}\insertpart\par
-\end{beamercolorbox}
-}
-\setbeamertemplate{section page}{
-\centering
-\begin{beamercolorbox}[sep=12pt,center]{part title}
-  \usebeamerfont{section title}\insertsection\par
-\end{beamercolorbox}
-}
-\setbeamertemplate{subsection page}{
-\centering
-\begin{beamercolorbox}[sep=8pt,center]{part title}
-  \usebeamerfont{subsection title}\insertsubsection\par
-\end{beamercolorbox}
-}
+
 \AtBeginPart{
+  \let\insertpartnumber\relax
+  \let\partname\relax
   \frame{\partpage}
 }
 \AtBeginSection{
   \ifbibliography
   \else
+    \let\insertsectionnumber\relax
+    \let\sectionname\relax
     \frame{\sectionpage}
   \fi
 }
 \AtBeginSubsection{
+  \let\insertsubsectionnumber\relax
+  \let\subsectionname\relax
   \frame{\subsectionpage}
 }
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
 \setlength{\emergencystretch}{3em}  % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{0}
-
-% set default figure placement to htbp
-\makeatletter
-\def\fps@figure{htbp}
-\makeatother
-
 
 \title{Das R-Paket tmap}
 \author{Jan-Philipp Kolb}
@@ -151,7 +130,6 @@
 
 \begin{frame}[fragile]{Das Paket
 \href{https://cran.r-project.org/web/packages/tmap/index.html}{tmap}}
-\protect\hypertarget{das-paket-tmap}{}
 
 \begin{itemize}
 \tightlist
@@ -180,12 +158,11 @@
 \end{frame}
 
 \begin{frame}[fragile]{Schnelle thematische Karte}
-\protect\hypertarget{schnelle-thematische-karte}{}
 
 \begin{itemize}
 \item
   Mit dem Befehl
-  \href{https://cran.r-project.org/web/packages/tmap/vignettes/tmap-nutshell.html}{\textbf{´qtm`}}
+  \href{https://cran.r-project.org/web/packages/tmap/vignettes/tmap-nutshell.html}{\textbf{qtm}}
   kann man eine schnelle thematische Karte erzeugen
 \item
   Beispiel aus der
@@ -205,7 +182,6 @@
 \end{frame}
 
 \begin{frame}{Der Europa-Datensatz}
-\protect\hypertarget{der-europa-datensatz}{}
 
 \begin{longtable}[]{@{}lllll@{}}
 \toprule
@@ -229,7 +205,6 @@ Europe\tabularnewline
 \end{frame}
 
 \begin{frame}[fragile]{Um mehr Farbe in die Karte zu bekommen}
-\protect\hypertarget{um-mehr-farbe-in-die-karte-zu-bekommen}{}
 
 \begin{itemize}
 \tightlist
@@ -249,7 +224,6 @@ Europe\tabularnewline
 \end{frame}
 
 \begin{frame}[fragile]{Eine Karte mit Text}
-\protect\hypertarget{eine-karte-mit-text}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -262,7 +236,6 @@ Europe\tabularnewline
 \end{frame}
 
 \begin{frame}[fragile]{Dieses Schema passt besser:}
-\protect\hypertarget{dieses-schema-passt-besser}{}
 
 \begin{block}{\href{https://en.wikipedia.org/wiki/Population_density}{\textbf{Bevölkerungsdichte}}}
 
@@ -281,7 +254,6 @@ Europe\tabularnewline
 \end{frame}
 
 \begin{frame}{Themen des Europa-Datensatzes}
-\protect\hypertarget{themen-des-europa-datensatzes}{}
 
 \begin{itemize}
 \tightlist
@@ -307,7 +279,6 @@ Europe\tabularnewline
 \end{frame}
 
 \begin{frame}{Der Europa Datensatz - Variablen und was dahinter steckt}
-\protect\hypertarget{der-europa-datensatz---variablen-und-was-dahinter-steckt}{}
 
 \begin{longtable}[]{@{}llllll@{}}
 \toprule
@@ -328,7 +299,6 @@ Europe\tabularnewline
 \end{frame}
 
 \begin{frame}[fragile]{Die Variable \texttt{continent}}
-\protect\hypertarget{die-variable-continent}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -341,7 +311,6 @@ Europe\tabularnewline
 \end{frame}
 
 \begin{frame}[fragile]{Die Variable \texttt{part}}
-\protect\hypertarget{die-variable-part}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -354,7 +323,6 @@ Europe\tabularnewline
 \end{frame}
 
 \begin{frame}[fragile]{Die Variable \texttt{area}}
-\protect\hypertarget{die-variable-area}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -367,7 +335,6 @@ Europe\tabularnewline
 \end{frame}
 
 \begin{frame}[fragile]{Bevölkerung}
-\protect\hypertarget{bevolkerung}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -380,7 +347,6 @@ Europe\tabularnewline
 \end{frame}
 
 \begin{frame}[fragile]{Ökonomie}
-\protect\hypertarget{okonomie}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -393,7 +359,6 @@ Europe\tabularnewline
 \end{frame}
 
 \begin{frame}[fragile]{Einkommensgruppe}
-\protect\hypertarget{einkommensgruppe}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -406,7 +371,6 @@ Europe\tabularnewline
 \end{frame}
 
 \begin{frame}{Der Welt-Datensatz im Paket \texttt{tmap}}
-\protect\hypertarget{der-welt-datensatz-im-paket-tmap}{}
 
 \begin{longtable}[]{@{}llllllrrrrrllrrr@{}}
 \toprule
@@ -471,7 +435,6 @@ developed region & 5. Low income & 55.4 & 4.035560 &
 \end{frame}
 
 \begin{frame}[fragile]{Welt - Länder nach Einkommensgruppe}
-\protect\hypertarget{welt---lander-nach-einkommensgruppe}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -485,7 +448,6 @@ developed region & 5. Low income & 55.4 & 4.035560 &
 
 \begin{frame}{Ein Datensatz zu den Provinzen in den Niederlanden
 (R-Paket \texttt{tmap})}
-\protect\hypertarget{ein-datensatz-zu-den-provinzen-in-den-niederlanden-r-paket-tmap}{}
 
 \begin{longtable}[]{@{}lllrrrrrrrrrrr@{}}
 \toprule
@@ -512,7 +474,6 @@ origin\_west & origin\_non\_west\tabularnewline
 \end{frame}
 
 \begin{frame}[fragile]{Niederlande - Bevölkerung in den Provinzen}
-\protect\hypertarget{niederlande---bevolkerung-in-den-provinzen}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -525,7 +486,6 @@ origin\_west & origin\_non\_west\tabularnewline
 \end{frame}
 
 \begin{frame}[fragile]{Anteile berechnen}
-\protect\hypertarget{anteile-berechnen}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -566,7 +526,6 @@ origin\_west & origin\_non\_west\tabularnewline
 \end{frame}
 
 \begin{frame}[fragile]{Exkurs: Barplot vom Männeranteil}
-\protect\hypertarget{exkurs-barplot-vom-manneranteil}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -589,7 +548,6 @@ origin\_west & origin\_non\_west\tabularnewline
 \end{frame}
 
 \begin{frame}[fragile]{Niederlnade - Anteil Männer}
-\protect\hypertarget{niederlnade---anteil-manner}{}
 
 Information in Datensatz einspeisen
 
@@ -611,7 +569,6 @@ Information in Datensatz einspeisen
 
 \begin{frame}[fragile]{Ein Datensatz zu den Gemeinden in den
 Niederlanden}
-\protect\hypertarget{ein-datensatz-zu-den-gemeinden-in-den-niederlanden}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1035,7 +992,6 @@ Niederlanden}
 \end{frame}
 
 \begin{frame}[fragile]{Bevölkerung der Gemeinden in den Niederlanden}
-\protect\hypertarget{bevolkerung-der-gemeinden-in-den-niederlanden}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1048,7 +1004,6 @@ Niederlanden}
 \end{frame}
 
 \begin{frame}[fragile]{Zwei Karten}
-\protect\hypertarget{zwei-karten}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1063,7 +1018,6 @@ Niederlanden}
 \end{frame}
 
 \begin{frame}[fragile]{Räumliche Daten zur Flächennutzung}
-\protect\hypertarget{raumliche-daten-zur-flachennutzung}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1093,7 +1047,6 @@ Niederlanden}
 \end{frame}
 
 \begin{frame}[fragile]{Weltweite Flächennutzung}
-\protect\hypertarget{weltweite-flachennutzung}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1107,7 +1060,6 @@ Niederlanden}
 \end{frame}
 
 \begin{frame}[fragile]{Räumliche Daten zu Metropolregionen}
-\protect\hypertarget{raumliche-daten-zu-metropolregionen}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1148,7 +1100,6 @@ pop1990 & pop2000 & pop2010 & pop2020 & pop2030\tabularnewline
 \end{frame}
 
 \begin{frame}[fragile]{Nur ein Land visualisieren}
-\protect\hypertarget{nur-ein-land-visualisieren}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1162,7 +1113,6 @@ pop1990 & pop2000 & pop2010 & pop2020 & pop2030\tabularnewline
 \end{frame}
 
 \begin{frame}[fragile]{Beispieldaten laden}
-\protect\hypertarget{beispieldaten-laden}{}
 
 \begin{block}{Datenquelle Eurostat}
 
@@ -1186,7 +1136,6 @@ pop1990 & pop2000 & pop2010 & pop2020 & pop2030\tabularnewline
 \end{frame}
 
 \begin{frame}{Überblick über die Daten}
-\protect\hypertarget{uberblick-uber-die-daten}{}
 
 \begin{longtable}[]{@{}rlrr@{}}
 \toprule
@@ -1210,7 +1159,6 @@ X & GEO & Val2007M12 & Val2013M01\tabularnewline
 
 \begin{frame}[fragile]{Nutzung des Paketes \texttt{tmap} mit eigenen
 Daten}
-\protect\hypertarget{nutzung-des-paketes-tmap-mit-eigenen-daten}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1235,7 +1183,6 @@ Daten}
 \end{frame}
 
 \begin{frame}[fragile]{Eine Karte erzeugen}
-\protect\hypertarget{eine-karte-erzeugen}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1248,7 +1195,6 @@ Daten}
 \end{frame}
 
 \begin{frame}[fragile]{Kleine und viele Karten}
-\protect\hypertarget{kleine-und-viele-karten}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1263,7 +1209,6 @@ Daten}
 \end{frame}
 
 \begin{frame}[fragile]{tmap zitieren}
-\protect\hypertarget{tmap-zitieren}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]

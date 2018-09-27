@@ -15,6 +15,7 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = T,eval=T,message=F,warning=F)
+googleEX <- F
 ```
 
 ## Daten einlesen
@@ -59,12 +60,12 @@ Information from URL : http://maps.googleapis.com/maps/api/geocode/json?address=
 
 [Wikipedia - Geocoding](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#blockquotes)
 
-```{r,message=F,eval=F,warning=F}
+```{r,message=F,warning=F,eval=googleEX}
 library(ggmap)
 geocode("Mannheim",source="google")
 ```
 
-```{r,echo=F,message=F,warning=F}
+```{r,echo=F,message=F,warning=F,eval=googleEX}
 MAgc <- geocode("Mannheim B2,5",source="google")
 kable(MAgc)
 ```
@@ -72,13 +73,13 @@ kable(MAgc)
 
 ## Latitude und Longitude
 
-![LatLon](figure/definition-of-latitude-longitude.jpg)
+![](figure/definition-of-latitude-longitude.jpg)
 
 [http://modernsurvivalblog.com](http://modernsurvivalblog.com/survival-skills/basic-map-reading-latitude-longitude/)
 
 ## Koordinaten verschiedener Orte in Deutschland
 
-```{r,echo=F,message=F}
+```{r,echo=F,message=F,eval=googleEX}
 cities <- c("Hamburg","Koeln","Dresden","Muenchen")
 lon <- vector()
 lat <- vector()
@@ -99,7 +100,7 @@ kable(Dat)
 
 Quelle: [Wikipedia](https://en.wikipedia.org/wiki/Reverse_geocoding)
 
-```{r,cache=T,message=F}
+```{r,cache=T,message=F,eval=googleEX}
 revgeocode(c(48,8))
 ```
 
@@ -107,25 +108,25 @@ revgeocode(c(48,8))
 
 ## Die Distanz zwischen zwei Punkten
 
-```{r,message=F}
+```{r,message=F,eval=googleEX}
 mapdist("Q1, 4 Mannheim","B2, 1 Mannheim")
 ```
 
-```{r,message=F}
+```{r,message=F,eval=googleEX}
 mapdist("Q1, 4 Mannheim","B2, 1 Mannheim",mode="walking")
 ```
 
 
 ## Eine andere Distanz bekommen
 
-```{r,message=F}
+```{r,message=F,eval=googleEX}
 mapdist("Q1, 4 Mannheim","B2, 1 Mannheim",mode="bicycling")
 ```
 
 
 ## Geokodierung - verschiedene Punkte von Interesse
 
-```{r,message=F,warning=F}
+```{r,message=F,warning=F,eval=googleEX}
 POI1 <- geocode("B2, 1 Mannheim",source="google")
 POI2 <- geocode("Hbf Mannheim",source="google")
 POI3 <- geocode("Mannheim, Friedrichsplatz",source="google")
@@ -136,7 +137,7 @@ POI1;POI2;POI3
 
 ## Punkte in der Karte
 
-```{r,message=F,warning=F }
+```{r,message=F,warning=F,eval=googleEX }
 MA_map +
 geom_point(aes(x = lon, y = lat),
 data = ListPOI)
@@ -144,7 +145,7 @@ data = ListPOI)
 
 ## Punkte in der Karte
 
-```{r,message=F,warning=F }
+```{r,message=F,warning=F,eval=googleEX }
 MA_map +
 geom_point(aes(x = lon, y = lat),col="red",
 data = ListPOI)
@@ -326,6 +327,12 @@ citation("bbox")
 https://github.com/ropensci/bbox
 -->
 
+
+
+
+
 ## Links
 
-- [Geokodierung mit R](https://www.jessesadler.com/post/geocoding-with-r/)
+- [**Geokodierung mit R**](https://www.jessesadler.com/post/geocoding-with-r/)
+- [**`ggmap`** quickstart](https://www.nceas.ucsb.edu/~frazier/RSpatialGuides/ggmap/ggmapCheatsheet.pdf)
+- [**tmap: get started**](https://cran.r-project.org/web/packages/tmap/vignettes/tmap-getstarted.html)
