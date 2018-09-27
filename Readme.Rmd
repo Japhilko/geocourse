@@ -1,7 +1,7 @@
 ---
 title: "Geodaten bekommen und visualisieren"
 author: "Jan-Philipp Kolb"
-date: "22 Februar 2018"
+date: "22 Oktober 2018"
 output: 
   html_document: 
     keep_md: yes
@@ -25,8 +25,7 @@ Dieser Workshop beschäftigt sich mit der Erfassung und Verarbeitung von räumli
 Aufgabe: [Nutzung von  `ggmap`](https://github.com/Japhilko/GeoData/blob/master/2017/tutorial/Aufgabe_Nutzung_ggmap.Rmd)
 
 
-### __(A3) Thematische Karten mit dem R-Paket `tmap`__ 
-([Browser](slides/tmap.md) | [pdf](slides/tmap.pdf) | 
+### __(A3) Thematische Karten mit dem R-Paket `tmap`__ ([Browser](slides/tmap.md) | [pdf](slides/tmap.pdf) | 
 [pdf](slides/tmap.pdf) | [rcode](rcode/tmap.R))
 
 

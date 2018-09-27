@@ -1,7 +1,7 @@
 ---
 title: "Geodaten bekommen und visualisieren"
 author: "Jan-Philipp Kolb"
-date: "22 Februar 2018"
+date: "22 Oktober 2018"
 output: 
   html_document: 
     keep_md: yes
@@ -16,7 +16,7 @@ Dieser Workshop beschäftigt sich mit der Erfassung und Verarbeitung von räumli
 ## Erste Schritte
 
 
-### __(A1) Einleitung__ ([Github](slides/Intro.md)) - [Regional information](http://rpubs.com/Japhilko82/mapFirenze)
+### __(A1) Einleitung__ ([Github](slides/Intro.md) | [pdf](slides/Intro.pdf)) - [Regional information](http://rpubs.com/Japhilko82/mapFirenze)
 
 ### __(A2) Das Paket [ggmap](http://journal.r-project.org/archive/2013-1/kahle-wickham.pdf)__ zur Erzeugung verschiedener Kartentypen. ([Browser](slides/ggmap.md) | [pdf](slides/ggmap.pdf) | [rcode](slides/ggmap.R) )
 
@@ -46,7 +46,7 @@ Aufgabe: [Darstellung von Eurostat Daten mit `choroplethr`](https://github.com/J
 
 ### __Overpass__ ([Github](slides/Overpass.md))
 
-### __(B1) `osmdata` Paket__ ([Github](slides/osmdata.md))
+### __(B3) `osmdata` Paket__ ([Github](slides/osmdata.md))
 
 Beispiel: *Points of interest* ([poi](https://rpossib.wordpress.com/2015/09/15/points-of-interest-for-backpackers/)) für Backpacker in Amsterdam
 
