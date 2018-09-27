@@ -310,6 +310,7 @@ Mit dem Fragezeichen bekommen wir Hilfe
 kable(df_president_ts[8:16,1:8])
 ```
 
+<!--
 R = Republican; 
 D = Democratic; 
 DR = Democratic-Republican; 
@@ -329,6 +330,7 @@ KN = Know Nothing;
 AM = Anti-Masonic;
 N = Nullifier; 
 SP = Split evenly
+-->
 
 ```{r}
 # install.packages("choroplethrMaps")
