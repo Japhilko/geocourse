@@ -1,7 +1,8 @@
 base
-methods
-datasets
-utils
-grDevices
-graphics
-stats
+tmaptools
+knitr
+opencage
+geonames
+osmdata
+googleway
+bbox

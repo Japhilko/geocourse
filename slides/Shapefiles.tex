@@ -1,8 +1,4 @@
-\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
-\PassOptionsToPackage{hyphens}{url}
-%
 \documentclass[ignorenonframetext,]{beamer}
-\usepackage{pgfpages}
 \setbeamertemplate{caption}[numbered]
 \setbeamertemplate{caption label separator}{: }
 \setbeamercolor{caption name}{fg=normal text.fg}
@@ -14,9 +10,12 @@
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
-  \usepackage{textcomp} % provides euro and other symbols
 \else % if luatex or xelatex
-  \usepackage{unicode-math}
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
   \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
 \fi
 \usetheme[]{CambridgeUS}
@@ -26,23 +25,16 @@
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 % use microtype if available
 \IfFileExists{microtype.sty}{%
-\usepackage[]{microtype}
+\usepackage{microtype}
 \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
 }{}
-\IfFileExists{parskip.sty}{%
-\usepackage{parskip}
-}{% else
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{6pt plus 2pt minus 1pt}
-}
-\usepackage{hyperref}
+\newif\ifbibliography
 \hypersetup{
-            pdftitle={Shapefiles},
+            pdftitle={A5 - Shapefiles},
             pdfauthor={Jan-Philipp Kolb},
             pdfborder={0 0 0},
             breaklinks=true}
 \urlstyle{same}  % don't use monospace font for urls
-\newif\ifbibliography
 \usepackage{color}
 \usepackage{fancyvrb}
 \newcommand{\VerbBar}{|}
@@ -52,37 +44,37 @@
 \usepackage{framed}
 \definecolor{shadecolor}{RGB}{248,248,248}
 \newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
-\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
-\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
-\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\BuiltInTok}[1]{#1}
-\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
 \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
 \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
-\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
 \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\ImportTok}[1]{#1}
-\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\NormalTok}[1]{#1}
-\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
-\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
-\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
 \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
 \usepackage{longtable,booktabs}
 \usepackage{caption}
 % These lines are needed to make table captions work with longtable:
@@ -92,57 +84,44 @@
 \usepackage{graphicx,grffile}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
-\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight0.8\textheight\else\Gin@nat@height\fi}
 \makeatother
 % Scale images if necessary, so that they will not overflow the page
 % margins by default, and it is still possible to overwrite the defaults
 % using explicit options in \includegraphics[width, height, ...]{}
 \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+
 % Prevent slide breaks in the middle of a paragraph:
 \widowpenalties 1 10000
 \raggedbottom
-\setbeamertemplate{part page}{
-\centering
-\begin{beamercolorbox}[sep=16pt,center]{part title}
-  \usebeamerfont{part title}\insertpart\par
-\end{beamercolorbox}
-}
-\setbeamertemplate{section page}{
-\centering
-\begin{beamercolorbox}[sep=12pt,center]{part title}
-  \usebeamerfont{section title}\insertsection\par
-\end{beamercolorbox}
-}
-\setbeamertemplate{subsection page}{
-\centering
-\begin{beamercolorbox}[sep=8pt,center]{part title}
-  \usebeamerfont{subsection title}\insertsubsection\par
-\end{beamercolorbox}
-}
+
 \AtBeginPart{
+  \let\insertpartnumber\relax
+  \let\partname\relax
   \frame{\partpage}
 }
 \AtBeginSection{
   \ifbibliography
   \else
+    \let\insertsectionnumber\relax
+    \let\sectionname\relax
     \frame{\sectionpage}
   \fi
 }
 \AtBeginSubsection{
+  \let\insertsubsectionnumber\relax
+  \let\subsectionname\relax
   \frame{\subsectionpage}
 }
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
 \setlength{\emergencystretch}{3em}  % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{0}
 
-% set default figure placement to htbp
-\makeatletter
-\def\fps@figure{htbp}
-\makeatother
-
-
-\title{Shapefiles}
+\title{A5 - Shapefiles}
 \author{Jan-Philipp Kolb}
 \date{23 Oktober 2018}
 
@@ -150,7 +129,6 @@
 \frame{\titlepage}
 
 \begin{frame}{Worum geht es in diesem Abschnitt}
-\protect\hypertarget{worum-geht-es-in-diesem-abschnitt}{}
 
 \begin{itemize}
 \tightlist
@@ -170,170 +148,7 @@
 
 \end{frame}
 
-\begin{frame}[fragile]{Ortsnetzbereiche}
-\protect\hypertarget{ortsnetzbereiche}{}
-
-Quelle:
-\href{http://www.bundesnetzagentur.de/DE/Sachgebiete/Telekommunikation/Unternehmen_Institutionen/Nummerierung/Rufnummern/ONVerzeichnisse/GISDaten_ONBGrenzen/ONBGrenzen_Basepage.html}{Bundesnetzagentur}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{setwd}\NormalTok{(}\StringTok{"D:/Daten/Daten/GeoDaten/"}\NormalTok{)}
-\KeywordTok{library}\NormalTok{(maptools)}
-\NormalTok{onb <-}\StringTok{ }\KeywordTok{readShapePoly}\NormalTok{(}\StringTok{"onb_grenzen.shp"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\end{frame}
-
-\begin{frame}{Die Karte zeichnen}
-\protect\hypertarget{die-karte-zeichnen}{}
-
-\includegraphics{figure/onbGermany.png}
-
-\end{frame}
-
-\begin{frame}{Einen Vorwahlbereich ausschneiden}
-\protect\hypertarget{einen-vorwahlbereich-ausschneiden}{}
-
-\end{frame}
-
-\begin{frame}{Vorwahlbereich ausschneiden}
-\protect\hypertarget{vorwahlbereich-ausschneiden}{}
-
-\end{frame}
-
-\begin{frame}{Shapefiles zusammenfassen}
-\protect\hypertarget{shapefiles-zusammenfassen}{}
-
-\end{frame}
-
-\begin{frame}[fragile]{PLZ Datensatz einlesen}
-\protect\hypertarget{plz-datensatz-einlesen}{}
-
-\begin{itemize}
-\tightlist
-\item
-  \href{http://arnulf.us/PLZ}{\textbf{Quelle}} für PLZ Shapefiles
-\end{itemize}
-
-\begin{verbatim}
-## Loading required package: sp
-\end{verbatim}
-
-\begin{verbatim}
-## rgdal: version: 1.3-2, (SVN revision 755)
-##  Geospatial Data Abstraction Library extensions to R successfully loaded
-##  Loaded GDAL runtime: GDAL 2.2.3, released 2017/11/20
-##  Path to GDAL shared files: D:/Eigene Dateien/Dokumente/R/win-library/3.5/rgdal/gdal
-##  GDAL binary built with GEOS: TRUE 
-##  Loaded PROJ.4 runtime: Rel. 4.9.3, 15 August 2016, [PJ_VERSION: 493]
-##  Path to PROJ.4 shared files: D:/Eigene Dateien/Dokumente/R/win-library/3.5/rgdal/proj
-##  Linking to sp version: 1.3-1
-\end{verbatim}
-
-\begin{verbatim}
-## OGR data source with driver: ESRI Shapefile 
-## Source: "D:\GESIS\data\post_pl.shp", layer: "post_pl"
-## with 8270 features
-## It has 3 fields
-\end{verbatim}
-
-\end{frame}
-
-\begin{frame}{Die Daten plotten}
-\protect\hypertarget{die-daten-plotten}{}
-
-\includegraphics{Shapefiles_files/figure-beamer/unnamed-chunk-11-1.pdf}
-
-\end{frame}
-
-\begin{frame}{Die Grenze von Mannheim}
-\protect\hypertarget{die-grenze-von-mannheim}{}
-
-\includegraphics{Shapefiles_files/figure-beamer/unnamed-chunk-12-1.pdf}
-
-\end{frame}
-
-\begin{frame}[fragile]{Die PLZ-Bereiche von Mannheim zusammenfassen}
-\protect\hypertarget{die-plz-bereiche-von-mannheim-zusammenfassen}{}
-
-\begin{itemize}
-\tightlist
-\item
-  Wir nutzen den Befehl \texttt{unionSpatialPolygons} im Paket
-  \texttt{maptools}
-\end{itemize}
-
-\begin{verbatim}
-## Checking rgeos availability: TRUE
-\end{verbatim}
-
-\includegraphics{Shapefiles_files/figure-beamer/unnamed-chunk-13-1.pdf}
-
-\end{frame}
-
-\begin{frame}{Der Grenze von Deutschland}
-\protect\hypertarget{der-grenze-von-deutschland}{}
-
-\end{frame}
-
-\begin{frame}{\href{https://www.rdocumentation.org/packages/sp/versions/1.3-1/topics/spsample}{Räumliche
-Stichprobe}}
-\protect\hypertarget{raumliche-stichprobe}{}
-
-\end{frame}
-
-\begin{frame}[fragile]{Reverse Geokodierung}
-\protect\hypertarget{reverse-geokodierung}{}
-
-\begin{verbatim}
-## Loading required package: ggplot2
-\end{verbatim}
-
-\begin{verbatim}
-## Warning: package 'ggplot2' was built under R version 3.5.1
-\end{verbatim}
-
-\end{frame}
-
-\begin{frame}{Die räumliche Stichprobe plotten}
-\protect\hypertarget{die-raumliche-stichprobe-plotten}{}
-
-\includegraphics{Shapefiles_files/figure-beamer/unnamed-chunk-21-1.pdf}
-
-\end{frame}
-
-\begin{frame}{Nur tatsächliche Adressen}
-\protect\hypertarget{nur-tatsachliche-adressen}{}
-
-\begin{itemize}
-\tightlist
-\item
-  \href{http://stat545.com/block022_regular-expression.html}{\textbf{Reguläre
-  Ausdrücke}} in R
-\end{itemize}
-
-\end{frame}
-
-\begin{frame}{Das Ergebnis plotten}
-\protect\hypertarget{das-ergebnis-plotten}{}
-
-\includegraphics{Shapefiles_files/figure-beamer/unnamed-chunk-24-1.pdf}
-
-\end{frame}
-
-\begin{frame}[fragile]{Distanzen berechnen}
-\protect\hypertarget{distanzen-berechnen}{}
-
-\begin{verbatim}
-## starting httpd help server ... done
-\end{verbatim}
-
-\end{frame}
-
 \begin{frame}{Das shapefile Format \ldots{}}
-\protect\hypertarget{das-shapefile-format}{}
 
 \begin{itemize}
 \item
@@ -356,90 +171,7 @@ Quelle: \url{https://en.wikipedia.org/wiki/Shapefile}
 
 \end{frame}
 
-\begin{frame}{Global Adminastrative Boundaries -
-\href{http://www.gadm.org/}{GADM} - NUTS level 1}
-\protect\hypertarget{global-adminastrative-boundaries---gadm---nuts-level-1}{}
-
-\includegraphics{Shapefiles_files/figure-beamer/unnamed-chunk-29-1.pdf}
-
-\end{frame}
-
-\begin{frame}[fragile]{Ein Blick auf die Daten}
-\protect\hypertarget{ein-blick-auf-die-daten}{}
-
-Koordinaten im polygon slot
-
-\begin{verbatim}
-##          [,1]     [,2]
-## [1,] 6.026519 50.17767
-## [2,] 6.031361 50.16563
-## [3,] 6.035646 50.16410
-## [4,] 6.042747 50.16157
-## [5,] 6.043894 50.16116
-## [6,] 6.048243 50.16008
-\end{verbatim}
-
-\end{frame}
-
-\begin{frame}[fragile]{Der Datenslot}
-\protect\hypertarget{der-datenslot}{}
-
-\begin{verbatim}
-##   OBJECTID ID_0 ISO     NAME_0 ID_1       NAME_1 HASC_1 CCN_1 CCA_1
-## 1        1  131 LUX Luxembourg    1     Diekirch  LU.DI    NA      
-## 2        2  131 LUX Luxembourg    2 Grevenmacher  LU.GR    NA      
-## 3        3  131 LUX Luxembourg    3   Luxembourg  LU.LU    NA      
-##     TYPE_1 ENGTYPE_1 NL_NAME_1            VARNAME_1
-## 1 District  District               Dikrech|Dikkrich
-## 2 District  District                  Gréivemaacher
-## 3 District  District           Lëtzebuerg|Luxemburg
-\end{verbatim}
-
-\end{frame}
-
-\begin{frame}{\href{http://www.gadm.org/}{GADM}- NUTS level 3}
-\protect\hypertarget{gadm--nuts-level-3}{}
-
-\includegraphics{Shapefiles_files/figure-beamer/LUX3-1.pdf}
-
-\end{frame}
-
-\begin{frame}{\href{http://www.gadm.org/}{GADM}- NUTS level 4}
-\protect\hypertarget{gadm--nuts-level-4}{}
-
-\includegraphics{Shapefiles_files/figure-beamer/LUX4-1.pdf}
-
-\end{frame}
-
-\begin{frame}{\href{http://www.gadm.org/}{GADM}- NUTS level 3}
-\protect\hypertarget{gadm--nuts-level-3-1}{}
-
-\includegraphics{figure/DEU3.png}
-
-\end{frame}
-
-\begin{frame}[fragile]{PLZ für Deutschland}
-\protect\hypertarget{plz-fur-deutschland}{}
-
-\begin{itemize}
-\item
-  \url{http://datahub.io/de/dataset/postal-codes-de}
-\item
-  datahub.io funktioniert leider nicht mehr
-\item
-  \url{http://arnulf.us/PLZ}
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{PLZ <-}\StringTok{ }\KeywordTok{readOGR}\NormalTok{ (}\StringTok{"post_pl.shp"}\NormalTok{,}\StringTok{"post_pl"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\end{frame}
-
 \begin{frame}{Der R Befehl readShapePoly}
-\protect\hypertarget{der-r-befehl-readshapepoly}{}
 
 Um Shape-Dateien zu lesen, ist es notwendig, die drei Dateien mit den
 folgenden Dateierweiterungen im gleichen Verzeichnis zu haben:
@@ -456,35 +188,55 @@ folgenden Dateierweiterungen im gleichen Verzeichnis zu haben:
 
 \end{frame}
 
-\begin{frame}{Mannheim zeichnen}
-\protect\hypertarget{mannheim-zeichnen}{}
+\begin{frame}[fragile]{\href{http://www.bundesnetzagentur.de/SharedDocs/Downloads/DE/Sachgebiete/Telekommunikation/Unternehmen_Institutionen/Nummerierung/Rufnummern/ONVerzeichnisse/ONBGrenzen/ONB_Grenzen.html}{\textbf{Vorwahlbereiche
+in Deutschland}}}
 
-\includegraphics{https://raw.githubusercontent.com/Japhilko/GeoData/master/2016/slides/figure/MannheimPLZ.png}
+\begin{block}{\textless{}www.bundesnetzagentur.de/\textgreater{}}
+
+\begin{itemize}
+\tightlist
+\item
+  Wir verwenden das Paket maptools` um die Daten einzulesen:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{setwd}\NormalTok{(geodata_path)}
+\KeywordTok{library}\NormalTok{(maptools)}
+\NormalTok{onb <-}\StringTok{ }\KeywordTok{readShapePoly}\NormalTok{(}\StringTok{"onb_grenzen.shp"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Quelle Ortsnetzbereiche:
+  \href{http://www.bundesnetzagentur.de/DE/Sachgebiete/Telekommunikation/Unternehmen_Institutionen/Nummerierung/Rufnummern/ONVerzeichnisse/GISDaten_ONBGrenzen/ONBGrenzen_Basepage.html}{\textbf{Bundesnetzagentur}}
+\end{itemize}
+
+\end{block}
 
 \end{frame}
 
-\begin{frame}{Gemeinden in Deutschland}
-\protect\hypertarget{gemeinden-in-deutschland}{}
+\begin{frame}[fragile]{Die Karte zeichnen}
 
-\href{http://www.geodatenzentrum.de/geodaten/gdz_rahmen.gdz_div?gdz_spr=deu\&gdz_akt_zeile=5\&gdz_anz_zeile=1\&gdz_unt_zeile=15\&gdz_user_id=0}{Bundesamt
-für Kartographie und Geodäsie (BKG)}
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(onb)}
+\end{Highlighting}
+\end{Shaded}
 
-\includegraphics{figure/vg250_krs.png}
-
-\end{frame}
-
-\begin{frame}{Kreise eines Bundeslandes}
-\protect\hypertarget{kreise-eines-bundeslandes}{}
-
-\includegraphics{figure/KreiseNRW.png}
+\includegraphics{Shapefiles_files/figure-beamer/unnamed-chunk-4-1.pdf}
 
 \end{frame}
 
-\begin{frame}{\href{http://www.bundesnetzagentur.de/SharedDocs/Downloads/DE/Sachgebiete/Telekommunikation/Unternehmen_Institutionen/Nummerierung/Rufnummern/ONVerzeichnisse/ONBGrenzen/ONB_Grenzen.html}{Vorwahlbereiche
-in Deutschland}}
-\protect\hypertarget{vorwahlbereiche-in-deutschland}{}
+\begin{frame}[fragile]{Der Datenslot}
 
-\url{http://www.bundesnetzagentur.de/}
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{kable}\NormalTok{(}\KeywordTok{head}\NormalTok{(onb}\OperatorTok{@}\NormalTok{data))}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{longtable}[]{@{}llll@{}}
 \toprule
@@ -502,28 +254,288 @@ in Deutschland}}
 
 \end{frame}
 
-\begin{frame}{Vorwahlbereich 06}
-\protect\hypertarget{vorwahlbereich-06}{}
+\begin{frame}[fragile]{Einen Vorwahlbereich ausschneiden}
 
-\includegraphics{figure/Vorwahl06.png}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vwb <-}\StringTok{ }\NormalTok{onb}\OperatorTok{@}\NormalTok{data}\OperatorTok{$}\NormalTok{VORWAHL}
+\NormalTok{vwb2 <-}\StringTok{ }\KeywordTok{substr}\NormalTok{(vwb, }\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(lattice)}
+\KeywordTok{barchart}\NormalTok{(}\KeywordTok{table}\NormalTok{(vwb2),}\DataTypeTok{col=}\StringTok{"royalblue"}\NormalTok{,}
+         \DataTypeTok{xlab=}\StringTok{"Häufigkeit"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Shapefiles_files/figure-beamer/unnamed-chunk-7-1.pdf}
 
 \end{frame}
 
-\begin{frame}{Wo ist Mannheim?}
-\protect\hypertarget{wo-ist-mannheim}{}
+\begin{frame}[fragile]{Vorwahlbereich ausschneiden}
 
-\includegraphics{figure/DreiStaedte.png}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vwb6 <-}\StringTok{ }\NormalTok{onb[vwb2}\OperatorTok{==}\StringTok{"06"}\NormalTok{,]}
+\KeywordTok{plot}\NormalTok{(vwb6)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Shapefiles_files/figure-beamer/unnamed-chunk-8-1.pdf}
 
 \end{frame}
 
-\begin{frame}[fragile]{Andere Quellen}
-\protect\hypertarget{andere-quellen}{}
+\begin{frame}[fragile]{Shapefiles zusammenfassen}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vwb6c <-}\StringTok{ }\KeywordTok{unionSpatialPolygons}\NormalTok{(vwb6,}
+              \KeywordTok{rep}\NormalTok{(}\DecValTok{1}\NormalTok{,}\KeywordTok{length}\NormalTok{(vwb6)))}
+\KeywordTok{plot}\NormalTok{(vwb6c,}\DataTypeTok{col=}\StringTok{"royalblue"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Shapefiles_files/figure-beamer/unnamed-chunk-9-1.pdf}
+
+\end{frame}
+
+\begin{frame}[fragile]{Wo ist Mannheim?}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Com <-}\StringTok{ }\NormalTok{vwb6}\OperatorTok{@}\NormalTok{data}\OperatorTok{$}\NormalTok{NAME}
+\KeywordTok{plot}\NormalTok{(vwb6)}
+\KeywordTok{plot}\NormalTok{(vwb6[Com}\OperatorTok{==}\StringTok{"Mannheim"}\NormalTok{,],}\DataTypeTok{col=}\StringTok{"red"}\NormalTok{,}\DataTypeTok{add=}\NormalTok{T)}
+\KeywordTok{plot}\NormalTok{(vwb6[Com}\OperatorTok{==}\StringTok{"Heidelberg"}\NormalTok{,],}\DataTypeTok{col=}\StringTok{"green"}\NormalTok{,}\DataTypeTok{add=}\NormalTok{T)}
+\KeywordTok{plot}\NormalTok{(vwb6[Com}\OperatorTok{==}\StringTok{"Kaiserslautern"}\NormalTok{,],}\DataTypeTok{col=}\StringTok{"blue"}\NormalTok{,}\DataTypeTok{add=}\NormalTok{T)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Shapefiles_files/figure-beamer/unnamed-chunk-10-1.pdf}
+
+\end{frame}
+
+\begin{frame}[fragile]{Paket \texttt{rgdal} - PLZ Datensatz einlesen}
+
+\begin{block}{\href{http://arnulf.us/PLZ}{\textbf{Quelle}} für PLZ
+Shapefiles}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(rgdal)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{setwd}\NormalTok{(data_path)}
+\NormalTok{plz <-}\StringTok{ }\KeywordTok{readOGR}\NormalTok{ (}\StringTok{"post_pl.shp"}\NormalTok{,}\StringTok{"post_pl"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## OGR data source with driver: ESRI Shapefile 
+## Source: "D:\Daten\Daten\GeoDaten\post_pl.shp", layer: "post_pl"
+## with 8270 features
+## It has 3 fields
+\end{verbatim}
+
+\end{block}
+
+\end{frame}
+
+\begin{frame}[fragile]{Die Daten plotten}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{plzbereich <-}\StringTok{ }\KeywordTok{substr}\NormalTok{(plz}\OperatorTok{@}\NormalTok{data}\OperatorTok{$}\NormalTok{PLZ99,}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(plz[plzbereich}\OperatorTok{==}\StringTok{"68"}\NormalTok{,])}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Shapefiles_files/figure-beamer/unnamed-chunk-15-1.pdf}
+
+\end{frame}
+
+\begin{frame}[fragile]{Die Grenze von Mannheim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ma_map <-}\StringTok{ }\NormalTok{plz[plz}\OperatorTok{$}\NormalTok{PLZORT99}\OperatorTok{==}\StringTok{"Mannheim"}\NormalTok{,]}
+\KeywordTok{plot}\NormalTok{(ma_map)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Shapefiles_files/figure-beamer/unnamed-chunk-16-1.pdf}
+
+\end{frame}
+
+\begin{frame}[fragile]{Die PLZ-Bereiche von Mannheim zusammenfassen}
 
 \begin{itemize}
 \tightlist
 \item
-  \href{http://msi.nga.mil/NGAPortal/MSI.portal?_nfpb=true\&_pageLabel=msi_portal_page_62\&pubCode=0015}{World
-  Port Index}
+  Wir nutzen den Befehl \texttt{unionSpatialPolygons} im Paket
+  \texttt{maptools}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(maptools)}
+\NormalTok{ma_map2 <-}\StringTok{ }\KeywordTok{unionSpatialPolygons}\NormalTok{(}\DataTypeTok{SpP =}\NormalTok{ ma_map,}
+                                \DataTypeTok{IDs =} \KeywordTok{rep}\NormalTok{(}\DecValTok{1}\NormalTok{,}\KeywordTok{length}\NormalTok{(ma_map)))}
+\KeywordTok{plot}\NormalTok{(ma_map2)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Shapefiles_files/figure-beamer/unnamed-chunk-17-1.pdf}
+
+\end{frame}
+
+\begin{frame}[fragile]{Global Adminastrative Boundaries -
+\href{http://www.gadm.org/}{GADM} - NUTS level 1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(raster)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(raster)}
+\NormalTok{LUX1 <-}\StringTok{ }\KeywordTok{getData}\NormalTok{(}\StringTok{'GADM'}\NormalTok{, }\DataTypeTok{country=}\StringTok{'LUX'}\NormalTok{, }\DataTypeTok{level=}\DecValTok{1}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(LUX1)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Shapefiles_files/figure-beamer/unnamed-chunk-19-1.pdf}
+
+\end{frame}
+
+\begin{frame}[fragile]{Ein Blick auf die Daten}
+
+Koordinaten im polygon slot
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{LUX1}\OperatorTok{@}\NormalTok{polygons[[}\DecValTok{1}\NormalTok{]]}\OperatorTok{@}\NormalTok{Polygons[[}\DecValTok{1}\NormalTok{]]}\OperatorTok{@}\NormalTok{coords}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          [,1]     [,2]
+## [1,] 6.026519 50.17767
+## [2,] 6.031361 50.16563
+## [3,] 6.035646 50.16410
+## [4,] 6.042747 50.16157
+## [5,] 6.043894 50.16116
+## [6,] 6.048243 50.16008
+\end{verbatim}
+
+\end{frame}
+
+\begin{frame}[fragile]{Der Datenslot}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(LUX1}\OperatorTok{@}\NormalTok{data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   OBJECTID ID_0 ISO     NAME_0 ID_1       NAME_1 HASC_1 CCN_1 CCA_1
+## 1        1  131 LUX Luxembourg    1     Diekirch  LU.DI    NA      
+## 2        2  131 LUX Luxembourg    2 Grevenmacher  LU.GR    NA      
+## 3        3  131 LUX Luxembourg    3   Luxembourg  LU.LU    NA      
+##     TYPE_1 ENGTYPE_1 NL_NAME_1            VARNAME_1
+## 1 District  District               Dikrech|Dikkrich
+## 2 District  District                  Gréivemaacher
+## 3 District  District           Lëtzebuerg|Luxemburg
+\end{verbatim}
+
+\end{frame}
+
+\begin{frame}[fragile]{\href{http://www.gadm.org/}{GADM}- NUTS level 3}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{LUX3 <-}\StringTok{ }\KeywordTok{getData}\NormalTok{(}\StringTok{'GADM'}\NormalTok{, }\DataTypeTok{country=}\StringTok{'LUX'}\NormalTok{, }\DataTypeTok{level=}\DecValTok{3}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(LUX3)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Shapefiles_files/figure-beamer/LUX3-1.pdf}
+
+\end{frame}
+
+\begin{frame}[fragile]{\href{http://www.gadm.org/}{GADM}- NUTS level 4}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{LUX4 <-}\StringTok{ }\KeywordTok{getData}\NormalTok{(}\StringTok{'GADM'}\NormalTok{, }\DataTypeTok{country=}\StringTok{'LUX'}\NormalTok{, }\DataTypeTok{level=}\DecValTok{4}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(LUX4)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Shapefiles_files/figure-beamer/LUX4-1.pdf}
+
+\end{frame}
+
+\begin{frame}[fragile]{\href{http://www.gadm.org/}{GADM}- NUTS level 3}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DEU3 <-}\StringTok{ }\KeywordTok{getData}\NormalTok{(}\StringTok{'GADM'}\NormalTok{, }\DataTypeTok{country=}\StringTok{'DEU'}\NormalTok{, }\DataTypeTok{level=}\DecValTok{3}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(DEU3)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figure/DEU3.png}
+
+\end{frame}
+
+\begin{frame}[fragile]{Gemeinden in Deutschland}
+
+\href{http://www.geodatenzentrum.de/geodaten/gdz_rahmen.gdz_div?gdz_spr=deu\&gdz_akt_zeile=5\&gdz_anz_zeile=1\&gdz_unt_zeile=15\&gdz_user_id=0}{Bundesamt
+für Kartographie und Geodäsie (BKG)}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(maptools)}
+\NormalTok{krs <-}\StringTok{ }\KeywordTok{readShapePoly}\NormalTok{(}\StringTok{"vg250_krs.shp"}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(krs)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figure/vg250_krs.png}
+
+\end{frame}
+
+\begin{frame}[fragile]{Kreise eines Bundeslandes}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fds <-}\StringTok{ }\KeywordTok{substr}\NormalTok{(krs}\OperatorTok{@}\NormalTok{data}\OperatorTok{$}\NormalTok{AGS,}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{)}
+
+\KeywordTok{plot}\NormalTok{(krs[fds}\OperatorTok{==}\StringTok{"05"}\NormalTok{,])}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figure/KreiseNRW.png}
+
+\end{frame}
+
+\begin{frame}[fragile]{Andere Quellen}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{http://msi.nga.mil/NGAPortal/MSI.portal?_nfpb=true\&_pageLabel=msi_portal_page_62\&pubCode=0015}{\textbf{World
+  Port Index}}
 \end{itemize}
 
 \begin{Shaded}
@@ -538,32 +550,41 @@ in Deutschland}}
 
 Datenbanken für Karten
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(mapdata)}
+\end{Highlighting}
+\end{Shaded}
+
 \end{frame}
 
-\begin{frame}{Weitere Quellen}
-\protect\hypertarget{weitere-quellen}{}
+\begin{frame}{Weitere Quellen für Shapefiles}
 
 \begin{itemize}
 \item
-  \href{http://epp.eurostat.ec.europa.eu/portal/page/portal/gisco_Geographical_information_maps/popups/\%20references/administrative_units_statistical_units_1}{Eurostat
-  Karten}
+  \href{http://epp.eurostat.ec.europa.eu/portal/page/portal/gisco_Geographical_information_maps/popups/\%20references/administrative_units_statistical_units_1}{\textbf{Eurostat
+  Karten}} - in der Regel die Europäischen Mitgliedsstaaten
 \item
-  \href{https://www.ordnancesurvey.co.uk/business-and-government/products/opendata-products-grid.html}{Open
-  linked data}
+  \href{https://www.ordnancesurvey.co.uk/business-and-government/products/opendata-products-grid.html}{\textbf{Open
+  linked data}} - Ordnance Survey (GB)
+\end{itemize}
+
+\includegraphics{figure/OpenLinkedData.PNG}
+
+\begin{itemize}
 \item
-  \href{http://thematicmapping.org/downloads/world_borders.php}{World
-  Borders Datensatz}
+  \href{http://thematicmapping.org/downloads/world_borders.php}{\textbf{World
+  Borders Datensatz}}
 \item
-  \href{https://www.nhgis.org/}{National Historical Information System}
+  \href{https://www.nhgis.org/}{\textbf{National Historical Information
+  System}}
 \item
-  \href{http://www.freemapdata.com/html/free_polygon_data.html}{Freie
-  polygon Daten für die USA}
+  \href{http://www.freemapdata.com/html/free_polygon_data.html}{\textbf{Freie
+  Polygon-Daten für die USA}}
 \item
-  \href{https://science.nature.nps.gov/im/datamgmt/statistics/r/advanced/spatial.cfm}{Spatial
-  Data in R}
-\item
-  \href{http://www.r-bloggers.com/shapefile-polygons-plotted-on-google-maps-using-ggmap-in-r-throw-some-throw-some-stats-on-that-mappart-2/}{ggmap
-  und shapefiles}
+  Überblick über -
+  \href{https://science.nature.nps.gov/im/datamgmt/statistics/r/advanced/spatial.cfm}{\textbf{Spatial
+  Data in R}}
 \end{itemize}
 
 \end{frame}

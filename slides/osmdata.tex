@@ -125,6 +125,12 @@
 \begin{frame}[fragile]{Themen dieses Abschnitts}
 
 \begin{itemize}
+\tightlist
+\item
+  Die Overpass API
+\end{itemize}
+
+\begin{itemize}
 \item
   Downlaod von OSM-Daten mit dem Paket \texttt{osmdata}, das auf der
   \href{https://wiki.openstreetmap.org/wiki/Overpass_API}{\textbf{Overpass
@@ -134,6 +140,23 @@
 \item
   Das Plotten der Ergebnisse
 \end{itemize}
+
+\end{frame}
+
+\begin{frame}{\href{https://overpass-turbo.eu/}{Overpass Turbo}}
+
+\includegraphics{figure/Overpass_turbo_query_wizard_result_DE.png}
+
+\end{frame}
+
+\begin{frame}[fragile]{Query Overpass}
+
+\begin{verbatim}
+node
+  [amenity=bar]
+  ({{bbox}});
+out;
+\end{verbatim}
 
 \end{frame}
 
@@ -283,9 +306,19 @@ Simple Features for R
   für das Paket \texttt{sf}}}
 \end{itemize}
 
+\includegraphics{figure/rsimplefeatures.png}
+
+\end{frame}
+
+\begin{frame}[fragile]{Die Funktion \texttt{st\_linestring}}
+
+\begin{quote}
+Create simple feature from a numeric vector, matrix or list
+\end{quote}
+
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(dplyr)}
+\KeywordTok{library}\NormalTok{(sf)}
 \NormalTok{ls <-}\StringTok{ }\KeywordTok{st_linestring}\NormalTok{(bb_poly)}
 \NormalTok{sfc <-}\StringTok{ }\KeywordTok{st_sfc}\NormalTok{(ls)}
 \end{Highlighting}
@@ -302,7 +335,7 @@ Simple Features for R
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{osmdata_files/figure-beamer/unnamed-chunk-12-1.pdf}
+\includegraphics{osmdata_files/figure-beamer/unnamed-chunk-13-1.pdf}
 
 \end{frame}
 
@@ -421,7 +454,7 @@ Start mit dem Paket \texttt{tmap}}}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{osmdata_files/figure-beamer/unnamed-chunk-20-1.pdf}
+\includegraphics{osmdata_files/figure-beamer/unnamed-chunk-21-1.pdf}
 
 \end{frame}
 

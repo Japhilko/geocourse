@@ -30,7 +30,7 @@
 }{}
 \newif\ifbibliography
 \hypersetup{
-            pdftitle={Geokodierung},
+            pdftitle={A6 - Geokodierung},
             pdfauthor={Jan-Philipp Kolb},
             pdfborder={0 0 0},
             breaklinks=true}
@@ -121,37 +121,37 @@
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{0}
 
-\title{Geokodierung}
+\title{A6 - Geokodierung}
 \author{Jan-Philipp Kolb}
 \date{22 Oktober 2018}
 
 \begin{document}
 \frame{\titlepage}
 
-\begin{frame}[fragile]{Daten einlesen}
+\begin{frame}{Inhalt dieses Abschnitts}
 
 \begin{itemize}
 \tightlist
 \item
-  Hier wird ein Beispieldatensatz eingelesen, den ich über räumliche
-  Stichproben und reverse geocoding erzeugt habe.
+  Das Konzept der Geokoordinaten erklären
+\item
+  Möglichkeiten vorstellen, die Geokodierung mit R durchzuführen
 \end{itemize}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{load}\NormalTok{(}\StringTok{"../data/addr_list_t_68239.RData"}\NormalTok{)}
-\KeywordTok{head}\NormalTok{(addr_list_t)}
-\end{Highlighting}
-\end{Shaded}
+\end{frame}
 
-\begin{verbatim}
-## [1] "Lilienstraße 32A, 68535 Edingen-Neckarhausen, Germany"
-## [2] "Waldspitze 6, 68239 Mannheim, Germany"                
-## [3] "Holzweg 51, 68239 Mannheim, Germany"                  
-## [4] "Kloppenheimer Str. 247, 68239 Mannheim, Germany"      
-## [5] "Mallaustraße 121, 68219 Mannheim, Germany"            
-## [6] "Holzweg 33A, 68239 Mannheim, Germany"
-\end{verbatim}
+\begin{frame}{Geokodierung}
+
+\begin{block}{\href{https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet\#blockquotes}{Wikipedia
+- Geocoding}}
+
+\begin{quote}
+Geocoding (\ldots{}) uses a description of a location, most typically a
+postal address or place name, to find geographic coordinates from
+spatial reference data \ldots{}
+\end{quote}
+
+\end{block}
 
 \end{frame}
 
@@ -184,26 +184,6 @@ Information from URL : http://maps.googleapis.com/maps/api/geocode/json?address=
 
 \end{frame}
 
-\begin{frame}[fragile]{Geokodierung}
-
-\begin{quote}
-Geocoding (\ldots{}) uses a description of a location, most typically a
-postal address or place name, to find geographic coordinates from
-spatial reference data \ldots{}
-\end{quote}
-
-\href{https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet\#blockquotes}{Wikipedia
-- Geocoding}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(ggmap)}
-\KeywordTok{geocode}\NormalTok{(}\StringTok{"Mannheim"}\NormalTok{,}\DataTypeTok{source=}\StringTok{"google"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\end{frame}
-
 \begin{frame}{Latitude und Longitude}
 
 \includegraphics{figure/definition-of-latitude-longitude.jpg}
@@ -212,7 +192,124 @@ spatial reference data \ldots{}
 
 \end{frame}
 
-\begin{frame}{Koordinaten verschiedener Orte in Deutschland}
+\begin{frame}[fragile]{Die Distanz zwischen zwei Punkten}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mapdist}\NormalTok{(}\StringTok{"Q1, 4 Mannheim"}\NormalTok{,}\StringTok{"B2, 1 Mannheim"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mapdist}\NormalTok{(}\StringTok{"Q1, 4 Mannheim"}\NormalTok{,}\StringTok{"B2, 1 Mannheim"}\NormalTok{,}\DataTypeTok{mode=}\StringTok{"walking"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{block}{Eine andere Distanz bekommen}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mapdist}\NormalTok{(}\StringTok{"Q1, 4 Mannheim"}\NormalTok{,}\StringTok{"B2, 1 Mannheim"}\NormalTok{,}\DataTypeTok{mode=}\StringTok{"bicycling"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{block}
+
+\end{frame}
+
+\begin{frame}[fragile]{Geokodierung mit dem Paket \texttt{tmaptools}}
+
+\begin{itemize}
+\tightlist
+\item
+  Beim Paket \texttt{tmaptools} wird die Nominatim API zur Geokodierung
+  verwendet.
+\item
+  Diese Funktion hat den Vorteil, dass eine Projektion ausgewählt werden
+  kann, in der die Geokodierungen zurück gegeben werden.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(}\StringTok{"tmaptools"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{frame}
+
+\begin{frame}[fragile]{Koordinaten verschiedener Orte in Deutschland}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cities <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Hamburg"}\NormalTok{,}\StringTok{"Koeln"}\NormalTok{,}\StringTok{"Dresden"}\NormalTok{,}\StringTok{"Muenchen"}\NormalTok{)}
+
+\NormalTok{lat <-}\StringTok{ }\KeywordTok{vector}\NormalTok{()}
+\NormalTok{lon <-}\StringTok{ }\KeywordTok{vector}\NormalTok{()}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\KeywordTok{length}\NormalTok{(cities))\{}
+\NormalTok{  gc <-}\StringTok{ }\KeywordTok{geocode_OSM}\NormalTok{(cities[i])}
+\NormalTok{  lat[i] <-}\StringTok{ }\NormalTok{gc}\OperatorTok{$}\NormalTok{coords[}\DecValTok{1}\NormalTok{]}
+\NormalTok{  lon[i] <-}\StringTok{ }\NormalTok{gc}\OperatorTok{$}\NormalTok{coords[}\DecValTok{2}\NormalTok{]}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\end{frame}
+
+\begin{frame}[fragile]{Welche Koordinaten hat der Norden}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Dat <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(cities,lon,lat)}
+\KeywordTok{kable}\NormalTok{(Dat)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}lrr@{}}
+\toprule
+cities & lon & lat\tabularnewline
+\midrule
+\endhead
+Hamburg & 53.55034 & 10.000654\tabularnewline
+Koeln & 50.93836 & 6.959974\tabularnewline
+Dresden & 51.04933 & 13.738144\tabularnewline
+Muenchen & 48.13711 & 11.575382\tabularnewline
+\bottomrule
+\end{longtable}
+
+\end{frame}
+
+\begin{frame}{Geokodierung - verschiedene Punkte von Interesse}
+
+\end{frame}
+
+\begin{frame}[fragile]{Punkte in der Karte}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{MA_map <-}\StringTok{ }\KeywordTok{qmap}\NormalTok{(}\StringTok{"Mannheim"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{MA_map }\OperatorTok{+}
+\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ x, }\DataTypeTok{y =}\NormalTok{ y),}
+\DataTypeTok{data =}\NormalTok{ ListPOI)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{frame}
+
+\begin{frame}[fragile]{Punkte in der Karte}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{MA_map }\OperatorTok{+}
+\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ x, }\DataTypeTok{y =}\NormalTok{ y),}\DataTypeTok{col=}\StringTok{"red"}\NormalTok{,}
+\DataTypeTok{data =}\NormalTok{ ListPOI)}
+\end{Highlighting}
+\end{Shaded}
 
 \end{frame}
 
@@ -236,87 +333,34 @@ Quelle:
 
 \end{frame}
 
-\begin{frame}[fragile]{Die Distanz zwischen zwei Punkten}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{mapdist}\NormalTok{(}\StringTok{"Q1, 4 Mannheim"}\NormalTok{,}\StringTok{"B2, 1 Mannheim"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{mapdist}\NormalTok{(}\StringTok{"Q1, 4 Mannheim"}\NormalTok{,}\StringTok{"B2, 1 Mannheim"}\NormalTok{,}\DataTypeTok{mode=}\StringTok{"walking"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\end{frame}
-
-\begin{frame}[fragile]{Eine andere Distanz bekommen}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{mapdist}\NormalTok{(}\StringTok{"Q1, 4 Mannheim"}\NormalTok{,}\StringTok{"B2, 1 Mannheim"}\NormalTok{,}\DataTypeTok{mode=}\StringTok{"bicycling"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\end{frame}
-
-\begin{frame}[fragile]{Geokodierung - verschiedene Punkte von Interesse}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{POI1 <-}\StringTok{ }\KeywordTok{geocode}\NormalTok{(}\StringTok{"B2, 1 Mannheim"}\NormalTok{,}\DataTypeTok{source=}\StringTok{"google"}\NormalTok{)}
-\NormalTok{POI2 <-}\StringTok{ }\KeywordTok{geocode}\NormalTok{(}\StringTok{"Hbf Mannheim"}\NormalTok{,}\DataTypeTok{source=}\StringTok{"google"}\NormalTok{)}
-\NormalTok{POI3 <-}\StringTok{ }\KeywordTok{geocode}\NormalTok{(}\StringTok{"Mannheim, Friedrichsplatz"}\NormalTok{,}\DataTypeTok{source=}\StringTok{"google"}\NormalTok{)}
-\NormalTok{ListPOI <-}\KeywordTok{rbind}\NormalTok{(POI1,POI2,POI3)}
-\NormalTok{POI1;POI2;POI3}
-\end{Highlighting}
-\end{Shaded}
-
-\end{frame}
-
-\begin{frame}[fragile]{Punkte in der Karte}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{MA_map }\OperatorTok{+}
-\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ lon, }\DataTypeTok{y =}\NormalTok{ lat),}
-\DataTypeTok{data =}\NormalTok{ ListPOI)}
-\end{Highlighting}
-\end{Shaded}
-
-\end{frame}
-
-\begin{frame}[fragile]{Punkte in der Karte}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{MA_map }\OperatorTok{+}
-\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ lon, }\DataTypeTok{y =}\NormalTok{ lat),}\DataTypeTok{col=}\StringTok{"red"}\NormalTok{,}
-\DataTypeTok{data =}\NormalTok{ ListPOI)}
-\end{Highlighting}
-\end{Shaded}
-
-\end{frame}
-
-\begin{frame}[fragile]{Geokodierung mit dem Paket \texttt{tmaptools}}
+\begin{frame}[fragile]{Daten einlesen}
 
 \begin{itemize}
 \tightlist
 \item
-  Beim Paket \texttt{tmaptools} wird die Nominatim API zur Geokodierung
-  verwendet.
-\item
-  Diese Funktion hat den Vorteil, dass eine Projektion ausgewählt werden
-  kann, in der die Geokodierungen zurück gegeben werden.
+  Hier wird ein Beispieldatensatz eingelesen, den ich über räumliche
+  Stichproben und reverse geocoding erzeugt habe.
 \end{itemize}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(}\StringTok{"tmaptools"}\NormalTok{)}
+\KeywordTok{load}\NormalTok{(}\StringTok{"../data/addr_list_t_68239.RData"}\NormalTok{)}
+\KeywordTok{head}\NormalTok{(addr_list_t)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+## [1] "Lilienstraße 32A, 68535 Edingen-Neckarhausen, Germany"
+## [2] "Waldspitze 6, 68239 Mannheim, Germany"                
+## [3] "Holzweg 51, 68239 Mannheim, Germany"                  
+## [4] "Kloppenheimer Str. 247, 68239 Mannheim, Germany"      
+## [5] "Mallaustraße 121, 68219 Mannheim, Germany"            
+## [6] "Holzweg 33A, 68239 Mannheim, Germany"
+\end{verbatim}
+
+\end{frame}
+
+\begin{frame}[fragile]{Die erste Adressen geokodieren}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -420,6 +464,10 @@ Quelle:
                               \DataTypeTok{radius=}\DecValTok{10}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\end{frame}
+
+\begin{frame}[fragile]{Wikipediaeinträge in der Nähe}
 
 \begin{longtable}[]{@{}lllllllllllll@{}}
 \toprule
@@ -548,13 +596,23 @@ Accesses Google Maps APIs to Retrieve Data and Plot Maps
 
 \end{frame}
 
-\begin{frame}{Links}
+\begin{frame}[fragile]{Links}
 
 \begin{itemize}
-\tightlist
 \item
-  \href{https://www.jessesadler.com/post/geocoding-with-r/}{Geokodierung
-  mit R}
+  Überblick von Jesse Sadler zur
+  \href{https://www.jessesadler.com/post/geocoding-with-r/}{\textbf{Geokodierung
+  mit R}}
+\item
+  Ein Schummelzettel für
+  \href{https://www.nceas.ucsb.edu/~frazier/RSpatialGuides/ggmap/ggmapCheatsheet.pdf}{\textbf{\texttt{ggmap}}}
+\item
+  Die Vignette zum Paket \texttt{tmap} -
+  \href{https://cran.r-project.org/web/packages/tmap/vignettes/tmap-getstarted.html}{\textbf{tmap:
+  get started}}
+\item
+  \href{https://www.latlong.net/place/hamburg-germany-8766.html}{\textbf{latlong.net}}
+  - eine Homepage um Koordinaaten zu bestimmen.
 \end{itemize}
 
 \end{frame}

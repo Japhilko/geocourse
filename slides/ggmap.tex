@@ -30,7 +30,7 @@
 }{}
 \newif\ifbibliography
 \hypersetup{
-            pdftitle={Das ggmap Paket},
+            pdftitle={A2 - Das ggmap Paket},
             pdfauthor={Jan-Philipp Kolb},
             pdfborder={0 0 0},
             breaklinks=true}
@@ -115,7 +115,7 @@
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{0}
 
-\title{Das \texttt{ggmap} Paket}
+\title{A2 - Das \texttt{ggmap} Paket}
 \author{Jan-Philipp Kolb}
 \date{22 Oktober 2018}
 
@@ -237,9 +237,11 @@ Und schon kann die erste Karte erstellt werden:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{qmap}\NormalTok{(}\StringTok{"Germany"}\NormalTok{, }\DataTypeTok{zoom =} \DecValTok{6}\NormalTok{)}
+\KeywordTok{qmap}\NormalTok{(}\StringTok{"England"}\NormalTok{, }\DataTypeTok{zoom =} \DecValTok{6}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\includegraphics{figure/EnglandMap.PNG}
 
 \end{frame}
 
@@ -309,7 +311,7 @@ Verschiedene Abschnitte in der Hilfe:
 
 \end{frame}
 
-\begin{frame}{Terrain/physical maps}
+\begin{frame}[fragile]{Terrain/physical maps}
 
 \begin{itemize}
 \item
@@ -318,6 +320,18 @@ Verschiedene Abschnitte in der Hilfe:
 \item
   Farben werden oft genutzt um Höhenunterschiede zu visualisieren
 \end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{qmap}\NormalTok{(}\StringTok{'Arequipa'}\NormalTok{, }\DataTypeTok{maptype=}\StringTok{"terrain"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{frame}
+
+\begin{frame}{Eine physische Karte von Arequipa}
+
+\includegraphics{figure/Areqipa.pdf}
 
 \end{frame}
 
@@ -385,18 +399,18 @@ Verschiedene Abschnitte in der Hilfe:
 \begin{frame}[fragile]{\href{https://blog.dominodatalab.com/geographic-visualization-with-rs-ggmaps/}{Eine
 Karte für die USA}}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{usa_center =}\StringTok{ }\KeywordTok{as.numeric}\NormalTok{(}\KeywordTok{geocode}\NormalTok{(}\StringTok{"United States"}\NormalTok{))}
-\NormalTok{USAMap =}\StringTok{ }\KeywordTok{ggmap}\NormalTok{(}\KeywordTok{get_googlemap}\NormalTok{(}\DataTypeTok{center=}\NormalTok{usa_center, }\DataTypeTok{scale=}\DecValTok{2}\NormalTok{, }\DataTypeTok{zoom=}\DecValTok{4}\NormalTok{), }\DataTypeTok{extent=}\StringTok{"normal"}\NormalTok{)}
-\NormalTok{USAMap}
-\end{Highlighting}
-\end{Shaded}
+\begin{itemize}
+\tightlist
+\item
+  Mit dem Befehl \texttt{OSM\_scale\_lookup} bekommt man heraus, welchen
+  Wert man für \texttt{scale} angeben muss.
+\end{itemize}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{OSM_scale_lookup}\NormalTok{(}\DataTypeTok{zoom =} \DecValTok{10}\NormalTok{)}
-\KeywordTok{qmap}\NormalTok{(}\DataTypeTok{location =} \StringTok{"Trier"}\NormalTok{, }\DataTypeTok{zoom =} \DecValTok{10}\NormalTok{, }\DataTypeTok{source =} \StringTok{"osm"}\NormalTok{,}\DataTypeTok{scale=}\DecValTok{575000}\NormalTok{)}
+\KeywordTok{qmap}\NormalTok{(}\DataTypeTok{location =} \StringTok{"Trier"}\NormalTok{, }\DataTypeTok{zoom =} \DecValTok{10}\NormalTok{, }\DataTypeTok{source =} \StringTok{"osm"}\NormalTok{,}
+     \DataTypeTok{scale=}\DecValTok{575000}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 

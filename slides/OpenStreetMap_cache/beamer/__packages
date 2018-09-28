@@ -1,3 +1,5 @@
 base
 knitr
 XML
+xml2
+rvest

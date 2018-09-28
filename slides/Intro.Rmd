@@ -1,5 +1,5 @@
 ---
-title: "Einleitung und Motivation"
+title: "A1 - Einleitung und Motivation"
 author: "Jan-Philipp Kolb"
 date: "22 Oktober 2018"
 output:
@@ -43,6 +43,11 @@ Andererseits neue Entwicklungen in R vorstellen
 
 ![](figure/BildRatSWDBericht.png)
 
+## [Worum geht es?](http://blog.revolutionanalytics.com/2012/07/making-beautiful-maps-in-r-with-ggmap.html)
+
+### Weine probieren im Napa Valley?
+
+![](figure/Wine_nappa.png)
 
 
 ## Ziel dieses Kurses
@@ -206,6 +211,23 @@ Dargestellt werden OpenStreetMap Daten, die mit der Overpass API heruntergeladen
 
 ![](figure/streets_Berlin2.png)
 
+
+
+## Global patterns of current and future road infrastructure
+
+### Study by Johan Meijer, Mark AJ Huijbregts,  Kees Schotten,  and Aafke Schipper
+
+![](figure/GRIP_globalroads.PNG)
+
+<!--
+@article{meijer2018global,
+  title={Global patterns of current and future road infrastructure},
+  author={Meijer, Johan and Huijbregts, Mark AJ and Schotten, Kees and Schipper, Aafke},
+  journal={Environmental Research Letters},
+  year={2018},
+  publisher={IOP Publishing}
+}
+-->
 
 
 

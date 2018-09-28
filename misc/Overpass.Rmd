@@ -1,0 +1,117 @@
+---
+title: "Overpass"
+author: "Jan-Philipp Kolb"
+date: "22 Oktober 2018"
+output:
+  beamer_presentation:
+    colortheme: beaver
+    fonttheme: structurebold
+    highlight: tango
+    fig_caption: no
+    keep_tex: yes
+    theme: CambridgeUS
+  slidy_presentation: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## Themen dieses Abschnitts
+
+- Die Overpass API
+- Das Paket `osmplotr`
+
+## [Overpass Turbo](https://overpass-turbo.eu/)
+
+![https://overpass-turbo.eu/](http://blog.openstreetmap.de/wp-uploads/2014/01/Overpass_turbo_query_wizard_result_DE.png)
+
+
+
+## Query Overpass
+
+```
+node
+  [amenity=bar]
+  ({{bbox}});
+out;
+```
+
+
+## Das Paket `osmplotr`
+
+```{r}
+library("osmplotr")
+library("osmdata")
+```
+
+## Beispiel Kindergärten in Mannheim
+
+```{r,eval=F}
+bbox <- getbb("Mannheim")
+dat_osm <- extract_osm_objects(key='building', 
+                              value="kindergarten",
+                              bbox=bbox)
+```
+
+```{r,eval=F,echo=F}
+save(dat_osm,file="../data/overpass_building_kindergarten_Mannheim.RData")
+```
+
+```{r,echo=F}
+load("../data/overpass_building_kindergarten_Mannheim.RData")
+```
+
+
+## Eine Hintergrundkarte besorgen
+
+```{r,eval=F}
+library(ggmap)
+MA_map <- qmap("Mannheim",zoom=12)
+```
+
+```{r,echo=F,eval=F}
+save(MA_map,file="../data/MA_map12.RData")
+```
+
+```{r,echo=F}
+load("../data/MA_map12.RData")
+```
+
+```{r,echo=F,eval=F}
+MA_map <- qmap("Mannheim")
+```
+
+```{r,echo=F,eval=F}
+save(MA_map,file="../data/MA_map.RData")
+```
+
+##
+
+```{r}
+library(sf)
+```
+
+```{r,eval=F}
+?st_centroid
+```
+
+
+- [Den Mittelpunkt für die Geometrien bekommen](https://stackoverflow.com/questions/46176660/how-to-calculate-centroid-of-polygon-using-sfst-centroid)
+
+```{r}
+centr <- st_centroid(dat_osm$geometry)
+```
+
+
+
+
+##
+
+```{r}
+MA_map +
+geom_point(aes(x = lon, y = lat),
+data = dat_osm)
+```
+

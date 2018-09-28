@@ -1,5 +1,5 @@
 ---
-title: "Das `ggmap` Paket"
+title: "A2 - Das `ggmap` Paket"
 author: "Jan-Philipp Kolb"
 date: "22 Oktober 2018"
 output:

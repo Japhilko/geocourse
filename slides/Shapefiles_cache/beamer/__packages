@@ -1,4 +1,5 @@
 base
+knitr
 sp
 rgdal
 maptools
@@ -8,3 +9,4 @@ SoDA
 raster
 maps
 mapdata
+lattice

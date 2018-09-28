@@ -30,7 +30,7 @@
 }{}
 \newif\ifbibliography
 \hypersetup{
-            pdftitle={Einleitung und Motivation},
+            pdftitle={A1 - Einleitung und Motivation},
             pdfauthor={Jan-Philipp Kolb},
             pdfborder={0 0 0},
             breaklinks=true}
@@ -75,7 +75,7 @@
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{0}
 
-\title{Einleitung und Motivation}
+\title{A1 - Einleitung und Motivation}
 \author{Jan-Philipp Kolb}
 \date{22 Oktober 2018}
 
@@ -83,6 +83,23 @@
 \frame{\titlepage}
 
 \begin{frame}
+
+\end{frame}
+
+\begin{frame}{}
+
+\includegraphics{figure/BildRatSWDBericht.png}
+
+\end{frame}
+
+\begin{frame}{\href{http://blog.revolutionanalytics.com/2012/07/making-beautiful-maps-in-r-with-ggmap.html}{Worum
+geht es?}}
+
+\begin{block}{Weine probieren im Napa Valley?}
+
+\includegraphics{figure/Wine_nappa.png}
+
+\end{block}
 
 \end{frame}
 
@@ -109,10 +126,19 @@
 
 \end{frame}
 
-\begin{frame}{\href{https://wiki.openstreetmap.org/wiki/Tags}{Openstreetmap
-Tags}}
+\begin{frame}{Motivation}
 
-\includegraphics{figure/osm_tag.png}
+\begin{itemize}
+\tightlist
+\item
+  Sekundäranalyse für bestehenden Daten
+\item
+  Raumbezug herstellen/nutzen
+\item
+  Analysepotentiale der Geokodierung vorstellen
+\item
+  Verbindung von sozial- mit raumwissenschaftlichen Daten
+\end{itemize}
 
 \end{frame}
 
@@ -154,18 +180,10 @@ of\ldots{}}
 
 \end{frame}
 
-\begin{frame}{Verfügbarkeit von Daten - Beispiel Zensus Atlas}
-
-\url{https://atlas.zensus2011.de/}
+\begin{frame}{Ergebnisse des Zensus 2011 zum
+\href{https://www.zensus2011.de/SharedDocs/Aktuelles/Ergebnisse/DemografischeGrunddaten.html?nn=3065474}{\textbf{Download}}}
 
 \includegraphics{figure/zensus2011_logo.jpg}
-
-\begin{itemize}
-\tightlist
-\item
-  Ergebnisse des Zensus 2011 zum
-  \href{https://www.zensus2011.de/SharedDocs/Aktuelles/Ergebnisse/DemografischeGrunddaten.html?nn=3065474}{\textbf{Download}}
-\end{itemize}
 
 \begin{block}{Gemeindeebene}
 
@@ -185,6 +203,12 @@ of\ldots{}}
 \item
   Bevölkerung, Leerstandsquote, Wohnfläche und Haushaltsgröße
 \end{itemize}
+
+\end{block}
+
+\begin{block}{100 \(\text{m}^2\) Raster}
+
+Bevölkerung
 
 \end{block}
 
@@ -226,6 +250,19 @@ in Oberfranken
 
 \end{frame}
 
+\begin{frame}{\href{https://wiki.openstreetmap.org/wiki/Tags}{Openstreetmap
+Tags}}
+
+\includegraphics{figure/osm_tag.png}
+
+\end{frame}
+
+\begin{frame}{Openstreetmap Projekt}
+
+\includegraphics{figure/Buldings_Paris.PNG}
+
+\end{frame}
+
 \begin{frame}{Was ist das Ziel - Straßen in Berlin}
 
 Dargestellt werden OpenStreetMap Daten, die mit der Overpass API
@@ -235,9 +272,14 @@ heruntergeladen wurden.
 
 \end{frame}
 
-\begin{frame}{Openstreetmap Projekt}
+\begin{frame}{Global patterns of current and future road infrastructure}
 
-\includegraphics{figure/Buldings_Paris.PNG}
+\begin{block}{Study by Johan Meijer, Mark AJ Huijbregts, Kees Schotten,
+and Aafke Schipper}
+
+\includegraphics{figure/GRIP_globalroads.PNG}
+
+\end{block}
 
 \end{frame}
 

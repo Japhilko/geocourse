@@ -20,6 +20,8 @@ Ex <- T
 
 ## Themen dieses Abschnitts
 
+- Die Overpass API
+
 <!--
 - Vorstellung des Openstreetmap (OSM) Projekts
 - Vorstellung von Forschung die mit OSM-Daten durchgeführt wurde
@@ -31,6 +33,22 @@ Ex <- T
 - Verarbeitung der OSM-Daten mit dem Paket `sf`
 
 - Das Plotten der Ergebnisse
+
+## [Overpass Turbo](https://overpass-turbo.eu/)
+
+![https://overpass-turbo.eu/](figure/Overpass_turbo_query_wizard_result_DE.png)
+
+
+
+## Query Overpass
+
+```
+node
+  [amenity=bar]
+  ({{bbox}});
+out;
+```
+
 
 ## [Das `osmdata` Paket](https://github.com/ropensci/osmdata)
 

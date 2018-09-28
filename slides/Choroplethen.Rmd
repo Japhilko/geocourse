@@ -1,5 +1,5 @@
 ---
-title: "Choroplethen - `maptools` und `choreplethr`"
+title: "A4 - Choroplethen - `maptools` und `choreplethr`"
 author: "Jan-Philipp Kolb"
 date: "22 Oktober 2018"
 output:
