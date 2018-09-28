@@ -1,0 +1,10 @@
+base
+sp
+rgdal
+maptools
+ggplot2
+ggmap
+SoDA
+raster
+maps
+mapdata

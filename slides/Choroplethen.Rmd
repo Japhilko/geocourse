@@ -300,14 +300,18 @@ data(df_president_ts)
 
 <!--
 Mit dem Fragezeichen bekommen wir Hilfe
--->
 
 ```{r,eval=F}
 ?df_president_ts
 ```
 
+-->
+
+
+D = Democratic; R = Republican; PR = Progressive; 
+
 ```{r,echo=F}
-kable(df_president_ts[8:16,1:8])
+kable(df_president_ts[42:48,c(1,32:38)])
 ```
 
 <!--
@@ -332,7 +336,7 @@ N = Nullifier;
 SP = Split evenly
 -->
 
-```{r}
+```{r,eval=F}
 # install.packages("choroplethrMaps")
 library("choroplethrMaps")
 ```
@@ -346,27 +350,19 @@ citation("choroplethr")
 
 ## Resources / Links
 
-- [Einführung - Was sind Choroplethen](https://cran.r-project.org/web/packages/choroplethr/vignettes/a-introduction.html)
+- [**Einführung - Was sind Choroplethen**](https://cran.r-project.org/web/packages/choroplethr/vignettes/a-introduction.html)
 
-<https://cran.r-project.org/web/packages/choroplethr/vignettes/a-introduction.html>
 
-- [Beschreibung](http://radar.oreilly.com/2014/01/new-choropleth-package-in-r.html) der Nutzung des  `choroplethr` Paketes
+- [**Beschreibung**](http://radar.oreilly.com/2014/01/new-choropleth-package-in-r.html) der Nutzung des  `choroplethr` Paketes
 
-<http://radar.oreilly.com/2014/01/new-choropleth-package-in-r.html>
-- Plot the [US states](https://cran.r-project.org/web/packages/choroplethr/vignettes/b-state-choropleth.html) with `choroplethr`
+- Die [**US Staaten**](https://cran.r-project.org/web/packages/choroplethr/vignettes/b-state-choropleth.html) plotten mit `choroplethr`
 
-- [Weltbankdaten in Karten darstellen](https://cran.r-project.org/web/packages/choroplethr/vignettes/f-world-bank-data.html) mit `choroplethr`
+- [**Weltbankdaten in Karten darstellen**](https://cran.r-project.org/web/packages/choroplethr/vignettes/f-world-bank-data.html) mit `choroplethr`
 
-<https://cran.r-project.org/web/packages/choroplethr/vignettes/f-world-bank-data.html>
 
-- [Revolutions-blog](http://blog.revolutionanalytics.com/2014/01/easy-data-maps-with-r-the-choroplethr-package-.html) über das `choroplethr` Paket
+- [**Revolutions-Blog**](http://blog.revolutionanalytics.com/2014/01/easy-data-maps-with-r-the-choroplethr-package-.html) über das `choroplethr` Paket
 
-<http://blog.revolutionanalytics.com/2014/01/easy-data-maps-with-r-the-choroplethr-package-.html>
 
-- [trulia](http://www.trulia.com/tech/2014/01/15/the-choroplethr-package-for-r/)-blog über das `choroplethr` Paket
+- [**trulia**](http://www.trulia.com/tech/2014/01/15/the-choroplethr-package-for-r/)-blog über das `choroplethr` Paket
 
-<http://www.trulia.com/tech/2014/01/15/the-choroplethr-package-for-r/>
-
-- [Präsentation von Ari Lamstein](http://www.r-bloggers.com/slides-for-my-upcoming-talk-mapping-census-data-in-r/) über das `choroplethr` Paket
-
-<http://www.r-bloggers.com/slides-for-my-upcoming-talk-mapping-census-data-in-r/>
+- [**Präsentation von Ari Lamstein**](http://www.r-bloggers.com/slides-for-my-upcoming-talk-mapping-census-data-in-r/) über das `choroplethr` Paket

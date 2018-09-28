@@ -29,10 +29,10 @@ Aufgabe: [Nutzung von  `ggmap`](exercises/Aufgabe_Nutzung_ggmap.Rmd)
 [pdf](slides/tmap.pdf) | [rcode](rcode/tmap.R))
 
 
-### __(A4) Eine thematische Karte erzeugen__ ([Github](slides/Choroplethen.md))
+### __(A4) Choroplethen erzeugen__ ([Github](slides/Choroplethen.md))
 
 
-### __(A5) Die Nutzung von Shapefiles__ ([Github](slides/AGS_map.md))
+### __(A5) Die Nutzung von Shapefiles__ ([Github](slides/Shapefiles.md))
 
 Aufgabe: [Zensus Ergebnisse und Karte miteinander verbinden und einfärben](https://github.com/Japhilko/GeoData/blob/master/2017/tutorial/Aufgabe_Verbindung.Rmd)
 
