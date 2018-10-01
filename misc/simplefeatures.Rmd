@@ -1,0 +1,62 @@
+---
+title: "Simple Features"
+author: "Jan-Philipp Kolb"
+date: "22 Oktober 2018"
+output:
+  beamer_presentation:
+    colortheme: beaver
+    fonttheme: structurebold
+    highlight: tango
+    fig_caption: no
+    keep_tex: yes
+    theme: CambridgeUS
+  slidy_presentation: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 
+
+```{r}
+library(sf)
+```
+
+<!--
+https://cran.r-project.org/web/packages/sf/vignettes/sf1.html
+-->
+
+```{r}
+library(osmdata)
+bb_poly <- getbb(place_name = "Amsterdam", 
+                 format_out = "polygon")
+
+```
+
+
+```{r}
+# ls <- st_linestring(bb_poly)
+```
+
+
+```{r}
+pol <- sf::st_polygon(bb_poly)
+class(pol)
+```
+
+<!--
+Problem ist, dass man nichts sieht, wenn man das plottet
+
+# folgendes funktioniert nicht
+-->
+
+```{r,eval=F,echo=F}
+mpol <- sf::st_multipolygon(bb_poly)
+```
+
+
+```{r}
+# x <- osmdata_sf(pol)
+```
+
