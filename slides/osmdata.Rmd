@@ -441,6 +441,12 @@ install.packages("colourpicker")
 ## Die wichtigsten Funktionen im Paket `osmdata`
 
 
+```{r,eval=F}
+# https://rdrr.io/cran/osmdata/man/osmdata_sp.html
+?osmdata_sp
+```
+
+
 
 ## Links
 
@@ -455,6 +461,14 @@ https://cran.r-project.org/web/packages/osmdata/osmdata.pdf
 -->
 
 
+
+- [**`osmplotr` tutorial](https://ropensci.org/tutorials/osmplotr_tutorial/)
+
+- [**Geocomputation with R**](https://bookdown.org/robinlovelace/geocompr/)
+
+- [**osmar - JOS**](https://www.theoj.org/joss-papers/joss.00305/10.21105.joss.00305.pdf)
+
+
 ### Die Vignetten für das Paket `sf`
 
 https://r-spatial.github.io/sf/reference/st_as_sf.html
@@ -462,3 +476,13 @@ https://r-spatial.github.io/sf/reference/st_as_sf.html
 https://r-spatial.github.io/sf/reference/st_read.html
 
 https://r-spatial.github.io/sf/articles/sf1.html
+
+
+<!--
+https://www.r-bloggers.com/how-to-quickly-enrich-a-map-with-natural-and-anthropic-details/
+https://www.maths.lancs.ac.uk/~rowlings/Teaching/UseR2012/introduction2Talk.html
+https://geostat-course.org/aggregator/sources/3?page=1
+https://gis.stackexchange.com/questions/115911/converting-osm-file-to-shapefile-or-data-frame-in-r
+https://forum.osm.org/viewtopic.php?id=53336
+https://hub.docker.com/r/robinlovelace/geocompr/
+-->
