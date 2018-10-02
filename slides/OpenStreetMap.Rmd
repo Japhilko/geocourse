@@ -39,6 +39,16 @@ Ex <- T
 ![http://wiki.openstreetmap.org/wiki/DE:Map_Features](figure/osm_mapfeatures.png)
 
 
+## Objekttypen in OSM
+
+- Es gibt prinipiell drei verschiedene Objekttypen:
+- 
+
+<!--
+Hippolyte Pruvost and Peter Mooney: Exploring Data Model Relations in OpenStreetMap
+-->
+
+
 ## Download von OpenStreetMap Daten
 
 - https://mapzen.com/ - Ausschnitte von OpenStreetMap für einzelne Städte ([metro extracts](https://mapzen.com/data/metro-extracts/))
