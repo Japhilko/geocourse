@@ -14,7 +14,8 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE,fig.height=4)
+athome <- T
 ```
 
 ## 
@@ -36,7 +37,7 @@ bb_poly <- getbb(place_name = "Amsterdam",
 
 
 ```{r}
-# ls <- st_linestring(bb_poly)
+ls <- st_multilinestring(bb_poly)
 ```
 
 
@@ -44,6 +45,25 @@ bb_poly <- getbb(place_name = "Amsterdam",
 pol <- sf::st_polygon(bb_poly)
 class(pol)
 ```
+
+```{r,echo=F,eval=F}
+ab <- st_polygonize(ls)
+ab <- st_geometrycollection(list(pol))
+str(ab)
+
+bb_poly_ma <- getbb(place_name = "Mannheim", 
+                 format_out = "polygon")
+
+bb_poly_hd <- getbb(place_name = "Heidelberg", 
+                 format_out = "polygon")
+
+ls <- st_multilinestring(bb_poly_hd)
+ab <- st_polygonize(ls)
+plot(ab)
+```
+
+
+
 
 <!--
 Problem ist, dass man nichts sieht, wenn man das plottet
@@ -58,5 +78,25 @@ mpol <- sf::st_multipolygon(bb_poly)
 
 ```{r}
 # x <- osmdata_sf(pol)
+```
+
+## [Graphiken mit `sf`](https://r-spatial.github.io/sf/articles/sf5.html)
+
+```{r}
+demo(nc, ask = FALSE, echo = FALSE)
+plot(nc)
+```
+
+
+## [Shapefiles mit `sf` importieren](https://cran.r-project.org/web/packages/sf/vignettes/sf2.html)
+
+
+```{r,eval=athome,echo=F}
+data_path <- "D:/GESIS/data/"
+```
+
+```{r}
+setwd(data_path)
+plz <- st_read("post_pl.shp")
 ```
 

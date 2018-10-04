@@ -465,6 +465,19 @@ install.packages("colourpicker")
 ```
 
 
+```{r,eval=F,echo=F}
+library(osmdata)
+library(osmplotr)
+bbox <- get_bbox (c (-0.13, 51.51, -0.11, 51.52))
+dat_B <- extract_osm_objects (key = 'building', bbox = bbox)
+```
+
+```{r,eval=F,echo=F}
+bbox <- osmplotr::bbox ("Mannheim")
+dat_B <- extract_osm_objects (key = 'building', bbox = bbox)
+```
+
+
 
 ## Links
 
@@ -503,4 +516,6 @@ https://geostat-course.org/aggregator/sources/3?page=1
 https://gis.stackexchange.com/questions/115911/converting-osm-file-to-shapefile-or-data-frame-in-r
 https://forum.osm.org/viewtopic.php?id=53336
 https://hub.docker.com/r/robinlovelace/geocompr/
+
+https://gis.stackexchange.com/questions/264380/getting-buildings-that-house-specific-amenities-using-r
 -->
