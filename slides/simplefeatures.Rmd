@@ -18,11 +18,22 @@ knitr::opts_chunk$set(echo = TRUE,fig.height=4)
 athome <- T
 ```
 
-## 
+## Das Paket `sf`
+
+> Simple Features for R 
 
 ```{r}
 library(sf)
 ```
+
+
+```{r,eval=F}
+demo(sf::affine)
+```
+
+
+
+## Beispieldaten bekommen
 
 <!--
 https://cran.r-project.org/web/packages/sf/vignettes/sf1.html
@@ -50,19 +61,28 @@ class(pol)
 ab <- st_polygonize(ls)
 ab <- st_geometrycollection(list(pol))
 str(ab)
-
-bb_poly_ma <- getbb(place_name = "Mannheim", 
-                 format_out = "polygon")
-
-bb_poly_hd <- getbb(place_name = "Heidelberg", 
-                 format_out = "polygon")
-
-ls <- st_multilinestring(bb_poly_hd)
-ab <- st_polygonize(ls)
-plot(ab)
 ```
 
 
+```{r}
+bb_poly_ma <- getbb(place_name = "Mannheim", 
+                 format_out = "polygon")
+
+plot(bb_poly_ma)
+```
+
+
+
+```{r,eval=F}
+bb_poly_hd <- getbb(place_name = "Heidelberg", 
+                 format_out = "polygon")
+```
+
+
+```{r,eval=F,echo=F}
+ls <- st_multilinestring(bb_poly_ma)
+ab <- st_polygonize(ls)
+```
 
 
 <!--
@@ -100,3 +120,6 @@ setwd(data_path)
 plz <- st_read("post_pl.shp")
 ```
 
+<!--
+https://www.r-spatial.org/r/2018/01/08/sf-0.6-0.html
+-->

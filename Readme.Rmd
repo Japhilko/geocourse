@@ -72,7 +72,7 @@ Beispiel - [Campingplätze](http://rpubs.com/Japhilko82/Campsites)
 
 ## Räumliche Analysen/Statistik
 
-### __(D1) Das R-Paket `spdep` - Nachbarschaft und Distanz__ ([Browser](https://github.com/Japhilko/GeoData/blob/master/2017/slides/spdep.md) | [pdf](slides/spdep.pdf) |
+### __(D1) Das R-Paket `spdep` - Nachbarschaft und Distanz__ ([Browser](slides/spdep.md) | [pdf](slides/spdep.pdf) |
 [rcode](https://raw.githubusercontent.com/Japhilko/GeoData/master/2016/rcode/slidesH1_spdep.R))
 
 Aufgabe: [Distanzberechnung](https://github.com/Japhilko/GeoData/blob/master/2016/tutorial/Aufgabe_Distanzberechnung.Rmd)
