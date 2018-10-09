@@ -1,0 +1,97 @@
+---
+title: "Overpass"
+author: "Jan-Philipp Kolb"
+date: "22 Oktober 2018"
+output:
+  beamer_presentation:
+    colortheme: beaver
+    fonttheme: structurebold
+    highlight: tango
+    fig_caption: no
+    keep_tex: yes
+    theme: CambridgeUS
+  slidy_presentation: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Themen dieses Abschnitts
+
+- Die [**Overpass API**](https://wiki.openstreetmap.org/wiki/Overpass_API) von Roland Olbricht wird vorgestellt.
+- Die API Overpass Turbo
+
+<!--
+- Vorstellung des Openstreetmap (OSM) Projekts
+- Vorstellung von Forschung die mit OSM-Daten durchgeführt wurde
+- Welche OSM-Daten sind erhältlich?
+-->
+
+
+- Wie man die OSM Daten graphisch darstellen kann.
+
+## Die Overpass API
+
+<!--
+This API is perfect to download data on very particular topics.
+
+Wenn man beispielsweise nach speziellen Map Features sucht.
+-->
+
+- Die von Roland Olbricht geschriebene Overpass API ermöglicht es Entwicklern, kleine Auszüge von benutzergenerierten Inhalten von Openstreetmap nach vorgegebenen Kriterien herunterzuladen.
+
+- Die API eignet sich besonders gut, wenn man nach ganz speziellen Map Features sucht. 
+
+
+## [Overpass Turbo](https://overpass-turbo.eu/)
+
+![https://overpass-turbo.eu/](figure/overpassTurbo.PNG)
+
+
+## Query Overpass
+
+- In der folgenden Abfrage wird bei Overpass Turbo nach Bars im ausgewählten Fenster gesucht. 
+
+```
+node
+  [amenity=bar]
+  ({{bbox}});
+out;
+```
+
+## Export bei Overpass
+
+![](figure/OverpassExport.PNG)
+
+
+## Speicherformate 
+
+### Bei Export von Overpass
+
+- GeoJSON
+- GPX
+- KML
+- OSM Rohdaten
+
+## Import von Daten
+
+```{r}
+library(XML)
+dat <- xmlParse("../data/bus_stop_amsterdam.kml")
+```
+
+```{r}
+xmltop <- xmlRoot(dat)
+
+xpathApply(dat,"Document")
+```
+
+## Xpath Abfragesprache
+
+- [xpath wikipedia](https://de.wikipedia.org/wiki/XPath)
+
+
+## JSON importieren
+
+
