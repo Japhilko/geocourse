@@ -27,8 +27,6 @@ knitr::opts_chunk$set(echo = TRUE)
 - Vorstellung von Forschung die mit OSM-Daten durchgeführt wurde
 - Welche OSM-Daten sind erhältlich?
 -->
-
-
 - Wie man die OSM Daten graphisch darstellen kann.
 
 ## Die Overpass API
@@ -42,6 +40,12 @@ Wenn man beispielsweise nach speziellen Map Features sucht.
 - Die von Roland Olbricht geschriebene Overpass API ermöglicht es Entwicklern, kleine Auszüge von benutzergenerierten Inhalten von Openstreetmap nach vorgegebenen Kriterien herunterzuladen.
 
 - Die API eignet sich besonders gut, wenn man nach ganz speziellen Map Features sucht. 
+
+<!--
+Overpass is a read-only API that provides custom selected parts of the OSM data. It can be understood as a database over the web, it uses the fact that OSM is enriched with additional information ranging
+from city names to e.g. locations of street lamps or energy generators \citep{schmidt2013extraction}.
+If it is the target, to get all bus stops in Amsterdam, then it is possible to download the information from Overpass Turbo (\url{https://overpass-turbo.eu/}), using the key highway and the value bus\_stop.
+-->
 
 
 ## [Overpass Turbo](https://overpass-turbo.eu/)
@@ -83,8 +87,7 @@ dat <- xmlParse("../data/bus_stop_amsterdam.kml")
 
 ```{r}
 xmltop <- xmlRoot(dat)
-
-xpathApply(dat,"Document")
+xmltop[[1]][[1]]
 ```
 
 ## Xpath Abfragesprache
@@ -92,6 +95,20 @@ xpathApply(dat,"Document")
 - [xpath wikipedia](https://de.wikipedia.org/wiki/XPath)
 
 
+```{r,echo=F}
+xpathApply(dat,"Document")
+```
+
+
 ## JSON importieren
 
+
+```{r,eval=F}
+install.packages("rjson")
+```
+
+```{r}
+library(rjson)
+
+```
 
