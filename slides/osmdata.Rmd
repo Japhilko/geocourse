@@ -501,14 +501,6 @@ https://cran.r-project.org/web/packages/osmdata/osmdata.pdf
 - [**osmar - JOS**](https://www.theoj.org/joss-papers/joss.00305/10.21105.joss.00305.pdf)
 
 
-### Die Vignetten für das Paket `sf`
-
-https://r-spatial.github.io/sf/reference/st_as_sf.html
-
-https://r-spatial.github.io/sf/reference/st_read.html
-
-https://r-spatial.github.io/sf/articles/sf1.html
-
 
 <!--
 https://www.r-bloggers.com/how-to-quickly-enrich-a-map-with-natural-and-anthropic-details/
@@ -520,3 +512,16 @@ https://hub.docker.com/r/robinlovelace/geocompr/
 
 https://gis.stackexchange.com/questions/264380/getting-buildings-that-house-specific-amenities-using-r
 -->
+
+```{r,echo=F eval=FALSE, include=FALSE, r,echo=F}
+dat <- osmdata_sf("../data/4290854847.xml")
+dat <- osmdata_xml("https://www.openstreetmap.org/api/0.6/node/4290854847")
+
+# https://www.r-bloggers.com/r-and-the-web-for-beginners-part-ii-xml-in-r/
+library(XML)
+dat <- xmlParse("../data/4290854847.xml")
+xmltop = xmlRoot(dat) 
+plantcat <- xmlSApply(xmltop, function(x) xmlSApply(x, xmlValue))
+plantcat_df <- data.frame(t(plantcat),row.names=NULL)
+```
+

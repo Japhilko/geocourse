@@ -20,7 +20,9 @@ athome <- T
 
 ## Themen dieses Abschnitts
 
-- Die Verarbeitung der OSM-Daten mit dem Paket simple features (`sf`)
+- Der Import von Geodaten mit dem Paket simple features (`sf`).
+- Die Verarbeitung der OSM-Daten mit dem Paket `sf`.
+- Die Daten visualisieren mit `sf`
 
 
 ## Das Paket `sf`
@@ -31,12 +33,13 @@ athome <- T
 library(sf)
 ```
 
+- Ein Demo ist im Paket `sf` integriert
 
 ```{r,eval=F}
 demo(sf::affine)
 ```
 
-
+![](figure/Rplot.pdf)
 
 ## Beispieldaten bekommen
 
@@ -72,17 +75,22 @@ str(ab)
 ```{r}
 bb_poly_ma <- getbb(place_name = "Mannheim", 
                  format_out = "polygon")
+```
 
+## Das Ergebnis plotten
+
+```{r}
 plot(bb_poly_ma)
 ```
 
-
+<!--
+## Das Beispiel Heidelberg
 
 ```{r,eval=F}
 bb_poly_hd <- getbb(place_name = "Heidelberg", 
                  format_out = "polygon")
 ```
-
+-->
 
 ```{r,eval=F,echo=F}
 ls <- st_multilinestring(bb_poly_ma)
@@ -101,14 +109,21 @@ mpol <- sf::st_multipolygon(bb_poly)
 ```
 
 
-```{r}
+```{r,echo=F}
 # x <- osmdata_sf(pol)
+```
+
+## Ein Beispieldatensatz
+
+
+```{r}
+demo(nc, ask = FALSE, echo = FALSE)
 ```
 
 ## [Graphiken mit `sf`](https://r-spatial.github.io/sf/articles/sf5.html)
 
-```{r}
-demo(nc, ask = FALSE, echo = FALSE)
+
+```{r message=FALSE, warning=FALSE}
 plot(nc)
 ```
 
@@ -120,11 +135,93 @@ plot(nc)
 data_path <- "D:/GESIS/data/"
 ```
 
-```{r,eval=F}
+```{r,eval=F,echo=F}
 setwd(data_path)
 plz <- st_read("post_pl.shp")
 ```
 
+```{r}
+lon <- st_read("../data/london_sport.shp")
+```
+
+
+## Das Shapefile plotten
+
+```{r}
+plot(lon$geometry)
+```
+
+
 <!--
 https://www.r-spatial.org/r/2018/01/08/sf-0.6-0.html
 -->
+
+
+
+
+## Daten vom Amsterdam Beispiel
+
+```{r}
+datm <- st_read("../data/ams_centraal.osm","multipolygons")
+```
+
+
+
+## [Die Funktion `st_geometry`](https://cran.r-project.org/web/packages/sf/vignettes/sf3.html)
+
+```{r}
+geom_datm <- st_geometry(datm)
+plot(geom_datm)
+```
+
+
+## Die Häuser auswählen
+
+```{r message=FALSE, warning=FALSE}
+library(dplyr)
+buis <- datm %>% select(building)
+plot(buis)
+```
+
+## Welche Häusertypen gibt es?
+
+```{r,eval=F}
+buis2 <- datm %>% as.data.frame %>% select(building)
+```
+
+```{r}
+datbuis <- datm[, "building", drop = TRUE]
+plot(datbuis)
+```
+
+##
+
+```{r}
+houses <- datm[datm$building == "house",]
+class(houses)
+## [1] "sf"         "data.frame"
+dhous <- datm[houses,]
+plot(dhous$geometry)
+```
+
+```{r}
+plot(st_geometry(houses))
+```
+
+## [Alle Häuser herausnehmen](https://cran.r-project.org/web/packages/sf/vignettes/sf4.html)
+
+```{r}
+houses <- datm[datm$building %in% c("house","yes",
+                                    "apartments"),]
+plot(st_geometry(houses))
+```
+
+
+
+## Die Vignetten für das Paket `sf`
+
+https://r-spatial.github.io/sf/reference/st_as_sf.html
+
+https://r-spatial.github.io/sf/reference/st_read.html
+
+https://r-spatial.github.io/sf/articles/sf1.html

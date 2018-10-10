@@ -1,12 +1,22 @@
 ---
-title: "osm main api"
+title: "Die OSM main api"
 author: "Jan-Philipp Kolb"
-date: "9 10 2018"
-output: html_document
+date: "23 Oktober 2018"
+output:
+  beamer_presentation:
+    colortheme: beaver
+    fonttheme: structurebold
+    highlight: tango
+    fig_caption: no
+    keep_tex: yes
+    theme: CambridgeUS
+  slidy_presentation: default
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(knitr)
+Ex <- T
 ```
 
 
@@ -241,10 +251,75 @@ xpathApply(obj5,"//tag[@k = 'website']")[[1]]
 xpathApply(obj5,"//tag[@k = 'iata']")[[1]]
 ```
 
+## Das Paket `osmar` benutzen
+
+```{r}
+library("osmar")
+node_ <- xmlParse("../data/162149882.xml")
+node_osmar <- as_osmar(node_)
+node_osmar
+```
+
+## [Drei Typen von Vektorobjekten](https://www.earthdatascience.org/courses/earth-analytics/spatial-data-r/intro-vector-data-r/)
+
+<!--
+https://www.earthdatascience.org/courses/earth-analytics/spatial-data-r/intro-vector-data-r/
+-->
+
+![](figure/points-lines-polygons-vector-data-types.png)
+
+## Die Ausdehnung
+
+![](figure/spatial-extent.png)
+
+
+## [Import mit dem Paket `sf`](https://cran.r-project.org/web/packages/sf/vignettes/sf2.html)
+
+
+```{r eval=T}
+library(sf)
+```
+
+- Mit dem Befehl `st_layers` kann man sehen, welche Layer verfügbar sind:
+
+```{r}
+st_layers("../data/Amsterdam_highway_primary.osm")
+```
+
+## Import von Layer `lines`
+
+```{r}
+dat <- st_read("../data/Amsterdam_highway_primary.osm","lines")
+plot(dat$geometry)
+```
+
+## Import von Layer `points`
+
+```{r}
+datp <- st_read("../data/Amsterdam_highway_primary.osm","points")
+plot(dat$geometry,pch=20,col=rgb(0,0,1,.1))
+```
+
+## Mit einem anderen Paket plotten
+
+```{r}
+library(tmap)
+qtm(dat$geometry)
+```
+
+## 
+
+```{r}
+st_layers("../data/ams_centraal.osm")
+```
+
+```{r}
+datm <- st_read("../data/ams_centraal.osm","multipolygons")
+sp::plot(datm$geometry)
+```
 
 
 ## Mehr Beispiele, wie man mit XML Daten umgeht:
-
 
 - Deborah Nolan - [**Extracting data from XML**](http://www.stat.berkeley.edu/~statcur/Workshop2/Presentations/XML.pdf)
 
@@ -279,4 +354,14 @@ citation("xml2")
 ```
 
 
+<!--
+https://cran.r-project.org/web/packages/XML2R/XML2R.pdf
+-->
+
+
+```{r eval=FALSE, include=FALSE}
+library(sf)
+dat <- st_read("../data/162149882.xml")
+dat <- st_read("../data/Amsterdam_highway_primary.osm")
+```
 

@@ -1,7 +1,7 @@
 ---
 title: "A5 - Shapefiles"
 author: "Jan-Philipp Kolb"
-date: "23 Oktober 2018"
+date: "22 Oktober 2018"
 output:
   beamer_presentation:
     colortheme: beaver
@@ -26,9 +26,9 @@ spatsampI <-F
 
 ## Worum geht es in diesem Abschnitt
 
+- Was sind Shapefiles
 - Shapefiles mit Vorwahl- und PLZ-Bereichen importieren
-- PLZ-Bereiche zusammenfassen
-- Eine räumliche Stichprobe ziehen
+- Einzelne Polygonzüge zusammenfassen
 - Adressen für die gezogenen Punkte bestimmen
 - Adressdatensatz bereinigen
 - Entfernung zum Hauptbahnhof bestimmen
