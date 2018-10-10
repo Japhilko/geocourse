@@ -18,6 +18,11 @@ knitr::opts_chunk$set(echo = TRUE,fig.height=4)
 athome <- T
 ```
 
+## Themen dieses Abschnitts
+
+- Die Verarbeitung der OSM-Daten mit dem Paket simple features (`sf`)
+
+
 ## Das Paket `sf`
 
 > Simple Features for R 

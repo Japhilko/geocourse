@@ -100,3 +100,19 @@ setwd(data_path)
 plz <- st_read("post_pl.shp")
 ```
 
+##
+
+```{r}
+library(sf)
+```
+
+```{r,eval=F}
+?st_centroid
+```
+
+
+- [Den Mittelpunkt für die Geometrien bekommen](https://stackoverflow.com/questions/46176660/how-to-calculate-centroid-of-polygon-using-sfst-centroid)
+
+```{r}
+centr <- st_centroid(dat_osm$geometry)
+```

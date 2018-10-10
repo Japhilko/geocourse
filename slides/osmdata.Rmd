@@ -3,11 +3,10 @@ title: "B2 Das `osmdata` Paket"
 author: "Jan-Philipp Kolb"
 date: "22 Oktober 2018"
 output:
-  beamer_presentation:
+  beamer_presentation: 
     colortheme: beaver
     fonttheme: structurebold
     highlight: tango
-    fig_caption: no
     keep_tex: yes
     theme: CambridgeUS
   slidy_presentation: default
@@ -18,36 +17,12 @@ knitr::opts_chunk$set(echo = T,cache=T,eval=T,message=F,warning=F,fig.height=4)
 Ex <- T
 ```
 
+
 ## Themen dieses Abschnitts
 
-- Die Overpass API
+- Das R-Paket `osmdata` mit dem man OSM-Daten herunterladen kann und das auf der [**Overpass API**](https://wiki.openstreetmap.org/wiki/Overpass_API) beruht. 
 
-<!--
-- Vorstellung des Openstreetmap (OSM) Projekts
-- Vorstellung von Forschung die mit OSM-Daten durchgeführt wurde
-- Welche OSM-Daten sind erhältlich?
--->
-
-- Downlaod von OSM-Daten mit dem Paket `osmdata`, das auf der [**Overpass API**](https://wiki.openstreetmap.org/wiki/Overpass_API) beruht. 
-
-- Verarbeitung der OSM-Daten mit dem Paket `sf`
-
-- Das Plotten der Ergebnisse
-
-## [Overpass Turbo](https://overpass-turbo.eu/)
-
-![https://overpass-turbo.eu/](figure/Overpass_turbo_query_wizard_result_DE.png)
-
-
-
-## Query Overpass
-
-```
-node
-  [amenity=bar]
-  ({{bbox}});
-out;
-```
+- Das Paket `osmplotr`
 
 
 ## [Das `osmdata` Paket](https://github.com/ropensci/osmdata)
@@ -73,6 +48,32 @@ library(osmdata)
 ```{r,eval=F}
 citation("osmdata")
 ```
+
+
+## Das Paket `osmplotr`
+
+```{r}
+library("osmplotr")
+library("osmdata")
+```
+
+## Beispiel Kindergärten in Mannheim
+
+```{r,eval=F}
+bbox <- getbb("Mannheim")
+dat_osm <- extract_osm_objects(key='building', 
+                              value="kindergarten",
+                              bbox=bbox)
+```
+
+```{r,eval=F,echo=F}
+save(dat_osm,file="../data/overpass_building_kindergarten_Mannheim.RData")
+```
+
+```{r,echo=F}
+load("../data/overpass_building_kindergarten_Mannheim.RData")
+```
+
 
 
 ## Einen Rahmen definieren um Daten zu bekommen

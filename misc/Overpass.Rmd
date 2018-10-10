@@ -17,19 +17,27 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-
 ## Themen dieses Abschnitts
 
-- Die Overpass API
-- Das Paket `osmplotr`
+- Die [**Overpass API**](https://wiki.openstreetmap.org/wiki/Overpass_API) von Roland Olbricht wird vorgestellt.
+
+<!--
+- Vorstellung des Openstreetmap (OSM) Projekts
+- Vorstellung von Forschung die mit OSM-Daten durchgeführt wurde
+- Welche OSM-Daten sind erhältlich?
+-->
+
+
+- Wie man die OSM Daten graphisch darstellen kann.
 
 ## [Overpass Turbo](https://overpass-turbo.eu/)
 
-![https://overpass-turbo.eu/](http://blog.openstreetmap.de/wp-uploads/2014/01/Overpass_turbo_query_wizard_result_DE.png)
-
+![https://overpass-turbo.eu/](figure/overpassTurbo.PNG)
 
 
 ## Query Overpass
+
+- In der folgenden Abfrage wird bei Overpass Turbo nach Bars im ausgewählten Fenster gesucht. 
 
 ```
 node
@@ -38,80 +46,38 @@ node
 out;
 ```
 
+## Export bei Overpass
 
-## Das Paket `osmplotr`
-
-```{r}
-library("osmplotr")
-library("osmdata")
-```
-
-## Beispiel Kindergärten in Mannheim
-
-```{r,eval=F}
-bbox <- getbb("Mannheim")
-dat_osm <- extract_osm_objects(key='building', 
-                              value="kindergarten",
-                              bbox=bbox)
-```
-
-```{r,eval=F,echo=F}
-save(dat_osm,file="../data/overpass_building_kindergarten_Mannheim.RData")
-```
-
-```{r,echo=F}
-load("../data/overpass_building_kindergarten_Mannheim.RData")
-```
+![](figure/OverpassExport.PNG)
 
 
-## Eine Hintergrundkarte besorgen
+## Speicherformate 
 
-```{r,eval=F}
-library(ggmap)
-MA_map <- qmap("Mannheim",zoom=12)
-```
+### Bei Export von Overpass
 
-```{r,echo=F,eval=F}
-save(MA_map,file="../data/MA_map12.RData")
-```
+- GeoJSON
+- GPX
+- KML
+- OSM Rohdaten
 
-```{r,echo=F}
-load("../data/MA_map12.RData")
-```
-
-```{r,echo=F,eval=F}
-MA_map <- qmap("Mannheim")
-```
-
-```{r,echo=F,eval=F}
-save(MA_map,file="../data/MA_map.RData")
-```
-
-##
+## Import von Daten
 
 ```{r}
-library(sf)
+library(XML)
+dat <- xmlParse("../data/bus_stop_amsterdam.kml")
 ```
-
-```{r,eval=F}
-?st_centroid
-```
-
-
-- [Den Mittelpunkt für die Geometrien bekommen](https://stackoverflow.com/questions/46176660/how-to-calculate-centroid-of-polygon-using-sfst-centroid)
 
 ```{r}
-centr <- st_centroid(dat_osm$geometry)
+xmltop <- xmlRoot(dat)
+
+xpathApply(dat,"Document")
 ```
 
+## Xpath Abfragesprache
+
+- [xpath wikipedia](https://de.wikipedia.org/wiki/XPath)
 
 
+## JSON importieren
 
-##
-
-```{r}
-MA_map +
-geom_point(aes(x = lon, y = lat),
-data = dat_osm)
-```
 
