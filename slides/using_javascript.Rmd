@@ -1,5 +1,5 @@
 ---
-title: "Javascript Bibliotheken nutzen"
+title: "B3 Javascript Bibliotheken nutzen"
 author: "Jan-Philipp Kolb"
 date: "23 Oktober 2018"
 output:
@@ -224,7 +224,7 @@ m1
 
 ## Das Paket `mapview` - Beispieldatensatz Franken
 
-```{r}
+```{r,eval=htmlpres}
 library(mapview)
 
 mapview(franconia)
@@ -235,7 +235,7 @@ mapview(franconia)
 
 ## GADM und `mapview`
 
-```{r,eval=}
+```{r,eval=htmlpres}
 mapview(leaflet::gadmCHE)
 ```
 

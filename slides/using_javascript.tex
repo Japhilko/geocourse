@@ -30,7 +30,7 @@
 }{}
 \newif\ifbibliography
 \hypersetup{
-            pdftitle={Javascript Bibliotheken nutzen},
+            pdftitle={B3 Javascript Bibliotheken nutzen},
             pdfauthor={Jan-Philipp Kolb},
             pdfborder={0 0 0},
             breaklinks=true}
@@ -121,7 +121,7 @@
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{0}
 
-\title{Javascript Bibliotheken nutzen}
+\title{B3 Javascript Bibliotheken nutzen}
 \author{Jan-Philipp Kolb}
 \date{23 Oktober 2018}
 
@@ -415,6 +415,48 @@ Karte abspeichern}}
 
 \end{frame}
 
+\begin{frame}[fragile]{Das Paket \texttt{mapview} - Beispieldatensatz
+Franken}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(mapview)}
+
+\KeywordTok{mapview}\NormalTok{(franconia)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figure/franconia.PNG}
+
+\end{frame}
+
+\begin{frame}[fragile]{GADM und \texttt{mapview}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mapview}\NormalTok{(leaflet}\OperatorTok{::}\NormalTok{gadmCHE)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{frame}
+
+\begin{frame}[fragile]{Das Paket \texttt{mapview}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(mapedit)}
+\KeywordTok{library}\NormalTok{(magrittr)}
+
+\NormalTok{lf <-}\StringTok{ }\KeywordTok{mapview}\NormalTok{()}
+\NormalTok{drawing <-}\StringTok{ }\NormalTok{lf }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{editMap}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figure/editmap.PNG}
+
+\end{frame}
+
 \begin{frame}[fragile]{Das Paket \texttt{mapview}}
 
 \begin{Shaded}
@@ -503,7 +545,7 @@ Karte abspeichern}}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{using_javascript_files/figure-beamer/unnamed-chunk-26-1.pdf}
+\includegraphics{using_javascript_files/figure-beamer/unnamed-chunk-30-1.pdf}
 
 \end{frame}
 

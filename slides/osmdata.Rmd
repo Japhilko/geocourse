@@ -1,5 +1,5 @@
 ---
-title: "Das `osmdata` Paket"
+title: "B2 Das `osmdata` Paket"
 author: "Jan-Philipp Kolb"
 date: "22 Oktober 2018"
 output:

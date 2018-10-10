@@ -1,5 +1,5 @@
 ---
-title: "Simple Features"
+title: "B5 Simple Features"
 author: "Jan-Philipp Kolb"
 date: "23 Oktober 2018"
 output:
@@ -115,7 +115,7 @@ plot(nc)
 data_path <- "D:/GESIS/data/"
 ```
 
-```{r}
+```{r,eval=F}
 setwd(data_path)
 plz <- st_read("post_pl.shp")
 ```
