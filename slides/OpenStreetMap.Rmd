@@ -19,6 +19,11 @@ knitr::opts_chunk$set(echo = TRUE,cache=T,eval=T,warning=F,message=F)
 Ex <- T
 ```
 
+## Inhalt dieses Abschnitts
+
+- Vorstellung des Openstreetmap (OSM) Projekts
+- Welche OSM-Daten sind erhältlich?
+- Vorstellung von Forschung die mit OSM-Daten durchgeführt wurde
 
 
 ## [OpenStreetMap](http://www.openstreetmap.de/) Projekt
@@ -37,6 +42,13 @@ Ex <- T
 ## [OSM Map Features](http://wiki.openstreetmap.org/wiki/DE:Map_Features)
 
 ![http://wiki.openstreetmap.org/wiki/DE:Map_Features](figure/osm_mapfeatures.png)
+
+
+
+## [Openstreetmap Tags](https://wiki.openstreetmap.org/wiki/Tags)
+
+![](figure/osm_tag.png)
+
 
 
 ## Objekttypen in OSM

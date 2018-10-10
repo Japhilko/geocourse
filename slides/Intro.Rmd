@@ -20,6 +20,9 @@ output:
 knitr::opts_chunk$set(echo = TRUE,message=F,warning=F,cache=T)
 ```
 
+## Das Thema Geodatenlandschaft
+
+
 <!--
 Background Maps - Download via Tile Servers
 -->
@@ -39,20 +42,33 @@ Andererseits neue Entwicklungen in R vorstellen
 -->
 
 
-## 
-
 ![](figure/BildRatSWDBericht.png)
+
+
+## R-Pakete - Zum Download von Geo-Information
+
+### [Das Paket `ggmap`](https://sites.google.com/site/davidkahle/ggmap)
+
+
+- David Kahle and Hadley Wickham: `ggmap` - Spatial Visualization with `ggplot2`
+
+
+![](figure/Rgeopackages.PNG)
+
 
 ## [Worum geht es?](http://blog.revolutionanalytics.com/2012/07/making-beautiful-maps-in-r-with-ggmap.html)
 
+
 ### Weine probieren im Napa Valley?
+
+
 
 ![](figure/Wine_nappa.png)
 
 
 ## Ziel dieses Kurses
 
-### Vorgestellt wird:
+### Vorgestellt werden:
 
 - Möglichkeiten für den Download, den Import, die Verarbeitung und die Visualisierung von Geodaten 
 
@@ -75,23 +91,27 @@ Siehe zum Beispiel das Projekt Simulation of Urban MObility (SUMO) (\citealt{beh
 
 ## [Laws of Spatial Sience](http://de.slideshare.net/rheimann04/big-social-data-the-spatial-turn-in-big-data)
 
-[Tobler's law](https://en.wikipedia.org/wiki/Tobler's_first_law_of_geography)
+### [Tobler's law](https://en.wikipedia.org/wiki/Tobler's_first_law_of_geography)
 
 > everything is related to everything else, but near things are more related than distant things.
 
-## [Spatial Turn](https://de.wikipedia.org/wiki/Spatial_turn)
+### [Spatial Turn](https://de.wikipedia.org/wiki/Spatial_turn)
 
 > Spatial turn is a term used to describe an intellectual movement that places emphasis on place and space in social science and the humanities.
 
+<!--
 [Englisches Wikipedia](https://en.wikipedia.org/wiki/Spatial_turn)
+-->
 
+<!--
 
 ## Regional/geographical differences in the perception of...
 
 - ... measures to promote climatic change
 - ... big infrastructure projects
 
-<!--
+
+
 ## Nice output - example [Wind Map](http://hint.fm/wind/)
 
 <http://hint.fm/wind/>
@@ -183,11 +203,6 @@ Gemeinde in Oberfranken
 ![](http://spatial.ly/wp-content/uploads/2013/06/r_activity.png)
 -->
 
-## [Openstreetmap Tags](https://wiki.openstreetmap.org/wiki/Tags)
-
-![](figure/osm_tag.png)
-
-
 ## Openstreetmap Projekt
 
 ![](figure/Buldings_Paris.PNG)
@@ -205,6 +220,31 @@ https://hal.inria.fr/hal-01852585/document
 -->
 
 
+
+## Das Openstreetmap Projekt...
+
+- Durch kollaboratives Mapping ist eine riesige Datenmenge zugänglich. 
+- Viele Menschen tragen jeden Tag Informationen bei.
+- ... ermöglicht Zugang zu Big Data der Geographie.
+- Die wachsende Menge an Geodaten wird von Freiwilligen gesammelt oder über Crowd-sourcing gewonnen.
+
+
+```{r,eval=F,echo=F}
+install.packages("conStruct") # Models Spatially Continuous and Discrete Population Genetic Structure
+install.packages("MazamaSpatialUtils") # Spatial Data Download and Utility Functions - 2018-09-18
+
+install.packages("spData")
+
+# 2018-09-18	SPUTNIK	SPatially aUTomatic deNoising for Ims toolKit
+# 2018-09-17	sabre	Spatial Association Between Regionalizations
+# 2018-09-17	spatsoc	Group Animal Relocation Data by Spatial and Temporal Relationship
+# 2018-09-16	mapview	Interactive Viewing of Spatial Data in R
+# 2018-09-16	sparr	Spatial and Spatiotemporal Relative Risk
+# 2018-09-15	spData	Datasets for Spatial Analysis
+```
+
+
+
 ## Was ist das Ziel - Straßen in Berlin
 
 Dargestellt werden OpenStreetMap Daten, die mit der Overpass API heruntergeladen wurden.
@@ -213,9 +253,13 @@ Dargestellt werden OpenStreetMap Daten, die mit der Overpass API heruntergeladen
 
 
 
-## Global patterns of current and future road infrastructure
+## Globale Muster der Straßeninfrastruktur
 
-### Study by Johan Meijer, Mark AJ Huijbregts,  Kees Schotten,  and Aafke Schipper
+<!--
+Global patterns of current and future road infrastructure
+-->
+
+### Studie von Johan Meijer, Mark AJ Huijbregts,  Kees Schotten,  und Aafke Schipper
 
 ![](figure/GRIP_globalroads.PNG)
 
@@ -267,26 +311,3 @@ Dargestellt werden OpenStreetMap Daten, die mit der Overpass API heruntergeladen
 - [Das Paket cartography](https://cran.r-project.org/web/packages/cartography/vignettes/cartography.html)
 
 -->
-
-## Das Openstreetmap Projekt...
-
-- Durch kollaboratives Mapping ist eine riesige Datenmenge zugänglich. 
-- Viele Menschen tragen jeden Tag Informationen bei.
-- ... ermöglicht Zugang zu Big Data der Geographie.
-- Die wachsende Menge an Geodaten wird von Freiwilligen gesammelt oder über Crowd-sourcing gewonnen.
-
-
-```{r,eval=F,echo=F}
-install.packages("conStruct") # Models Spatially Continuous and Discrete Population Genetic Structure
-install.packages("MazamaSpatialUtils") # Spatial Data Download and Utility Functions - 2018-09-18
-
-install.packages("spData")
-
-# 2018-09-18	SPUTNIK	SPatially aUTomatic deNoising for Ims toolKit
-# 2018-09-17	sabre	Spatial Association Between Regionalizations
-# 2018-09-17	spatsoc	Group Animal Relocation Data by Spatial and Temporal Relationship
-# 2018-09-16	mapview	Interactive Viewing of Spatial Data in R
-# 2018-09-16	sparr	Spatial and Spatiotemporal Relative Risk
-# 2018-09-15	spData	Datasets for Spatial Analysis
-```
-
