@@ -59,6 +59,10 @@ for (i in 1:length(presparts)){
 
 
 for (i in 1:length(presparts)){
+  rmarkdown::render(presparts[i], "md_document")
+}
+
+for (i in 1:length(presparts)){
   rmarkdown::render(presparts[i], "all")
 }
 

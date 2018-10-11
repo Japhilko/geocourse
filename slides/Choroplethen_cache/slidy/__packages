@@ -1,0 +1,7 @@
+base
+knitr
+rmarkdown
+Matrix
+lme4
+sp
+maptools

@@ -1,0 +1,14 @@
+base
+knitr
+rmarkdown
+Matrix
+lme4
+sp
+maptools
+DT
+stringr
+XML
+acs
+choroplethr
+RJSONIO
+WDI

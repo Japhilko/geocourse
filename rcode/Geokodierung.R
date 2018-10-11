@@ -1,5 +1,5 @@
 #' ---
-#' title: "Geokodierung"
+#' title: "B2 - Geokodierung"
 #' author: "Jan-Philipp Kolb"
 #' date: "22 Oktober 2018"
 #' output:
@@ -13,25 +13,34 @@
 #'   slidy_presentation: default
 #' ---
 #' 
-## ----setup, include=FALSE------------------------------------------------
-knitr::opts_chunk$set(echo = T,eval=T,message=F,warning=F)
+## ----setup_geokodierung, include=FALSE-----------------------------------
+knitr::opts_chunk$set(echo = T,eval=T,message=F,warning=F,cache=T)
+googleEX <- F
+osmEX <- T
+library(knitr)
 
 #' 
-#' ## Daten einlesen
+#' ## Inhalt dieses Abschnitts
 #' 
-#' - Hier wird ein Beispieldatensatz eingelesen, den ich über räumliche Stichproben und reverse geocoding erzeugt habe. 
+#' - Das Konzept der Geokoordinaten erklären
+#' - Möglichkeiten vorstellen, die Geokodierung mit R durchzuführen
 #' 
-## ------------------------------------------------------------------------
-load("../data/addr_list_t_68239.RData")
-head(addr_list_t)
+#' ## Geokodierung
+#' 
+#' ### [Wikipedia - Geocoding](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#blockquotes)
+#' 
+#' 
+#' > Geocoding (...) uses a description of a location, most typically a postal address or place name, to find geographic coordinates from spatial reference data ... 
+#' 
+#' 
+## ----message=F,warning=F,eval=googleEX,echo=F----------------------------
+library(ggmap)
+geocode("Mannheim",source="google")
 
 #' 
-#' 
-## ----eval=F,echo=F-------------------------------------------------------
-## (load("../data/addr_list_t_Deutschland_samp1.RData"))
-## head(addr_list_t)
-## addr_dat <- data.frame(address = addr_list_t)
-## # gc_addr <- mutate_geocode(addr_dat, address)
+## ----echo=F,message=F,warning=F,eval=googleEX----------------------------
+MAgc <- geocode("Mannheim B2,5",source="google")
+kable(MAgc)
 
 #' 
 #' 
@@ -53,101 +62,28 @@ head(addr_list_t)
 #' ```
 #' 
 #' 
-#' ## Geokodierung
-#' 
-#' > Geocoding (...) uses a description of a location, most typically a postal address or place name, to find geographic coordinates from spatial reference data ... 
-#' 
-#' [Wikipedia - Geocoding](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#blockquotes)
-#' 
-## ----message=F,eval=F,warning=F------------------------------------------
-## library(ggmap)
-## geocode("Mannheim",source="google")
-
-#' 
-## ----echo=F,message=F,warning=F------------------------------------------
-MAgc <- geocode("Mannheim B2,5",source="google")
-kable(MAgc)
-
-#' 
-#' 
 #' ## Latitude und Longitude
 #' 
-#' ![LatLon](figure/definition-of-latitude-longitude.jpg)
+#' ![](figure/definition-of-latitude-longitude.jpg)
 #' 
 #' [http://modernsurvivalblog.com](http://modernsurvivalblog.com/survival-skills/basic-map-reading-latitude-longitude/)
-#' 
-#' ## Koordinaten verschiedener Orte in Deutschland
-#' 
-## ----echo=F,message=F----------------------------------------------------
-cities <- c("Hamburg","Koeln","Dresden","Muenchen")
-lon <- vector()
-lat <- vector()
-for (i in 1:length(cities)){
-  gc <- geocode(cities[i],source="google")
-  lon[i] <- gc$lon
-  lat[i] <- gc$lat
-}
-
-Dat <- data.frame(cities,lon,lat)
-kable(Dat)
-
-#' 
-#' 
-#' ## Reverse Geokodierung
-#' 
-#' > Reverse geocoding is the process of back (reverse) coding of a point location (latitude, longitude) to a readable address or place name. This permits the identification of nearby street addresses, places, and/or areal subdivisions such as neighbourhoods, county, state, or country.
-#' 
-#' Quelle: [Wikipedia](https://en.wikipedia.org/wiki/Reverse_geocoding)
-#' 
-## ----cache=T,message=F---------------------------------------------------
-revgeocode(c(48,8))
-
-#' 
 #' 
 #' 
 #' ## Die Distanz zwischen zwei Punkten
 #' 
-## ----message=F-----------------------------------------------------------
+## ----message=F,eval=googleEX---------------------------------------------
 mapdist("Q1, 4 Mannheim","B2, 1 Mannheim")
 
 #' 
-## ----message=F-----------------------------------------------------------
+## ----message=F,eval=googleEX---------------------------------------------
 mapdist("Q1, 4 Mannheim","B2, 1 Mannheim",mode="walking")
 
 #' 
 #' 
-#' ## Eine andere Distanz bekommen
+#' ### Eine andere Distanz bekommen
 #' 
-## ----message=F-----------------------------------------------------------
+## ----message=F,eval=googleEX---------------------------------------------
 mapdist("Q1, 4 Mannheim","B2, 1 Mannheim",mode="bicycling")
-
-#' 
-#' 
-#' ## Geokodierung - verschiedene Punkte von Interesse
-#' 
-## ----message=F,warning=F-------------------------------------------------
-POI1 <- geocode("B2, 1 Mannheim",source="google")
-POI2 <- geocode("Hbf Mannheim",source="google")
-POI3 <- geocode("Mannheim, Friedrichsplatz",source="google")
-ListPOI <-rbind(POI1,POI2,POI3)
-POI1;POI2;POI3
-
-#' 
-#' 
-#' ## Punkte in der Karte
-#' 
-## ----message=F,warning=F-------------------------------------------------
-MA_map +
-geom_point(aes(x = lon, y = lat),
-data = ListPOI)
-
-#' 
-#' ## Punkte in der Karte
-#' 
-## ----message=F,warning=F-------------------------------------------------
-MA_map +
-geom_point(aes(x = lon, y = lat),col="red",
-data = ListPOI)
 
 #' 
 #' 
@@ -161,16 +97,133 @@ library("tmaptools")
 
 #' 
 #' 
-## ------------------------------------------------------------------------
-geocode_OSM(addr_list_t[1])
-
-#' 
 ## ----eval=F,echo=F-------------------------------------------------------
 ## ?geocode_OSM
 
 #' 
-#' ## Alle Adressen geokodieren
 #' 
+#' 
+#' ## Koordinaten verschiedener Orte in Deutschland
+#' 
+## ----echo=T,message=F,eval=osmEX-----------------------------------------
+cities <- c("Hamburg","Koeln","Dresden","Muenchen")
+
+lat <- vector()
+lon <- vector()
+for (i in 1:length(cities)){
+  gc <- geocode_OSM(cities[i])
+  lat[i] <- gc$coords[1]
+  lon[i] <- gc$coords[2]
+}
+
+#' 
+#' ## Welche Koordinaten hat der Norden
+#' 
+## ------------------------------------------------------------------------
+Dat <- data.frame(cities,lon,lat)
+kable(Dat)
+
+#' 
+#' 
+#' ## Geokodierung - verschiedene Punkte von Interesse
+#' 
+## ----message=F,warning=F,eval=googleEX,echo=F----------------------------
+POI1 <- geocode_OSM("B2, 1 Mannheim")
+POI2 <- geocode_OSM("Hbf Mannheim")
+POI3 <- geocode_OSM("Mannheim, Friedrichsplatz")
+ListPOI <-data.frame(rbind(POI1$coords,POI2$coords,POI3$coords))
+ListPOI
+
+#' 
+## ----message=F,warning=F,eval=googleEX,echo=F----------------------------
+POI1 <- geocode_OSM("Mannheim")
+POI2 <- geocode_OSM("Speyer")
+POI3 <- geocode_OSM("Heidelberg")
+ListPOI <-data.frame(rbind(POI1$coords,POI2$coords,POI3$coords))
+ListPOI
+
+#' 
+#' 
+#' ## Punkte in der Karte
+#' 
+## ----eval=F--------------------------------------------------------------
+## MA_map <- qmap("Mannheim")
+
+#' 
+#' 
+## ----echo=F--------------------------------------------------------------
+load("../data/MA_map.RData")
+
+#' 
+## ----message=F,warning=F,eval=googleEX-----------------------------------
+MA_map +
+geom_point(aes(x = x, y = y),
+data = ListPOI)
+
+#' 
+#' ## Punkte in der Karte
+#' 
+## ----message=F,warning=F,eval=googleEX-----------------------------------
+MA_map +
+geom_point(aes(x = x, y = y),col="red",
+data = ListPOI)
+
+#' 
+#' 
+#' 
+#' ## Reverse Geokodierung
+#' 
+#' > Reverse geocoding is the process of back (reverse) coding of a point location (latitude, longitude) to a readable address or place name. This permits the identification of nearby street addresses, places, and/or areal subdivisions such as neighbourhoods, county, state, or country.
+#' 
+#' Quelle: [Wikipedia](https://en.wikipedia.org/wiki/Reverse_geocoding)
+#' 
+#' 
+## ----echo=F,eval=F-------------------------------------------------------
+## library(tmap)
+## data(metro)
+## five_cities <- metro[sample(length(metro), 5), ]
+
+#' 
+## ----echo=F,eval=F-------------------------------------------------------
+## rev_geocode_OSM(x=48,y=8)
+
+#' 
+#' 
+## ----cache=T,message=F,eval=googleEX-------------------------------------
+revgeocode(c(48,8))
+
+#' 
+#' 
+#' 
+#' ## Daten einlesen
+#' 
+#' - Hier wird ein Beispieldatensatz eingelesen, den ich über räumliche Stichproben und reverse geocoding erzeugt habe. 
+#' 
+## ------------------------------------------------------------------------
+load("../data/addr_list_t_68239.RData")
+head(addr_list_t)
+
+#' 
+#' 
+## ----eval=F,echo=F-------------------------------------------------------
+## (load("../data/addr_list_t_Deutschland_samp1.RData"))
+## head(addr_list_t)
+## addr_dat <- data.frame(address = addr_list_t)
+## # gc_addr <- mutate_geocode(addr_dat, address)
+
+#' 
+#' 
+#' 
+#' 
+#' 
+#' ## Die erste Adressen geokodieren
+#' 
+#' 
+## ------------------------------------------------------------------------
+geocode_OSM(addr_list_t[1])
+
+#' 
+#' ## Alle Adressen geokodieren
 #' 
 ## ----eval=F--------------------------------------------------------------
 ## gc_list <- list()
@@ -225,6 +278,8 @@ library(geonames)
 ## ----eval=F,echo=F-------------------------------------------------------
 ## save(MAwiki,file="../data/MAwiki.RData")
 
+#' 
+#' ## Wikipediaeinträge in der Nähe
 #' 
 ## ----echo=F--------------------------------------------------------------
 load("../data/MAwiki.RData")
@@ -326,6 +381,14 @@ b_box(ddat)
 #' https://github.com/ropensci/bbox
 #' -->
 #' 
+#' 
+#' 
+#' 
+#' 
 #' ## Links
 #' 
-#' - [Geokodierung mit R](https://www.jessesadler.com/post/geocoding-with-r/)
+#' - Überblick von Jesse Sadler zur [**Geokodierung mit R**](https://www.jessesadler.com/post/geocoding-with-r/)
+#' - Ein Schummelzettel für [**`ggmap`**](https://www.nceas.ucsb.edu/~frazier/RSpatialGuides/ggmap/ggmapCheatsheet.pdf)
+#' - Die Vignette zum Paket `tmap` - [**tmap: get started**](https://cran.r-project.org/web/packages/tmap/vignettes/tmap-getstarted.html)
+#' 
+#' - [**latlong.net**](https://www.latlong.net/place/hamburg-germany-8766.html) - eine Homepage um Koordinaaten zu bestimmen.

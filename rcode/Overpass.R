@@ -1,87 +1,133 @@
 #' ---
 #' title: "Overpass"
 #' author: "Jan-Philipp Kolb"
-#' date: "29 August 2018"
-#' output: html_document
+#' date: "23 Oktober 2018"
+#' output:
+#'   beamer_presentation:
+#'     colortheme: beaver
+#'     fonttheme: structurebold
+#'     highlight: tango
+#'     fig_caption: no
+#'     keep_tex: yes
+#'     theme: CambridgeUS
+#'   slidy_presentation: default
 #' ---
 #' 
 ## ----setup, include=FALSE------------------------------------------------
 knitr::opts_chunk$set(echo = TRUE)
+library(knitr)
 
 #' 
-#' ## Das Paket `osmplotr`
+#' ## Themen dieses Abschnitts
+#' 
+#' - Die [**Overpass API**](https://wiki.openstreetmap.org/wiki/Overpass_API) von Roland Olbricht wird vorgestellt.
+#' - Die API [**Overpass Turbo**](https://overpass-turbo.eu/)
+#' - Wie man die OSM Daten graphisch darstellen kann.
+#' 
+#' 
+#' ## Die Overpass API
+#' 
+#' <!--
+#' This API is perfect to download data on very particular topics.
+#' 
+#' Wenn man beispielsweise nach speziellen Map Features sucht.
+#' -->
+#' 
+#' - Die von Roland Olbricht geschriebene Overpass API ermöglicht es Entwicklern, kleine Auszüge von benutzergenerierten Inhalten von Openstreetmap nach vorgegebenen Kriterien herunterzuladen.
+#' - Overpass ist eine read-only API, die durch den Benutzer ausgewählte Teile der OSM-Daten bereitstellt. 
+#' - Overpass kann als eine Datenbank über das Internet verstanden werden.
+#' - Die API eignet sich besonders gut, wenn man nach ganz speziellen Map Features sucht. 
+#' 
+#' <!--
+#' Overpass is a read-only API that provides custom selected parts of the OSM data. 
+#' It can be understood as a database over the web, it uses the fact that OSM is enriched with additional information ranging from city names to e.g. locations of street lamps or energy generators \citep{schmidt2013extraction}.
+#' If it is the target, to get all bus stops in Amsterdam, then it is possible to download the information from Overpass Turbo (\url{https://overpass-turbo.eu/}), using the key highway and the value bus\_stop.
+#' -->
+#' 
+#' 
+#' ## [Overpass Turbo](https://overpass-turbo.eu/)
+#' 
+#' ![https://overpass-turbo.eu/](figure/overpassTurbo.PNG)
+#' 
+#' 
+#' ## Query Overpass
+#' 
+#' - In der folgenden Abfrage wird bei Overpass Turbo nach Bars im ausgewählten Fenster gesucht. 
+#' 
+#' ```
+#' node
+#'   [amenity=bar]
+#'   ({{bbox}});
+#' out;
+#' ```
+#' 
+#' ## Export bei Overpass
+#' 
+#' ![](figure/OverpassExport.PNG)
+#' 
+#' 
+#' ## Speicherformate 
+#' 
+#' ### Bei Export von Overpass
+#' 
+#' - GeoJSON
+#' - GPX
+#' - KML
+#' - OSM Rohdaten
+#' 
+#' ## Import von Daten
 #' 
 ## ------------------------------------------------------------------------
-library("osmplotr")
-library("osmdata")
+library(XML)
+dat <- xmlParse("../data/bus_stop_amsterdam.kml")
 
 #' 
-#' ## Beispiel Kindergärten in Mannheim
-#' 
-## ----eval=F--------------------------------------------------------------
-## bbox <- getbb("Mannheim")
-## dat_osm <- extract_osm_objects(key='building',
-##                               value="kindergarten",
-##                               bbox=bbox)
+## ------------------------------------------------------------------------
+xmltop <- xmlRoot(dat)
+xmltop[[1]][[1]]
 
 #' 
-## ----eval=F,echo=F-------------------------------------------------------
-## save(dat_osm,file="../data/overpass_building_kindergarten_Mannheim.RData")
-
+#' ## Xpath Abfragesprache
+#' 
+#' - [xpath wikipedia](https://de.wikipedia.org/wiki/XPath)
+#' 
 #' 
 ## ----echo=F--------------------------------------------------------------
-load("../data/overpass_building_kindergarten_Mannheim.RData")
+xpathApply(dat,"Document")
 
 #' 
 #' 
-#' ## Eine Hintergrundkarte besorgen
+#' ## JSON importieren
+#' 
 #' 
 ## ----eval=F--------------------------------------------------------------
-## library(ggmap)
-## MA_map <- qmap("Mannheim",zoom=12)
+## install.packages("rjson")
+## library(rjson)
 
-#' 
-## ----echo=F,eval=F-------------------------------------------------------
-## save(MA_map,file="../data/MA_map12.RData")
-
-#' 
-## ----echo=F--------------------------------------------------------------
-load("../data/MA_map12.RData")
-
-#' 
-## ----echo=F,eval=F-------------------------------------------------------
-## MA_map <- qmap("Mannheim")
-
-#' 
-## ----echo=F,eval=F-------------------------------------------------------
-## save(MA_map,file="../data/MA_map.RData")
-
-#' 
-#' ##
 #' 
 ## ------------------------------------------------------------------------
-library(sf)
+library(jsonlite)
+dat<-jsonlite::fromJSON("../data/amsterdam_busstop.geojson")
+typeof(dat)
+names(dat)
 
 #' 
-## ----eval=F--------------------------------------------------------------
-## ?st_centroid
-
+#' ## Wie sehen die Daten aus
 #' 
-#' 
-#' - [Den Mittelpunkt für die Geometrien bekommen](https://stackoverflow.com/questions/46176660/how-to-calculate-centroid-of-polygon-using-sfst-centroid)
 #' 
 ## ------------------------------------------------------------------------
-centr <- st_centroid(dat_osm$geometry)
+kable(dat$features$properties[1:10,c(1,3:5)])
 
 #' 
+#' ## GPX file importieren
 #' 
-#' 
-#' 
-#' ##
+## ----import_gpx, eval=FALSE, message=FALSE, warning=FALSE, include=FALSE----
+## install.packages("plotKML")
+
 #' 
 ## ------------------------------------------------------------------------
-MA_map +
-geom_point(aes(x = lon, y = lat),
-data = dat_osm)
+library(plotKML)
+dat_gpx <- readGPX("../data/Amsterdam_busstop.gpx")
+head(dat_gpx$waypoints)
 
 #' 

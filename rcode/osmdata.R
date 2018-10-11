@@ -1,24 +1,45 @@
 #' ---
-#' title: "Das osmdata Paket"
+#' title: "B2 Das `osmdata` Paket"
 #' author: "Jan-Philipp Kolb"
-#' date: "18 Juni 2018"
-#' output: beamer_presentation
+#' date: "22 Oktober 2018"
+#' output:
+#'   beamer_presentation: 
+#'     colortheme: beaver
+#'     fonttheme: structurebold
+#'     highlight: tango
+#'     keep_tex: yes
+#'     theme: CambridgeUS
+#'   slidy_presentation: default
 #' ---
 #' 
-## ---- include=FALSE------------------------------------------------------
-knitr::opts_chunk$set(echo = T,cache=T,eval=T)
+## ----steup_osmdata, include=FALSE----------------------------------------
+knitr::opts_chunk$set(echo = T,cache=T,eval=T,message=F,warning=F,fig.height=4)
+Ex <- T
 
+#' 
+#' 
+#' ## Themen dieses Abschnitts
+#' 
+#' - Das R-Paket `osmdata` mit dem man OSM-Daten herunterladen kann und das auf der [**Overpass API**](https://wiki.openstreetmap.org/wiki/Overpass_API) beruht. 
+#' 
+#' - Das Paket `osmplotr`
+#' 
 #' 
 #' ## [Das `osmdata` Paket](https://github.com/ropensci/osmdata)
 #' 
 #' ![](figure/osmdatatitle.png)
 #' 
+#' > Mark Padgham - Import 'OpenStreetMap' Data as Simple Features or Spatial
+#'         Objects
+#' 
 #' ## Das `osmdata` Paket
+#' 
+#' - Mit dem Paket kann man Daten von OpenStreetMap importieren
+#' - Die OSM Daten sind unter [**ODbL licence**](https://www.openstreetmap.org/copyright) zu haben 
 #' 
 ## ----eval=F--------------------------------------------------------------
 ## install.packages("osmdata")
 
-#' 
 #' 
 ## ------------------------------------------------------------------------
 library(osmdata)
@@ -27,6 +48,32 @@ library(osmdata)
 ## ----eval=F--------------------------------------------------------------
 ## citation("osmdata")
 
+#' 
+#' 
+#' ## Das Paket `osmplotr`
+#' 
+## ------------------------------------------------------------------------
+library("osmplotr")
+library("osmdata")
+
+#' 
+#' ## Beispiel Kindergärten in Mannheim
+#' 
+## ----eval=F--------------------------------------------------------------
+## bbox <- getbb("Mannheim")
+## dat_osm <- extract_osm_objects(key='building',
+##                               value="kindergarten",
+##                               bbox=bbox)
+
+#' 
+## ----eval=F,echo=F-------------------------------------------------------
+## save(dat_osm,file="../data/overpass_building_kindergarten_Mannheim.RData")
+
+#' 
+## ----echo=F--------------------------------------------------------------
+load("../data/overpass_building_kindergarten_Mannheim.RData")
+
+#' 
 #' 
 #' 
 #' ## Einen Rahmen definieren um Daten zu bekommen
@@ -39,9 +86,11 @@ library(osmdata)
 #' 
 #' - oder indem man den Befehl `getbb` verwendet:
 #' 
-## ----eval=F--------------------------------------------------------------
-## bb <- getbb('Amsterdam')
+## ----eval=Ex-------------------------------------------------------------
+bb <- getbb('Ladenburg')
 
+#' 
+#' - In `bb` sind nun vier Werte gespeichert, die den Rahmen definieren
 #' 
 #' - Befehl `opq` - eine Overpass Anfrage erstellen
 #' 
@@ -49,35 +98,135 @@ library(osmdata)
 q <- opq(bbox = bb)
 
 #' 
+#' <!--
 #' - Als Ergebnis bekommt man aber noch keine Daten
+#' -->
 #' 
 #' ## Die Grenze von Mannheim 
 #' 
-## ------------------------------------------------------------------------
-bb_poly <- getbb(place_name = "Amsterdam", 
+#' - Erst mit dem Argument `format_out=polygon` Befehl `getbb` erhält man das Polygon:
+#' 
+## ----eval=Ex-------------------------------------------------------------
+bb_poly <- getbb(place_name = "Ladenburg", 
                  format_out = "polygon")
-library(tmap)
-qtm(bb_poly)
+
+
+#' 
+#' - Das Ergebnis ist sind zwei Vektoren mit den Longitude und Latitude Koordinaten.
+#' 
+## ----echo=F--------------------------------------------------------------
+bb_poly[1:4,]
 
 #' 
 #' 
-#' ## Einrichtungen (amenity) in Amsterdam
 #' 
-#' - alle benannten Objekte
-#' - die meisten sind hier zu finden:
+#' ## Das Paket für simple feature (`sf`) 
 #' 
-#' https://wiki.openstreetmap.org/wiki/Map_Features
+#' > Simple Features for R
+#' 
+#' - Das Paket `sf` ist ein Paket um geometrische Operationen durchzuführen. 
+#' 
+## ------------------------------------------------------------------------
+library(sf)
+
+#' 
+#' - [**Vignette für das Paket `sf`**](https://cran.r-project.org/web/packages/sf/vignettes/sf3.html)
+#' 
+#' ![](figure/rsimplefeatures.png)
+#' 
+#' ## Die Funktion `st_linestring`
+#' 
+#' > Create simple feature from a numeric vector, matrix or list
+#' 
+## ------------------------------------------------------------------------
+library(sf)
+ls <- st_linestring(bb_poly)
+sfc <- st_sfc(ls)
+
+#' 
+## ----echo=F,eval=F-------------------------------------------------------
+## # https://github.com/r-spatial/sf
+## ?st_linestring
+
+#' 
+#' 
+#' 
+## ----echo=F--------------------------------------------------------------
+sfc2 <- st_cast(sfc, "MULTILINESTRING")
+ab <- st_geometrycollection(sfc)
+
+#' 
+#' 
+#' ## Den `linestring` plotten
+#' 
+#' 
+## ------------------------------------------------------------------------
+library(tmap)
+qtm(sfc)
+
+#' 
+#' 
+#' 
+#' ## Einrichtungen (amenity)
+#' 
+#' 
+#' ### [**OSM map features**](https://wiki.openstreetmap.org/wiki/Map_Features)
+#' 
+#' - Alle benannten Objekte findet man, wenn man OSM map features in eine Suchmaschine eingibt. 
 #' 
 #' - Achtung, wenn man bspw. alle Objekte mit dem Schlüssel `amenity` für eine Stadt heraussucht, bekommt man einen recht großen Datensatz
 #' 
 ## ----eval=F--------------------------------------------------------------
 ## q <- add_osm_feature (q, key = 'amenity')
-## osmdata_xml(q, '../data/Amsterdam_amenity.osm')
+## osmdata_xml(q, '../data/Ladenburg_amenity.osm')
 
 #' 
-#' ## 
 #' 
-#' - [OSM map features](https://wiki.openstreetmap.org/wiki/Map_Features#Highway)
+#' ## Was dahinter steckt
+#' 
+## ----echo=F,eval=F-------------------------------------------------------
+## dat <- sf::st_read ('../data/Ladenburg_amenity.osm',
+##                     layer = 'points',
+##                     quiet = TRUE)
+
+#' 
+#' 
+## ----eval=F,echo=F-------------------------------------------------------
+## nrow(dat)
+## ?osmdata_sf
+
+#' 
+#' ## Die Funktion `osmdata_sf`
+#' 
+#' - Die Funktion `osmdata_sf` gibt ein `osmdata` ObjeKt im `sf` Format.
+#' 
+#' 
+## ----shop_bakery---------------------------------------------------------
+library(magrittr)
+dat1 <- opq(bbox = 'Ladenburg') %>%
+    add_osm_feature(key = 'shop', value = 'bakery') %>%
+    osmdata_sf ()
+
+#' 
+## ------------------------------------------------------------------------
+unlist(lapply(dat1,nrow))
+
+#' 
+#' ## Alles in eine Karte plotten
+#' 
+#' ### [**Der Start mit dem Paket `tmap`](https://cran.r-project.org/web/packages/tmap/vignettes/tmap-getstarted.html)
+#' 
+## ----eval=F--------------------------------------------------------------
+## library(tmap)
+## tm_shape(sfc)
+## tm_bubbles(dat, size=2)
+
+#' 
+#' 
+#' 
+#' ## Beispiel Fahrradparkplätze
+#' 
+#' - [**OSM map features**](https://wiki.openstreetmap.org/wiki/Map_Features#Highway)
 #' 
 ## ----eval=F--------------------------------------------------------------
 ## q <- add_osm_feature (q, key = 'amenity',value = "bicycle_parking")
@@ -90,7 +239,7 @@ dat <- sf::st_read ('../data/Amsterdam_amenity_bicycle_parking.osm',
                     quiet = TRUE)
 
 #' 
-#' ## 
+#' ## Die Daten plotten
 #' 
 ## ------------------------------------------------------------------------
 library(tmap)
@@ -106,12 +255,6 @@ qtm(dat)
 ##                     layer = 'points',
 ##                     quiet = TRUE)
 
-#' 
-#' 
-#' 
-#' 
-#' 
-#' 
 #' 
 ## ----eval=F--------------------------------------------------------------
 ## nrow(dat)
@@ -130,9 +273,9 @@ qtm(dat)
 ## osmdata_xml (q, 'data/Mannheim_bar.osm')
 
 #' 
-## ------------------------------------------------------------------------
-dat_bar <- sf::st_read ('../data/Mannheim_bar.osm', 
-                        layer = 'points', quiet = TRUE)
+## ----eval=F--------------------------------------------------------------
+## dat_bar <- sf::st_read ('../data/Mannheim_bar.osm',
+##                         layer = 'points', quiet = TRUE)
 
 #' 
 #' ## Bus stations in Amsterdam
@@ -144,10 +287,10 @@ dat_bar <- sf::st_read ('../data/Mannheim_bar.osm',
 ## osmdata_xml (q, 'data/Amsterdam_bus_station.osm')
 
 #' 
-## ------------------------------------------------------------------------
-dat_bus <- sf::st_read ('../data/Amsterdam_bus_station.osm', 
-                        layer = 'points', quiet = TRUE)
-nrow(dat_bus)
+## ----eval=F--------------------------------------------------------------
+## dat_bus <- sf::st_read ('../data/Amsterdam_bus_station.osm',
+##                         layer = 'points', quiet = TRUE)
+## nrow(dat_bus)
 
 #' 
 ## ----eval=F--------------------------------------------------------------
@@ -167,10 +310,10 @@ nrow(dat_bus)
 ## osmdata_xml (q, '../data/Amsterdam_bus_pubtrans.osm')
 
 #' 
-## ------------------------------------------------------------------------
-dat_bus <- sf::st_read ('../data/Amsterdam_bus_pubtrans.osm', 
-                        layer = 'points', quiet = TRUE)
-nrow(dat_bus)
+## ----eval=F--------------------------------------------------------------
+## dat_bus <- sf::st_read ('../data/Amsterdam_bus_pubtrans.osm',
+##                         layer = 'points', quiet = TRUE)
+## nrow(dat_bus)
 
 #' 
 #' <!--
@@ -213,8 +356,8 @@ nrow(dat_bus)
 ## save(dat3,file="../data/osf_Amsterdam_tramstop.RData")
 
 #' 
-## ----echo=F--------------------------------------------------------------
-load("../data/osf_Amsterdam_tramstop.RData")
+## ----echo=F,eval=F-------------------------------------------------------
+## load("../data/osf_Amsterdam_tramstop.RData")
 
 #' 
 #' 
@@ -225,17 +368,17 @@ library(knitr)
 # names(dat3$osm_points)
 
 #' 
-## ------------------------------------------------------------------------
-dat3$osm_points$geometry
+## ----eval=F--------------------------------------------------------------
+## dat3$osm_points$geometry
 
 #' 
 #' ## Plotting the result
 #' 
-## ----echo=F--------------------------------------------------------------
-library(ggmap)
-  # Amsterdam: 
-AMmap <- qmap("Rotterdam")
-# geocode failed with status OVER_QUERY_LIMIT, location = "Amsterdam"
+## ----echo=F,eval=F-------------------------------------------------------
+## library(ggmap)
+##   # Amsterdam:
+## AMmap <- qmap("Rotterdam")
+## # geocode failed with status OVER_QUERY_LIMIT, location = "Amsterdam"
 
 #' 
 ## ----echo=F,eval=F-------------------------------------------------------
@@ -282,7 +425,9 @@ AMmap <- qmap("Rotterdam")
 ## print_osm_map(map)
 
 #' 
+#' <!--
 #' ![](figure/tramhighway_amsterdam.pdf)
+#' -->
 #' 
 #' ## Get an overview of the available features
 #' 
@@ -315,6 +460,25 @@ set_overpass_url(api_list[api_to_use])
 #' ## Die wichtigsten Funktionen im Paket `osmdata`
 #' 
 #' 
+## ----eval=F--------------------------------------------------------------
+## # https://rdrr.io/cran/osmdata/man/osmdata_sp.html
+## ?osmdata_sp
+
+#' 
+#' 
+## ----eval=F,echo=F-------------------------------------------------------
+## library(osmdata)
+## library(osmplotr)
+## bbox <- get_bbox (c (-0.13, 51.51, -0.11, 51.52))
+## dat_B <- extract_osm_objects (key = 'building', bbox = bbox)
+
+#' 
+## ----eval=F,echo=F-------------------------------------------------------
+## bbox <- osmplotr::bbox ("Mannheim")
+## dat_B <- extract_osm_objects (key = 'building', bbox = bbox)
+
+#' 
+#' 
 #' 
 #' ## Links
 #' 
@@ -327,3 +491,37 @@ set_overpass_url(api_list[api_to_use])
 #' <!--
 #' https://cran.r-project.org/web/packages/osmdata/osmdata.pdf
 #' -->
+#' 
+#' 
+#' 
+#' - [**`osmplotr` tutorial](https://ropensci.org/tutorials/osmplotr_tutorial/)
+#' 
+#' - [**Geocomputation with R**](https://bookdown.org/robinlovelace/geocompr/)
+#' 
+#' - [**osmar - JOS**](https://www.theoj.org/joss-papers/joss.00305/10.21105.joss.00305.pdf)
+#' 
+#' 
+#' 
+#' <!--
+#' https://www.r-bloggers.com/how-to-quickly-enrich-a-map-with-natural-and-anthropic-details/
+#' https://www.maths.lancs.ac.uk/~rowlings/Teaching/UseR2012/introduction2Talk.html
+#' https://geostat-course.org/aggregator/sources/3?page=1
+#' https://gis.stackexchange.com/questions/115911/converting-osm-file-to-shapefile-or-data-frame-in-r
+#' https://forum.osm.org/viewtopic.php?id=53336
+#' https://hub.docker.com/r/robinlovelace/geocompr/
+#' 
+#' https://gis.stackexchange.com/questions/264380/getting-buildings-that-house-specific-amenities-using-r
+#' -->
+#' 
+## ----echo=F, eval=FALSE, include=FALSE, r,echo=F-------------------------
+## dat <- osmdata_sf("../data/4290854847.xml")
+## dat <- osmdata_xml("https://www.openstreetmap.org/api/0.6/node/4290854847")
+## 
+## # https://www.r-bloggers.com/r-and-the-web-for-beginners-part-ii-xml-in-r/
+## library(XML)
+## dat <- xmlParse("../data/4290854847.xml")
+## xmltop = xmlRoot(dat)
+## plantcat <- xmlSApply(xmltop, function(x) xmlSApply(x, xmlValue))
+## plantcat_df <- data.frame(t(plantcat),row.names=NULL)
+
+#' 
