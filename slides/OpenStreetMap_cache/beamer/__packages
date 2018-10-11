@@ -3,3 +3,5 @@ knitr
 XML
 xml2
 rvest
+DBI
+RPostgreSQL

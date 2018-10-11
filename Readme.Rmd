@@ -29,7 +29,7 @@ coursepath <-"https://github.com/Japhilko/geocourse/blob/master/"
 ```
 
 ```{r,echo=F,eval=orlinks}
-coursepath <-"https://github.com/Japhilko/geocourse/blob/master/"
+coursepath <-""
 ```
 
 

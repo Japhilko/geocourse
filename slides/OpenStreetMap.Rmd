@@ -124,10 +124,10 @@ https://filehippo.com/de/download_postgresql/
 http://www.postgresqltutorial.com/what-is-postgresql/
 -->
 
-## pgAdmin III
+## pgAdmin
 
-- Sehr empfehlenswert: Arbeiten mit pgAdmin III
-- Beispiel: um Verknüpfung zu einer Datenbank herzustellen - Doppelklick auf den Server in pgAdmin III
+- Sehr empfehlenswert: Arbeiten mit [**pgAdmin**](https://www.pgadmin.org/)
+- Beispiel: um Verknüpfung zu einer Datenbank herzustellen - Doppelklick auf den Server in pgAdmin
 
 
 ## PostGIS für PostgreSQL
@@ -154,6 +154,17 @@ CREATE EXTENSION postgis;
 osm2pgsql -c -d osmBerlin --slim -C  -k  berlin-latest.osm.pbf
 ```
 
+## Verbindung zwischen R und Postrgesql
+
+```{r,eval=F}
+install.packages("RPostgreSQL")
+```
+
+```{r}
+library("RPostgreSQL")
+```
+
+- [**Github Verzeichnis**](https://github.com/tomoakin/RPostgreSQL) zum Paket
 ## Nutze bspw. [QGIS](http://www.qgis.org/de/site/) um Shapefiles zu extrahieren
 
 - [Plugin OpenLayers](http://www.qgistutorials.com/de/docs/downloading_osm_data.html)
