@@ -122,6 +122,8 @@
 Projekt}
 \protect\hypertarget{openstreetmap-projekt}{}
 
+\begin{block}{\url{http://www.openstreetmap.de/}}
+
 \begin{quote}
 OpenStreetMap.org ist ein im Jahre 2004 gegründetes internationales
 Projekt mit dem Ziel, eine freie Weltkarte zu erschaffen. Dafür sammeln
@@ -129,28 +131,24 @@ wir weltweit Daten über Straßen, Eisenbahnen, Flüsse, Wälder, Häuser und
 vieles mehr.
 \end{quote}
 
-\url{http://www.openstreetmap.de/}
+\end{block}
 
 \end{frame}
 
 \begin{frame}{OpenStreetMap}
 \protect\hypertarget{openstreetmap}{}
 
+\begin{block}{\href{https://en.wikipedia.org/wiki/OpenStreetMap}{\textbf{Wikipedia
+- OpenStreetMap}}}
+
 \begin{quote}
 OpenStreetMap (OSM) ist ein kollaboratives Projekt um eine editierbare
 Weltkarte zu erzeugen.
 \end{quote}
 
-\href{https://en.wikipedia.org/wiki/OpenStreetMap}{\textbf{Wikipedia -
-OpenStreetMap}}
+\includegraphics{figure/overview_osm.PNG}
 
-\end{frame}
-
-\begin{frame}{\href{http://wiki.openstreetmap.org/wiki/DE:Map_Features}{OSM
-Map Features}}
-\protect\hypertarget{osm-map-features}{}
-
-\includegraphics{figure/osm_mapfeatures.png}
+\end{block}
 
 \end{frame}
 
@@ -162,51 +160,154 @@ Tags}}
 
 \end{frame}
 
+\begin{frame}{\href{http://wiki.openstreetmap.org/wiki/DE:Map_Features}{OSM
+Map Features}}
+\protect\hypertarget{osm-map-features}{}
+
+\includegraphics{figure/osm_mapfeatures.png}
+
+\end{frame}
+
 \begin{frame}{Objekttypen in OSM}
 \protect\hypertarget{objekttypen-in-osm}{}
 
+\begin{block}{Es gibt prinipiell drei verschiedene Objekttypen:}
+
 \begin{itemize}
+\tightlist
 \item
-  Es gibt prinipiell drei verschiedene Objekttypen:
+  nodes (points),
 \item
+  ways (polygons and polylines)
+\item
+  relations (logical grouping of all three object types to express
+  real-world geographical relationships)
 \end{itemize}
+
+Hippolyte Pruvost and Peter Mooney: Exploring Data Model Relations in
+OpenStreetMap
+
+\end{block}
 
 \end{frame}
 
-\begin{frame}{Download von OpenStreetMap Daten}
-\protect\hypertarget{download-von-openstreetmap-daten}{}
+\begin{frame}{OpenStreetMap objects}
+\protect\hypertarget{openstreetmap-objects}{}
+
+\begin{block}{\href{https://www.slideshare.net/mvexel/openstreetmap-9819440}{\textbf{Martijn
+van Exel}}}
 
 \begin{itemize}
+\tightlist
 \item
-  \url{https://mapzen.com/} - Ausschnitte von OpenStreetMap für einzelne
-  Städte (\href{https://mapzen.com/data/metro-extracts/}{metro
-  extracts})
-\item
-  Über Geofabrik lassen sich aktuelle Ausschnitte (auch Shapefiles)
-  herunterladen (\url{http://download.geofabrik.de/})
-\item
-  Kartendaten (\href{http://www.openaprs.net/}{\textbf{openaprs}})
+  nodes and ways
 \end{itemize}
+
+\includegraphics{figure/Nodes_ways.PNG}
+
+\end{block}
 
 \end{frame}
 
-\begin{frame}[fragile]{Bei großen Datenmengen}
-\protect\hypertarget{bei-groen-datenmengen}{}
+\begin{frame}{OpenStreetMap objects}
+\protect\hypertarget{openstreetmap-objects-1}{}
+
+\begin{block}{Relations}
+
+\includegraphics{figure/relations.PNG}
+
+\end{block}
+
+\end{frame}
+
+\begin{frame}{Download von OpenStreetMap Daten -
+\href{https://mapzen.com/}{Metro extracts}}
+\protect\hypertarget{download-von-openstreetmap-daten---metro-extracts}{}
 
 \begin{itemize}
+\tightlist
 \item
-  Hier geht es nur um das Herunterladen kleiner Ausschnitte.
+  Ausschnitte von OpenStreetMap für einzelne Städte
+  (\href{https://mapzen.com/data/metro-extracts/}{\textbf{metro
+  extracts}})
+\end{itemize}
+
+\includegraphics{figure/metroextracts.png}
+
+\end{frame}
+
+\begin{frame}{Download von OpenStreetMap Daten - Geofabrik}
+\protect\hypertarget{download-von-openstreetmap-daten---geofabrik}{}
+
+\begin{block}{Geofabrik}
+
+\begin{itemize}
+\tightlist
+\item
+  Über \href{http://download.geofabrik.de/}{\textbf{Geofabrik}} lassen
+  sich aktuelle Ausschnitte (auch Shapefiles) herunterladen
+\end{itemize}
+
+\includegraphics{figure/Geofabrik.PNG}
+
+\end{block}
+
+\end{frame}
+
+\begin{frame}{Download von OpenStreetMap Daten - openaprs}
+\protect\hypertarget{download-von-openstreetmap-daten---openaprs}{}
+
+\begin{block}{Kartendaten
+(\href{http://www.openaprs.net/}{\textbf{openaprs}})}
+
+\includegraphics{figure/openaprs.PNG}
+
+\end{block}
+
+\end{frame}
+
+\begin{frame}{OSM Planet file}
+\protect\hypertarget{osm-planet-file}{}
+
+\begin{block}{Datenbanklösungen}
+
+\begin{itemize}
+\tightlist
+\item
+  Bei den eben vorgestellten Möglichkeiten geht es vor allem um das
+  Herunterladen kleiner Ausschnitte.
 \item
   Wenn größere Datenmengen benötigt werden, sollte man eine
-  Datenbanklösung finden.
+  Datenbanklösung nutzen.
 \item
-  \href{http://www.postgresql.org/}{PostgreSQL} hat den Vorteil, dass es
-  Open-Source ist.
+  \href{http://www.postgresql.org/}{\textbf{PostgreSQL}} hat den
+  Vorteil, dass es Open-Source ist.
+\end{itemize}
+
+\end{block}
+
+\end{frame}
+
+\begin{frame}{\href{http://www.postgresql.org/download/windows/}{Download
+PostreSQL}}
+\protect\hypertarget{download-postresql}{}
+
+\begin{itemize}
+\tightlist
 \item
-  \href{http://www.postgresql.org/download/windows/}{Download PostreSQL}
-\item
-  \href{https://datashenanigan.wordpress.com/2015/05/18/getting-started-with-postgresql-in-r/}{Hier}
+  \href{https://datashenanigan.wordpress.com/2015/05/18/getting-started-with-postgresql-in-r/}{\textbf{Hier}}
   ist eine Einführung in PostgreSQL zu finden
+\end{itemize}
+
+\includegraphics{figure/aquadatastudio_postgresql_visual_table_editing.png}
+
+\end{frame}
+
+\begin{frame}{pgAdmin III}
+\protect\hypertarget{pgadmin-iii}{}
+
+\begin{itemize}
+\tightlist
 \item
   Sehr empfehlenswert: Arbeiten mit pgAdmin III
 \item
@@ -214,7 +315,10 @@ Tags}}
   auf den Server in pgAdmin III
 \end{itemize}
 
-\begin{block}{PostGIS für PostgreSQL}
+\end{frame}
+
+\begin{frame}[fragile]{PostGIS für PostgreSQL}
+\protect\hypertarget{postgis-fur-postgresql}{}
 
 \begin{itemize}
 \tightlist
@@ -227,7 +331,7 @@ Tags}}
 CREATE EXTENSION postgis;
 \end{verbatim}
 
-\end{block}
+\includegraphics{figure/PostGIS_logo.png}
 
 \end{frame}
 

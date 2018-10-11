@@ -1,127 +1,90 @@
----
-title: "Das `ggmap` Paket"
-author: "Jan-Philipp Kolb"
-date: "22 Oktober 2018"
-output:
-  slidy_presentation: 
-    keep_md: yes
-  beamer_presentation:
-    colortheme: beaver
-    fonttheme: structurebold
-    highlight: tango
-    fig_caption: no
-    keep_tex: yes
-    theme: CambridgeUS
----
+Inhalt dieses Abschnitts
+------------------------
 
+Arten von rÃ¤umlichen Daten:
 
+-   [**StraÃŸenkarten**](https://www.nceas.ucsb.edu/~frazier/RSpatialGuides/ggmap/ggmapCheatsheet.pdf)
+-   [**Satelliten Bilder**](http://www.mostlymuppet.com/tag/maps/)
+-   [**Physische Daten und
+    Karten**](http://gis.stackexchange.com/questions/3083/what-makes-a-map-beautiful/45518#45518)
+-   [**Abstrakte
+    Karten**](http://www.designfaves.com/2014/03/abstracted-maps-reveal-cities-personalities)
+-   …
 
+Das R-paket
+[**`ggmap`**](http://journal.r-project.org/archive/2013-1/kahle-wickham.pdf)
+wird im folgenden genutzt um verschiedene Kartentypen darzustellen.
 
+Mit [**`qmap`**](http://www.inside-r.org/packages/cran/ggmap/docs/qmap)
+kann man eine schnelle Karte erzeugen.
 
+Installieren des Paketes
+------------------------
 
+-   Zur Erstellung der Karten brauchen wir das Paket `ggmap`:
 
-## Inhalt dieses Abschnitts
+<!-- -->
 
-Arten von räumlichen Daten: 
+    devtools::install_github("dkahle/ggmap")
+    devtools::install_github("hadley/ggplot2")
+    install.packages("ggmap")
 
-- [**Straßenkarten**](https://www.nceas.ucsb.edu/~frazier/RSpatialGuides/ggmap/ggmapCheatsheet.pdf) 
-- [**Satelliten Bilder**](http://www.mostlymuppet.com/tag/maps/)
-- [**Physische Daten und Karten**](http://gis.stackexchange.com/questions/3083/what-makes-a-map-beautiful/45518#45518)
-- [**Abstrakte Karten**](http://www.designfaves.com/2014/03/abstracted-maps-reveal-cities-personalities)
-- ...
+Paket ggmap - Hallo Welt
+------------------------
 
-Das R-paket [**`ggmap`**](http://journal.r-project.org/archive/2013-1/kahle-wickham.pdf) wird im folgenden genutzt um verschiedene Kartentypen darzustellen.
+-   Um das Paket zu laden verwenden wir den Befehl `library`
 
-Mit [**`qmap`**](http://www.inside-r.org/packages/cran/ggmap/docs/qmap) kann man eine schnelle Karte erzeugen.
+<!-- -->
 
-## Installieren des Paketes
-
-- Zur Erstellung der Karten brauchen wir das Paket `ggmap`:
-
-
-```r
-devtools::install_github("dkahle/ggmap")
-devtools::install_github("hadley/ggplot2")
-install.packages("ggmap")
-```
-
-## Paket ggmap - Hallo Welt
-
-- Um das Paket zu laden verwenden wir den Befehl `library`
-
-
-```r
-library(ggmap)
-```
+    library(ggmap)
 
 Und schon kann die erste Karte erstellt werden:
 
-
-```r
-qmap("Mannheim")
-```
-
-
-
+    qmap("Mannheim")
 
 ![](figure/Mannheim_ggmap.pdf)
 
-## Karte für eine Sehenswürdigkeit
+Karte fÃ¼r eine SehenswÃ¼rdigkeit
+---------------------------------
 
-
-```r
-qmap("Berlin Brandenburger Tor")
-```
-
-
-
-
-
+    qmap("Berlin Brandenburger Tor")
 
 ![](figure/BBT_ggmap.pdf)
 
-## Karte für einen ganzen Staat
+Karte fÃ¼r einen ganzen Staat
+-----------------------------
 
+    qmap("Germany")
 
-```r
-qmap("Germany")
-```
-
-
-
-- Wir brauchen ein anderes *zoom level*
+-   Wir brauchen ein anderes *zoom level*
 
 ![](figure/germany.pdf)
 
+Ein anderes *zoom level*
+------------------------
 
-## Ein anderes *zoom level*
+-   level 3 - Kontinent / level 10 - Stadt / level 21 - GebÃ¤ude
 
-- level 3 - Kontinent / level 10 - Stadt / level 21 - Gebäude
+<!-- -->
 
+    qmap("England", zoom = 6)
 
-```r
-qmap("Germany", zoom = 6)
-```
+![](figure/EnglandMap.PNG)
 
+Hilfe bekommen wir mit dem Fragezeichen
+---------------------------------------
 
-
-
-## Hilfe bekommen wir mit dem Fragezeichen
-
-
-```r
-?qmap
-```
+    ?qmap
 
 Verschiedene Abschnitte in der Hilfe:
 
-- Description
-- Usage
-- Arguments
-- Value
-- Author(s)
-- See Also
-- Examples
+-   Description
+-   Usage
+-   Arguments
+-   Value
+-   Author(s)
+-   See Also
+-   Examples
 
 <!--
 ## Ein anderes *zoom level*
@@ -135,48 +98,43 @@ qmap("Hamburg", zoom = 12)
 
 ![](figure/ham_map_z12.pdf)
 -->
+Ganz nah dran
+-------------
 
-## Ganz nah dran
-
-
-```r
-qmap('Mannheim', zoom = 20)
-```
-
-
+    qmap('Mannheim', zoom = 20)
 
 ![](figure/ham_map_z20.pdf)
 
+`ggmap` - maptype satellite
+---------------------------
 
-## `ggmap` - maptype satellite
-
-
-```r
-qmap('Hamburg', zoom = 14, maptype="satellite")
-```
-
-
+    qmap('Hamburg', zoom = 14, maptype="satellite")
 
 ![](figure/ham_map_sat.pdf)
 
+`ggmap` - maptype satellite zoom 20
+-----------------------------------
 
-## `ggmap` - maptype satellite zoom 20
-
-
-```r
-qmap('Hamburg', zoom = 20, maptype="hybrid")
-```
-
-
+    qmap('Hamburg', zoom = 20, maptype="hybrid")
 
 ![](figure/ham_map.pdf)
 
+Terrain/physical maps
+---------------------
 
-## Terrain/physical maps
+-   Aus Physischen Karten kann man Informationen Ã¼ber Berge, FlÃ¼sse
+    und Seen ablesen.
 
-- Aus Physischen Karten kann man Informationen über Berge, Flüsse und Seen ablesen. 
+-   Farben werden oft genutzt um HÃ¶henunterschiede zu visualisieren
 
-- Farben werden oft genutzt um Höhenunterschiede zu visualisieren
+<!-- -->
+
+    qmap('Arequipa', maptype="terrain")
+
+Eine physische Karte von Arequipa
+---------------------------------
+
+![](figure/Areqipa.pdf)
 
 <!--
 ### `ggmap` - terrain map
@@ -188,34 +146,31 @@ qmap('Donnersberg', zoom = 14, maptype="terrain")
 
 
 -->
-
-
 <!--
 
 -->
 <!--
 ![](figure/Schriesheim.pdf)
 -->
-
-## Abstrahierte Karten ([http://www.designfaves.com](http://www.designfaves.com/2014/03/abstracted-maps-reveal-cities-personalities))
-
+Abstrahierte Karten ([http://www.designfaves.com](http://www.designfaves.com/2014/03/abstracted-maps-reveal-cities-personalities))
+----------------------------------------------------------------------------------------------------------------------------------
 
 ![New York](figure/NYabstracted.jpg)
 
+-   Abstraktion wird genutzt um nur die essentiellen Informationen einer
+    Karte zu zeigen.
 
-- Abstraktion wird genutzt um nur die essentiellen Informationen einer Karte zu zeigen. 
+-   Bsp. U-Bahn Karten - wichtig sind Richtungen und wenig Infos zur
+    Orientierung
 
-- Bsp. U-Bahn Karten - wichtig sind Richtungen und wenig Infos zur Orientierung
+-   Im folgenden werden Karten vorgestellt, die sich gut als
+    Hintergrundkarten eignen.
 
-- Im folgenden werden Karten vorgestellt, die sich gut als Hintergrundkarten eignen.
+ggmap - maptype watercolor
+--------------------------
 
-## ggmap - maptype watercolor
-
-
-```r
-qmap('Los Angeles', zoom = 14,
- maptype="watercolor",source="stamen")
-```
+    qmap('Los Angeles', zoom = 14,
+     maptype="watercolor",source="stamen")
 
 ![](figure/lastamen.png)
 
@@ -254,25 +209,24 @@ qmap('Mannheim', zoom = 14,
  maptype="terrain-lines",source="stamen")
 ```
 -->
-
-## Graphiken speichern
+Graphiken speichern
+-------------------
 
 ![RstudioExport](figure/RstudioExport.PNG)
 
+ggmap - ein Objekt erzeugen
+---------------------------
 
-## ggmap - ein Objekt erzeugen
+-   `<-` ist der Zuweisungspfeil um ein Objekt zu erzeugen
+-   Dieses Vorgehen macht bspw. Sinn, wenn mehrere Karten nebeneinander
+    gebraucht werden.
 
-- `<-` ist der Zuweisungspfeil um ein Objekt zu erzeugen
-- Dieses Vorgehen macht bspw. Sinn, wenn mehrere Karten nebeneinander gebraucht werden.
+<!-- -->
 
-
-```r
-MA_map <- qmap('Mannheim', 
-               zoom = 14,
-               maptype="toner",
-               source="stamen")
-```
-
+    MA_map <- qmap('Mannheim', 
+                   zoom = 14,
+                   maptype="toner",
+                   source="stamen")
 
 <!--
 ## 
@@ -295,44 +249,37 @@ triermap <- qmap(location = "Trier", zoom = 14,scale=2)
 
 
 -->
+[Eine Karte fÃ¼r die USA](https://blog.dominodatalab.com/geographic-visualization-with-rs-ggmaps/)
+--------------------------------------------------------------------------------------------------
 
-## [Eine Karte für die USA](https://blog.dominodatalab.com/geographic-visualization-with-rs-ggmaps/)
+-   Mit dem Befehl `OSM_scale_lookup` bekommt man heraus, welchen Wert
+    man fÃ¼r `scale` angeben muss.
 
+<!-- -->
 
-```r
-usa_center = as.numeric(geocode("United States"))
-USAMap = ggmap(get_googlemap(center=usa_center, scale=2, zoom=4), extent="normal")
-USAMap
-```
+    OSM_scale_lookup(zoom = 10)
+    qmap(location = "Trier", zoom = 10, source = "osm",
+         scale=575000)
 
+Cheatsheet
+----------
 
-
-
-```r
-OSM_scale_lookup(zoom = 10)
-qmap(location = "Trier", zoom = 10, source = "osm",scale=575000)
-```
-
-
-## Cheatsheet
-
-- Cheatsheet zu [data visualisation](https://www.rstudio.com/wp-content/uploads/2015/04/ggplot2-cheatsheet.pdf)
+-   Cheatsheet zu [data
+    visualisation](https://www.rstudio.com/wp-content/uploads/2015/04/ggplot2-cheatsheet.pdf)
 
 <https://www.rstudio.com/>
 
 ![Cheatsheet](figure/ggplot2-cheatsheet.png)
 
+Resourcen und Literatur
+-----------------------
 
-## Resourcen und Literatur
+-   Artikel von [**David Kahle und Hadley
+    Wickham**](http://journal.r-project.org/archive/2013-1/kahle-wickham.pdf)
+    zur Nutzung von `ggmap`.
 
+-   [**Schnell eine Karte
+    bekommen**](http://rpackages.ianhowson.com/cran/ggmap/man/get_map.html)
 
-- Artikel von [**David Kahle und Hadley Wickham**](http://journal.r-project.org/archive/2013-1/kahle-wickham.pdf) zur Nutzung von `ggmap`.
-
-
-- [**Schnell eine Karte bekommen** ](http://rpackages.ianhowson.com/cran/ggmap/man/get_map.html)
-
-
-- [**Karten machen mit R**](http://www.kevjohnson.org/making-maps-in-r-part-2/)
-
-
-
+-   [**Karten machen mit
+    R**](http://www.kevjohnson.org/making-maps-in-r-part-2/)
