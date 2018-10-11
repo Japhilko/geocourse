@@ -20,9 +20,7 @@ Dieser Workshop beschäftigt sich mit der Erfassung und Verarbeitung von räumli
 
 ### __(A1) Einleitung__ 
 
-- Was ist das Ziel dieses Kurses. 
-- Welche Datenquellen werden wir verwenden.
-- [Github](slides/Intro.md) | [pdf](slides/Intro.pdf) 
+- Was ist das Ziel dieses Kurses und welche Datenquellen werden wir verwenden () [Github](slides/Intro.md) | [pdf](slides/Intro.pdf)) 
 - [Regionale Information](http://rpubs.com/Japhilko82/mapFirenze)
 
 ### __(A2) Das Paket [`ggmap`](http://journal.r-project.org/archive/2013-1/kahle-wickham.pdf)__ zur Erzeugung verschiedener Kartentypen. 
@@ -54,6 +52,15 @@ Dieser Workshop beschäftigt sich mit der Erfassung und Verarbeitung von räumli
 
 - Aufgabe: [Deutschlands Gemeinden](https://github.com/Japhilko/GeoData/blob/master/2016/tutorial/Aufgabe_Zensus_Ergebnisse.md)
 
+### __(A6) Das R-Paket `spdep` - Nachbarschaft und Distanz__ 
+
+- [Browser](slides/spdep.md) | [pdf](slides/spdep.pdf) |
+[rcode](https://raw.githubusercontent.com/Japhilko/GeoData/master/2016/rcode/slidesH1_spdep.R)
+- Aufgabe: [Distanzberechnung](https://github.com/Japhilko/GeoData/blob/master/2016/tutorial/Aufgabe_Distanzberechnung.Rmd)
+
+### __(A7) Rasterdaten importieren und verarbeiten__
+
+- [](slides/Rasterdaten.Rmd)
 
 ## __(B) Das OpenStreetMap Projekt und komplexere Schritte__
 
@@ -99,13 +106,7 @@ Dieser Workshop beschäftigt sich mit der Erfassung und Verarbeitung von räumli
 ## Räumliche Analysen/Statistik
 -->
 
-### __(B4) Das R-Paket `spdep` - Nachbarschaft und Distanz__ 
+### __(B4) Simple Features__ 
 
-- [Browser](slides/spdep.md) | [pdf](slides/spdep.pdf) |
-[rcode](https://raw.githubusercontent.com/Japhilko/GeoData/master/2016/rcode/slidesH1_spdep.R)
-- Aufgabe: [Distanzberechnung](https://github.com/Japhilko/GeoData/blob/master/2016/tutorial/Aufgabe_Distanzberechnung.Rmd)
-
-### __(B5) Simple Features__ 
-
-- [Github](slides/simple_features.md) | [pdf](slides/simple_features.pdf)
-| [rcode](rcode/simple_features.R)
+- [Github](slides/simplefeatures.md) | [pdf](slides/simplefeatures.pdf)
+| [rcode](rcode/simplefeatures.R)

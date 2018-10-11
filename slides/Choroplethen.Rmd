@@ -13,7 +13,7 @@ output:
   slidy_presentation: default
 ---
 
-```{r setup, include=FALSE}
+```{r setup_ch, include=FALSE}
 knitr::opts_chunk$set(message=F,warning=F,cache=T,fig.height=4)
 library(knitr)
 sol <- F

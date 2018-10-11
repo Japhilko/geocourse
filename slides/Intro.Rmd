@@ -16,7 +16,7 @@ output:
 ---
 
 
-```{r setup, include=FALSE}
+```{r setupIntro, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE,message=F,warning=F,cache=T)
 ```
 
@@ -71,23 +71,36 @@ Andererseits neue Entwicklungen in R vorstellen
 ### Vorgestellt werden:
 
 - Möglichkeiten für den Download, den Import, die Verarbeitung und die Visualisierung von Geodaten 
-
 <!--
 Die Daten auf OSM werden unter der Open Database License (ODbL) 1.0 freigegeben. Das ermöglicht eine Mehrfachverwendung der Daten \citep{schmidt2013extraction}. Die Studie von \cite{barrington2017world} zeigt, dass die Datenqualität von OSM in vielen Ländern bereits ausreichend ist, um sie für wissenschaftliche und analytische Zwecke zu nutzen.
 Siehe zum Beispiel das Projekt Simulation of Urban MObility (SUMO) (\citealt{behrisch2011sumo}). Viel mehr Forschung, die in verschiedenen Ländern durchgeführt wird, ist unter \cite{wiki:research} aufgeführt.
 -->
 
+- Quellen für Geodaten
+
 - Die wichtigsten Programmierschnittstellen (APIs) um die Daten zu bekommen
 
 - R-Pakete um diese Daten zu verarbeiten und zu visualisieren
 
-
 ## Motivation
 
-- Sekundäranalyse für bestehenden Daten 
+### Motivation allgemein
+
 - Raumbezug herstellen/nutzen
+- Sekundäranalyse für bestehenden Daten 
 - Analysepotentiale der Geokodierung vorstellen
 - Verbindung von sozial- mit raumwissenschaftlichen Daten
+
+
+### Motivation - Warum die Darstellung in Karten
+
+- Darstellung in Karten ermöglicht besseres Verständnis von sozialwissenschaftlichen Phänomene - Attraktiver Output
+
+- Durch die INSPIRE Richtlinie und *Collaborative Mapping* wächst der verfügbare Bestand an Geodaten.
+
+- Daten sind oft frei verfügbar im Internet (z.B. Nutzung von APIs)
+- Die Daten sind oft wenig oder gar nicht strukturiert, heterogen und oft nicht zur räumlichen Visualisierung vorgesehen, beinhalten aber implizit  geographische Informationen (Web 2.0)
+- Oftmals sind wenig oder keine Metadaten vorhanden
 
 ## [Laws of Spatial Sience](http://de.slideshare.net/rheimann04/big-social-data-the-spatial-turn-in-big-data)
 
@@ -172,19 +185,6 @@ Gemeinde in Oberfranken
 
 ![](http://mappinglondon.co.uk/wp-content/uploads/2011/11/surnames1.png)
 -->
-
-## Motivation - Warum die Darstellung in Karten
-
-- Darstellung in Karten ermöglicht besseres Verständnis bspw. sozialwissenschaftlicher Phänomene.
-
-- Attraktiver Output
-
-- Durch die INSPIRE Richtlinie und *Collaborative Mapping* wächst der verfügbare Bestand an Geodaten.
-
-- Daten sind oft frei verfügbar im Internet (z.B. durch die Nutzung von APIs)
-- Die Daten sind allerdings oft wenig oder gar nicht strukturiert (z.B. Internet Dokumente), heterogen und
-- meistens nicht für die Nutzung zur räumlichen Visualisierung vorgesehen, beinhalten aber implizit  geographische Informationen (Web 2.0)
-- Oftmals sind wenig oder keine Metadaten vorhanden
 
 <!--
 ## Übersicht - [warum R](http://www.edureka.co/)

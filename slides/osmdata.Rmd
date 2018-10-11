@@ -12,7 +12,7 @@ output:
   slidy_presentation: default
 ---
 
-```{r, include=FALSE}
+```{r steup_osmdata, include=FALSE}
 knitr::opts_chunk$set(echo = T,cache=T,eval=T,message=F,warning=F,fig.height=4)
 Ex <- T
 ```
@@ -513,7 +513,7 @@ https://hub.docker.com/r/robinlovelace/geocompr/
 https://gis.stackexchange.com/questions/264380/getting-buildings-that-house-specific-amenities-using-r
 -->
 
-```{r,echo=F eval=FALSE, include=FALSE, r,echo=F}
+```{r,echo=F, eval=FALSE, include=FALSE, r,echo=F}
 dat <- osmdata_sf("../data/4290854847.xml")
 dat <- osmdata_xml("https://www.openstreetmap.org/api/0.6/node/4290854847")
 

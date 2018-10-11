@@ -13,7 +13,7 @@ output:
   slidy_presentation: default
 ---
 
-```{r setup, include=FALSE}
+```{r setup_mainosmapi, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(knitr)
 Ex <- T

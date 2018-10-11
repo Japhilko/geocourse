@@ -13,7 +13,7 @@ output:
   slidy_presentation: default
 ---
 
-```{r setup, include=FALSE}
+```{r setup_shapefiles, include=FALSE}
 knitr::opts_chunk$set(echo = T,cache=T,fig.height=4)
 library(knitr)
 GESIS <- T
@@ -61,7 +61,7 @@ die drei Dateien mit den folgenden Dateierweiterungen im gleichen Verzeichnis zu
 
 ## [**Vorwahlbereiche in Deutschland**](http://www.bundesnetzagentur.de/SharedDocs/Downloads/DE/Sachgebiete/Telekommunikation/Unternehmen_Institutionen/Nummerierung/Rufnummern/ONVerzeichnisse/ONBGrenzen/ONB_Grenzen.html)
 
-### <www.bundesnetzagentur.de/>
+### www.bundesnetzagentur.de
 
 ```{r,echo=F}
 geodata_path <- "D:/Daten/Daten/GeoDaten/"

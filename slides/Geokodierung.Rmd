@@ -1,5 +1,5 @@
 ---
-title: "A6 - Geokodierung"
+title: "B2 - Geokodierung"
 author: "Jan-Philipp Kolb"
 date: "22 Oktober 2018"
 output:
@@ -13,7 +13,7 @@ output:
   slidy_presentation: default
 ---
 
-```{r setup, include=FALSE}
+```{r setup_geokodierung, include=FALSE}
 knitr::opts_chunk$set(echo = T,eval=T,message=F,warning=F,cache=T)
 googleEX <- F
 osmEX <- T

@@ -13,7 +13,7 @@ output:
   slidy_presentation: default
 ---
 
-```{r setup, include=FALSE}
+```{r setup_tmap, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE,warning=F,cache=T,fig.height=4)
 ```
 

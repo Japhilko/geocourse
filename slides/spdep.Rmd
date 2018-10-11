@@ -15,7 +15,7 @@ output:
 ---
 
 
-```{r setup, include=FALSE}
+```{r setup_spdep, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE,cache=T,eval=T,warning=F)
 ```
 

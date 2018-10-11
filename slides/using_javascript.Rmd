@@ -13,7 +13,7 @@ output:
   slidy_presentation: default
 ---
 
-```{r setup, include=FALSE}
+```{r setup_usingjavascript1, include=FALSE}
 knitr::opts_chunk$set(echo = T,cache=T,warning=F)
 htmlpres <- F
 library(knitr)
