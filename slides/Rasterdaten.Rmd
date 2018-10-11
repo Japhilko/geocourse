@@ -41,3 +41,10 @@ plot(usa_sf)
 
 
 ![](figure/ioermonitor.PNG)
+
+<!--
+http://www.ioer-monitor.de/indikatoren/#c1793
+https://monitor.ioer.de/frontend/data/anleitung_import_qgis.pdf
+https://monitor.ioer.de/?raeumliche_gliederung=raster&klassenanzahl=7&opacity=0.8&zoom=6&lat=51.33061163769853&lng=10.458984375000002&ind=B02DT&baselayer=webatlas&time=2011&raumgl=bld&klassifizierung=haeufigkeit&darstellung=auto&ags_array=&glaettung=0&rasterweite=0&
+http://www.ioer-monitor.de/indikatoren/#c1793
+-->

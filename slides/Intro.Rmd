@@ -310,4 +310,12 @@ Global patterns of current and future road infrastructure
 
 - [Das Paket cartography](https://cran.r-project.org/web/packages/cartography/vignettes/cartography.html)
 
+
+
+https://nowosad.github.io/post/world-pop-change/
+
+http://development-frontiers.com/tutorials/
+
+https://m.xkcd.com/2048/
+
 -->
