@@ -2,8 +2,10 @@
 title: "Geodaten downloaden und visualisieren"
 author: "Jan-Philipp Kolb"
 date: "22 Oktober 2018"
-output: 
-  html_document: 
+output:
+  ioslides_presentation: default
+  beamer_presentation: default
+  slidy_presentation:
     keep_md: yes
 ---
 
@@ -20,8 +22,8 @@ Dieser Workshop beschäftigt sich mit der Erfassung und Verarbeitung von räumli
 
 ### __(A1) Einleitung__ 
 
-- Was ist das Ziel dieses Kurses und welche Datenquellen werden wir verwenden () [Github](slides/Intro.md) | [pdf](slides/Intro.pdf)) 
-- [Regionale Information](http://rpubs.com/Japhilko82/mapFirenze)
+- Was ist das Ziel dieses Kurses und welche Datenquellen werden wir verwenden ([Github](slides/Intro.md) | [pdf](slides/Intro.pdf)) 
+- [Regionale Information](http://rpubs.com/Japhilko82/gesis_mannheim)
 
 ### __(A2) Das Paket [`ggmap`](http://journal.r-project.org/archive/2013-1/kahle-wickham.pdf)__ zur Erzeugung verschiedener Kartentypen. 
 
