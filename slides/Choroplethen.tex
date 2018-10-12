@@ -1,8 +1,4 @@
-\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
-\PassOptionsToPackage{hyphens}{url}
-%
 \documentclass[ignorenonframetext,]{beamer}
-\usepackage{pgfpages}
 \setbeamertemplate{caption}[numbered]
 \setbeamertemplate{caption label separator}{: }
 \setbeamercolor{caption name}{fg=normal text.fg}
@@ -14,9 +10,12 @@
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
-  \usepackage{textcomp} % provides euro and other symbols
 \else % if luatex or xelatex
-  \usepackage{unicode-math}
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
   \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
 \fi
 \usetheme[]{CambridgeUS}
@@ -26,23 +25,16 @@
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 % use microtype if available
 \IfFileExists{microtype.sty}{%
-\usepackage[]{microtype}
+\usepackage{microtype}
 \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
 }{}
-\IfFileExists{parskip.sty}{%
-\usepackage{parskip}
-}{% else
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{6pt plus 2pt minus 1pt}
-}
-\usepackage{hyperref}
+\newif\ifbibliography
 \hypersetup{
             pdftitle={A4 - Choroplethen - maptools und choreplethr},
             pdfauthor={Jan-Philipp Kolb},
             pdfborder={0 0 0},
             breaklinks=true}
 \urlstyle{same}  % don't use monospace font for urls
-\newif\ifbibliography
 \usepackage{color}
 \usepackage{fancyvrb}
 \newcommand{\VerbBar}{|}
@@ -52,37 +44,37 @@
 \usepackage{framed}
 \definecolor{shadecolor}{RGB}{248,248,248}
 \newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
-\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
-\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
-\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\BuiltInTok}[1]{#1}
-\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
 \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
 \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
-\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
 \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\ImportTok}[1]{#1}
-\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\NormalTok}[1]{#1}
-\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
-\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
-\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
 \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
 \usepackage{longtable,booktabs}
 \usepackage{caption}
 % These lines are needed to make table captions work with longtable:
@@ -92,55 +84,42 @@
 \usepackage{graphicx,grffile}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
-\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight0.8\textheight\else\Gin@nat@height\fi}
 \makeatother
 % Scale images if necessary, so that they will not overflow the page
 % margins by default, and it is still possible to overwrite the defaults
 % using explicit options in \includegraphics[width, height, ...]{}
 \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+
 % Prevent slide breaks in the middle of a paragraph:
 \widowpenalties 1 10000
 \raggedbottom
-\setbeamertemplate{part page}{
-\centering
-\begin{beamercolorbox}[sep=16pt,center]{part title}
-  \usebeamerfont{part title}\insertpart\par
-\end{beamercolorbox}
-}
-\setbeamertemplate{section page}{
-\centering
-\begin{beamercolorbox}[sep=12pt,center]{part title}
-  \usebeamerfont{section title}\insertsection\par
-\end{beamercolorbox}
-}
-\setbeamertemplate{subsection page}{
-\centering
-\begin{beamercolorbox}[sep=8pt,center]{part title}
-  \usebeamerfont{subsection title}\insertsubsection\par
-\end{beamercolorbox}
-}
+
 \AtBeginPart{
+  \let\insertpartnumber\relax
+  \let\partname\relax
   \frame{\partpage}
 }
 \AtBeginSection{
   \ifbibliography
   \else
+    \let\insertsectionnumber\relax
+    \let\sectionname\relax
     \frame{\sectionpage}
   \fi
 }
 \AtBeginSubsection{
+  \let\insertsubsectionnumber\relax
+  \let\subsectionname\relax
   \frame{\subsectionpage}
 }
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
 \setlength{\emergencystretch}{3em}  % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{0}
-
-% set default figure placement to htbp
-\makeatletter
-\def\fps@figure{htbp}
-\makeatother
-
 
 \title{A4 - Choroplethen - \texttt{maptools} und \texttt{choreplethr}}
 \author{Jan-Philipp Kolb}
@@ -150,7 +129,6 @@
 \frame{\titlepage}
 
 \begin{frame}[fragile]{Inhalt dieses Abschnitts}
-\protect\hypertarget{inhalt-dieses-abschnitts}{}
 
 \begin{itemize}
 \tightlist
@@ -161,7 +139,7 @@
   Es wird gezeigt, wie man Daten aus anderen Quellen mit Kartendaten
   verbinden kann.
 \item
-  Mit dieser Verbindung ist es dann mÃ¶glich thematische Karten - so
+  Mit dieser Verbindung ist es dann möglich thematische Karten - so
   genannte Choroplethen - zu erstellen
 \item
   Zudem wird das Paket \texttt{choroplethr} vorgestellt.
@@ -170,7 +148,6 @@
 \end{frame}
 
 \begin{frame}{Was ist ein Choropleth}
-\protect\hypertarget{was-ist-ein-choropleth}{}
 
 Ein Choropleth ist eine Karte, die
 
@@ -179,23 +156,22 @@ Ein Choropleth ist eine Karte, die
 \item
   geografische Grenzen zeigt.
 \item
-  bei denen Bereiche basierend auf Metriken eingefÃ¤rbt werden.
+  bei denen Bereiche basierend auf Metriken eingefärbt werden.
 \end{itemize}
 
-Choroplethen sind nÃ¼tzlich fÃ¼r die Visualisierung von Daten, wo
-geografische Grenzen eine natÃ¼rliche Einheit der Aggregation sind.
+Choroplethen sind nützlich für die Visualisierung von Daten, wo
+geografische Grenzen eine natürliche Einheit der Aggregation sind.
 
 \end{frame}
 
 \begin{frame}[fragile]{Das Paket \texttt{maptools}}
-\protect\hypertarget{das-paket-maptools}{}
 
 \begin{itemize}
 \tightlist
 \item
   Datensatz wrld\_simpl aus dem Paket \texttt{maptools}
 \item
-  Polygone fÃ¼r fast alle Staaten der Erde
+  Polygone für fast alle Staaten der Erde
 \end{itemize}
 
 \begin{Shaded}
@@ -222,7 +198,6 @@ AGO & AO & Angola & 124670 & 16095214\tabularnewline
 \end{frame}
 
 \begin{frame}[fragile]{Hallo Welt}
-\protect\hypertarget{hallo-welt}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -236,7 +211,6 @@ AGO & AO & Angola & 124670 & 16095214\tabularnewline
 
 \begin{frame}[fragile]{\href{https://datahub.io/core/gini-index\#data}{Daten
 zum Gini Index}}
-\protect\hypertarget{daten-zum-gini-index}{}
 
 \begin{itemize}
 \tightlist
@@ -244,7 +218,7 @@ zum Gini Index}}
   Daten von
   \href{https://datahub.io/core/gini-index\#data}{\textbf{datahub.io}}
 \item
-  Statistisches MaÃŸ zur Darstellung von
+  Statistisches Maß zur Darstellung von
   \href{https://de.wikipedia.org/wiki/Gini-Koeffizient}{Ungleichverteilungen}
 \end{itemize}
 
@@ -271,12 +245,11 @@ Algeria & DZA & 1988 & 40.2\tabularnewline
 \end{frame}
 
 \begin{frame}[fragile]{Der Gini Index im Jahr 2012}
-\protect\hypertarget{der-gini-index-im-jahr-2012}{}
 
 \begin{itemize}
 \tightlist
 \item
-  FÃ¼r das Jahr 2012 sind am meisten Beobachtungen vorhanden.
+  Für das Jahr 2012 sind am meisten Beobachtungen vorhanden.
 \end{itemize}
 
 \begin{Shaded}
@@ -294,7 +267,6 @@ Algeria & DZA & 1988 & 40.2\tabularnewline
 \end{frame}
 
 \begin{frame}[fragile]{Exkurs: der Befehl \texttt{match}}
-\protect\hypertarget{exkurs-der-befehl-match}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -312,7 +284,6 @@ Algeria & DZA & 1988 & 40.2\tabularnewline
 \end{frame}
 
 \begin{frame}[fragile]{Die Daten matchen}
-\protect\hypertarget{die-daten-matchen}{}
 
 \begin{itemize}
 \tightlist
@@ -329,7 +300,7 @@ Algeria & DZA & 1988 & 40.2\tabularnewline
 \begin{itemize}
 \tightlist
 \item
-  Wir nehmen die LÃ¤nder raus, fÃ¼r die keine Daten vorhanden sind:
+  Wir nehmen die Länder raus, für die keine Daten vorhanden sind:
 \end{itemize}
 
 \begin{Shaded}
@@ -365,7 +336,6 @@ Algeria & DZA & 1988 & 40.2\tabularnewline
 \end{frame}
 
 \begin{frame}[fragile]{Die Daten plotten}
-\protect\hypertarget{die-daten-plotten}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -379,7 +349,6 @@ Algeria & DZA & 1988 & 40.2\tabularnewline
 \end{frame}
 
 \begin{frame}[fragile]{Aufgabe A4A - Eine Choroplethenkarte erzeugen}
-\protect\hypertarget{aufgabe-a4a---eine-choroplethenkarte-erzeugen}{}
 
 \begin{itemize}
 \tightlist
@@ -398,7 +367,6 @@ Algeria & DZA & 1988 & 40.2\tabularnewline
 \end{frame}
 
 \begin{frame}[fragile]{Das Paket \texttt{choroplethr}}
-\protect\hypertarget{das-paket-choroplethr}{}
 
 \begin{block}{Paket von \href{http://www.arilamstein.com/}{\textbf{Ari
 Lamstein}} -
@@ -427,12 +395,11 @@ Lamstein}} -
 
 \end{frame}
 
-\begin{frame}[fragile]{BevÃ¶lkerungsschÃ¤tzungen fÃ¼r den US-Staaten}
-\protect\hypertarget{bevalkerungsschatzungen-far-den-us-staaten}{}
+\begin{frame}[fragile]{Bevölkerungsschätzungen für den US-Staaten}
 
 \texttt{df\_pop\_state} ist ein Datensatz , der in dem Paket
-\texttt{choroplethr} enthalten ist, es enthÃ¤lt SchÃ¤tzungen zu den
-US-Staaten fÃ¼r das Jahr 2012.
+\texttt{choroplethr} enthalten ist, es enthält Schätzungen zu den
+US-Staaten für das Jahr 2012.
 
 \begin{longtable}[]{@{}lr@{}}
 \toprule
@@ -453,10 +420,9 @@ colorado & 5042853\tabularnewline
 \begin{frame}[fragile]{\texttt{choroplethr} -
 \href{http://mirrors.softliste.de/cran/web/packages/choroplethr/vignettes/a-introduction.html}{Hallo
 Welt}}
-\protect\hypertarget{choroplethr---hallo-welt}{}
 
-Die Karte zeigt die US BevÃ¶lkerungsschÃ¤tzung fÃ¼r die US-Staaten und
-das Jahr 2012:
+Die Karte zeigt die US Bevölkerungsschätzung für die US-Staaten und das
+Jahr 2012:
 
 Wir bekommen eine Choroplethenkarte mit nur einem Argument:
 
@@ -468,7 +434,7 @@ Wir bekommen eine Choroplethenkarte mit nur einem Argument:
 
 \includegraphics{Choroplethen_files/figure-beamer/unnamed-chunk-20-1.pdf}
 
-Aber wir kÃ¶nnen auch einen Titel erstellen und die Legende benennen:
+Aber wir können auch einen Titel erstellen und die Legende benennen:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -482,7 +448,6 @@ Aber wir kÃ¶nnen auch einen Titel erstellen und die Legende benennen:
 
 \begin{frame}[fragile]{\href{http://mirrors.softliste.de/cran/web/packages/choroplethr/vignettes/b-state-choropleth.html}{Nur
 drei Staaten darstellen}}
-\protect\hypertarget{nur-drei-staaten-darstellen}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -498,7 +463,6 @@ drei Staaten darstellen}}
 \end{frame}
 
 \begin{frame}[fragile]{US County Chroplethen}
-\protect\hypertarget{us-county-chroplethen}{}
 
 \begin{block}{\href{http://mirrors.softliste.de/cran/web/packages/choroplethr/vignettes/c-county-choropleth.html}{Choroplethen
 der US Counties}}
@@ -525,7 +489,6 @@ der US Counties}}
 \end{frame}
 
 \begin{frame}[fragile]{Eine Karte der US Counties}
-\protect\hypertarget{eine-karte-der-us-counties}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -539,8 +502,7 @@ der US Counties}}
 \end{frame}
 
 \begin{frame}[fragile]{\href{http://mirrors.softliste.de/cran/web/packages/choroplethr/vignettes/d-country-choropleth.html}{Choroplethen
-LÃ¤nder}}
-\protect\hypertarget{choroplethen-lander}{}
+Länder}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -557,15 +519,13 @@ LÃ¤nder}}
 \end{frame}
 
 \begin{frame}{\href{http://mirrors.softliste.de/cran/web/packages/choroplethr/vignettes/d-country-choropleth.html}{Choroplethen
-LÃ¤nder}}
-\protect\hypertarget{choroplethen-lander-1}{}
+Länder}}
 
 \includegraphics{Choroplethen_files/figure-beamer/unnamed-chunk-26-1.pdf}
 
 \end{frame}
 
 \begin{frame}[fragile]{Weltbank Daten}
-\protect\hypertarget{weltbank-daten}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -581,7 +541,6 @@ LÃ¤nder}}
 \end{frame}
 
 \begin{frame}[fragile]{\href{http://mirrors.softliste.de/cran/web/packages/choroplethr/vignettes/f-world-bank-data.html}{Lebenserwartung}}
-\protect\hypertarget{lebenserwartung}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -595,7 +554,6 @@ LÃ¤nder}}
 \end{frame}
 
 \begin{frame}[fragile]{Ein weiterer Datensatz}
-\protect\hypertarget{ein-weiterer-datensatz}{}
 
 \begin{quote}
 A data.frame containing all US presdiential election results from 1789
@@ -635,7 +593,6 @@ D = Democratic; R = Republican; PR = Progressive;
 \end{frame}
 
 \begin{frame}[fragile]{Resourcen}
-\protect\hypertarget{resourcen}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -665,11 +622,10 @@ D = Democratic; R = Republican; PR = Progressive;
 \end{frame}
 
 \begin{frame}[fragile]{Resources / Links}
-\protect\hypertarget{resources-links}{}
 
 \begin{itemize}
 \item
-  \href{https://cran.r-project.org/web/packages/choroplethr/vignettes/a-introduction.html}{\textbf{EinfÃ¼hrung
+  \href{https://cran.r-project.org/web/packages/choroplethr/vignettes/a-introduction.html}{\textbf{Einführung
   - Was sind Choroplethen}}
 \item
   \href{http://radar.oreilly.com/2014/01/new-choropleth-package-in-r.html}{\textbf{Beschreibung}}
@@ -683,13 +639,13 @@ D = Democratic; R = Republican; PR = Progressive;
   in Karten darstellen}} mit \texttt{choroplethr}
 \item
   \href{http://blog.revolutionanalytics.com/2014/01/easy-data-maps-with-r-the-choroplethr-package-.html}{\textbf{Revolutions-Blog}}
-  Ã¼ber das \texttt{choroplethr} Paket
+  über das \texttt{choroplethr} Paket
 \item
   \href{http://www.trulia.com/tech/2014/01/15/the-choroplethr-package-for-r/}{\textbf{trulia}}-blog
-  Ã¼ber das \texttt{choroplethr} Paket
+  über das \texttt{choroplethr} Paket
 \item
-  \href{http://www.r-bloggers.com/slides-for-my-upcoming-talk-mapping-census-data-in-r/}{\textbf{PrÃ¤sentation
-  von Ari Lamstein}} Ã¼ber das \texttt{choroplethr} Paket
+  \href{http://www.r-bloggers.com/slides-for-my-upcoming-talk-mapping-census-data-in-r/}{\textbf{Präsentation
+  von Ari Lamstein}} über das \texttt{choroplethr} Paket
 \end{itemize}
 
 \end{frame}

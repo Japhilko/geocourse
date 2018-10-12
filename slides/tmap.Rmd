@@ -26,10 +26,10 @@ Ex <- T
 
 ## Das Paket [tmap](https://cran.r-project.org/web/packages/tmap/index.html)
 
+### Thematische Karten
 
 - Mit dem Paket [**tmap**](http://twitter.com/sharon000/status/593028906820599808/photo/1?ref_src=twsrc%5Etfw) kann man thematische Karten erzeugen
-- Die folgenden Beispiele sind auf der [**Vignette**](https://cran.r-project.org/web/packages/tmap/vignettes/tmap-nutshell.html) des Paketes basiert.
-
+- Die olgenden Beispiele basieren auf der [**Vignette**](https://cran.r-project.org/web/packages/tmap/vignettes/tmap-nutshell.html) des Paketes .
 
 ```{r,eval=F}
 install.packages("tmap")
@@ -41,16 +41,26 @@ library(tmap)
 ```
 
 
+## Der `Europe` Datensatz
+
+### Natural Earth
+
+- Datensatz enthält Informationen von  [**Natural Earth**](http://www.naturalearthdata.com/)
+
+```{r}
+data(Europe)
+```
 
 
-## Schnelle thematische Karte
+## Der Befehl `qtm` aus dem Paket `tmap`
+
+### Schnelle thematische Karte
 
 - Mit dem Befehl [**qtm**](https://cran.r-project.org/web/packages/tmap/vignettes/tmap-nutshell.html) kann man eine schnelle thematische Karte erzeugen
 
 - Beispiel aus der [**Vignette**](https://cran.r-project.org/web/packages/tmap/vignettes/tmap-nutshell.html) zum Paket `tmap`
 
 ```{r,cache=T}
-data(Europe)
 qtm(Europe)
 ```
 
@@ -64,37 +74,44 @@ EUR <- Europe@data
 
 ```{r,echo=F,eval=F}
 # http://rstudio.github.io/DT/
-datatable(Europe@data[,1:4], class = 'cell-border stripe',rownames = FALSE,
+datatable(Europe@data, class = 'cell-border stripe',rownames = FALSE,
           options = list(pageLength = 10, autoWidth = TRUE)
           )
 # to see the options http://datatables.net/reference/option/
 ```
 
+### [**Der Europa Datensatz im Paket `tmap`**](http://rpubs.com/Japhilko82/tmap_europe_dataset)
+<!--
 ```{r,echo=F}
 kable(Europe@data[1:10,1:4])
 ```
+-->
+
+![](figure/tmap_europe.PNG)
 
 ## Um mehr Farbe in die Karte zu bekommen
 
-- Visualisierung von  [**Natural Earth**](http://www.naturalearthdata.com/) Daten
+### Entwicklungsstand der Wirtschaft
 
 <!--
 <http://www.naturalearthdata.com/>
 -->
 ```{r,cache=T,eval=Ex}
-qtm(Europe, fill="gdp_cap_est")
+qtm(Europe, fill="economy")
 ```
 
 
 ## Eine Karte mit Text 
 
+### Bevölkerung
+
 ```{r,eval=Ex}
-qtm(Europe, fill="gdp_cap_est", text="iso_a3")
+qtm(Europe, fill="pop_est", text="iso_a3")
 ```
 
 ## Dieses Schema passt besser:
 
-### [**Bevölkerungsdichte**](https://en.wikipedia.org/wiki/Population_density)
+### [**GDP**](https://en.wikipedia.org/wiki/Population_density)
 
 ```{r,eval=Ex}
 qtm(Europe, fill="gdp_cap_est", text="iso_a3", 
@@ -108,7 +125,10 @@ qtm(Europe, fill="pop_est_dens",
     fill.title="Population density")
 ```
 -->
+
 ## Themen des Europa-Datensatzes
+
+### Verfügbare Variablen im Datensatz
 
 - [**ISO Klassifikation**](http://userpage.chemie.fu-berlin.de/diverse/doc/ISO_3166.html)
 - Ländername
@@ -195,17 +215,37 @@ qtm(Europe, fill="income_grp",fill.title="Income group")
 
 
 
-## Der Welt-Datensatz im Paket `tmap`
+## Zwei Karten
+
+### Bevölkerung und Entwicklungsstand
+
+```{r,eval=T}
+tm_shape(Europe) +
+    tm_fill(c("pop_est", "economy"), 
+        title=c("Population", "Economy"))
+```
+
+
+
+## Der Datensatz `World` im Paket `tmap`
+
+### [Ähnlich wie der `Europe` Datensatz nur für die ganze Welt](http://rpubs.com/Japhilko82/tmap_World)
 
 ```{r,echo=F,eval=F}
 data(World)
 datatable(World@data)
 ```
 
-```{r,echo=F,eval=T}
+```{r,echo=F,eval=F}
 data(World)
 kable(World@data[1:15,])
 ```
+
+```{r}
+data(World)
+```
+
+![](figure/tmap_world.PNG)
 
 
 ## Welt - Länder nach Einkommensgruppe
@@ -240,54 +280,12 @@ kable(head(NLD_df))
 qtm(NLD_prov, fill="population",fill.title="population") 
 ```
 
-## Anteile berechnen
-
-```{r,cache=T}
-pop <- NLD_prov@data$population
-pop
-```
-
-```{r,cache=T}
-popmen <- NLD_prov@data$pop_men
-popmen
-```
-
-
-```{r,cache=T}
-prop <- popmen/pop
-prop
-```
-
-## Exkurs: Barplot vom Männeranteil
-
-```{r,cache=T,eval=F}
-barplot(prop)
-```
-
-### Barplot mit Farbe
-
-```{r,warnings=F,cache=T}
-barplot(prop,col="blue")
-```
-
-## Niederlnade - Anteil Männer
-
-Information in Datensatz einspeisen
-
-```{r,cache=T}
-NLD_prov@data$proportion <- prop
-```
-
-```{r,cache=T}
-qtm(NLD_prov, fill="proportion",fill.title="proportion") 
-```
-
 <!--
 ## Niederlande - Anteil der Personen 65 plus
 
 (kleiner Trick notwendig - Die Daten hatten sich verändert)
 
-```{r,cache=T}
+```{r,cache=T,eval=F}
 ant <- runif(length(NLD_prov),.18,.28)
 NLD_prov@data$pop_65plus <- 
   round(NLD_prov@data$population*ant)
@@ -298,7 +296,7 @@ NLD_prov@data$proportion65plus <- prop65plus
 
 ## Den Anteil der über 65-jährigen visualisieren
 
-```{r,cache=T}
+```{r,cache=T,eval=F}
 qtm(NLD_prov, fill="proportion",fill.title="proportion") 
 ```
 
@@ -331,16 +329,6 @@ kable(NLD_df[,c("name","province","population")])
 
 ```{r,cache=T}
 qtm(NLD_muni, fill="population") 
-```
-
-
-
-## Zwei Karten
-
-```{r,eval=T}
-tm_shape(Europe) +
-    tm_fill(c("pop_est", "economy"), 
-        title=c("Population", "Economy"))
 ```
 
 
@@ -379,23 +367,29 @@ tm_shape(land,  relative=FALSE) +
 
 ## Räumliche Daten zu Metropolregionen
 
+
+### [UN - World Urbanization Prospects 2018](https://population.un.org/wup/)
+
 ```{r}
 data(metro)
 ```
-
 
 ```{r,eval=F,echo=F}
 info_df <- metro@data[1:100,]
 datatable(info_df)
 ```
 
-```{r,eval=T,echo=F}
-data(metro)
-
+```{r,eval=F,echo=F}
 info_df <- metro@data[1:10,]
 kable(info_df)
 ```
 
+
+```{r,eval=F,echo=F}
+DT::datatable(metro@data)
+```
+
+![](figure/tmapMetroDaten.PNG)
 
 ## Nur ein Land visualisieren
 
@@ -500,7 +494,7 @@ tm_shape(buildings_schloss$buildings, bbox=bb_schloss) +
   tm_polygons(col = "darkolivegreen3")
 ```
 
-## tmap zitieren
+## Das Paket `tmap` zitieren
 
 ```{r}
 citation("tmap")

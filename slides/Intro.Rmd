@@ -203,7 +203,57 @@ Gemeinde in Oberfranken
 ![](http://spatial.ly/wp-content/uploads/2013/06/r_activity.png)
 -->
 
-## Openstreetmap Projekt
+## Datenquelle: Eionet
+
+### [Eionet - Central Data Repository](http://cdr.eionet.europa.eu/de/eu/noise/df8/colvi7k8q)
+
+- Europäisches Umweltinformations- und Umweltbeobachtungsnetz
+- Qualitätsgesicherte Daten über den Zustand und die Einflussfaktoren auf die Umwelt in Europa
+- Strategische Lärmkartierungen
+
+### Beispiel: Lärmbelastung durch nächtlichen Schienenlärm in Hamburg
+
+![](figure/BSPeionet.PNG)
+
+## Das Openstreetmap Projekt...
+
+### Openstreetmap (OSM)
+
+- Durch kollaboratives Mapping ist eine riesige Datenmenge zugänglich. 
+- Viele Menschen tragen jeden Tag Informationen bei.
+- ... ermöglicht Zugang zu Big Data der Geographie.
+- Die wachsende Menge an Geodaten wird von Freiwilligen gesammelt oder über Crowdsourcing gewonnen.
+
+
+```{r,eval=F,echo=F}
+install.packages("conStruct") # Models Spatially Continuous and Discrete Population Genetic Structure
+install.packages("MazamaSpatialUtils") # Spatial Data Download and Utility Functions - 2018-09-18
+
+install.packages("spData")
+
+# 2018-09-18	SPUTNIK	SPatially aUTomatic deNoising for Ims toolKit
+# 2018-09-17	sabre	Spatial Association Between Regionalizations
+# 2018-09-17	spatsoc	Group Animal Relocation Data by Spatial and Temporal Relationship
+# 2018-09-16	mapview	Interactive Viewing of Spatial Data in R
+# 2018-09-16	sparr	Spatial and Spatiotemporal Relative Risk
+# 2018-09-15	spData	Datasets for Spatial Analysis
+```
+
+## Drei wichtige OSM Objekttypen
+
+### Vektordaten werden für den Betrachter dargestellt durch:
+
+- Polygone sind als (eine Reihe von) verbundenen Prunkten mit gleichem Start- und Endpunkt definiert. Die Ausrichtung verläuft gegen den Uhrzeigersinn
+
+![](figure/DreiObjektTypen.PNG)
+
+
+## Paper mit OSM Daten 
+
+### [**Studie von Gervasoni et al. (2018)**](https://hal.inria.fr/hal-01852585/document)
+
+- Convolutional neural networks for disaggregated
+population mapping using open data
 
 ![](figure/Buldings_Paris.PNG)
 
@@ -221,29 +271,6 @@ https://hal.inria.fr/hal-01852585/document
 
 
 
-## Das Openstreetmap Projekt...
-
-- Durch kollaboratives Mapping ist eine riesige Datenmenge zugänglich. 
-- Viele Menschen tragen jeden Tag Informationen bei.
-- ... ermöglicht Zugang zu Big Data der Geographie.
-- Die wachsende Menge an Geodaten wird von Freiwilligen gesammelt oder über Crowd-sourcing gewonnen.
-
-
-```{r,eval=F,echo=F}
-install.packages("conStruct") # Models Spatially Continuous and Discrete Population Genetic Structure
-install.packages("MazamaSpatialUtils") # Spatial Data Download and Utility Functions - 2018-09-18
-
-install.packages("spData")
-
-# 2018-09-18	SPUTNIK	SPatially aUTomatic deNoising for Ims toolKit
-# 2018-09-17	sabre	Spatial Association Between Regionalizations
-# 2018-09-17	spatsoc	Group Animal Relocation Data by Spatial and Temporal Relationship
-# 2018-09-16	mapview	Interactive Viewing of Spatial Data in R
-# 2018-09-16	sparr	Spatial and Spatiotemporal Relative Risk
-# 2018-09-15	spData	Datasets for Spatial Analysis
-```
-
-
 
 ## Was ist das Ziel - Straßen in Berlin
 
@@ -259,7 +286,11 @@ Dargestellt werden OpenStreetMap Daten, die mit der Overpass API heruntergeladen
 Global patterns of current and future road infrastructure
 -->
 
-### Studie von Johan Meijer, Mark AJ Huijbregts,  Kees Schotten,  und Aafke Schipper
+### [**Studie von Johan Meijer et al.**](http://iopscience.iop.org/article/10.1088/1748-9326/aabd42/meta)
+
+<!--
+, Mark AJ Huijbregts,  Kees Schotten,  und Aafke Schipper
+--> 
 
 ![](figure/GRIP_globalroads.PNG)
 

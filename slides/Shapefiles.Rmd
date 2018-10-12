@@ -26,13 +26,10 @@ spatsampI <-F
 
 ## Worum geht es in diesem Abschnitt
 
-- Was sind Shapefiles
-- Shapefiles mit Vorwahl- und PLZ-Bereichen importieren
-- Einzelne Polygonzüge zusammenfassen
-- Adressen für die gezogenen Punkte bestimmen
-- Adressdatensatz bereinigen
-- Entfernung zum Hauptbahnhof bestimmen
-
+- Was sind Shapefiles?
+- Wie kann man Shapefiles (`.shp`) in R importieren?
+- Zum Beispiel werden Shapefiles mit Vorwahl- und PLZ-Bereichen importiert.
+- Wie kann man einzelne Polygonzüge zusammenfassen?
 
 
 ## Das shapefile Format ... 

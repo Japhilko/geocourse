@@ -1,8 +1,4 @@
-\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
-\PassOptionsToPackage{hyphens}{url}
-%
 \documentclass[ignorenonframetext,]{beamer}
-\usepackage{pgfpages}
 \setbeamertemplate{caption}[numbered]
 \setbeamertemplate{caption label separator}{: }
 \setbeamercolor{caption name}{fg=normal text.fg}
@@ -14,9 +10,12 @@
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
-  \usepackage{textcomp} % provides euro and other symbols
 \else % if luatex or xelatex
-  \usepackage{unicode-math}
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
   \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
 \fi
 \usetheme[]{CambridgeUS}
@@ -26,23 +25,16 @@
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 % use microtype if available
 \IfFileExists{microtype.sty}{%
-\usepackage[]{microtype}
+\usepackage{microtype}
 \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
 }{}
-\IfFileExists{parskip.sty}{%
-\usepackage{parskip}
-}{% else
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{6pt plus 2pt minus 1pt}
-}
-\usepackage{hyperref}
+\newif\ifbibliography
 \hypersetup{
             pdftitle={A5 - Shapefiles},
             pdfauthor={Jan-Philipp Kolb},
             pdfborder={0 0 0},
             breaklinks=true}
 \urlstyle{same}  % don't use monospace font for urls
-\newif\ifbibliography
 \usepackage{color}
 \usepackage{fancyvrb}
 \newcommand{\VerbBar}{|}
@@ -52,37 +44,37 @@
 \usepackage{framed}
 \definecolor{shadecolor}{RGB}{248,248,248}
 \newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
-\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
-\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
-\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\BuiltInTok}[1]{#1}
-\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
 \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
 \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
-\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
 \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\ImportTok}[1]{#1}
-\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\NormalTok}[1]{#1}
-\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
-\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
-\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
 \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
 \usepackage{longtable,booktabs}
 \usepackage{caption}
 % These lines are needed to make table captions work with longtable:
@@ -92,86 +84,68 @@
 \usepackage{graphicx,grffile}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
-\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight0.8\textheight\else\Gin@nat@height\fi}
 \makeatother
 % Scale images if necessary, so that they will not overflow the page
 % margins by default, and it is still possible to overwrite the defaults
 % using explicit options in \includegraphics[width, height, ...]{}
 \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+
 % Prevent slide breaks in the middle of a paragraph:
 \widowpenalties 1 10000
 \raggedbottom
-\setbeamertemplate{part page}{
-\centering
-\begin{beamercolorbox}[sep=16pt,center]{part title}
-  \usebeamerfont{part title}\insertpart\par
-\end{beamercolorbox}
-}
-\setbeamertemplate{section page}{
-\centering
-\begin{beamercolorbox}[sep=12pt,center]{part title}
-  \usebeamerfont{section title}\insertsection\par
-\end{beamercolorbox}
-}
-\setbeamertemplate{subsection page}{
-\centering
-\begin{beamercolorbox}[sep=8pt,center]{part title}
-  \usebeamerfont{subsection title}\insertsubsection\par
-\end{beamercolorbox}
-}
+
 \AtBeginPart{
+  \let\insertpartnumber\relax
+  \let\partname\relax
   \frame{\partpage}
 }
 \AtBeginSection{
   \ifbibliography
   \else
+    \let\insertsectionnumber\relax
+    \let\sectionname\relax
     \frame{\sectionpage}
   \fi
 }
 \AtBeginSubsection{
+  \let\insertsubsectionnumber\relax
+  \let\subsectionname\relax
   \frame{\subsectionpage}
 }
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
 \setlength{\emergencystretch}{3em}  % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{0}
 
-% set default figure placement to htbp
-\makeatletter
-\def\fps@figure{htbp}
-\makeatother
-
-
 \title{A5 - Shapefiles}
 \author{Jan-Philipp Kolb}
-\date{23 Oktober 2018}
+\date{22 Oktober 2018}
 
 \begin{document}
 \frame{\titlepage}
 
-\begin{frame}{Worum geht es in diesem Abschnitt}
-\protect\hypertarget{worum-geht-es-in-diesem-abschnitt}{}
+\begin{frame}[fragile]{Worum geht es in diesem Abschnitt}
 
 \begin{itemize}
 \tightlist
 \item
-  Shapefiles mit Vorwahl- und PLZ-Bereichen importieren
+  Was sind Shapefiles?
 \item
-  PLZ-Bereiche zusammenfassen
+  Wie kann man Shapefiles (\texttt{.shp}) in R importieren?
 \item
-  Eine räumliche Stichprobe ziehen
+  Zum Beispiel werden Shapefiles mit Vorwahl- und PLZ-Bereichen
+  importiert.
 \item
-  Adressen für die gezogenen Punkte bestimmen
-\item
-  Adressdatensatz bereinigen
-\item
-  Entfernung zum Hauptbahnhof bestimmen
+  Wie kann man einzelne Polygonzüge zusammenfassen?
 \end{itemize}
 
 \end{frame}
 
 \begin{frame}{Das shapefile Format \ldots{}}
-\protect\hypertarget{das-shapefile-format}{}
 
 \begin{itemize}
 \item
@@ -195,7 +169,6 @@ Quelle: \url{https://en.wikipedia.org/wiki/Shapefile}
 \end{frame}
 
 \begin{frame}{Der R Befehl readShapePoly}
-\protect\hypertarget{der-r-befehl-readshapepoly}{}
 
 Um Shape-Dateien zu lesen, ist es notwendig, die drei Dateien mit den
 folgenden Dateierweiterungen im gleichen Verzeichnis zu haben:
@@ -214,9 +187,8 @@ folgenden Dateierweiterungen im gleichen Verzeichnis zu haben:
 
 \begin{frame}[fragile]{\href{http://www.bundesnetzagentur.de/SharedDocs/Downloads/DE/Sachgebiete/Telekommunikation/Unternehmen_Institutionen/Nummerierung/Rufnummern/ONVerzeichnisse/ONBGrenzen/ONB_Grenzen.html}{\textbf{Vorwahlbereiche
 in Deutschland}}}
-\protect\hypertarget{vorwahlbereiche-in-deutschland}{}
 
-\begin{block}{\textless{}www.bundesnetzagentur.de/\textgreater{}}
+\begin{block}{www.bundesnetzagentur.de}
 
 \begin{itemize}
 \tightlist
@@ -244,7 +216,6 @@ in Deutschland}}}
 \end{frame}
 
 \begin{frame}[fragile]{Die Karte zeichnen}
-\protect\hypertarget{die-karte-zeichnen}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -257,7 +228,6 @@ in Deutschland}}}
 \end{frame}
 
 \begin{frame}[fragile]{Der Datenslot}
-\protect\hypertarget{der-datenslot}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -282,7 +252,6 @@ in Deutschland}}}
 \end{frame}
 
 \begin{frame}[fragile]{Einen Vorwahlbereich ausschneiden}
-\protect\hypertarget{einen-vorwahlbereich-ausschneiden}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -304,7 +273,6 @@ in Deutschland}}}
 \end{frame}
 
 \begin{frame}[fragile]{Vorwahlbereich ausschneiden}
-\protect\hypertarget{vorwahlbereich-ausschneiden}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -318,7 +286,6 @@ in Deutschland}}}
 \end{frame}
 
 \begin{frame}[fragile]{Shapefiles zusammenfassen}
-\protect\hypertarget{shapefiles-zusammenfassen}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -333,7 +300,6 @@ in Deutschland}}}
 \end{frame}
 
 \begin{frame}[fragile]{Wo ist Mannheim?}
-\protect\hypertarget{wo-ist-mannheim}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -350,7 +316,6 @@ in Deutschland}}}
 \end{frame}
 
 \begin{frame}[fragile]{Paket \texttt{rgdal} - PLZ Datensatz einlesen}
-\protect\hypertarget{paket-rgdal---plz-datensatz-einlesen}{}
 
 \begin{block}{\href{http://arnulf.us/PLZ}{\textbf{Quelle}} für PLZ
 Shapefiles}
@@ -380,7 +345,6 @@ Shapefiles}
 \end{frame}
 
 \begin{frame}[fragile]{Die Daten plotten}
-\protect\hypertarget{die-daten-plotten}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -394,7 +358,6 @@ Shapefiles}
 \end{frame}
 
 \begin{frame}[fragile]{Die Grenze von Mannheim}
-\protect\hypertarget{die-grenze-von-mannheim}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -408,7 +371,6 @@ Shapefiles}
 \end{frame}
 
 \begin{frame}[fragile]{Die PLZ-Bereiche von Mannheim zusammenfassen}
-\protect\hypertarget{die-plz-bereiche-von-mannheim-zusammenfassen}{}
 
 \begin{itemize}
 \tightlist
@@ -432,7 +394,6 @@ Shapefiles}
 
 \begin{frame}[fragile]{Global Adminastrative Boundaries -
 \href{http://www.gadm.org/}{GADM} - NUTS level 1}
-\protect\hypertarget{global-adminastrative-boundaries---gadm---nuts-level-1}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -453,7 +414,6 @@ Shapefiles}
 \end{frame}
 
 \begin{frame}[fragile]{Ein Blick auf die Daten}
-\protect\hypertarget{ein-blick-auf-die-daten}{}
 
 Koordinaten im polygon slot
 
@@ -476,7 +436,6 @@ Koordinaten im polygon slot
 \end{frame}
 
 \begin{frame}[fragile]{Der Datenslot}
-\protect\hypertarget{der-datenslot-1}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -498,7 +457,6 @@ Koordinaten im polygon slot
 \end{frame}
 
 \begin{frame}[fragile]{\href{http://www.gadm.org/}{GADM}- NUTS level 3}
-\protect\hypertarget{gadm--nuts-level-3}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -512,7 +470,6 @@ Koordinaten im polygon slot
 \end{frame}
 
 \begin{frame}[fragile]{\href{http://www.gadm.org/}{GADM}- NUTS level 4}
-\protect\hypertarget{gadm--nuts-level-4}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -526,7 +483,6 @@ Koordinaten im polygon slot
 \end{frame}
 
 \begin{frame}[fragile]{\href{http://www.gadm.org/}{GADM}- NUTS level 3}
-\protect\hypertarget{gadm--nuts-level-3-1}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -540,7 +496,6 @@ Koordinaten im polygon slot
 \end{frame}
 
 \begin{frame}[fragile]{Gemeinden in Deutschland}
-\protect\hypertarget{gemeinden-in-deutschland}{}
 
 \href{http://www.geodatenzentrum.de/geodaten/gdz_rahmen.gdz_div?gdz_spr=deu\&gdz_akt_zeile=5\&gdz_anz_zeile=1\&gdz_unt_zeile=15\&gdz_user_id=0}{Bundesamt
 für Kartographie und Geodäsie (BKG)}
@@ -558,7 +513,6 @@ für Kartographie und Geodäsie (BKG)}
 \end{frame}
 
 \begin{frame}[fragile]{Kreise eines Bundeslandes}
-\protect\hypertarget{kreise-eines-bundeslandes}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -573,7 +527,6 @@ für Kartographie und Geodäsie (BKG)}
 \end{frame}
 
 \begin{frame}[fragile]{Andere Quellen}
-\protect\hypertarget{andere-quellen}{}
 
 \begin{itemize}
 \tightlist
@@ -603,7 +556,6 @@ Datenbanken für Karten
 \end{frame}
 
 \begin{frame}{Weitere Quellen für Shapefiles}
-\protect\hypertarget{weitere-quellen-fur-shapefiles}{}
 
 \begin{itemize}
 \item

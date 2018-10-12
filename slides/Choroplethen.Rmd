@@ -30,7 +30,7 @@ sol <- F
 
 ## Was ist ein Choropleth
 
-Ein Choropleth ist eine Karte, die
+### Ein Choropleth ist eine Karte, die
 
 - geografische Grenzen zeigt.
 - bei denen Bereiche basierend auf Metriken eingefärbt werden.
@@ -72,9 +72,16 @@ plot(wrld_simpl)
 - Daten von [**datahub.io**](https://datahub.io/core/gini-index#data)
 - Statistisches Maß zur Darstellung von [Ungleichverteilungen](https://de.wikipedia.org/wiki/Gini-Koeffizient)
 
-```{r}
+```{r,echo=F}
 gini <- read.csv("../data/gini-index_csv.csv")
 ```
+
+```{r,eval=F}
+link<-"https://raw.githubusercontent.com/Japhilko/geocourse/master/data/gini-index_csv.csv"
+gini <- read.csv(link)
+```
+
+
 
 ```{r,echo=F}
 kable(head(gini))

@@ -122,12 +122,93 @@
 \begin{document}
 \frame{\titlepage}
 
-\begin{frame}{Das erste Gesetz der Geographie (TFLG)}
+\begin{frame}{Themen dieses Abschnitts}
+
+\begin{itemize}
+\tightlist
+\item
+  Eine räumliche Stichprobe ziehen
+\item
+  Adressen für die gezogenen Punkte bestimmen
+\item
+  Adressdatensatz bereinigen
+\item
+  Wie lässt sich die Entfernung bestimmen
+\end{itemize}
+
+\begin{block}{Das erste Gesetz der Geographie (TFLG)}
 
 \begin{quote}
 ``All things are related, but nearby things are more related than
 distant things'' {[}Tobler, 1970{]}
 \end{quote}
+
+\end{block}
+
+\end{frame}
+
+\begin{frame}[fragile]{\href{http://www.geodatenzentrum.de/geodaten/gdz_rahmen.gdz_div?gdz_spr=deu\&gdz_akt_zeile=5\&gdz_anz_zeile=1\&gdz_unt_zeile=13\&gdz_user_id=0}{Shapefile
+mit Regionalschlüssel} herunterladen}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(rgdal)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## rgdal: version: 1.3-4, (SVN revision 766)
+##  Geospatial Data Abstraction Library extensions to R successfully loaded
+##  Loaded GDAL runtime: GDAL 2.2.3, released 2017/11/20
+##  Path to GDAL shared files: D:/Programme/R-3.5.0/library/rgdal/gdal
+##  GDAL binary built with GEOS: TRUE 
+##  Loaded PROJ.4 runtime: Rel. 4.9.3, 15 August 2016, [PJ_VERSION: 493]
+##  Path to PROJ.4 shared files: D:/Programme/R-3.5.0/library/rgdal/proj
+##  Linking to sp version: 1.3-1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{setwd}\NormalTok{(vg250path)}
+\NormalTok{VG250 <-}\StringTok{ }\KeywordTok{readOGR}\NormalTok{ (}\StringTok{"VG250_GEM.shp"}\NormalTok{,}\StringTok{"VG250_GEM"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## OGR data source with driver: ESRI Shapefile 
+## Source: "J:\Work\GESISPanel_DATA\01_post_processing\c01\e_2017\ee\01_wave\data\com\geodata\vg250\VG250_GEM.shp", layer: "VG250_GEM"
+## with 11395 features
+## It has 23 fields
+\end{verbatim}
+
+\end{frame}
+
+\begin{frame}[fragile]{\href{https://www.rdocumentation.org/packages/sp/versions/1.3-1/topics/spsample}{Räumliche
+Stichprobe}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spatsamp <-}\StringTok{ }\KeywordTok{spsample}\NormalTok{(VG250, }\DecValTok{100}\NormalTok{,}\DataTypeTok{type=}\StringTok{"random"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{frame}
+
+\begin{frame}[fragile]{Point in Polygon}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tmp <-}\StringTok{ }\NormalTok{sp}\OperatorTok{::}\KeywordTok{over}\NormalTok{(spatsamp, VG250)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# EPSG: 3857}
+\NormalTok{newData<-}\KeywordTok{spTransform}\NormalTok{(spatsamp, }\KeywordTok{CRS}\NormalTok{(}\StringTok{"+init=epsg:3857"}\NormalTok{))}
+\CommentTok{# res <- spTransform(spatsamp, CRS("+proj=utm +zone=51 ellps=WGS84"))}
+\end{Highlighting}
+\end{Shaded}
 
 \end{frame}
 
@@ -142,7 +223,7 @@ distant things'' {[}Tobler, 1970{]}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{spdep_files/figure-beamer/unnamed-chunk-1-1.pdf}
+\includegraphics{spdep_files/figure-beamer/unnamed-chunk-8-1.pdf}
 
 \end{frame}
 
@@ -157,7 +238,7 @@ distant things'' {[}Tobler, 1970{]}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{spdep_files/figure-beamer/unnamed-chunk-2-1.pdf}
+\includegraphics{spdep_files/figure-beamer/unnamed-chunk-9-1.pdf}
 
 \end{frame}
 
@@ -195,7 +276,7 @@ Die Nachbarn für das erste Land:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{spdep_files/figure-beamer/unnamed-chunk-5-1.pdf}
+\includegraphics{spdep_files/figure-beamer/unnamed-chunk-12-1.pdf}
 
 \end{frame}
 
@@ -211,7 +292,7 @@ Die Nachbarn für das erste Land:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{spdep_files/figure-beamer/unnamed-chunk-6-1.pdf}
+\includegraphics{spdep_files/figure-beamer/unnamed-chunk-13-1.pdf}
 
 \end{frame}
 
@@ -256,15 +337,6 @@ Die Nachbarn für das erste Land:
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(sf)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Linking to GEOS 3.6.1, GDAL 2.2.3, proj.4 4.9.3
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \NormalTok{lnd <-}\StringTok{ }\KeywordTok{read_sf}\NormalTok{(}\StringTok{"../data/london_sport.shp"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}

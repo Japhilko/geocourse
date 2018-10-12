@@ -2,8 +2,13 @@
 title: "Geodaten downloaden und visualisieren"
 author: "Jan-Philipp Kolb"
 date: "22 Oktober 2018"
-output: 
-  html_document: 
+output:
+  html_document:
+    keep_md: yes
+  slidy_presentation:
+    keep_md: yes
+  beamer_presentation: default
+  ioslides_presentation: 
     keep_md: yes
 ---
 
@@ -18,15 +23,17 @@ Dieser Workshop beschäftigt sich mit der Erfassung und Verarbeitung von räumli
 
 ### __(A1) Einleitung__ 
 
-- Was ist das Ziel dieses Kurses. 
-- Welche Datenquellen werden wir verwenden.
-- [Github](slides/Intro.md) | [pdf](slides/Intro.pdf) 
-- [Regionale Information](http://rpubs.com/Japhilko82/mapFirenze)
+
+
+
+
+Was ist das Ziel dieses Kurses und welche Datenquellen werden wir verwenden ([Github](https://github.com/Japhilko/geocourse/blob/master/slides/Intro.Rmd) | [pdf](slides/Intro.pdf)) 
+[Regionale Information](http://rpubs.com/Japhilko82/gesis_mannheim) - wo sind wir, wo können wir später Mittag essen gehen?
 
 ### __(A2) Das Paket [`ggmap`](http://journal.r-project.org/archive/2013-1/kahle-wickham.pdf)__ zur Erzeugung verschiedener Kartentypen. 
 
-- [Browser](slides/ggmap.md) | [pdf](slides/ggmap.pdf) | [rcode](slides/ggmap.R) 
-- Aufgabe: [Nutzung von  `ggmap`](exercises/Aufgabe_Nutzung_ggmap.Rmd)
+Das Paket `ggmap` bietet einen guten Einstieg. Es lassen sich relativ leicht Hintergrundkarten erzeugen ([Browser](https://github.com/Japhilko/geocourse/blob/master/slides/ggmap.md) | [pdf](https://github.com/Japhilko/geocourse/blob/master/slides/ggmap.pdf) | [rcode](slides/ggmap.R)  )
+- Aufgabe: [Nutzung von  `ggmap`](paste0(coursepath,"exercises/Aufgabe_Nutzung_ggmap.Rmd")`)
 
 
 ### __(A3) Thematische Karten mit dem R-Paket `tmap`__ 
@@ -52,10 +59,15 @@ Dieser Workshop beschäftigt sich mit der Erfassung und Verarbeitung von räumli
 
 - Aufgabe: [Deutschlands Gemeinden](https://github.com/Japhilko/GeoData/blob/master/2016/tutorial/Aufgabe_Zensus_Ergebnisse.md)
 
+### __(A6) Das R-Paket `spdep` - Nachbarschaft und Distanz__ 
 
-### __(A6) Geokodierung__ 
+- [Browser](slides/spdep.md) | [pdf](slides/spdep.pdf) |
+[rcode](https://raw.githubusercontent.com/Japhilko/GeoData/master/2016/rcode/slidesH1_spdep.R)
+- Aufgabe: [Distanzberechnung](https://github.com/Japhilko/GeoData/blob/master/2016/tutorial/Aufgabe_Distanzberechnung.Rmd)
 
-- [Github](slides/Geokodierung.md)
+### __(A7) Rasterdaten importieren und verarbeiten__
+
+- [](slides/Rasterdaten.Rmd)
 
 ## __(B) Das OpenStreetMap Projekt und komplexere Schritte__
 
@@ -70,28 +82,26 @@ Dieser Workshop beschäftigt sich mit der Erfassung und Verarbeitung von räumli
 ### __Overpass__ ([Github](slides/Overpass.md))
 -->
 
-### __(B2) Das Arbeiten mit OSM API`s__
+
+### __(B2) Geokodierung__ 
+
+- [Github](slides/Geokodierung.md)
+
+
+### __(B3) Das Arbeiten mit OSM API`s__
 
 - Beispiel [*main OSM API*](slides/osm_mainapi.Rmd)
 - Die Nutzung der Overpass API 
-- **Beispiel Hostels in Madrid** ([Browser](https://github.com/Japhilko/GeoData/blob/master/2016/slides/Madrid_hostels.Rmd)), [Energieerzeugung](https://rpossib.wordpress.com/2015/11/20/use-openstreetmap-date/)
-
-### __(B3) Das `osmdata` Paket__ ([Github](slides/osmdata.md))
-
-
-<!--
-### __(B2) Das Arbeiten mit XML-Dateien__ ([Browser](https://github.com/Japhilko/GeoData/blob/master/2017/slides/OpenStreetMap.md)| [pdf](slides/OpenStreetMap.pdf))
-
-### __(B3) Die Nutzung von Programmierschnittstellen__ ([Browser](slides/UsageAPI.md)| [pdf](slides/UsageAPI.pdf) | [rcode](rcode/UsageAPI.R))
+- **Beispiel Hostels in Madrid** ([Browser](https://github.com/Japhilko/GeoData/blob/master/2016/slides/Madrid_hostels.Rmd)),
+- Beispiel: *Points of interest* ([poi](https://rpossib.wordpress.com/2015/09/15/points-of-interest-for-backpackers/)) für Backpacker in Amsterdam
+- Beispiel: [Energieerzeugung](https://rpossib.wordpress.com/2015/11/20/use-openstreetmap-date/)
+- **Aufgabe:** [Darstellung von OSM Daten mit tmap](https://github.com/Japhilko/GeoData/blob/master/2016/tutorial/Aufgabe_osmar.Rmd)
 
 
-Beispiel: *Points of interest* ([poi](https://rpossib.wordpress.com/2015/09/15/points-of-interest-for-backpackers/)) für Backpacker in Amsterdam
 
+### __(B4) Das `osmdata` Paket__ 
 
-**Aufgabe:** [Darstellung von OSM Daten mit tmap](https://github.com/Japhilko/GeoData/blob/master/2016/tutorial/Aufgabe_osmar.Rmd)
--->
-
-
+- ([Github](slides/osmdata.md))
 
 ### __(B4) Interaktive Karten mit Javascript Bibliotheken__ 
 
@@ -103,13 +113,7 @@ Beispiel: *Points of interest* ([poi](https://rpossib.wordpress.com/2015/09/15/p
 ## Räumliche Analysen/Statistik
 -->
 
-### __(B4) Das R-Paket `spdep` - Nachbarschaft und Distanz__ 
+### __(B4) Simple Features__ 
 
-- [Browser](slides/spdep.md) | [pdf](slides/spdep.pdf) |
-[rcode](https://raw.githubusercontent.com/Japhilko/GeoData/master/2016/rcode/slidesH1_spdep.R)
-- Aufgabe: [Distanzberechnung](https://github.com/Japhilko/GeoData/blob/master/2016/tutorial/Aufgabe_Distanzberechnung.Rmd)
-
-### __(B5) Simple Features__ 
-
-- [Github](slides/simple_features.md) | [pdf](slides/simple_features.pdf)
-| [rcode](rcode/simple_features.R)
+- [Github](slides/simplefeatures.md) | [pdf](slides/simplefeatures.pdf)
+| [rcode](rcode/simplefeatures.R)

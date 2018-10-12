@@ -6,3 +6,4 @@ spData
 spdep
 raster
 sf
+rgdal

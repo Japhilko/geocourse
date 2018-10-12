@@ -289,14 +289,12 @@ dev.off()
 ## Abstrahierte Karten ([http://www.designfaves.com](http://www.designfaves.com/2014/03/abstracted-maps-reveal-cities-personalities))
 
 
-![New York](figure/NYabstracted.jpg)
-
-
-- Abstraktion wird genutzt um nur die essentiellen Informationen einer Karte zu zeigen. 
-
-- Bsp. U-Bahn Karten - wichtig sind Richtungen und wenig Infos zur Orientierung
-
+- Abstraktion wird genutzt um nur essentielle Informationen darzustellen. 
+- Bsp. U-Bahn Karten - wichtig sind Richtungen und Orientierung
 - Im folgenden werden Karten vorgestellt, die sich gut als Hintergrundkarten eignen.
+
+
+![New York](figure/NYabstracted.jpg)
 
 ## ggmap - maptype watercolor
 
@@ -380,7 +378,7 @@ dev.off()
 
 -->
 
-## [Eine Karte für die USA](https://blog.dominodatalab.com/geographic-visualization-with-rs-ggmaps/)
+## [Eine Karte für Trier](https://blog.dominodatalab.com/geographic-visualization-with-rs-ggmaps/)
 
 ```{r USAMap,eval=F,echo=F}
 usa_center = as.numeric(geocode("United States"))

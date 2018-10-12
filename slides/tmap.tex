@@ -131,6 +131,8 @@
 \begin{frame}[fragile]{Das Paket
 \href{https://cran.r-project.org/web/packages/tmap/index.html}{tmap}}
 
+\begin{block}{Thematische Karten}
+
 \begin{itemize}
 \tightlist
 \item
@@ -138,9 +140,9 @@
   \href{http://twitter.com/sharon000/status/593028906820599808/photo/1?ref_src=twsrc\%5Etfw}{\textbf{tmap}}
   kann man thematische Karten erzeugen
 \item
-  Die folgenden Beispiele sind auf der
+  Die olgenden Beispiele basieren auf der
   \href{https://cran.r-project.org/web/packages/tmap/vignettes/tmap-nutshell.html}{\textbf{Vignette}}
-  des Paketes basiert.
+  des Paketes .
 \end{itemize}
 
 \begin{Shaded}
@@ -155,9 +157,35 @@
 \end{Highlighting}
 \end{Shaded}
 
+\end{block}
+
 \end{frame}
 
-\begin{frame}[fragile]{Schnelle thematische Karte}
+\begin{frame}[fragile]{Der \texttt{Europe} Datensatz}
+
+\begin{block}{Natural Earth}
+
+\begin{itemize}
+\tightlist
+\item
+  Datensatz enthält Informationen von
+  \href{http://www.naturalearthdata.com/}{\textbf{Natural Earth}}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{data}\NormalTok{(Europe)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{block}
+
+\end{frame}
+
+\begin{frame}[fragile]{Der Befehl \texttt{qtm} aus dem Paket
+\texttt{tmap}}
+
+\begin{block}{Schnelle thematische Karte}
 
 \begin{itemize}
 \item
@@ -172,78 +200,50 @@
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{data}\NormalTok{(Europe)}
 \KeywordTok{qtm}\NormalTok{(Europe)}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{tmap_files/figure-beamer/unnamed-chunk-4-1.pdf}
+\includegraphics{tmap_files/figure-beamer/unnamed-chunk-5-1.pdf}
+
+\end{block}
 
 \end{frame}
 
-\begin{frame}{Der Europa-Datensatz}
+\begin{frame}[fragile]{Der Europa-Datensatz}
 
-\begin{longtable}[]{@{}lllll@{}}
-\toprule
-& iso\_a3 & name & sovereignt & continent\tabularnewline
-\midrule
-\endhead
-5 & ALB & Albania & Albania & Europe\tabularnewline
-6 & ALA & Aland & Finland & Europe\tabularnewline
-7 & AND & Andorra & Andorra & Europe\tabularnewline
-10 & ARM & Armenia & Armenia & Asia\tabularnewline
-17 & AUT & Austria & Austria & Europe\tabularnewline
-18 & AZE & Azerbaijan & Azerbaijan & Asia\tabularnewline
-20 & BEL & Belgium & Belgium & Europe\tabularnewline
-24 & BGR & Bulgaria & Bulgaria & Europe\tabularnewline
-27 & BIH & Bosnia and Herz. & Bosnia and Herzegovina &
-Europe\tabularnewline
-29 & BLR & Belarus & Belarus & Europe\tabularnewline
-\bottomrule
-\end{longtable}
+\begin{block}{\href{http://rpubs.com/Japhilko82/tmap_europe_dataset}{\textbf{Der
+Europa Datensatz im Paket \texttt{tmap}}}}
+
+\includegraphics{figure/tmap_europe.PNG}
+
+\end{block}
 
 \end{frame}
 
 \begin{frame}[fragile]{Um mehr Farbe in die Karte zu bekommen}
 
-\begin{itemize}
-\tightlist
-\item
-  Visualisierung von
-  \href{http://www.naturalearthdata.com/}{\textbf{Natural Earth}} Daten
-\end{itemize}
+\begin{block}{Entwicklungsstand der Wirtschaft}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{qtm}\NormalTok{(Europe, }\DataTypeTok{fill=}\StringTok{"gdp_cap_est"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{tmap_files/figure-beamer/unnamed-chunk-8-1.pdf}
-
-\end{frame}
-
-\begin{frame}[fragile]{Eine Karte mit Text}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{qtm}\NormalTok{(Europe, }\DataTypeTok{fill=}\StringTok{"gdp_cap_est"}\NormalTok{, }\DataTypeTok{text=}\StringTok{"iso_a3"}\NormalTok{)}
+\KeywordTok{qtm}\NormalTok{(Europe, }\DataTypeTok{fill=}\StringTok{"economy"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \includegraphics{tmap_files/figure-beamer/unnamed-chunk-9-1.pdf}
 
+\end{block}
+
 \end{frame}
 
-\begin{frame}[fragile]{Dieses Schema passt besser:}
+\begin{frame}[fragile]{Eine Karte mit Text}
 
-\begin{block}{\href{https://en.wikipedia.org/wiki/Population_density}{\textbf{Bevölkerungsdichte}}}
+\begin{block}{Bevölkerung}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{qtm}\NormalTok{(Europe, }\DataTypeTok{fill=}\StringTok{"gdp_cap_est"}\NormalTok{, }\DataTypeTok{text=}\StringTok{"iso_a3"}\NormalTok{, }
-    \DataTypeTok{text.size=}\StringTok{"AREA"}\NormalTok{, }\DataTypeTok{root=}\DecValTok{5}\NormalTok{, }\DataTypeTok{fill.title=}\StringTok{"GDP per capita"}\NormalTok{, }
-    \DataTypeTok{fill.textNA=}\StringTok{"Non-European countries"}\NormalTok{, }\DataTypeTok{theme=}\StringTok{"Europe"}\NormalTok{)}
+\KeywordTok{qtm}\NormalTok{(Europe, }\DataTypeTok{fill=}\StringTok{"pop_est"}\NormalTok{, }\DataTypeTok{text=}\StringTok{"iso_a3"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -253,7 +253,27 @@ Europe\tabularnewline
 
 \end{frame}
 
+\begin{frame}[fragile]{Dieses Schema passt besser:}
+
+\begin{block}{\href{https://en.wikipedia.org/wiki/Population_density}{\textbf{GDP}}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{qtm}\NormalTok{(Europe, }\DataTypeTok{fill=}\StringTok{"gdp_cap_est"}\NormalTok{, }\DataTypeTok{text=}\StringTok{"iso_a3"}\NormalTok{, }
+    \DataTypeTok{text.size=}\StringTok{"AREA"}\NormalTok{, }\DataTypeTok{root=}\DecValTok{5}\NormalTok{, }\DataTypeTok{fill.title=}\StringTok{"GDP per capita"}\NormalTok{, }
+    \DataTypeTok{fill.textNA=}\StringTok{"Non-European countries"}\NormalTok{, }\DataTypeTok{theme=}\StringTok{"Europe"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{tmap_files/figure-beamer/unnamed-chunk-11-1.pdf}
+
+\end{block}
+
+\end{frame}
+
 \begin{frame}{Themen des Europa-Datensatzes}
+
+\begin{block}{Verfügbare Variablen im Datensatz}
 
 \begin{itemize}
 \tightlist
@@ -275,6 +295,8 @@ Europe\tabularnewline
 \item
   Ökonomie, Einkommensgruppe
 \end{itemize}
+
+\end{block}
 
 \end{frame}
 
@@ -306,7 +328,7 @@ Europe\tabularnewline
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{tmap_files/figure-beamer/unnamed-chunk-14-1.pdf}
+\includegraphics{tmap_files/figure-beamer/unnamed-chunk-15-1.pdf}
 
 \end{frame}
 
@@ -318,7 +340,7 @@ Europe\tabularnewline
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{tmap_files/figure-beamer/unnamed-chunk-15-1.pdf}
+\includegraphics{tmap_files/figure-beamer/unnamed-chunk-16-1.pdf}
 
 \end{frame}
 
@@ -330,7 +352,7 @@ Europe\tabularnewline
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{tmap_files/figure-beamer/unnamed-chunk-16-1.pdf}
+\includegraphics{tmap_files/figure-beamer/unnamed-chunk-17-1.pdf}
 
 \end{frame}
 
@@ -342,7 +364,7 @@ Europe\tabularnewline
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{tmap_files/figure-beamer/unnamed-chunk-17-1.pdf}
+\includegraphics{tmap_files/figure-beamer/unnamed-chunk-18-1.pdf}
 
 \end{frame}
 
@@ -354,7 +376,7 @@ Europe\tabularnewline
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{tmap_files/figure-beamer/unnamed-chunk-19-1.pdf}
+\includegraphics{tmap_files/figure-beamer/unnamed-chunk-20-1.pdf}
 
 \end{frame}
 
@@ -366,71 +388,43 @@ Europe\tabularnewline
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{tmap_files/figure-beamer/unnamed-chunk-20-1.pdf}
+\includegraphics{tmap_files/figure-beamer/unnamed-chunk-21-1.pdf}
 
 \end{frame}
 
-\begin{frame}{Der Welt-Datensatz im Paket \texttt{tmap}}
+\begin{frame}[fragile]{Zwei Karten}
 
-\begin{longtable}[]{@{}llllllrrrrrllrrr@{}}
-\toprule
-& iso\_a3 & name & sovereignt & continent & subregion & area & pop\_est
-& pop\_est\_dens & gdp\_md\_est & gdp\_cap\_est & economy & income\_grp
-& life\_exp & well\_being & HPI\tabularnewline
-\midrule
-\endhead
-2 & AFG & Afghanistan & Afghanistan & Asia & Southern Asia & 652860.000
-& 28400000 & 43.5009037 & 22270 & 784.1549 & 7. Least developed region &
-5. Low income & 48.7 & 4.758381 & 36.75366\tabularnewline
-3 & AGO & Angola & Angola & Africa & Middle Africa & 1246700.000 &
-12799293 & 10.2665381 & 110300 & 8617.6635 & 7. Least developed region &
-3. Upper middle income & 51.1 & 4.206092 & 33.20143\tabularnewline
-5 & ALB & Albania & Albania & Europe & Southern Europe & 27400.000 &
-3639453 & 132.8267518 & 21810 & 5992.6588 & 6. Developing region & 4.
-Lower middle income & 76.9 & 5.268937 & 54.05118\tabularnewline
-8 & ARE & United Arab Emirates & United Arab Emirates & Asia & Western
-Asia & 83600.000 & 4798491 & 57.3982177 & 184300 & 38407.9078 & 6.
-Developing region & 2. High income: nonOECD & 76.5 & 7.196803 &
-31.77827\tabularnewline
-9 & ARG & Argentina & Argentina & South America & South America &
-2736690.000 & 40913584 & 14.9500250 & 573900 & 14027.1261 & 5. Emerging
-region: G20 & 3. Upper middle income & 75.9 & 6.441067 &
-54.05504\tabularnewline
-10 & ARM & Armenia & Armenia & Asia & Western Asia & 28470.000 & 2967004
-& 104.2151036 & 18770 & 6326.2469 & 6. Developing region & 4. Lower
-middle income & 74.2 & 4.367811 & 46.00319\tabularnewline
-12 & ATA & Antarctica & Antarctica & Antarctica & Antarctica &
-10866664.407 & 3802 & 0.0003499 & NA & NA & 6. Developing region & 2.
-High income: nonOECD & NA & NA & NA\tabularnewline
-14 & ATF & Fr. S. Antarctic Lands & France & Seven seas (open ocean) &
-Seven seas (open ocean) & 6187.205 & 140 & 0.0226273 & 16 & 114285.7143
-& 6. Developing region & 2. High income: nonOECD & NA & NA &
-NA\tabularnewline
-16 & AUS & Australia & Australia & Oceania & Australia and New Zealand &
-7682300.000 & 21262641 & 2.7677442 & 800200 & 37634.0832 & 2. Developed
-region: nonG7 & 1. High income: OECD & 81.9 & 7.405616 &
-41.97981\tabularnewline
-17 & AUT & Austria & Austria & Europe & Western Europe & 82409.000 &
-8210281 & 99.6284508 & 329500 & 40132.6093 & 2. Developed region: nonG7
-& 1. High income: OECD & 80.9 & 7.346036 & 47.08514\tabularnewline
-18 & AZE & Azerbaijan & Azerbaijan & Asia & Western Asia & 82658.000 &
-8238672 & 99.6718043 & 77610 & 9420.2075 & 6. Developing region & 3.
-Upper middle income & 70.7 & 4.218611 & 40.88457\tabularnewline
-19 & BDI & Burundi & Burundi & Africa & Eastern Africa & 25680.000 &
-8988091 & 350.0035436 & 3102 & 345.1233 & 7. Least developed region & 5.
-Low income & 50.4 & 3.791681 & 30.51501\tabularnewline
-20 & BEL & Belgium & Belgium & Europe & Western Europe & 30280.000 &
-10414336 & 343.9344782 & 389300 & 37381.1638 & 2. Developed region:
-nonG7 & 1. High income: OECD & 80.0 & 6.853514 & 37.09053\tabularnewline
-21 & BEN & Benin & Benin & Africa & Western Africa & 112760.000 &
-8791832 & 77.9694218 & 12830 & 1459.3090 & 7. Least developed region &
-5. Low income & 56.1 & 3.667140 & 31.08321\tabularnewline
-22 & BFA & Burkina Faso & Burkina Faso & Africa & Western Africa &
-273600.000 & 15746232 & 57.5520175 & 17820 & 1131.6993 & 7. Least
-developed region & 5. Low income & 55.4 & 4.035560 &
-31.79385\tabularnewline
-\bottomrule
-\end{longtable}
+\begin{block}{Bevölkerung und Entwicklungsstand}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{tm_shape}\NormalTok{(Europe) }\OperatorTok{+}
+\StringTok{    }\KeywordTok{tm_fill}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"pop_est"}\NormalTok{, }\StringTok{"economy"}\NormalTok{), }
+        \DataTypeTok{title=}\KeywordTok{c}\NormalTok{(}\StringTok{"Population"}\NormalTok{, }\StringTok{"Economy"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{tmap_files/figure-beamer/unnamed-chunk-22-1.pdf}
+
+\end{block}
+
+\end{frame}
+
+\begin{frame}[fragile]{Der Datensatz \texttt{World} im Paket
+\texttt{tmap}}
+
+\begin{block}{\href{http://rpubs.com/Japhilko82/tmap_World}{Ähnlich wie
+der \texttt{Europe} Datensatz nur für die ganze Welt}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{data}\NormalTok{(World)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figure/tmap_world.PNG}
+
+\end{block}
 
 \end{frame}
 
@@ -442,7 +436,7 @@ developed region & 5. Low income & 55.4 & 4.035560 &
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{tmap_files/figure-beamer/unnamed-chunk-23-1.pdf}
+\includegraphics{tmap_files/figure-beamer/unnamed-chunk-26-1.pdf}
 
 \end{frame}
 
@@ -481,89 +475,7 @@ origin\_west & origin\_non\_west\tabularnewline
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{tmap_files/figure-beamer/unnamed-chunk-26-1.pdf}
-
-\end{frame}
-
-\begin{frame}[fragile]{Anteile berechnen}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{pop <-}\StringTok{ }\NormalTok{NLD_prov}\OperatorTok{@}\NormalTok{data}\OperatorTok{$}\NormalTok{population}
-\NormalTok{pop}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##  [1]  582705  646290  488970 1139680  399885 2019635 1253645 2741320
-##  [9] 3576960  380610 2479220 1119980
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{popmen <-}\StringTok{ }\NormalTok{NLD_prov}\OperatorTok{@}\NormalTok{data}\OperatorTok{$}\NormalTok{pop_men}
-\NormalTok{popmen}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##  [1]  289795  323215  242225  570185  199940  997805  613645 1349610
-##  [9] 1764855  188655 1238600  555450
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{prop <-}\StringTok{ }\NormalTok{popmen}\OperatorTok{/}\NormalTok{pop}
-\NormalTok{prop}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##  [1] 0.4973271 0.5001083 0.4953780 0.5003027 0.4999937 0.4940521 0.4894887
-##  [8] 0.4923212 0.4933952 0.4956649 0.4995926 0.4959464
-\end{verbatim}
-
-\end{frame}
-
-\begin{frame}[fragile]{Exkurs: Barplot vom Männeranteil}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{barplot}\NormalTok{(prop)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{block}{Barplot mit Farbe}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{barplot}\NormalTok{(prop,}\DataTypeTok{col=}\StringTok{"blue"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{tmap_files/figure-beamer/unnamed-chunk-31-1.pdf}
-
-\end{block}
-
-\end{frame}
-
-\begin{frame}[fragile]{Niederlnade - Anteil Männer}
-
-Information in Datensatz einspeisen
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{NLD_prov}\OperatorTok{@}\NormalTok{data}\OperatorTok{$}\NormalTok{proportion <-}\StringTok{ }\NormalTok{prop}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{qtm}\NormalTok{(NLD_prov, }\DataTypeTok{fill=}\StringTok{"proportion"}\NormalTok{,}\DataTypeTok{fill.title=}\StringTok{"proportion"}\NormalTok{) }
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{tmap_files/figure-beamer/unnamed-chunk-33-1.pdf}
+\includegraphics{tmap_files/figure-beamer/unnamed-chunk-29-1.pdf}
 
 \end{frame}
 
@@ -999,21 +911,7 @@ Niederlanden}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{tmap_files/figure-beamer/unnamed-chunk-39-1.pdf}
-
-\end{frame}
-
-\begin{frame}[fragile]{Zwei Karten}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{tm_shape}\NormalTok{(Europe) }\OperatorTok{+}
-\StringTok{    }\KeywordTok{tm_fill}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"pop_est"}\NormalTok{, }\StringTok{"economy"}\NormalTok{), }
-        \DataTypeTok{title=}\KeywordTok{c}\NormalTok{(}\StringTok{"Population"}\NormalTok{, }\StringTok{"Economy"}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{tmap_files/figure-beamer/unnamed-chunk-40-1.pdf}
+\includegraphics{tmap_files/figure-beamer/unnamed-chunk-35-1.pdf}
 
 \end{frame}
 
@@ -1055,11 +953,14 @@ Niederlanden}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{tmap_files/figure-beamer/unnamed-chunk-44-1.pdf}
+\includegraphics{tmap_files/figure-beamer/unnamed-chunk-39-1.pdf}
 
 \end{frame}
 
 \begin{frame}[fragile]{Räumliche Daten zu Metropolregionen}
+
+\begin{block}{\href{https://population.un.org/wup/}{UN - World
+Urbanization Prospects 2018}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1067,35 +968,9 @@ Niederlanden}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{longtable}[]{@{}llllrrrrrrrrr@{}}
-\toprule
-& name & name\_long & iso\_a3 & pop1950 & pop1960 & pop1970 & pop1980 &
-pop1990 & pop2000 & pop2010 & pop2020 & pop2030\tabularnewline
-\midrule
-\endhead
-2 & Kabul & Kabul & AFG & 170784 & 285352 & 471891 & 977824 & 1549320 &
-2401109 & 3722320 & 5721697 & 8279607\tabularnewline
-8 & Algiers & El Djazair (Algiers) & DZA & 516450 & 871636 & 1281127 &
-1621442 & 1797068 & 2140577 & 2432023 & 2835218 & 3404575\tabularnewline
-13 & Luanda & Luanda & AGO & 138413 & 219427 & 459225 & 771349 & 1390240
-& 2591388 & 4508434 & 6836849 & 10428756\tabularnewline
-16 & Buenos Aires & Buenos Aires & ARG & 5097612 & 6597634 & 8104621 &
-9422362 & 10513284 & 12406780 & 14245871 & 15894307 &
-16956491\tabularnewline
-17 & Cordoba & Cordoba & ARG & 429249 & 605309 & 809794 & 1009521 &
-1200168 & 1347561 & 1459268 & 1562509 & 1718192\tabularnewline
-25 & Rosario & Rosario & ARG & 554483 & 671349 & 816230 & 953491 &
-1083819 & 1152387 & 1298073 & 1453814 & 1606993\tabularnewline
-32 & Yerevan & Yerevan & ARM & 341432 & 537759 & 778158 & 1041587 &
-1174524 & 1111301 & 1065597 & 1023703 & 1057459\tabularnewline
-33 & Adelaide & Adelaide & AUS & 429277 & 571822 & 850168 & 971856 &
-1081618 & 1141623 & 1217990 & 1320783 & 1505422\tabularnewline
-34 & Brisbane & Brisbane & AUS & 441718 & 602999 & 904777 & 1134833 &
-1381306 & 1666203 & 2033617 & 2388517 & 2721325\tabularnewline
-37 & Melbourne & Melbourne & AUS & 1331966 & 1851220 & 2499109 & 2839019
-& 3154314 & 3460541 & 3951216 & 4500501 & 5070873\tabularnewline
-\bottomrule
-\end{longtable}
+\includegraphics{figure/tmapMetroDaten.PNG}
+
+\end{block}
 
 \end{frame}
 
@@ -1108,7 +983,7 @@ pop1990 & pop2000 & pop2010 & pop2020 & pop2030\tabularnewline
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{tmap_files/figure-beamer/unnamed-chunk-48-1.pdf}
+\includegraphics{tmap_files/figure-beamer/unnamed-chunk-44-1.pdf}
 
 \end{frame}
 
@@ -1190,7 +1065,7 @@ Daten}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{tmap_files/figure-beamer/unnamed-chunk-53-1.pdf}
+\includegraphics{tmap_files/figure-beamer/unnamed-chunk-49-1.pdf}
 
 \end{frame}
 
@@ -1204,7 +1079,7 @@ Daten}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{tmap_files/figure-beamer/unnamed-chunk-55-1.pdf}
+\includegraphics{tmap_files/figure-beamer/unnamed-chunk-51-1.pdf}
 
 \end{frame}
 

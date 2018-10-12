@@ -3,9 +3,12 @@ title: "Geodaten downloaden und visualisieren"
 author: "Jan-Philipp Kolb"
 date: "22 Oktober 2018"
 output:
-  ioslides_presentation: default
-  beamer_presentation: default
+  html_document:
+    keep_md: yes
   slidy_presentation:
+    keep_md: yes
+  beamer_presentation: default
+  ioslides_presentation: 
     keep_md: yes
 ---
 
@@ -32,30 +35,30 @@ coursepath <-"https://github.com/Japhilko/geocourse/blob/master/"
 coursepath <-""
 ```
 
-
 - Was ist das Ziel dieses Kurses und welche Datenquellen werden wir verwenden ([Github](`r paste0(coursepath,"slides/Intro.Rmd")`) | [pdf](slides/Intro.pdf)) 
-- [Regionale Information](http://rpubs.com/Japhilko82/gesis_mannheim)
+- [Regionale Information](http://rpubs.com/Japhilko82/gesis_mannheim) - wo sind wir, wo können wir später Mittag essen gehen?
 
 ### __(A2) Das Paket [`ggmap`](http://journal.r-project.org/archive/2013-1/kahle-wickham.pdf)__ zur Erzeugung verschiedener Kartentypen. 
 
-- [Browser](slides/ggmap.md) | [pdf](slides/ggmap.pdf) | [rcode](slides/ggmap.R) 
-- Aufgabe: [Nutzung von  `ggmap`](exercises/Aufgabe_Nutzung_ggmap.Rmd)
+Das Paket `ggmap` bietet einen guten Einstieg. Es lassen sich relativ leicht Hintergrundkarten erzeugen ([Browser](`r paste0(coursepath,"slides/ggmap.md")`) | [pdf](`r paste0(coursepath,"slides/ggmap.pdf) | [rcode](slides/ggmap.R)")`  )
+- Aufgabe: [Nutzung von  `ggmap`](paste0(coursepath,"exercises/Aufgabe_Nutzung_ggmap.Rmd")`)
 
 
 ### __(A3) Thematische Karten mit dem R-Paket `tmap`__ 
 
-- [Browser](slides/tmap.md) | [pdf](slides/tmap.pdf) | 
-[pdf](slides/tmap.pdf) | [rcode](rcode/tmap.R)
+Zur Erzeugung von schnellen thematischen Karten kann man das Paket `tmap` verwenden ( [Browser](`r paste0(coursepath,"slides/tmap.md")`) | [pdf](`r paste0(coursepath,"slides/tmap.pdf")`) | 
+[pdf](`r paste0(coursepath,"slides/tmap.pdf")`) | [rcode](`r paste0(coursepath,"rcode/tmap.R")`))
 
 
 ### __(A4) Choroplethen erzeugen__ 
 
-- [Github](slides/Choroplethen.md)
+Eine Choroplethenkarte (auch Flächenkartogramm oder Flächenwertstufenkarte) ist eine thematische Karte, bei der die Gebiete im Verhältnis zur Verteilungsdichte des thematischen Objektes eingefärbt ist ([**Wikipedia**](https://de.wikipedia.org/wiki/Choroplethenkarte)). Diese Karten können mit dem Paket `choroplethr` erzeugt werden ([Github](`r paste0(coursepath,"slides/Choroplethen.md")`)| 
+[pdf](`r paste0(coursepath,"slides/Choroplethen.pdf")`) | [rcode](`r paste0(coursepath,"rcode/Choroplethen.R"))
 
 
 ### __(A5) Die Nutzung von Shapefiles__ 
 
-- [Github](slides/Shapefiles.md)
+Viele Daten werden im Shapefile Format von ESRI angeboten. ([Github](`r paste0(coursepath,"slides/Shapefiles.md")`))
 
 - Aufgabe: [Zensus Ergebnisse und Karte miteinander verbinden und einfärben](https://github.com/Japhilko/GeoData/blob/master/2017/tutorial/Aufgabe_Verbindung.Rmd)
 

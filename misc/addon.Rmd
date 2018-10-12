@@ -171,6 +171,37 @@ save(MA_map,file="../data/MA_map.RData")
 
 
 
+## Anteile berechnen
+
+```{r,cache=T}
+pop <- NLD_prov@data$population
+pop
+```
+
+```{r,cache=T}
+popmen <- NLD_prov@data$pop_men
+popmen
+```
+
+
+```{r,cache=T}
+prop <- popmen/pop
+prop
+```
+
+## Niederlnade - Anteil Männer
+
+Information in Datensatz einspeisen
+
+```{r,cache=T}
+NLD_prov@data$proportion <- prop
+```
+
+```{r,cache=T}
+qtm(NLD_prov, fill="proportion",fill.title="proportion") 
+```
+
+
 ## Links
 
 - [ggmap does not work with plot_sf/geom_sf](https://github.com/r-spatial/sf/issues/336)
