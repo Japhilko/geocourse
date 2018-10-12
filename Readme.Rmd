@@ -58,7 +58,7 @@ Eine Choroplethenkarte (auch Flächenkartogramm oder Flächenwertstufenkarte) is
 
 ### __(A5) Die Nutzung von Shapefiles__ 
 
-Viele Daten werden im Shapefile Format von ESRI angeboten. ([Github](`r paste0(coursepath,"slides/Shapefiles.md")`))
+Viele Daten werden im Shapefile Format von ESRI angeboten. Das Format sowie Möglichkeiten die Daten zu importieren werden hier vorgestellt ([Github](`r paste0(coursepath,"slides/Shapefiles.md")`)).
 
 - Aufgabe: [Zensus Ergebnisse und Karte miteinander verbinden und einfärben](https://github.com/Japhilko/GeoData/blob/master/2017/tutorial/Aufgabe_Verbindung.Rmd)
 
