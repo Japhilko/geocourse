@@ -162,8 +162,6 @@ sp::spplot(mymap,"X2014M10")
 
 
 
-
-
 ```{r,echo=F,warning=F}
 library(knitr)
 library(DT)

@@ -402,6 +402,13 @@ qmap(location = "Trier", zoom = 10, source = "osm",
 ```
 
 
+## A2A Aufgabe - Nutzung von `ggmap`
+
+
+- Erzeuge mit dem Paket `ggmap` eine Karte von einem Ort, der Ihnen besonders gut gefällt und speichern Sie diesen.
+
+
+
 ## Cheatsheet
 
 - Cheatsheet zu [data visualisation](https://www.rstudio.com/wp-content/uploads/2015/04/ggplot2-cheatsheet.pdf)
@@ -409,6 +416,18 @@ qmap(location = "Trier", zoom = 10, source = "osm",
 <https://www.rstudio.com/>
 
 ![Cheatsheet](figure/ggplot2-cheatsheet.png)
+
+
+
+
+```{r,eval=F,echo=F}
+library("RgoogleMaps")
+MyMap <- GetMap.bbox(4.5168, 52.022,destfile = "Amsterdam.png",zoom=14)
+PlotOnStaticMap(MyMap)
+```
+
+
+
 
 
 ## Resourcen und Literatur

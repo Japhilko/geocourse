@@ -15,20 +15,21 @@ output:
 
 
 
-
 Dieser Workshop beschäftigt sich mit der Erfassung und Verarbeitung von räumlichen Informationen (Geodaten) im wissenschaftlichen Kontext.
 
 ## Erste Schritte
 
 
-### __(A1) Einleitung__ 
+### __(A1) Einleitung__
 
 
 
 
 
-Was ist das Ziel dieses Kurses und welche Datenquellen werden wir verwenden ([Github](https://github.com/Japhilko/geocourse/blob/master/slides/Intro.Rmd) | [pdf](slides/Intro.pdf)) 
-[Regionale Information](http://rpubs.com/Japhilko82/gesis_mannheim) - wo sind wir, wo können wir später Mittag essen gehen?
+- Was ist das Ziel dieses Kurses und welche Datenquellen werden wir verwenden ([Github](https://github.com/Japhilko/geocourse/blob/master/slides/Intro.Rmd) | [pdf](slides/Intro.pdf)) 
+
+
+- [Regionale Information](http://rpubs.com/Japhilko82/gesis_mannheim) - wo sind wir, wo können wir später Mittag essen gehen?
 
 ### __(A2) Das Paket [`ggmap`](http://journal.r-project.org/archive/2013-1/kahle-wickham.pdf)__ zur Erzeugung verschiedener Kartentypen. 
 
@@ -36,20 +37,21 @@ Das Paket `ggmap` bietet einen guten Einstieg. Es lassen sich relativ leicht Hin
 - Aufgabe: [Nutzung von  `ggmap`](paste0(coursepath,"exercises/Aufgabe_Nutzung_ggmap.Rmd")`)
 
 
-### __(A3) Thematische Karten mit dem R-Paket `tmap`__ 
+### __(A3) Thematische Karten mit dem R-Paket `tmap`__
 
-- [Browser](slides/tmap.md) | [pdf](slides/tmap.pdf) | 
-[pdf](slides/tmap.pdf) | [rcode](rcode/tmap.R)
-
-
-### __(A4) Choroplethen erzeugen__ 
-
-- [Github](slides/Choroplethen.md)
+Zur Erzeugung von schnellen thematischen Karten kann man das Paket `tmap` verwenden ( [Browser](https://github.com/Japhilko/geocourse/blob/master/slides/tmap.md) | [pdf](https://github.com/Japhilko/geocourse/blob/master/slides/tmap.pdf) | 
+[pdf](https://github.com/Japhilko/geocourse/blob/master/slides/tmap.pdf) | [rcode](https://github.com/Japhilko/geocourse/blob/master/rcode/tmap.R))
 
 
-### __(A5) Die Nutzung von Shapefiles__ 
+### __(A4) Choroplethen erzeugen__
 
-- [Github](slides/Shapefiles.md)
+Eine Choroplethenkarte (auch Flächenkartogramm oder Flächenwertstufenkarte) ist eine thematische Karte, bei der die Gebiete im Verhältnis zur Verteilungsdichte des thematischen Objektes eingefärbt ist ([**Wikipedia**](https://de.wikipedia.org/wiki/Choroplethenkarte)). Diese Karten können mit dem Paket `choroplethr` erzeugt werden ([Github](https://github.com/Japhilko/geocourse/blob/master/slides/Choroplethen.md)| 
+[pdf](https://github.com/Japhilko/geocourse/blob/master/slides/Choroplethen.pdf) | [rcode](https://github.com/Japhilko/geocourse/blob/master/rcode/Choroplethen.R)
+
+
+### __(A5) Die Nutzung von Shapefiles__
+
+Viele Daten werden im Shapefile Format von ESRI angeboten. Das Format sowie Möglichkeiten die Daten zu importieren werden hier vorgestellt ([Github](https://github.com/Japhilko/geocourse/blob/master/slides/Shapefiles.md)).
 
 - Aufgabe: [Zensus Ergebnisse und Karte miteinander verbinden und einfärben](https://github.com/Japhilko/GeoData/blob/master/2017/tutorial/Aufgabe_Verbindung.Rmd)
 
@@ -58,6 +60,7 @@ Das Paket `ggmap` bietet einen guten Einstieg. Es lassen sich relativ leicht Hin
 - Aufgabe: [Darstellung von Eurostat Daten mit `choroplethr`](https://github.com/Japhilko/GeoData/blob/master/2016/tutorial/Aufgabe_choroplethr.Rmd)
 
 - Aufgabe: [Deutschlands Gemeinden](https://github.com/Japhilko/GeoData/blob/master/2016/tutorial/Aufgabe_Zensus_Ergebnisse.md)
+
 
 ### __(A6) Das R-Paket `spdep` - Nachbarschaft und Distanz__ 
 
@@ -117,3 +120,8 @@ Das Paket `ggmap` bietet einen guten Einstieg. Es lassen sich relativ leicht Hin
 
 - [Github](slides/simplefeatures.md) | [pdf](slides/simplefeatures.pdf)
 | [rcode](rcode/simplefeatures.R)
+
+
+<!--
+https://training.gesis.org/?site=pDetails&pID=0x2BD6733444514AEDAA955BC3754CA39C
+-->

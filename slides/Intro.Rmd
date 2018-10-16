@@ -20,6 +20,24 @@ output:
 knitr::opts_chunk$set(echo = TRUE,message=F,warning=F,cache=T)
 ```
 
+## Kleine Vorstellungsrunde
+
+- Wo kommt Ihr her?
+- Wo arbeitet und studiert Ihr?
+- Habt Ihr Erfahrungen mit Programmiersprachen / Statistiksoftware? Wenn ja welche?
+- Was sind Eure Erwartungen für diesen Kurs? 
+
+## Disclaimer/ Informationen vorab
+
+Normalerweise gibt es große Unterschiede bei Vorkenntnissen und Fähigkeiten - bitte gebt Bescheid, wenn es zu schnell oder zu langsam geht oder etwas unklar geblieben ist.
+
+- Wenn es Fragen gibt - immer fragen
+- In diesem Kurs gibt es viele [**Übungen**](http://web.math.ku.dk/~helle/R-intro/exercises.pdf), denn das Programmieren / die Nutzung von R lernt man am Ende nur allein.
+- Ich habe viele [**Beispiele**](https://www.showmeshiny.com/) - probiert sie aus 
+- R macht mehr Spaß zusammen - arbeitet zusammen!
+
+
+
 ## Das Thema Geodatenlandschaft
 
 

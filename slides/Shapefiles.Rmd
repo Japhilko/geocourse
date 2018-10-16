@@ -21,6 +21,7 @@ athome <- !GESIS
 
 ONB_ex <- T
 spatsampI <-F
+show_solution <- F
 ```
 
 
@@ -298,6 +299,18 @@ plot(krs)
 
 ![Kreise Deutschland](figure/vg250_krs.png)
 
+## A6A Aufgabe: Download von Shapefiles für die Gemeinden Deutschlands
+
+- Lade die Shapefiles Datei (UTM32 Kompakt) von [**hier**](http://www.geodatenzentrum.de/geodaten/gdz_rahmen.gdz_div?gdz_spr=deu&gdz_akt_zeile=5&gdz_anz_zeile=1&gdz_unt_zeile=15&gdz_user_id=0) herunter. 
+- Entpacke den zip-Ordner und importiere den Shapefile (`VG250_F.shp`) mit den Gemeinden, mit einer geeigneten Funktion.
+
+```{r,eval=F,echo=show_solution}
+setwd("D:/Eigene Dateien/Downloads/vg250-ew_3112.gk3.shape.kompakt/vg250-ew_kompakt/")
+# dat <- sf::st_read("VG250_P.shp")
+# dat <- rgdal::readOGR("VG250_P.shp","VG250_P")
+dat <- maptools::readShapePoly("VG250_F.shp")
+```
+
 ## Kreise eines Bundeslandes
 
 ```{r,eval=F}
@@ -307,6 +320,19 @@ plot(krs[fds=="05",])
 ```
 
 ![Kreise NRW](figure/KreiseNRW.png)
+
+## A6B Aufgabe: Eine Karte für das Saarland erzeugen
+
+- Schränke die Daten auf das Saarland ein, und zeichne eine Karte vom Saarland.
+
+```{r,eval=F,echo=show_solution}
+BLA <- substr(dat@data$RS,1,2)
+SAL <- dat[BLA==10,]
+sp::plot(SAL)
+```
+
+- Speichere den Datensatz in geeigneter Form ab.
+
 
 ## Andere Quellen
 
