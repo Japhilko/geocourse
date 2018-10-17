@@ -1,0 +1,9 @@
+base
+knitr
+sp
+maptools
+lattice
+rgdal
+raster
+maps
+mapdata

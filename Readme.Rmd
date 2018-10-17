@@ -64,20 +64,21 @@ Eine Choroplethenkarte (auch Flächenkartogramm oder Flächenwertstufenkarte) is
 
 ### __(A6) Die Nutzung von Shapefiles__
 
-Viele Daten werden im Shapefile Format von ESRI angeboten. Das Format sowie Möglichkeiten die Daten zu importieren werden hier vorgestellt ([Github](`r paste0(coursepath,"slides/Shapefiles.md")`)).
+Viele Daten werden im Shapefile Format von ESRI angeboten. Das Format sowie Möglichkeiten die Daten zu importieren werden hier vorgestellt ([Github](`r paste0(coursepath,"slides/A6_Shapefiles.md")`)).
 
+<!--
 - Aufgabe: [Zensus Ergebnisse und Karte miteinander verbinden und einfärben](https://github.com/Japhilko/GeoData/blob/master/2017/tutorial/Aufgabe_Verbindung.Rmd)
 
 - Aufgabe: [Deutschlands Gemeinden](https://github.com/Japhilko/GeoData/blob/master/2016/tutorial/Aufgabe_Zensus_Ergebnisse.md)
+-->
 
-
-### __(A6) Das R-Paket `spdep` - Nachbarschaft und Distanz__ 
+### __(A7) Das R-Paket `spdep` - Nachbarschaft und Distanz__ 
 
 - [Browser](slides/spdep.md) | [pdf](slides/spdep.pdf) |
 [rcode](https://raw.githubusercontent.com/Japhilko/GeoData/master/2016/rcode/slidesH1_spdep.R)
 - Aufgabe: [Distanzberechnung](https://github.com/Japhilko/GeoData/blob/master/2016/tutorial/Aufgabe_Distanzberechnung.Rmd)
 
-### __(A7) Rasterdaten importieren und verarbeiten__
+### __(A8) Rasterdaten importieren und verarbeiten__
 
 - [](slides/Rasterdaten.Rmd)
 
@@ -111,7 +112,7 @@ Viele Daten werden im Shapefile Format von ESRI angeboten. Das Format sowie Mög
 
 
 
-### __(B4) Das `osmdata` Paket__ 
+### __(B5) Das `osmdata` Paket__ 
 
 - ([Github](slides/osmdata.md))
 

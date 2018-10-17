@@ -10,6 +10,14 @@ knitr::opts_chunk$set(echo = FALSE)
 ```
 
 
+<!--
+ToDos
+
+- Natural Earth Data näher vorstellen - bspw. für Download von Rasterdaten
+- Die Alternative zu match vorstellen
+-->
+
+
 ### __(B3) Die Nutzung von Programmierschnittstellen__ ([Browser](slides/UsageAPI.md)| [pdf](slides/UsageAPI.pdf) | [rcode](rcode/UsageAPI.R))
 
 

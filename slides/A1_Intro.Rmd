@@ -28,7 +28,7 @@ knitr::opts_chunk$set(echo = TRUE,message=F,warning=F,cache=T)
 - Habt Ihr Erfahrungen mit anderen Programmiersprachen / Statistiksoftware? Wenn ja welche?
 - Was sind Eure Erwartungen für diesen Kurs? 
 
-## Disclaimer/ Informationen vorab
+## Informationen vorab
 
 Normalerweise gibt es große Unterschiede bei Vorkenntnissen und Fähigkeiten, insbesondere bei diesem Kurs.
 
@@ -39,7 +39,12 @@ Normalerweise gibt es große Unterschiede bei Vorkenntnissen und Fähigkeiten, i
 - Ich habe viele [**Beispiele**](https://www.showmeshiny.com/) - probiert sie aus 
 - R macht mehr Spaß zusammen - arbeitet zusammen!
 
+## Disclaimer
 
+- Zum Import, zur Verarbeitung und Visualisierung gibt es bereits sehr viele Pakete.
+- Das Gebiet entwickelt sich sehr schnell.
+- Es ist nicht möglich alles davon in diesem Kurs vorzustellen.
+- Ich möchte anhand vieler Beispiele zeigen, was alles möglich ist. 
 
 ## Das Thema Geodatenlandschaft
 
