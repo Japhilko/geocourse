@@ -28,6 +28,15 @@ library(knitr)
 - On-Site-Nutzung - Arbeitsplätze für Gastwissenschaftler - Kontrollierte Datenfernverarbeitung
 
 
+## [EU initiative INSPIRE](http://inspire.ec.europa.eu/reports/Registration_form.pdf)
+
+![](figure/logo_inspire.PNG)
+
+### Targets:
+
+- Make spatial information more accessible and interoperable
+-support sustainable development
+
 ## Zensus Atlas
 
 ### https://ergebnisse.zensus2011.de/
@@ -148,3 +157,26 @@ kable(whc2)
 |6  |M'Zab Valley            |      3.68|    32.48|C              |
 |7  |DjÃ©mila                |      5.74|    36.32|C              |
 |8  |Timgad                  |      6.63|    35.45|C              |
+
+
+## American Community Survey
+
+### [Data for the American Community Survey:](http://www.census.gov/acs/www/)
+
+
+![](figure/american_comsurvey.png)
+
+
+
+## [The Humanitarian Data Exchange](https://data.hdx.rwlabs.org/dataset/rowca-ebola-cases)
+
+data.hdx.rwlabs.org
+
+![](figure/HDx.PNG)
+
+
+- Zum Beispiel Ebola Fälle
+
+## [London Datastore](http://data.london.gov.uk/dataset)
+
+![](figure/LondonData.PNG)
