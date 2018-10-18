@@ -208,8 +208,8 @@ X & name & tourism & website\tabularnewline
 \begin{frame}[fragile]{Notwendige Pakete}
 \protect\hypertarget{notwendige-pakete}{}
 
-\href{https://cran.r-project.org/web/packages/magrittr/index.html}{magrittr}
-- für den Pipe Operator in R:
+\begin{block}{\href{https://cran.r-project.org/web/packages/magrittr/index.html}{\textbf{magrittr}}
+- für den Pipe Operator in R:}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -225,6 +225,8 @@ Karten mit der JavaScript Bibliothek `Leaflet' zu erzeugen
 \KeywordTok{library}\NormalTok{(}\StringTok{"leaflet"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\end{block}
 
 \end{frame}
 
@@ -268,6 +270,31 @@ Karten mit der JavaScript Bibliothek `Leaflet' zu erzeugen
 \StringTok{  }\KeywordTok{addMarkers}\NormalTok{(}\DataTypeTok{lng=}\NormalTok{CampSites}\OperatorTok{$}\NormalTok{lon, }
              \DataTypeTok{lat=}\NormalTok{CampSites}\OperatorTok{$}\NormalTok{lat, }
              \DataTypeTok{popup=}\NormalTok{CampSites}\OperatorTok{$}\NormalTok{name)}
+\NormalTok{m}
+\end{Highlighting}
+\end{Shaded}
+
+\end{frame}
+
+\begin{frame}[fragile]{Das Paket \texttt{leaflet} - Visualisierung von
+Geokodierung}
+\protect\hypertarget{das-paket-leaflet---visualisierung-von-geokodierung}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(}\StringTok{"tmaptools"}\NormalTok{)}
+\NormalTok{gc_tma <-}\StringTok{ }\KeywordTok{geocode_OSM}\NormalTok{(}\StringTok{"Mannheim, GESIS"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(leaflet)}
+\KeywordTok{library}\NormalTok{(magrittr)}
+\NormalTok{m <-}\StringTok{ }\KeywordTok{leaflet}\NormalTok{() }\OperatorTok{%>%}
+\KeywordTok{addTiles}\NormalTok{() }\OperatorTok{%>%}
+\KeywordTok{addMarkers}\NormalTok{(}\DataTypeTok{lng=}\FloatTok{8.463061}\NormalTok{ , }\DataTypeTok{lat=}\FloatTok{49.485736}\NormalTok{ , }
+           \DataTypeTok{popup=}\StringTok{"GESIS Mannheim"}\NormalTok{)}
 \NormalTok{m}
 \end{Highlighting}
 \end{Shaded}
@@ -481,16 +508,17 @@ Franken}
 \end{Highlighting}
 \end{Shaded}
 
+\includegraphics{figure/gadm_mapview.PNG}
+
 \end{frame}
 
-\begin{frame}[fragile]{Das Paket \texttt{mapview}}
-\protect\hypertarget{das-paket-mapview}{}
+\begin{frame}[fragile]{Das Paket \texttt{mapview} - Funktion
+\texttt{editMap}}
+\protect\hypertarget{das-paket-mapview---funktion-editmap}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(mapedit)}
-\KeywordTok{library}\NormalTok{(magrittr)}
-
 \NormalTok{lf <-}\StringTok{ }\KeywordTok{mapview}\NormalTok{()}
 \NormalTok{drawing <-}\StringTok{ }\NormalTok{lf }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{editMap}\NormalTok{()}
@@ -502,43 +530,25 @@ Franken}
 \end{frame}
 
 \begin{frame}[fragile]{Das Paket \texttt{mapview}}
-\protect\hypertarget{das-paket-mapview-1}{}
+\protect\hypertarget{das-paket-mapview}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{load}\NormalTok{(}\StringTok{"../data/spatsamp_68239.RData"}\NormalTok{)}
+\NormalTok{(}\KeywordTok{load}\NormalTok{(}\StringTok{"../data/spatsamp_68239.RData"}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+## [1] "spatsamp"
+\end{verbatim}
+
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(mapview)}
 \KeywordTok{mapview}\NormalTok{(spatsamp)}
 \end{Highlighting}
 \end{Shaded}
 
-\end{frame}
-
-\begin{frame}[fragile]{Das Paket \texttt{leaflet}}
-\protect\hypertarget{das-paket-leaflet}{}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(}\StringTok{"tmaptools"}\NormalTok{)}
-\NormalTok{gc_tma <-}\StringTok{ }\KeywordTok{geocode_OSM}\NormalTok{(}\StringTok{"Mannheim, GESIS"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(leaflet)}
-\KeywordTok{library}\NormalTok{(magrittr)}
-\NormalTok{m <-}\StringTok{ }\KeywordTok{leaflet}\NormalTok{() }\OperatorTok{%>%}
-\KeywordTok{addTiles}\NormalTok{() }\OperatorTok{%>%}
-\KeywordTok{addMarkers}\NormalTok{(}\DataTypeTok{lng=}\FloatTok{8.463061}\NormalTok{ , }\DataTypeTok{lat=}\FloatTok{49.485736}\NormalTok{ , }\DataTypeTok{popup=}\StringTok{"GESIS Mannheim"}\NormalTok{)}
-\NormalTok{m}
-\end{Highlighting}
-\end{Shaded}
+\includegraphics{figure/spatsamp.PNG}
 
 \end{frame}
 
@@ -557,6 +567,29 @@ Franken}
 \KeywordTok{citation}\NormalTok{(}\StringTok{"geojsonR"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(geojsonR)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://github.com/mlampros/shiny-server}{\textbf{Geokodierung}}
+\end{itemize}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://lampros.shinyapps.io/shiny_geojson/}{\textbf{geojson}}
+\item
+  \href{http://labs.easyblog.it/maps/leaflet-geojson-selector/}{\textbf{geojsonr
+  Selector}}
+\end{itemize}
+
+\includegraphics{figure/geojsonr.PNG}
 
 \end{frame}
 
@@ -578,7 +611,8 @@ Franken}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{bus_stops <-}\StringTok{ }\NormalTok{geojsonio}\OperatorTok{::}\KeywordTok{geojson_read}\NormalTok{(}\StringTok{"../data/Amsterdam_bus_stop.geojson"}\NormalTok{,}
+\NormalTok{busstops <-}\StringTok{ "../data/Amsterdam_bus_stop.geojson"}
+\NormalTok{bus_stops <-}\StringTok{ }\NormalTok{geojsonio}\OperatorTok{::}\KeywordTok{geojson_read}\NormalTok{(busstops,}
   \DataTypeTok{what =} \StringTok{"sp"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -594,7 +628,20 @@ Franken}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{B6_using_javascript_files/figure-beamer/unnamed-chunk-30-1.pdf}
+\includegraphics{B6_using_javascript_files/figure-beamer/unnamed-chunk-32-1.pdf}
+
+\end{frame}
+
+\begin{frame}[fragile]{Eine interaktive Karte erzeugen}
+\protect\hypertarget{eine-interaktive-karte-erzeugen}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mapview}\NormalTok{(bus_stops)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figure/interaktive_busstops_amsterdam.PNG}
 
 \end{frame}
 
@@ -664,10 +711,12 @@ Paket \texttt{lawn}}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{gcs <-}\StringTok{ }\NormalTok{geojsonio}\OperatorTok{::}\KeywordTok{geojson_read}\NormalTok{(}\StringTok{"../data/ddat.geojson"}\NormalTok{)}
-\KeywordTok{view}\NormalTok{(gcs)}
+\NormalTok{gcs <-}\StringTok{ }\NormalTok{geojsonio}\OperatorTok{::}\KeywordTok{geojson_read}\NormalTok{(}\StringTok{"../data/ddat.geojson"}\NormalTok{,}\DataTypeTok{what=}\StringTok{"sp"}\NormalTok{)}
+\KeywordTok{mapview}\NormalTok{(gcs)}
 \end{Highlighting}
 \end{Shaded}
+
+\includegraphics{figure/ddat_geojson.PNG}
 
 \end{frame}
 
@@ -720,22 +769,6 @@ Paket \texttt{lawn}}}
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(}\StringTok{"RJSONIO"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 
-## Attaching package: 'RJSONIO'
-\end{verbatim}
-
-\begin{verbatim}
-## The following objects are masked from 'package:jsonlite':
-## 
-##     fromJSON, toJSON
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \NormalTok{con <-}\StringTok{ }\KeywordTok{url}\NormalTok{(}\StringTok{"http://nominatim.openstreetmap.org/search?format=json&}
 \StringTok{addressdetails=1&extratags=1&q=Amsterdam+Niederlande+Rozengracht+1"}\NormalTok{)}
 \NormalTok{geoc <-}\StringTok{ }\KeywordTok{fromJSON}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\KeywordTok{readLines}\NormalTok{(con,}\DataTypeTok{warn=}\NormalTok{F), }
@@ -744,6 +777,21 @@ Paket \texttt{lawn}}}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{geoc[[}\DecValTok{10}\NormalTok{]]}\OperatorTok{$}\NormalTok{address}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    house_number            road     residential          suburb 
+##         "184-1"   "Rozengracht"       "Jordaan"     "Amsterdam" 
+##   city_district            city           state        postcode 
+##       "Centrum"     "Amsterdam" "Noord-Holland"        "1016NK" 
+##         country    country_code 
+##     "Nederland"            "nl"
+\end{verbatim}
+
 \end{frame}
 
 \begin{frame}{Links und Quellen}
@@ -751,16 +799,17 @@ Paket \texttt{lawn}}}
 
 \begin{itemize}
 \item
-  \href{http://www.r-bloggers.com/the-leaflet-package-for-online-mapping-in-r/}{Rbloggers
-  Artikel zu Leaflet}
+  \href{http://www.r-bloggers.com/the-leaflet-package-for-online-mapping-in-r/}{\textbf{R-bloggers}}
+  Artikel zu Leaflet
 \item
-  \href{https://rstudio.github.io/leaflet/}{Einführung in Leaflet für R}
+  \href{https://rstudio.github.io/leaflet/}{\textbf{Einführung in
+  Leaflet für R}}
 \item
-  \href{https://blog.hwr-berlin.de/codeandstats/category/scientific-software/r/}{Offline
-  Karten mit RgoogleMaps und leaflet}
+  \href{https://blog.hwr-berlin.de/codeandstats/category/scientific-software/r/}{\textbf{Offline
+  Karten mit RgoogleMaps und leaflet}}
 \item
-  \href{https://github.com/ropensci/lawn}{github Ordner für das lwan
-  Paket}
+  \href{https://github.com/ropensci/lawn}{\textbf{Github Ordner für das
+  lwan Paket}}
 \end{itemize}
 
 \end{frame}

@@ -191,6 +191,168 @@ Simple Features for R
 
 \end{frame}
 
+\begin{frame}[fragile]{\href{https://cran.r-project.org/web/packages/sf/vignettes/sf2.html}{Shapefiles
+mit \texttt{sf} importieren}}
+\protect\hypertarget{shapefiles-mit-sf-importieren}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{st_layers}\NormalTok{(}\StringTok{"../data/london_sport.shp"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Driver: ESRI Shapefile 
+## Available layers:
+##     layer_name geometry_type features fields
+## 1 london_sport       Polygon       33      4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{london <-}\StringTok{ }\KeywordTok{st_read}\NormalTok{(}\StringTok{"../data/london_sport.shp"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Reading layer `london_sport' from data source `D:\github\geocourse\data\london_sport.shp' using driver `ESRI Shapefile'
+## Simple feature collection with 33 features and 4 fields
+## geometry type:  POLYGON
+## dimension:      XY
+## bbox:           xmin: 503571.2 ymin: 155850.8 xmax: 561941.1 ymax: 200932.5
+## epsg (SRID):    NA
+## proj4string:    +proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000 +ellps=airy +units=m +no_defs
+\end{verbatim}
+
+\end{frame}
+
+\begin{frame}[fragile]{Das Shapefile plotten}
+\protect\hypertarget{das-shapefile-plotten}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(london}\OperatorTok{$}\NormalTok{geometry)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{B7_simplefeatures_files/figure-beamer/unnamed-chunk-6-1.pdf}
+
+\end{frame}
+
+\begin{frame}[fragile]{\href{https://r-spatial.github.io/sf/articles/sf5.html}{Graphiken
+mit \texttt{sf}}}
+\protect\hypertarget{graphiken-mit-sf}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(london)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{B7_simplefeatures_files/figure-beamer/unnamed-chunk-7-1.pdf}
+
+\end{frame}
+
+\begin{frame}[fragile]{Die Hilfe für die Funktion plot im \texttt{sf}
+Paket}
+\protect\hypertarget{die-hilfe-fur-die-funktion-plot-im-sf-paket}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{?plot}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figure/fragezeichen_plot.PNG}
+
+\end{frame}
+
+\begin{frame}[fragile]{Der \texttt{london} shapefile als Beispiel}
+\protect\hypertarget{der-london-shapefile-als-beispiel}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(london)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Simple feature collection with 6 features and 4 fields
+## geometry type:  POLYGON
+## dimension:      XY
+## bbox:           xmin: 503571.2 ymin: 156480.8 xmax: 561941.1 ymax: 194889.3
+## epsg (SRID):    NA
+## proj4string:    +proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000 +ellps=airy +units=m +no_defs
+##   ons_label                 name Partic_Per Pop_2001
+## 1      00AF              Bromley       21.7   295535
+## 2      00BD Richmond upon Thames       26.6   172330
+## 3      00AS           Hillingdon       21.5   243006
+## 4      00AR             Havering       17.9   224262
+## 5      00AX Kingston upon Thames       24.4   147271
+## 6      00BF               Sutton       19.3   179767
+##                         geometry
+## 1 POLYGON ((541177.7 173555.7...
+## 2 POLYGON ((522957.6 178071.3...
+## 3 POLYGON ((505114.9 184625.1...
+## 4 POLYGON ((552108.3 194151.8...
+## 5 POLYGON ((519370.8 163657.4...
+## 6 POLYGON ((525554.3 166815.8...
+\end{verbatim}
+
+\end{frame}
+
+\begin{frame}[fragile]{Die Farben verändern}
+\protect\hypertarget{die-farben-verandern}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(london,}\DataTypeTok{col=}\DecValTok{1}\OperatorTok{:}\DecValTok{20}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{B7_simplefeatures_files/figure-beamer/unnamed-chunk-10-1.pdf}
+
+\end{frame}
+
+\begin{frame}[fragile]{Nur eine Karte}
+\protect\hypertarget{nur-eine-karte}{}
+
+\begin{block}{Beispiel Bevölkerung in London`s Stadtteilen}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{london2 <-}\StringTok{ }\NormalTok{london[,}\OperatorTok{-}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{)]}
+\KeywordTok{plot}\NormalTok{(london2)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{B7_simplefeatures_files/figure-beamer/unnamed-chunk-11-1.pdf}
+
+\end{block}
+
+\end{frame}
+
+\begin{frame}[fragile]{Das Paket \texttt{colorRamps}verwenden}
+\protect\hypertarget{das-paket-colorrampsverwenden}{}
+
+\begin{itemize}
+\tightlist
+\item
+  Cheatsheet zum Thema
+  \href{https://www.nceas.ucsb.edu/~frazier/RSpatialGuides/colorPaletteCheatsheet.pdf}{\textbf{hier}}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(}\StringTok{"colorRamps"}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(london2,}\DataTypeTok{col=}\KeywordTok{blue2yellow}\NormalTok{(}\DecValTok{10}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{B7_simplefeatures_files/figure-beamer/unnamed-chunk-12-1.pdf}
+
+\end{frame}
+
 \begin{frame}[fragile]{Beispieldaten bekommen}
 \protect\hypertarget{beispieldaten-bekommen}{}
 
@@ -241,78 +403,7 @@ Simple Features for R
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{plot}\NormalTok{(bb_poly_ma)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{B7_simplefeatures_files/figure-beamer/unnamed-chunk-6-1.pdf}
-
-\end{frame}
-
-\begin{frame}[fragile]{Ein Beispieldatensatz}
-\protect\hypertarget{ein-beispieldatensatz}{}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{demo}\NormalTok{(nc, }\DataTypeTok{ask =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{echo =} \OtherTok{FALSE}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Reading layer `nc.gpkg' from data source `D:\Eigene Dateien\Dokumente\R\win-library\3.5\sf\gpkg\nc.gpkg' using driver `GPKG'
-## Simple feature collection with 100 features and 14 fields
-## Attribute-geometry relationship: 0 constant, 8 aggregate, 6 identity
-## geometry type:  MULTIPOLYGON
-## dimension:      XY
-## bbox:           xmin: -84.32385 ymin: 33.88199 xmax: -75.45698 ymax: 36.58965
-## epsg (SRID):    4267
-## proj4string:    +proj=longlat +datum=NAD27 +no_defs
-\end{verbatim}
-
-\end{frame}
-
-\begin{frame}[fragile]{\href{https://r-spatial.github.io/sf/articles/sf5.html}{Graphiken
-mit \texttt{sf}}}
-\protect\hypertarget{graphiken-mit-sf}{}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{plot}\NormalTok{(nc)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{B7_simplefeatures_files/figure-beamer/unnamed-chunk-12-1.pdf}
-
-\end{frame}
-
-\begin{frame}[fragile]{\href{https://cran.r-project.org/web/packages/sf/vignettes/sf2.html}{Shapefiles
-mit \texttt{sf} importieren}}
-\protect\hypertarget{shapefiles-mit-sf-importieren}{}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{lon <-}\StringTok{ }\KeywordTok{st_read}\NormalTok{(}\StringTok{"../data/london_sport.shp"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Reading layer `london_sport' from data source `D:\github\geocourse\data\london_sport.shp' using driver `ESRI Shapefile'
-## Simple feature collection with 33 features and 4 fields
-## geometry type:  POLYGON
-## dimension:      XY
-## bbox:           xmin: 503571.2 ymin: 155850.8 xmax: 561941.1 ymax: 200932.5
-## epsg (SRID):    NA
-## proj4string:    +proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000 +ellps=airy +units=m +no_defs
-\end{verbatim}
-
-\end{frame}
-
-\begin{frame}[fragile]{Das Shapefile plotten}
-\protect\hypertarget{das-shapefile-plotten}{}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{plot}\NormalTok{(lon}\OperatorTok{$}\NormalTok{geometry)}
+\KeywordTok{plot}\NormalTok{(bb_poly_ma,}\DataTypeTok{type=}\StringTok{"l"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -400,7 +491,7 @@ Get, set, or replace geometry from an sf object
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{B7_simplefeatures_files/figure-beamer/unnamed-chunk-20-1.pdf}
+\includegraphics{B7_simplefeatures_files/figure-beamer/unnamed-chunk-24-1.pdf}
 
 \end{frame}
 
@@ -415,7 +506,7 @@ Get, set, or replace geometry from an sf object
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{B7_simplefeatures_files/figure-beamer/unnamed-chunk-21-1.pdf}
+\includegraphics{B7_simplefeatures_files/figure-beamer/unnamed-chunk-25-1.pdf}
 
 \end{frame}
 
@@ -435,7 +526,7 @@ Get, set, or replace geometry from an sf object
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{B7_simplefeatures_files/figure-beamer/unnamed-chunk-23-1.pdf}
+\includegraphics{B7_simplefeatures_files/figure-beamer/unnamed-chunk-27-1.pdf}
 
 \end{frame}
 
@@ -532,7 +623,7 @@ proj4string:    +proj=longlat +datum=WGS84 +no_defs
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{B7_simplefeatures_files/figure-beamer/unnamed-chunk-29-1.pdf}
+\includegraphics{B7_simplefeatures_files/figure-beamer/unnamed-chunk-33-1.pdf}
 
 \end{frame}
 
@@ -558,11 +649,21 @@ proj4string:    +proj=longlat +datum=WGS84 +no_defs
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{roads <-}\StringTok{ }\NormalTok{datl[datl}\OperatorTok{$}\NormalTok{highway }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"residential"}\NormalTok{),]}
+\end{Highlighting}
+\end{Shaded}
+
+\end{frame}
+
+\begin{frame}[fragile]{Der Straßen-Typ \texttt{residential}}
+\protect\hypertarget{der-straen-typ-residential}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \NormalTok{(map2 <-}\StringTok{ }\NormalTok{map1}\OperatorTok{+}\KeywordTok{qtm}\NormalTok{(}\KeywordTok{st_geometry}\NormalTok{(roads),}\DataTypeTok{lines.col=}\StringTok{"purple"}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{B7_simplefeatures_files/figure-beamer/unnamed-chunk-30-1.pdf}
+\includegraphics{B7_simplefeatures_files/figure-beamer/unnamed-chunk-35-1.pdf}
 
 \end{frame}
 
@@ -577,7 +678,33 @@ proj4string:    +proj=longlat +datum=WGS84 +no_defs
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{B7_simplefeatures_files/figure-beamer/unnamed-chunk-31-1.pdf}
+\includegraphics{B7_simplefeatures_files/figure-beamer/unnamed-chunk-36-1.pdf}
+
+\end{frame}
+
+\begin{frame}[fragile]{Eine Demonstartion von sf}
+\protect\hypertarget{eine-demonstartion-von-sf}{}
+
+\begin{block}{Beispieldatensatz \texttt{nc}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{demo}\NormalTok{(nc, }\DataTypeTok{ask =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{echo =} \OtherTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Reading layer `nc.gpkg' from data source `D:\Eigene Dateien\Dokumente\R\win-library\3.5\sf\gpkg\nc.gpkg' using driver `GPKG'
+## Simple feature collection with 100 features and 14 fields
+## Attribute-geometry relationship: 0 constant, 8 aggregate, 6 identity
+## geometry type:  MULTIPOLYGON
+## dimension:      XY
+## bbox:           xmin: -84.32385 ymin: 33.88199 xmax: -75.45698 ymax: 36.58965
+## epsg (SRID):    4267
+## proj4string:    +proj=longlat +datum=NAD27 +no_defs
+\end{verbatim}
+
+\end{block}
 
 \end{frame}
 

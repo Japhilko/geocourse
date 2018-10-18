@@ -1,13 +1,13 @@
 ---
-title: "Die OSM main api"
+title: "B3 Die OSM main api"
 author: "Jan-Philipp Kolb"
 date: "23 Oktober 2018"
 output:
-  beamer_presentation:
+  beamer_presentation: 
     colortheme: beaver
     fonttheme: structurebold
-    highlight: tango
-    fig_caption: no
+    highlight: espresso
+    incremental: yes
     keep_tex: yes
     theme: CambridgeUS
   slidy_presentation: default

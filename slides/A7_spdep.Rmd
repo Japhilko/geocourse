@@ -80,7 +80,9 @@ tmp <- sp::over(spatsamp, VG250)
 head(tmp)
 ```
 
+## Koordinatenreferenzsystem (CRS)
 
+![](figure/crs_expl.PNG)
 
 ## Daten in ein anderes CRS übertragen
 

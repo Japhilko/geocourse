@@ -83,12 +83,6 @@
 \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
 \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\usepackage{longtable,booktabs}
-\usepackage{caption}
-% These lines are needed to make table captions work with longtable:
-\makeatletter
-\def\fnum@table{\tablename~\thetable}
-\makeatother
 \usepackage{graphicx,grffile}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
@@ -267,17 +261,22 @@ out;
 \begin{frame}[fragile]{Xpath Abfragesprache}
 \protect\hypertarget{xpath-abfragesprache}{}
 
-\begin{itemize}
-\tightlist
-\item
-  \href{https://de.wikipedia.org/wiki/XPath}{xpath wikipedia}
-\end{itemize}
+\begin{block}{Beispiel: \href{https://de.wikipedia.org/wiki/XPath}{xpath
+wikipedia}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{xpathApply}\NormalTok{(dat,}\StringTok{"Document"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 ## list()
 ## attr(,"class")
 ## [1] "XMLNodeSet"
 \end{verbatim}
+
+\end{block}
 
 \end{frame}
 
@@ -320,28 +319,11 @@ out;
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{kable}\NormalTok{(dat}\OperatorTok{$}\NormalTok{features}\OperatorTok{$}\NormalTok{properties[}\DecValTok{1}\OperatorTok{:}\DecValTok{10}\NormalTok{,}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{3}\OperatorTok{:}\DecValTok{5}\NormalTok{)])}
+\NormalTok{DT}\OperatorTok{::}\KeywordTok{datatable}\NormalTok{(dat}\OperatorTok{$}\NormalTok{features}\OperatorTok{$}\NormalTok{properties)}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{longtable}[]{@{}llll@{}}
-\toprule
-@id & name & public\_transport & zone\tabularnewline
-\midrule
-\endhead
-node/447840083 & Leidseplein & platform & 5700\tabularnewline
-node/495568909 & Dam & platform & 5700\tabularnewline
-node/502341044 & Elandsgracht & stop\_position & NA\tabularnewline
-node/534026003 & Centraal Station / Nicolaaskerk & NA &
-5700\tabularnewline
-node/700343182 & Prins Hendrikkade & platform & 5700\tabularnewline
-node/724232554 & Dam & platform & 5700\tabularnewline
-node/1079768926 & Prins Hendrikkade & platform & 5700\tabularnewline
-node/1079768989 & IJ tunnel & platform & 5700\tabularnewline
-node/2021794519 & Kattenburg & platform & NA\tabularnewline
-node/2087644061 & Kadijksplein & platform & NA\tabularnewline
-\bottomrule
-\end{longtable}
+\includegraphics{figure/amsterdam_busstop_features.PNG}
 
 \end{frame}
 

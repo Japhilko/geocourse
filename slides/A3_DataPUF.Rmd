@@ -190,3 +190,14 @@ kable(whc2)
 ## [London Datastore](http://data.london.gov.uk/dataset)
 
 ![](figure/LondonData.PNG)
+
+
+## Ein Beispieldatensatz für London
+
+```{r,eval=F,echo=F,message=F,warning=F}
+st_layers("../data/london_sport.shp")
+london <- st_read("../data/london_sport.shp")
+DT::datatable(london)
+```
+
+![](figure/LondonExample.PNG)

@@ -14,7 +14,7 @@ output:
 ---
 
 ```{r setup_simplefeatures, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE,fig.height=4,cach=T)
+knitr::opts_chunk$set(echo = TRUE,fig.height=4,cach=T,warning=F)
 athome <- T
 ```
 
@@ -40,6 +40,85 @@ demo(sf::affine)
 ```
 
 ![](figure/Rplot.pdf)
+
+
+## [Shapefiles mit `sf` importieren](https://cran.r-project.org/web/packages/sf/vignettes/sf2.html)
+
+
+```{r,eval=athome,echo=F}
+data_path <- "D:/GESIS/data/"
+```
+
+```{r,eval=F,echo=F}
+setwd(data_path)
+plz <- st_read("post_pl.shp")
+```
+
+```{r}
+st_layers("../data/london_sport.shp")
+london <- st_read("../data/london_sport.shp")
+```
+
+## Das Shapefile plotten
+
+```{r}
+plot(london$geometry)
+```
+
+
+<!--
+https://www.r-spatial.org/r/2018/01/08/sf-0.6-0.html
+-->
+
+
+
+## [Graphiken mit `sf`](https://r-spatial.github.io/sf/articles/sf5.html)
+
+
+```{r message=FALSE, warning=FALSE}
+plot(london)
+```
+
+## Die Hilfe für die Funktion plot im `sf` Paket 
+
+```{r,eval=F}
+?plot
+```
+
+![](figure/fragezeichen_plot.PNG)
+
+
+## Der `london` shapefile als Beispiel
+
+```{r}
+head(london)
+```
+
+## Die Farben verändern
+
+```{r message=FALSE, warning=FALSE}
+plot(london,col=1:20)
+```
+
+## Nur eine Karte 
+
+### Beispiel Bevölkerung in London`s Stadtteilen
+
+```{r}
+london2 <- london[,-(1:3)]
+plot(london2)
+```
+
+
+## Das Paket `colorRamps`verwenden
+
+### Cheatsheet zum Thema [**Farbpaletten**](https://www.nceas.ucsb.edu/~frazier/RSpatialGuides/colorPaletteCheatsheet.pdf)
+
+```{r}
+library("colorRamps")
+plot(london2,col=blue2yellow(10))
+```
+
 
 ## Beispieldaten bekommen
 
@@ -79,7 +158,7 @@ bb_poly_ma<-getbb(place_name="Mannheim",format_out="polygon")
 ## Das Ergebnis plotten
 
 ```{r}
-plot(bb_poly_ma)
+plot(bb_poly_ma,type="l")
 ```
 
 <!--
@@ -94,6 +173,8 @@ bb_poly_hd <- getbb(place_name = "Heidelberg",
 ```{r,eval=F,echo=F}
 ls <- st_multilinestring(bb_poly_ma)
 ab <- st_polygonize(ls)
+ab <- st_polygonize(bb_poly_ma)
+
 ```
 
 
@@ -112,48 +193,7 @@ mpol <- sf::st_multipolygon(bb_poly)
 # x <- osmdata_sf(pol)
 ```
 
-## Ein Beispieldatensatz
 
-
-```{r}
-demo(nc, ask = FALSE, echo = FALSE)
-```
-
-## [Graphiken mit `sf`](https://r-spatial.github.io/sf/articles/sf5.html)
-
-
-```{r message=FALSE, warning=FALSE}
-plot(nc)
-```
-
-
-## [Shapefiles mit `sf` importieren](https://cran.r-project.org/web/packages/sf/vignettes/sf2.html)
-
-
-```{r,eval=athome,echo=F}
-data_path <- "D:/GESIS/data/"
-```
-
-```{r,eval=F,echo=F}
-setwd(data_path)
-plz <- st_read("post_pl.shp")
-```
-
-```{r}
-lon <- st_read("../data/london_sport.shp")
-```
-
-
-## Das Shapefile plotten
-
-```{r}
-plot(lon$geometry)
-```
-
-
-<!--
-https://www.r-spatial.org/r/2018/01/08/sf-0.6-0.html
--->
 
 ## Eine `.osm` Datei importieren
 
@@ -291,6 +331,11 @@ library(tmap)
 ```{r message=FALSE, warning=FALSE}
 datl <- st_read("../data/ams_centraal.osm","lines")
 roads <- datl[datl$highway %in% c("residential"),]
+```
+
+## Der Straßen-Typ `residential`
+
+```{r}
 (map2 <- map1+qtm(st_geometry(roads),lines.col="purple"))
 ```
 
@@ -300,6 +345,16 @@ roads <- datl[datl$highway %in% c("residential"),]
 roads2 <- datl[datl$highway %in% c("tertiary","secondary",
                                   "primary"),]
 (map3 <- map2+qtm(st_geometry(roads2),lines.col="red"))
+```
+
+
+## Eine Demonstartion von sf 
+
+### Beispieldatensatz `nc`
+
+
+```{r}
+demo(nc, ask = FALSE, echo = FALSE)
 ```
 
 

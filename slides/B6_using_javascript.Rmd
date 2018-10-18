@@ -53,7 +53,7 @@ kable(CampSites[1:8,1:4])
 
 ## Notwendige Pakete
 
-[magrittr](https://cran.r-project.org/web/packages/magrittr/index.html) - für den Pipe Operator in R:
+### [**magrittr**](https://cran.r-project.org/web/packages/magrittr/index.html) - für den Pipe Operator in R:
 
 ```{r,warning=F}
 library("magrittr")
@@ -65,6 +65,7 @@ library("magrittr")
 ```{r,warning=F}
 library("leaflet")
 ```
+
 
 ## Eine erste interaktive Karte
 
@@ -96,6 +97,28 @@ m <- leaflet() %>%
              popup=CampSites$name)
 m
 ```
+
+
+## Das Paket `leaflet` - Visualisierung von Geokodierung
+
+```{r}
+library("tmaptools")
+gc_tma <- geocode_OSM("Mannheim, GESIS")
+```
+
+
+
+```{r,eval=htmlpres}
+library(leaflet)
+library(magrittr)
+m <- leaflet() %>%
+addTiles() %>%
+addMarkers(lng=8.463061 , lat=49.485736 , 
+           popup="GESIS Mannheim")
+m
+```
+
+
 
 ## [Stamen als Hintergrundkarte](https://rstudio.github.io/leaflet/basemaps.html)
 
@@ -239,7 +262,9 @@ mapview(franconia)
 mapview(leaflet::gadmCHE)
 ```
 
-## Das Paket `mapview`
+![](figure/gadm_mapview.PNG)
+
+## Das Paket `mapview` - Funktion `editMap`
 
 <!--
 folgendes stammt aus dem Helpfile
@@ -247,8 +272,6 @@ folgendes stammt aus dem Helpfile
 
 ```{r,eval=htmlpres}
 library(mapedit)
-library(magrittr)
-
 lf <- mapview()
 drawing <- lf %>%
   editMap()
@@ -260,13 +283,14 @@ drawing <- lf %>%
 ## Das Paket `mapview`
 
 ```{r}
-load("../data/spatsamp_68239.RData")
+(load("../data/spatsamp_68239.RData"))
 ```
 
 ```{r,eval=htmlpres}
-library(mapview)
 mapview(spatsamp)
 ```
+
+![](figure/spatsamp.PNG)
 
 ```{r,eval=F,echo=F}
 library(sf)
@@ -281,24 +305,6 @@ install.packages("lwgeom")
 
 
 
-
-## Das Paket `leaflet`
-
-```{r}
-library("tmaptools")
-gc_tma <- geocode_OSM("Mannheim, GESIS")
-```
-
-
-
-```{r,eval=htmlpres}
-library(leaflet)
-library(magrittr)
-m <- leaflet() %>%
-addTiles() %>%
-addMarkers(lng=8.463061 , lat=49.485736 , popup="GESIS Mannheim")
-m
-```
 
 
 ## Das Paket `geojsonR`
@@ -321,6 +327,26 @@ install.packages("geojsonR")
 citation("geojsonR")
 ```
 
+```{r}
+library(geojsonR)
+```
+
+
+- [**Geokodierung**](https://github.com/mlampros/shiny-server)
+
+<!--
+https://lampros.shinyapps.io/shiny_geocoding/
+-->
+
+```{r,echo=F}
+
+```
+
+- [**geojson**](https://lampros.shinyapps.io/shiny_geojson/)
+- [**geojsonr Selector**](http://labs.easyblog.it/maps/leaflet-geojson-selector/)
+
+![](figure/geojsonr.PNG)
+
 ## Wo bekomme ich ein geojson
 
 - Ein [**OSM map feature**](https://wiki.openstreetmap.org/wiki/Map_Features) heraus suchen 
@@ -328,7 +354,8 @@ citation("geojsonR")
 - Auf [**Overpass Turbo**](https://overpass-turbo.eu/) gehen und das Objekt herunterladen
 
 ```{r}
-bus_stops <- geojsonio::geojson_read("../data/Amsterdam_bus_stop.geojson",
+busstops <- "../data/Amsterdam_bus_stop.geojson"
+bus_stops <- geojsonio::geojson_read(busstops,
   what = "sp")
 ```
 
@@ -338,6 +365,14 @@ bus_stops <- geojsonio::geojson_read("../data/Amsterdam_bus_stop.geojson",
 ```{r}
 sp::plot(bus_stops)
 ```
+
+## Eine interaktive Karte erzeugen
+
+```{r,eval=F}
+mapview(bus_stops)
+```
+
+![](figure/interaktive_busstops_amsterdam.PNG)
 
 <!--
 ## Eine direkte Abfrage
@@ -398,9 +433,11 @@ https://wiki.openstreetmap.org/wiki/GeoJSON
 ## Interaktive Deutschland Karte 
 
 ```{r,eval=htmlpres}
-gcs <- geojsonio::geojson_read("../data/ddat.geojson")
-view(gcs)
+gcs <- geojsonio::geojson_read("../data/ddat.geojson",what="sp")
+mapview(gcs)
 ```
+
+![](figure/ddat_geojson.PNG)
 
 ## Das Paket `jsonlite`
 
@@ -431,16 +468,21 @@ geoc <- fromJSON(paste(readLines(con,warn=F),
 close(con)
 ```
 
+```{r}
+geoc[[10]]$address
+```
+
+
 
 ## Links und Quellen
 
-- [Rbloggers Artikel zu Leaflet](http://www.r-bloggers.com/the-leaflet-package-for-online-mapping-in-r/)
+- [**R-bloggers**](http://www.r-bloggers.com/the-leaflet-package-for-online-mapping-in-r/) Artikel zu Leaflet
 
-- [Einführung in Leaflet für R](https://rstudio.github.io/leaflet/)
+- [**Einführung in Leaflet für R**](https://rstudio.github.io/leaflet/)
 
-- [Offline Karten mit RgoogleMaps und leaflet](https://blog.hwr-berlin.de/codeandstats/category/scientific-software/r/)
+- [**Offline Karten mit RgoogleMaps und leaflet**](https://blog.hwr-berlin.de/codeandstats/category/scientific-software/r/)
 
-- [github Ordner für das lwan Paket](https://github.com/ropensci/lawn)
+- [**Github Ordner für das lwan Paket**](https://github.com/ropensci/lawn)
 
 <!--
 https://github.com/tyrasd/osmtogeojson
