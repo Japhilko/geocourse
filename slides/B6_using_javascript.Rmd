@@ -472,7 +472,11 @@ close(con)
 geoc[[10]]$address
 ```
 
+## Es muss nicht immer R sein
 
+### [Daten visualisieren mit CartoDB](https://japhilko.carto.com/dashboard)
+
+![](figure/CartoDB.PNG)
 
 ## Links und Quellen
 
