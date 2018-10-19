@@ -3,11 +3,10 @@ title: "B1 - Das Arbeiten mit OSM Daten"
 author: "Jan-Philipp Kolb"
 date: "23 Oktober 2018"
 output: 
-  beamer_presentation:
+  beamer_presentation: 
     colortheme: beaver
     fonttheme: structurebold
-    highlight: tango
-    fig_caption: no
+    highlight: espresso
     keep_tex: yes
     theme: CambridgeUS
   ioslides_presentation: 
@@ -22,9 +21,12 @@ Ex <- T
 ## Inhalt dieses Abschnitts
 
 - Vorstellung des Openstreetmap (OSM) Projekts
-- Welche OSM-Daten sind erhältlich?
-- Vorstellung von Forschung die mit OSM-Daten durchgeführt wurde
+- Welche OSM-Daten sind erhältlich und wie kann man diese bekommen?
+- Präsentation des Key-Value Schemas, dass bei OSM Daten verwendet wird.
 
+<!--
+- Vorstellung von Forschung die mit OSM-Daten durchgeführt wurde
+-->
 
 ## [OpenStreetMap](http://www.openstreetmap.de/) Projekt
 
@@ -165,6 +167,8 @@ library("RPostgreSQL")
 ```
 
 - [**Github Verzeichnis**](https://github.com/tomoakin/RPostgreSQL) zum Paket
+
+
 ## Nutze bspw. [QGIS](http://www.qgis.org/de/site/) um Shapefiles zu extrahieren
 
 - [Plugin OpenLayers](http://www.qgistutorials.com/de/docs/downloading_osm_data.html)

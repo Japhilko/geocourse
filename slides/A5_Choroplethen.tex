@@ -630,6 +630,36 @@ D = Democratic; R = Republican; PR = Progressive;
 
 \end{frame}
 
+\begin{frame}[fragile]{Das R-Paket \texttt{choroplethrMaps}}
+\protect\hypertarget{das-r-paket-choroplethrmaps}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(ggplot2);}\KeywordTok{library}\NormalTok{(choroplethrMaps)}
+\KeywordTok{data}\NormalTok{(country.map)}
+\KeywordTok{ggplot}\NormalTok{(country.map, }\KeywordTok{aes}\NormalTok{(long, lat, }\DataTypeTok{group=}\NormalTok{group))}\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_polygon}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{A5_Choroplethen_files/figure-beamer/unnamed-chunk-33-1.pdf}
+
+\end{frame}
+
+\begin{frame}[fragile]{Eine Karte für die USA}
+\protect\hypertarget{eine-karte-fur-die-usa}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{data}\NormalTok{(state.map)}
+\KeywordTok{ggplot}\NormalTok{(state.map,}\KeywordTok{aes}\NormalTok{(long,lat,}\DataTypeTok{group=}\NormalTok{group))}\OperatorTok{+}\KeywordTok{geom_polygon}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{A5_Choroplethen_files/figure-beamer/unnamed-chunk-34-1.pdf}
+
+\end{frame}
+
 \begin{frame}[fragile]{Resourcen}
 \protect\hypertarget{resourcen}{}
 

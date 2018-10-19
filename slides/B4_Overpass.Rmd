@@ -3,19 +3,20 @@ title: "Overpass"
 author: "Jan-Philipp Kolb"
 date: "23 Oktober 2018"
 output:
-  beamer_presentation:
+  beamer_presentation: 
     colortheme: beaver
     fonttheme: structurebold
-    highlight: tango
-    fig_caption: no
+    highlight: espresso
     keep_tex: yes
     theme: CambridgeUS
   slidy_presentation: default
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE,fig.height=4)
 library(knitr)
+GESIS <- F
+athome <- !GESIS
 ```
 
 ## Themen dieses Abschnitts
@@ -137,3 +138,158 @@ dat_gpx <- readGPX("../data/Amsterdam_busstop.gpx")
 head(dat_gpx$waypoints)
 ```
 
+
+## Daten verbinden - Beispiel Bäckereien in Berlin
+
+- Quelle für die folgenden Daten ist: 
+
+![](figure/osm_freieWeltkarte.PNG)
+
+<!--
+http://wiki.openstreetmap.org/wiki/DE:Datenherkunft_richtig_angeben
+-->
+
+## OSM als Datenquelle
+
+- Zum Download habe ich die [**Overpass API**](http://wiki.openstreetmap.org/wiki/Overpass_API) verwendet
+
+```{r,eval=T,echo=T}
+load("../data/info_bar_Berlin.RData")
+```
+
+```{r,echo=F}
+info_be <- info[,c("addr.postcode","addr.street","name","lat","lon")]
+```
+
+```{r,echo=F}
+kable(head(info_be))
+```
+
+
+## Verwendung des Pakets `gosmd`
+
+```{r,eval=F}
+devtools::install_github("Japhilko/gosmd")
+```
+
+
+```{r,eval=F}
+library("gosmd")
+pg_MA <- get_osm_nodes(object="leisure=playground","Mannheim")
+pg_MA <- extract_osm_nodes(pg_MA,value='playground')
+```
+
+
+## Matching
+
+```{r}
+tab_plz <- table(info_be$addr.postcode)
+```
+
+```{r}
+load("../data/BE.RData")
+```
+
+
+```{r}
+ind <- match(BE@data$PLZ99_N,names(tab_plz))
+ind
+```
+
+## Daten anspielen
+
+```{r}
+BE@data$num_plz <- tab_plz[ind]
+```
+
+```{r,eval=F,echo=F}
+install.packages("colorRamps")
+install.packages("XML")
+install.packages("geosphere")
+install.packages("tmap")
+install.packages("curl")
+install.packages("R.oo")
+```
+
+
+## Eine Karte von Berlin mit dem Paket `tmap`
+
+```{r}
+BE@data$num_plz[is.na(BE@data$num_plz)] <- 0
+tmap::qtm(BE,fill = "num_plz")
+```
+
+## Mehr Informationen einbinden
+
+- Der folgende Datensatz ist eine Kombination aus den vorgestellten PLZ-Shapefiles und OSM-Daten die über Overpass heruntergeladen wurden:
+
+
+```{r}
+load("../data/osmsa_PLZ_14.RData")
+```
+
+```{r,echo=F,eval=F}
+dat_plz <- PLZ@data
+kable(head(dat_plz))
+DT::datatable(dat_plz)
+```
+
+![](figure/osmsa_ex.PNG)
+
+## OSM-Daten - Bäckereien in Stuttgart
+
+
+```{r,echo=F}
+PLZ_SG <- PLZ[PLZ@data$PLZORT99=="Stuttgart",]
+```
+
+
+
+```{r}
+tmap::qtm(PLZ_SG,fill="bakery")
+```
+
+
+## [Das R-Paket `RDSTK`](http://www.datasciencetoolkit.org/)
+
+```{r,eval=F,echo=F}
+install.packages("RDSTK")
+```
+
+![](figure/DataScienceToolkit.PNG)
+
+- Data Science Toolkit API
+
+```{r,eval=F}
+library("RDSTK")
+```
+
+## Die Daten für Stuttgart
+
+```{r,echo=F}
+tab_landcover <- table(PLZ_SG$land_cover.value)
+df_landcover <- data.frame(tab_landcover)
+colnames(df_landcover)[1] <- c("Type_landcover")
+kable(df_landcover)
+```
+
+
+## Eine Karte der Flächenbedeckung erstellen
+
+- Daten von [European Commission Land Resource Management Unit Global Land Cover 2000.](http://bioval.jrc.ec.europa.eu/products/glc2000/products.php)
+
+```{r}
+tmap::qtm(PLZ_SG,fill="land_cover.value")
+```
+
+## Die Höhe in Stuttgart
+
+- Daten von [**NASA and the CGIAR Consortium for Spatial Information **](http://srtm.csi.cgiar.org/)
+
+```{r}
+tmap::qtm(PLZ_SG,fill="elevation.value")
+```
+
+<!--
+man könnte hier noch zeigen, wie man einen Punkt hinzufügen kann
+-->

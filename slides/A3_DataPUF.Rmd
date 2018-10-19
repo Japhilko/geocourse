@@ -3,11 +3,10 @@ title: "Daten beschaffen"
 author: "Jan-Philipp Kolb"
 date: "22 Oktober 2018"
 output:
-  beamer_presentation:
+  beamer_presentation: 
     colortheme: beaver
     fonttheme: structurebold
-    highlight: tango
-    fig_caption: no
+    highlight: espresso
     keep_tex: yes
     theme: CambridgeUS
 ---
@@ -16,8 +15,11 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE,cache=T,eval=T,warning=F)
 library(knitr)
+GESIS <- F
+athome <- !GESIS
 ```
 
+<!--
 ## Datenzugang
 
 - Public-Use-File (PUF) Datei zur öffentlichen Nutzung - meist stark anonymisierte Daten
@@ -26,28 +28,49 @@ library(knitr)
 - Scientific-Use-File (SUF) - Datei zur wissenschaftlichen Nutzung - anonymisierte Daten, die zu wissenschaftlichen Zwecken und zur Sekundäranalyse genutzt werden können. 
  
 - On-Site-Nutzung - Arbeitsplätze für Gastwissenschaftler - Kontrollierte Datenfernverarbeitung
+-->
 
-
-## [EU initiative INSPIRE](http://inspire.ec.europa.eu/reports/Registration_form.pdf)
+## [EU Initiative INSPIRE](http://inspire.ec.europa.eu/reports/Registration_form.pdf)
 
 ![](figure/inspire.PNG)
 
-### Targets:
+### Ziele:
 
-- Make spatial information more accessible and interoperable
--support sustainable development
+- Räumliche Information zugänglicher und interoperabel machen
+- Nachhaltige Entwicklung in diesem Bereich unterstützen
+
+### Entwicklung
+
+- Aufgrund der  Richtlinie sind mehr Daten frei verfügbar.
 
 ## Zensus Atlas
+
+Für den Zensus 2011 kann man Daten herunterladen und/oder diese in Karten visualisieren.
 
 ### https://ergebnisse.zensus2011.de/
 
 ![Zensus Datenbank](figure/Zensusdtb.PNG)
 
+## [Zensus Gemeindeergebnisse](https://www.destatis.de/DE/Methoden/Zensus_/Zensus.html)
+
+```{r,eval=F,echo=F}
+library(xlsx)
+setwd("D:/GESIS/Vorträge/20171122_userStuttgart/data/")
+bev_dat <- read.xlsx("xlsx_Bevoelkerung.xlsx",3)
+```
+
+
+![](figure/ZensusMigbg.PNG)
+
+
 
 ## A3A Aufgabe: Zensus Ergebnisse für Gemeinden downloaden
 
-- Lade die Zensus Gemeinde Ergebniss [**hier**](https://www.zensus2011.de/SharedDocs/Aktuelles/Ergebnisse/DemografischeGrunddaten.html) herunter
-- Importiere die Daten mit einer geeigneten Funktion
+- Lade die Zensus Gemeinde Ergebnisse [**hier**](https://www.zensus2011.de/SharedDocs/Aktuelles/Ergebnisse/DemografischeGrunddaten.html) herunter.
+- Importiere die Daten mit einer geeigneten Funktion in R.
+- Welche Information ist in den Daten enthalten?
+
+
 
 ## [Der amtliche Gemeindeschlüssel](https://de.wikipedia.org/wiki/Amtlicher_Gemeindeschl%C3%BCssel)
 
@@ -62,7 +85,7 @@ library(knitr)
 ## A3B Aufgabe 
 
 - Nutze die Gemeindeergebnisse für den Zensus 2011 und erzeuge einen Datensatz, der nur die Ergebnisse für die Saarländischen Gemeinden enthält.
-- Gib die Gemeinde an, in der der Anteil der unter 1-jährigen am höchsten ist. 
+- Ermittle aus diesem Datensatz die Gemeinde in der der Anteil der unter 1-jährigen am höchsten ist. 
 - Speichere einen Datensatz ab, in dem die folgenden Variablen enthalten sind:
     - der amtliche Gemeindeschlüssel, 
     - die Gemeindenamen,  
@@ -80,19 +103,15 @@ library(knitr)
 
 - Es werden hauptsächlich Public Use Files angeboten, 
 
-- teilweise können Gewichtungsfaktoren verwendet werden um regionale Ergebnisse zu bekommen
+- Teilweise können Gewichtungsfaktoren verwendet werden um regionale Ergebnisse zu bekommen
 
 - In der Regel ist Darstellung in Karten aber schwierig
 
 ## Weitere Amtliche Datenquellen
 
-- Genesis
+- Die Regionaldatenbank [**Genesis**](https://www-genesis.destatis.de/genesis/online)
 
-<https://www-genesis.destatis.de/genesis/online>
-
-- Daneben gibt es Angebote der Landesämter bspw:
-
-<https://www.statistik.rlp.de/regionaldaten/>
+- Daneben gibt es Angebote der Landesämter bspw das Angebot des [**statistischen Landesamts Rheinland-Pfalz**](https://www.statistik.rlp.de/regionaldaten/)
 
 ## Eurostat Daten
 
@@ -100,25 +119,23 @@ library(knitr)
 
 <http://ec.europa.eu/eurostat/web/euro-indicators/peeis>
 
-```{r,echo=F,eval=F}
-setwd("J:/Work/Statistik/Kolb/Workshops/2015/Spatial_MA/Folien/dataImport/data/")
+```{r,echo=F,eval=GESIS}
+eurostatpath <- "J:/Work/Statistik/Kolb/Workshops/2015/Spatial_MA/Folien/dataImport/data/"
 ```
 
-```{r,eval=F}
+```{r,echo=F,eval=athome}
+eurostatpath <- "D:/Eigene Dateien/Dokumente/GitHub/ps_2017_11_user_stuttgart/data/"
+```
+
+
+```{r,eval=T}
 library(xlsx)
-HHsr <- read.xlsx2("HHsavingRate.xls",1)
+HHsr <- read.xlsx2(paste0(eurostatpath,"HHsavingRate.xls"),1)
 ```
 
-```{r,echo=F,eval=F}
-kable(HHsr[1:4,1:6])
+```{r,echo=F,eval=T}
+kable(HHsr[1:4,1:5])
 ```
-
-|geo                      |X2012Q3 |X2012Q4 |X2013Q1 |X2013Q2 |X2013Q3 |
-|:------------------------|:-------|:-------|:-------|:-------|:-------|
-|Euro area (19 countries) |9.82    |11.86   |11.37   |16.28   |10.34   |
-|EU (28 countries)        |8.67    |10.92   |9.42    |14.63   |8.38    |
-|Belgium                  |12.52   |9.33    |13.99   |19.03   |12.07   |
-|Czech Republic           |10.16   |14.81   |9.46    |10.44   |10.12   |
 
 
 <!--
@@ -134,10 +151,22 @@ kable(HHsr[1:4,1:6])
 - Importiere die Daten in R mit einem geeigneten Befehl.
 
 
+## Daten - Institut für ökologische Raumforschung (IÖR)
+
+![](figure/ioerMonitor.PNG)
+
+- Hier gibt es bspw. Indikatoren zu Nachhaltigkeit, Siedlung, Gebäuden, Verkehr etc. 
+- Es könnte also interessant sein, diese Daten an das Gesis Panel anzuspielen
+- Aber dazu später mehr
+
+
+
 ## Datahub.io
 
-- Es sind sehr viele Daten vorhanden, 
-- bspw. der UNESCO [Weltkulturerbe](http://datahub.io/dataset/unesco-world-heritage-sites/resource/d4116195-44d8-4bc1-9f91-9b570870dc19), den ich in der Folge auch in Beispielen verwenden werde. 
+- Auf dieser Plattform sind sehr viele Daten vorhanden, 
+- bspw. der UNESCO [**Weltkulturerbe**](http://datahub.io/dataset/unesco-world-heritage-sites/resource/d4116195-44d8-4bc1-9f91-9b570870dc19) Datensatz, den ich in der Folge auch in Beispielen verwenden werde. 
+
+![](figure/datahub_whc.PNG)
 
 <!--
 - Funktioniert nur im Windows Explorer ?????!!!!
@@ -186,6 +215,34 @@ kable(whc2)
 <!--
 - Zum Beispiel Ebola Fälle
 -->
+
+
+## Weltbank Daten
+
+- AG.AGR.TRAC.NO - [**Agricultural machinery, tractors**](https://data.worldbank.org/indicator/AG.AGR.TRAC.NO)
+
+```{r,eval=F}
+library(WDI) 
+WDI_dat <- WDI(country="all",
+    indicator=c("AG.AGR.TRAC.NO",
+    "TM.TAX.TCOM.BC.ZS"),
+    start=1990, end=2000)
+```
+
+- Es gibt auch eine Funktion `WDIsearch` mit der man nach Indikatoren suchen kann
+
+```{r,eval=F}
+head(WDI_dat)
+```
+
+```{r,eval=F,echo=F}
+kable(head(WDI_dat))
+```
+
+```{r,eval=F,echo=F}
+datatable(WDI_dat)
+```
+
 
 ## [London Datastore](http://data.london.gov.uk/dataset)
 

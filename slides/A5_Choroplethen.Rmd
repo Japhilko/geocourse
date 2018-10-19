@@ -132,6 +132,14 @@ library(sp)
 spplot(ginimap,"gini12")
 ```
 
+## Das Paket `colorRamps` verwenden
+
+```{r}
+library(colorRamps)
+spplot(ginimap,"gini12",col.regions=matlab.like(100))
+```
+
+
 ## Aufgabe A4A - Eine Choroplethenkarte erzeugen
 
 - Lade Datensatz [**Unemployment Datensatz**](https://raw.githubusercontent.com/Japhilko/GeoData/master/2015/data/Unemployment.csv) herunter
@@ -335,6 +343,24 @@ SP = Split evenly
 # install.packages("choroplethrMaps")
 library("choroplethrMaps")
 ```
+
+
+## Das R-Paket `choroplethrMaps`
+
+```{r}
+library(ggplot2);library(choroplethrMaps)
+data(country.map)
+ggplot(country.map, aes(long, lat, group=group))+ 
+  geom_polygon()
+```
+
+## Eine Karte für die USA
+
+```{r}
+data(state.map)
+ggplot(state.map,aes(long,lat,group=group))+geom_polygon()
+```
+
 
 
 ## Resourcen

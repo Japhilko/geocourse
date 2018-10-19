@@ -3,11 +3,10 @@ title: "A7 Die R-Pakete `sp` und `spdep`"
 author: "Jan-Philipp Kolb"
 date: "22 Oktober 2018"
 output: 
-  beamer_presentation:
+  beamer_presentation: 
     colortheme: beaver
     fonttheme: structurebold
-    highlight: tango
-    fig_caption: no
+    highlight: espresso
     keep_tex: yes
     theme: CambridgeUS
   ioslides_presentation: 
@@ -16,7 +15,7 @@ output:
 
 
 ```{r setup_spdep, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE,cache=T,eval=T,warning=F)
+knitr::opts_chunk$set(echo = TRUE,cache=T,eval=T,warning=F,fig.height=6)
 GESIS <- F
 athome <- !GESIS
 ```
@@ -77,27 +76,44 @@ tmp <- sp::over(spatsamp, VG250)
 ```
 
 ```{r}
-head(tmp)
+head(tmp[,1:6])
 ```
 
 ## Koordinatenreferenzsystem (CRS)
 
+### [**CRS bei Wikipedia**]()
+
+- Ein Koordinatenreferenzsystem ist ein Koordinatensystem, das durch Verknüpfung mit einem Datum auf die reale Welt bezogen ist.
+- EPSG-Codes sind ein weit verbreitetes Mittel, um den räumlichen Bezug von Geodaten eindeutig anzugeben.
+- Die 4- bis 5-stelligen Schlüsselnummern beinhalten jeweils eine komplette Beschreibung eines Koordinatenreferenzsystems.
+-  Es gibt mehrere hundert solcher Referenzsysteme, und jedes besteht aus einer Liste von 10 bis 20 Parametern. 
+
+
+<!--
 ![](figure/crs_expl.PNG)
+-->
 
 ## Daten in ein anderes CRS übertragen
 
-```{r}
+```{r,eval=F,echo=F}
 library(sp)
 ```
 
-
-
 > spTransform for map projection and datum transformation
 
-```{r}
+<!--
 # EPSG: 3857
+-->
+
+```{r}
 newData<-sp::spTransform(spatsamp, CRS("+init=epsg:3857"))
 ```
+
+```{r}
+head(spatsamp)
+head(newData)
+```
+
 
 <!--
 # res <- spTransform(spatsamp, CRS("+proj=utm +zone=51 ellps=WGS84"))
@@ -138,11 +154,16 @@ library(spdep)
 Af_nb <- tri2nb(Af)
 ```
 
-Die Nachbarn für das erste Land:
+Die Nachbarn für das erste Land (Algerien):
 
 ```{r,warning=F,message=F}
 Af_nb[1]
 ```
+
+```{r}
+Africa@data[Af_nb[[1]],1:5]
+```
+
 
 ## Die Nachbarn finden
 

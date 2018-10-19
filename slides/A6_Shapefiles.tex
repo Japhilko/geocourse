@@ -167,6 +167,13 @@
 
 \end{frame}
 
+\begin{frame}{Ein kleines Quizz}
+\protect\hypertarget{ein-kleines-quizz}{}
+
+\includegraphics{figure/quizz.PNG}
+
+\end{frame}
+
 \begin{frame}{Das shapefile Format \ldots{}}
 \protect\hypertarget{das-shapefile-format}{}
 
@@ -175,8 +182,12 @@
   \ldots{} ist ein beliebtes Format räumlicher Vektordaten für
   geographisches Informationssysteme (GIS).
 \item
+  Das Dateiformat Shapefile ist ein ursprünglich für die Software
+  ArcView der Firma ESRI entwickeltes Format für Geodaten. (Quelle:
+  \href{https://de.wikipedia.org/wiki/Shapefile}{\textbf{Wikipedia}})
+\item
   Es wurde entwickelt und reguliert von
-  \href{http://www.esri.com/}{ESRI}
+  \href{http://www.esri.com/}{\textbf{ESRI}}
 \item
   (meist) offene Spezifikation um Daten Interoperabilität zwischen Esri
   und anderen Formaten zu sichern.
@@ -443,6 +454,16 @@ Shapefiles}
 \href{http://www.gadm.org/}{GADM} - NUTS level 1}
 \protect\hypertarget{global-adminastrative-boundaries---gadm---nuts-level-1}{}
 
+\begin{itemize}
+\tightlist
+\item
+  Für Polygonzüge unterhalb der Staatsgrenzen ist
+  \href{http://www.gadm.org/}{\textbf{Global Administrative Boundaries}}
+  eine gute Quelle.
+\item
+  Vor allem wegen API, die man Paket \texttt{raster} nutzen kann.
+\end{itemize}
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(raster)}
@@ -636,13 +657,63 @@ Datenbanken für Karten
 
 \end{frame}
 
+\begin{frame}[fragile]{Das Paket \texttt{maps} - Mehr Information}
+\protect\hypertarget{das-paket-maps---mehr-information}{}
+
+\begin{itemize}
+\tightlist
+\item
+  Nur für manche Staaten bekommt man mit dem Paket \texttt{maps}
+  Umkreise für Einheiten unterhalb der Staatsgrenze (bspw. Frankreich,
+  USA).
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(maps)}
+\KeywordTok{data}\NormalTok{(world.cities)}
+\KeywordTok{map}\NormalTok{(}\StringTok{"france"}\NormalTok{)}
+\KeywordTok{map.cities}\NormalTok{(world.cities,}\DataTypeTok{col=}\StringTok{"blue"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{A6_Shapefiles_files/figure-beamer/unnamed-chunk-36-1.pdf}
+
+\end{frame}
+
+\begin{frame}[fragile]{Das Rstudio Addin \texttt{colourpicker}}
+\protect\hypertarget{das-rstudio-addin-colourpicker}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"colourpicker"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figure/colourpicker.PNG}
+
+\end{frame}
+
+\begin{frame}{\href{http://ec.europa.eu/eurostat/de/web/gisco/geodata/reference-data/administrative-units-statistical-units}{Shapefiles
+bei Eurostat}}
+\protect\hypertarget{shapefiles-bei-eurostat}{}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{http://epp.eurostat.ec.europa.eu/portal/page/portal/gisco_Geographical_information_maps/popups/\%20references/administrative_units_statistical_units_1}{\textbf{Eurostat
+  Karten}} - in der Regel die Europäischen Mitgliedsstaaten
+\end{itemize}
+
+\includegraphics{figure/Eurostat_Zensus.PNG}
+
+\end{frame}
+
 \begin{frame}{Weitere Quellen für Shapefiles}
 \protect\hypertarget{weitere-quellen-fur-shapefiles}{}
 
 \begin{itemize}
-\item
-  \href{http://epp.eurostat.ec.europa.eu/portal/page/portal/gisco_Geographical_information_maps/popups/\%20references/administrative_units_statistical_units_1}{\textbf{Eurostat
-  Karten}} - in der Regel die Europäischen Mitgliedsstaaten
+\tightlist
 \item
   \href{https://www.ordnancesurvey.co.uk/business-and-government/products/opendata-products-grid.html}{\textbf{Open
   linked data}} - Ordnance Survey (GB)

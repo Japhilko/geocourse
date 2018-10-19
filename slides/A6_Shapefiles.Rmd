@@ -33,10 +33,17 @@ show_solution <- F
 - Wie kann man einzelne Polygonzüge zusammenfassen?
 
 
+## Ein kleines Quizz
+
+![](figure/quizz.PNG)
+
+
 ## Das shapefile Format ... 
 
 - ... ist ein beliebtes Format räumlicher Vektordaten für geographisches Informationssysteme (GIS).
-- Es wurde entwickelt und reguliert von [ESRI](http://www.esri.com/)
+- Das Dateiformat Shapefile ist ein ursprünglich für die Software ArcView der Firma ESRI entwickeltes Format für Geodaten. (Quelle: [**Wikipedia**](https://de.wikipedia.org/wiki/Shapefile))
+
+- Es wurde entwickelt und reguliert von [**ESRI**](http://www.esri.com/)
 
 - (meist) offene Spezifikation um Daten Interoperabilität zwischen Esri und anderen Formaten zu sichern. 
 
@@ -70,7 +77,7 @@ geodata_path <- "D:/Daten/Daten/GeoDaten/"
 geodata_path <- "D:/GESIS/owncloud/presentations/20151003_Georef_SurveyT/data/"
 ```
 
-- Wir verwenden das Paket maptools` um die Daten einzulesen:
+- Wir verwenden das Paket `maptools` um die Daten einzulesen:
 
 ```{r,echo=T,eval=ONB_ex,warning=F}
 setwd(geodata_path)
@@ -228,7 +235,18 @@ plot(ma_map2)
 - Speichere den Datensatz als `.RData` Datei ab. 
 
 
+```{r,eval=F,echo=F}
+BE <- plz[plz@data$PLZORT99%in%c("Berlin-West",
+              "Berlin (östl. Stadtbezirke)"),]
+
+save(BE,file="../data/BE.RData")
+```
+
+
 ## Global Adminastrative Boundaries - [GADM](http://www.gadm.org/) - NUTS level 1
+
+- Für Polygonzüge unterhalb der Staatsgrenzen ist [**Global Administrative Boundaries**](http://www.gadm.org/) eine gute Quelle.
+- Vor allem wegen API, die man Paket `raster` nutzen kann.
 
 ```{r,echo=F}
 library(raster)
@@ -378,10 +396,47 @@ install.packages("mapdata")
 library(mapdata)
 ```
 
-## Weitere Quellen für Shapefiles
+
+
+## Das Paket `maps` - Mehr Information
+
+- Nur für manche Staaten bekommt man mit dem Paket `maps` Umkreise für Einheiten unterhalb der Staatsgrenze (bspw. Frankreich, USA). 
+
+```{r}
+library(maps)
+data(world.cities)
+map("france")
+map.cities(world.cities,col="blue")
+```
+
+## Das Rstudio Addin `colourpicker`
+
+```{r,eval=F}
+install.packages("colourpicker")
+```
+
+![](figure/colourpicker.PNG)
+
+
+## Weitere Quelle - [Shapefiles für Wahlkreise](https://www.bundeswahlleiter.de/bundestagswahlen/2017/wahlkreiseinteilung/downloads.html)
+
+
+![](figure/shapefiles_btw.PNG)
+
+
+## [Shapefiles bei Eurostat](http://ec.europa.eu/eurostat/de/web/gisco/geodata/reference-data/administrative-units-statistical-units)
 
 - [**Eurostat Karten**](http://epp.eurostat.ec.europa.eu/portal/page/portal/gisco_Geographical_information_maps/popups/
 references/administrative_units_statistical_units_1) - in der Regel die Europäischen Mitgliedsstaaten
+
+
+![](figure/Eurostat_Zensus.PNG)
+
+
+
+
+## Weitere Quellen für Shapefiles
+
 
 - [**Open linked data**](https://www.ordnancesurvey.co.uk/business-and-government/products/opendata-products-grid.html) - Ordnance Survey (GB)
 
