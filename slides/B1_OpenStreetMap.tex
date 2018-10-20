@@ -192,11 +192,24 @@ Weltkarte zu erzeugen.
 
 \end{frame}
 
-\begin{frame}{\href{https://wiki.openstreetmap.org/wiki/Tags}{Openstreetmap
+\begin{frame}[fragile]{\href{https://wiki.openstreetmap.org/wiki/Tags}{Openstreetmap
 Tags}}
 \protect\hypertarget{openstreetmap-tags}{}
 
-\includegraphics{figure/osm_tag.png}
+\includegraphics{figure/kv_scheme.PNG}
+
+\begin{itemize}
+\tightlist
+\item
+  Mit dem \texttt{key} wird eine Kategorie bezeichnet.
+\item
+  Der \texttt{value} wird zur Beschreibung der jeweiligen Form
+  verwendet.
+\item
+  So gibt es bspw. zahlreiche OSM-Objekte mit dem \texttt{key} highway.
+  Dabei kann es sich bspw. um einen Fußweg (value=pathway) oder um eine
+  Autobahn (value=motorway) handeln.
+\end{itemize}
 
 \end{frame}
 
@@ -220,12 +233,14 @@ Map Features}}
 \begin{itemize}
 \tightlist
 \item
-  nodes (points),
+  Es gibt einfache nodes, also Punkte. Das kann bspw. eine Haltestelle
+  des öffentlichen Nahverkehrs sein.
 \item
-  ways (polygons and polylines)
+  Der zweite Objekttyp sind Wege. Dadurch wird beispielsweise der
+  Verlauf von Straßen oder Flüssen beschrieben.
 \item
-  relations (logical grouping of all three object types to express
-  real-world geographical relationships)
+  Der dritte Objekttyp sind Relationen. Dabei handelt es sich um eine
+  Gruppierung von Objekten, die in einem logischen Zusammenhang stehen.
 \end{itemize}
 
 Hippolyte Pruvost and Peter Mooney: Exploring Data Model Relations in
@@ -239,13 +254,7 @@ OpenStreetMap
 \protect\hypertarget{openstreetmap-objects}{}
 
 \begin{block}{\href{https://www.slideshare.net/mvexel/openstreetmap-9819440}{\textbf{Martijn
-van Exel}}}
-
-\begin{itemize}
-\tightlist
-\item
-  nodes and ways
-\end{itemize}
+van Exel}} - nodes and ways}
 
 \includegraphics{figure/Nodes_ways.PNG}
 
@@ -261,6 +270,24 @@ van Exel}}}
 \includegraphics{figure/relations.PNG}
 
 \end{block}
+
+\end{frame}
+
+\begin{frame}{Möglichkeiten die OSM-Daten zu bekommen}
+\protect\hypertarget{moglichkeiten-die-osm-daten-zu-bekommen}{}
+
+\begin{itemize}
+\tightlist
+\item
+  Es gibt verschiedene Möglichkeiten die OSM-Daten zu bekommen.
+\item
+  Metro Extracts bietet rechteckige Ausschnitte für eine Stadt oder
+  Region von Interesse auf der ganzen Welt.
+\item
+  Grundsätzlich werden die Rohdaten werden im \emph{Protocolbuffer
+  Binary Format} (PBF) oder im \emph{Extensible Markup Language} (XML)
+  Format angeboten.
+\end{itemize}
 
 \end{frame}
 
@@ -288,23 +315,14 @@ van Exel}}}
 \begin{itemize}
 \tightlist
 \item
-  Über \href{http://download.geofabrik.de/}{\textbf{Geofabrik}} lassen
-  sich aktuelle Ausschnitte (auch Shapefiles) herunterladen
+  Eine Alternative zum Downlaod von großen OSM-Ausschnitten ist die
+  \href{http://download.geofabrik.de/}{\textbf{Geofabrik}}-Seite.\\
+\item
+  Hier lassen sich ebenfalls aktuelle Ausschnitte aber auch Shapefiles
+  herunterladen.
 \end{itemize}
 
 \includegraphics{figure/Geofabrik.PNG}
-
-\end{block}
-
-\end{frame}
-
-\begin{frame}{Download von OpenStreetMap Daten - openaprs}
-\protect\hypertarget{download-von-openstreetmap-daten---openaprs}{}
-
-\begin{block}{Kartendaten
-(\href{http://www.openaprs.net/}{\textbf{openaprs}})}
-
-\includegraphics{figure/openaprs.PNG}
 
 \end{block}
 
@@ -401,6 +419,9 @@ osm2pgsql -c -d osmBerlin --slim -C  -k  berlin-latest.osm.pbf
 \begin{frame}[fragile]{Verbindung zwischen R und Postrgesql}
 \protect\hypertarget{verbindung-zwischen-r-und-postrgesql}{}
 
+\begin{block}{\href{https://github.com/tomoakin/RPostgreSQL}{\textbf{Github
+Verzeichnis}} zum Paket}
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{install.packages}\NormalTok{(}\StringTok{"RPostgreSQL"}\NormalTok{)}
@@ -413,12 +434,29 @@ osm2pgsql -c -d osmBerlin --slim -C  -k  berlin-latest.osm.pbf
 \end{Highlighting}
 \end{Shaded}
 
+\end{block}
+
+\end{frame}
+
+\begin{frame}{Nutzung von Quantum GIS}
+\protect\hypertarget{nutzung-von-quantum-gis}{}
+
+\begin{block}{\href{https://www.qgis.org/de/site/}{\textbf{QGIS}} - Ein
+freies Open-Source-Geographisches-Informationssystem}
+
 \begin{itemize}
 \tightlist
 \item
-  \href{https://github.com/tomoakin/RPostgreSQL}{\textbf{Github
-  Verzeichnis}} zum Paket
+  Erstellen, bearbeiten, anzeigen, analysieren räumlicher Information
+  unter Windows, Mac, Linux, BSD (bald auch Android)
+\item
+  Mit QGIS kann bspw auch der WMS/WCS oder WFS-Dienst des IÖR-Monitors
+  genutzt werden.
 \end{itemize}
+
+\includegraphics{figure/Bilder_qgis.PNG}
+
+\end{block}
 
 \end{frame}
 
@@ -445,7 +483,8 @@ Shapefiles zu extrahieren}
   \href{http://wiki.openstreetmap.org/wiki/Downloading_data}{\textbf{Wiki
   zum Downlaod}} von Openstreetmap Daten
 \item
-  \href{http://blog.openstreetmap.de/}{\textbf{Openstreetmap Blog}}
+  Auf dem \href{http://blog.openstreetmap.de/}{\textbf{Openstreetmap
+  Blog}} gibt es wöchentlich neue Nachrichten zu OSM.
 \item
   Liste möglicher Datenquellen für räumliche Analysen
   (\href{http://wiki.openstreetmap.org/wiki/Potential_Datasources}{weltweit}
@@ -453,11 +492,11 @@ Shapefiles zu extrahieren}
   \href{http://wiki.openstreetmap.org/wiki/DE:Potential_Datasources}{\textbf{Deutschland}}
   )
 \item
-  \href{http://wiki.openstreetmap.org/wiki/SALB}{\textbf{SALB}} -
-  Administrative Grenzen
+  Daten zu Administrative Grenzen kann man bei \emph{Second
+  Administrative Level Boundaries}
+  (\href{http://wiki.openstreetmap.org/wiki/SALB}{\textbf{SALB}})
+  bekommen
 \end{itemize}
-
-\url{http://wiki.openstreetmap.org/wiki/SALB}
 
 \end{frame}
 

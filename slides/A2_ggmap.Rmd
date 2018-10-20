@@ -408,12 +408,12 @@ qmap(location = "Trier", zoom = 10, source = "osm",
      scale=575000)
 ```
 
-
+<!--
 ## A2A Aufgabe - Nutzung von `ggmap`
 
 
 - Erzeuge mit dem Paket `ggmap` eine Karte von einem Ort, der Dir besonders gut gefällt und speichere diesen als Objekt im Workspace und als .png-Graphik.
-
+-->
 
 
 ## Cheatsheet
@@ -434,9 +434,6 @@ PlotOnStaticMap(MyMap)
 ```
 
 
-
-
-
 ## Resourcen und Literatur
 
 
@@ -448,5 +445,16 @@ PlotOnStaticMap(MyMap)
 
 - Kev Johnson - [**Karten mit R**](http://www.kevjohnson.org/making-maps-in-r-part-2/) erstellen (Zweiter Teil)
 
+
+## Das was ihr gerade gesehen habt...
+
+- ... hat bis vor kurzem gut funktioniert
+- nun haben sich die [**Google Bedingungen geändert**](https://stackoverflow.com/questions/19827598/error-in-get-map-using-ggmap-in-r)
+
+![](figure/Google_error.PNG)
+
+- [**hier**](https://github.com/dkahle/ggmap/issues/83) seht ihr, was ihr tun müsst, falls ihr das Paket dennoch nutzen wollt.
+
+- oder ihr könnt das als Anlass sehen OpenStreetMap Daten stärker zu nutzen.
 
 

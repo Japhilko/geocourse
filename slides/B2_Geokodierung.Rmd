@@ -3,11 +3,10 @@ title: "B2 - Geokodierung"
 author: "Jan-Philipp Kolb"
 date: "23 Oktober 2018"
 output:
-  beamer_presentation:
+  beamer_presentation: 
     colortheme: beaver
     fonttheme: structurebold
-    highlight: tango
-    fig_caption: no
+    highlight: espresso
     keep_tex: yes
     theme: CambridgeUS
   slidy_presentation: default
@@ -24,6 +23,7 @@ library(knitr)
 
 - Das Konzept der Geokoordinaten erklären
 - Möglichkeiten vorstellen, die Geokodierung mit R durchzuführen
+- Nutzung der Nominatim API
 
 ## Geokodierung
 
@@ -71,6 +71,8 @@ Information from URL : http://maps.googleapis.com/maps/api/geocode/json?address=
 
 ## Die Distanz zwischen zwei Punkten
 
+### Distanzen für verschiedene Verkehrsmittel
+
 ```{r,message=F,eval=googleEX}
 mapdist("Q1, 4 Mannheim","B2, 1 Mannheim")
 ```
@@ -79,8 +81,6 @@ mapdist("Q1, 4 Mannheim","B2, 1 Mannheim")
 mapdist("Q1, 4 Mannheim","B2, 1 Mannheim",mode="walking")
 ```
 
-
-### Eine andere Distanz bekommen
 
 ```{r,message=F,eval=googleEX}
 mapdist("Q1, 4 Mannheim","B2, 1 Mannheim",mode="bicycling")
@@ -97,13 +97,15 @@ library("tmaptools")
 ```
 
 
-```{r,eval=F,echo=F}
+```{r,eval=F,echo=T}
 ?geocode_OSM
 ```
 
 
 
 ## Koordinaten verschiedener Orte in Deutschland
+
+### Geokodierung mit einer Schleife
 
 ```{r,echo=T,message=F,eval=osmEX}
 cities <- c("Hamburg","Koeln","Dresden","Muenchen")
@@ -124,14 +126,15 @@ Dat <- data.frame(cities,lon,lat)
 kable(Dat)
 ```
 
-
+<!--
 ## Geokodierung - verschiedene Punkte von Interesse
 
 ```{r,message=F,warning=F,eval=googleEX,echo=T}
 POI1 <- geocode_OSM("B2, 1 Mannheim")
 POI2 <- geocode_OSM("Hbf Mannheim")
 POI3 <- geocode_OSM("Mannheim, Friedrichsplatz")
-ListPOI <-data.frame(rbind(POI1$coords,POI2$coords,POI3$coords))
+ListPOI <-data.frame(rbind(POI1$coords,POI2$coords,
+                           POI3$coords))
 ListPOI
 ```
 
@@ -168,7 +171,7 @@ MA_map +
 geom_point(aes(x = x, y = y),col="red",
 data = ListPOI)
 ```
-
+-->
 
 
 ## Reverse Geokodierung
@@ -256,9 +259,11 @@ gc_info<-opencage_forward(placename =
 https://cran.r-project.org/web/packages/geonames/README.html
 -->
 
-```{r,eval=F}
+```{r,eval=F,echo=F}
 install.packages("geonames")
 ```
+
+### Nutzung des `geonames` Paketes
 
 - Ein Account ist notwendig um die meisten Funktionen des Paketes `geonames`zu nutzen.
 
@@ -279,20 +284,32 @@ MAwiki<-GNfindNearbyWikipedia(postalcode=68239,country="DE",
 save(MAwiki,file="../data/MAwiki.RData")
 ```
 
-## Wikipediaeinträge in der Nähe
+## Beispiel Geonames 
 
-```{r,echo=F}
+### Wikipediaeinträge in der Nähe
+
+```{r,echo=F,eval=F}
 load("../data/MAwiki.RData")
 library(knitr)
 kable(MAwiki)
 ```
 
+```{r,eval=F,echo=F}
+DT::datatable(MAwiki[,-which(colnames(MAwiki)%in%c("summary"))])
+```
 
-- [Login für Geonames](http://www.geonames.org/login)
 
-- [Link um mit den Geodaten zu arbeiten](http://www.geonames.org/enablefreewebservice)
 
-- [Informationen über den Download](http://www.geonames.org/export/ws-overview.html)
+- [**Login**](http://www.geonames.org/login) für die Nutzung des Web-Services Geonames.
+
+- [**Hier**](http://www.geonames.org/enablefreewebservice) kann man das Arbeiten mit dem Webservice starten.
+
+- [**Informationen zum Download bei Geonames**](http://www.geonames.org/export/ws-overview.html)
+
+
+![](figure/Wiki_Mannheim.PNG)
+
+## Eine Bounding Box erstellen 
 
 ```{r}
 library(osmdata)
@@ -314,6 +331,79 @@ http://www.datasciencetoolkit.org/
 
 https://github.com/cengel/ArcGIS_geocoding
 -->
+
+
+## Geokodieren mit der API Nominatim
+
+```{r,eval=F}
+library("RJSONIO")
+con <- url("http://nominatim.openstreetmap.org/search?format=json&
+           addressdetails=1&extratags=1&q=Amsterdam+Niederlande+Rozengracht+1")
+geoc <- fromJSON(paste(readLines(con,warn=F), 
+                       collapse = ''))
+close(con)
+```
+
+
+```{r,eval=F,echo=F}
+save(geoc,file="../data/Amsterdam_Rozengracht.RData")
+```
+
+
+## So sieht das Ergebnis aus
+
+```{r,eval=T,echo=F}
+load("../data/Amsterdam_Rozengracht.RData")
+```
+
+
+```{r}
+names(geoc[[1]])
+```
+
+
+```{r}
+geoc[[1]]$address
+```
+
+## Das Paket `jsonlite` nutzen
+
+```{r,eval=F,echo=T}
+con <- url("http://nominatim.openstreetmap.org/search?format=json&
+           addressdetails=1&extratags=1&q=Amsterdam+Niederlande+Rozengracht+1")
+geoc2 <- jsonlite::fromJSON(con)
+
+geoc2df <- with(geoc2,data.frame(osm_id,lat,lon))
+geoc2df$house_number <-  geoc2$address$house_number
+```
+
+```{r,eval=F,echo=F}
+save(geoc2df,file="../data/Amsterdam_Rozengracht_geoc2df.RData")
+```
+
+
+```{r,echo=F}
+load("../data/Amsterdam_Rozengracht_geoc2df.RData")
+```
+
+Wir erhalten nun Daten für mehrere Anschriften:
+
+```{r,echo=F}
+kable(geoc2df)
+```
+
+```{r,eval=F,echo=F}
+library(xtable)
+xtable(geoc2df)
+```
+
+
+```{r,eval=F,echo=F}
+geoc3 <- data.frame(geoc2)
+DT::datatable(geoc2df)
+```
+
+
 
 ## Das Paket `googleway`
 

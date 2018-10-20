@@ -70,6 +70,9 @@ Normalerweise gibt es große Unterschiede bei Vorkenntnissen und Fähigkeiten, i
 ### Vorgestellt werden:
 
 - Möglichkeiten für den Download, den Import, die Verarbeitung und die Visualisierung von Geodaten 
+
+
+
 <!--
 Die Daten auf OSM werden unter der Open Database License (ODbL) 1.0 freigegeben. Das ermöglicht eine Mehrfachverwendung der Daten \citep{schmidt2013extraction}. Die Studie von \cite{barrington2017world} zeigt, dass die Datenqualität von OSM in vielen Ländern bereits ausreichend ist, um sie für wissenschaftliche und analytische Zwecke zu nutzen.
 Siehe zum Beispiel das Projekt Simulation of Urban MObility (SUMO) (\citealt{behrisch2011sumo}). Viel mehr Forschung, die in verschiedenen Ländern durchgeführt wird, ist unter \cite{wiki:research} aufgeführt.
@@ -82,6 +85,12 @@ Siehe zum Beispiel das Projekt Simulation of Urban MObility (SUMO) (\citealt{beh
 - R-Pakete um diese Daten zu verarbeiten und zu visualisieren
 
 ## Motivation
+
+<!--
+Mit diesem Paper möchte ich einige interessante Web Services vorstellen, um Geodaten herunterzuladen, zu verarbeiten und zu visualisieren. 
+
+Ein Schwerpunkt liegt dabei auf OSM-Daten.
+-->
 
 ### Motivation allgemein
 
