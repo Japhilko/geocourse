@@ -3,9 +3,9 @@ title: "Geodaten downloaden und visualisieren"
 author: "Jan-Philipp Kolb"
 date: "22 Oktober 2018"
 output:
-  pdf_document: default
-  html_document:
+  html_document: 
     keep_md: yes
+  pdf_document: default
   ioslides_presentation:
     keep_md: yes
   beamer_presentation: default

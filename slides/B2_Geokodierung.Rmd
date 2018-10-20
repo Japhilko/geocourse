@@ -335,10 +335,23 @@ https://github.com/cengel/ArcGIS_geocoding
 
 ## Geokodieren mit der API Nominatim
 
-```{r,eval=F}
+### Zunächst muss der Link erzeugt werden
+
+```{r,eval=T}
 library("RJSONIO")
-con <- url("http://nominatim.openstreetmap.org/search?format=json&
-           addressdetails=1&extratags=1&q=Amsterdam+Niederlande+Rozengracht+1")
+api_adress <- "http://nominatim.openstreetmap.org/search?format="
+file_format <- "json"
+search_query <- "&addressdetails=1&extratags=1&q="
+adress <- "Amsterdam+Niederlande+Rozengracht+1"
+
+link <- paste0(api_adress,file_format,search_query,adress)
+link
+```
+
+## Der Download mit Nominatim
+
+```{r,eval=F}
+con <- url(link)
 geoc <- fromJSON(paste(readLines(con,warn=F), 
                        collapse = ''))
 close(con)
@@ -346,6 +359,8 @@ close(con)
 
 
 ```{r,eval=F,echo=F}
+link <- "http://nominatim.openstreetmap.org/search?format=json&addressdetails=1&extratags=1&q=Amsterdam+Niederlande+Rozengracht+1"
+
 save(geoc,file="../data/Amsterdam_Rozengracht.RData")
 ```
 
