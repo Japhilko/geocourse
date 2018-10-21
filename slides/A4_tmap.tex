@@ -157,10 +157,10 @@
 \item
   Das Paket \texttt{tmap} wird vorgestellt.
 \item
-  Die Datenquelle naturalearthdata wird vorgestellt.
+  Die Datenquelle \texttt{naturalearthdata} wird vorgestellt.
 \item
   Es wird gezeigt, wie man Karten von Europa, der Welt und einzelnen
-  Ländern
+  Ländern erzeugen kann
 \end{itemize}
 
 \end{frame}
@@ -1102,11 +1102,28 @@ X & GEO & Val2007M12 & Val2013M01\tabularnewline
 \begin{frame}[fragile]{Exkurs: der Befehl \texttt{match}}
 \protect\hypertarget{exkurs-der-befehl-match}{}
 
+\begin{block}{Zwei Beispielvektoren erstellen:}
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{vec_a <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"A"}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{1}\NormalTok{,}\StringTok{"C"}\NormalTok{)}
 \NormalTok{vec_b <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\StringTok{"C"}\NormalTok{,}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
+\end{block}
+
+\begin{block}{Die beiden Vektroen zusammen bringen}
+
+\begin{itemize}
+\tightlist
+\item
+  Mit der Funktion \texttt{match} kann man schauen, welches Element des
+  ersten Vektors sich im zweiten Vektor wiederfindet.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \KeywordTok{match}\NormalTok{(vec_a,vec_b)}
 \end{Highlighting}
 \end{Shaded}
@@ -1114,6 +1131,8 @@ X & GEO & Val2007M12 & Val2013M01\tabularnewline
 \begin{verbatim}
 ## [1] NA  3 NA  1  2
 \end{verbatim}
+
+\end{block}
 
 \end{frame}
 
@@ -1152,7 +1171,7 @@ Daten}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{A4_tmap_files/figure-beamer/unnamed-chunk-50-1.pdf}
+\includegraphics{A4_tmap_files/figure-beamer/unnamed-chunk-51-1.pdf}
 
 \end{frame}
 
@@ -1180,7 +1199,7 @@ Daten}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{A4_tmap_files/figure-beamer/unnamed-chunk-52-1.pdf}
+\includegraphics{A4_tmap_files/figure-beamer/unnamed-chunk-53-1.pdf}
 
 \end{frame}
 

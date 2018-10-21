@@ -6,7 +6,7 @@ output:
   beamer_presentation: 
     colortheme: beaver
     fonttheme: structurebold
-    highlight: tango
+    highlight: espresso
     keep_tex: yes
     theme: CambridgeUS
   slidy_presentation: default
@@ -76,10 +76,49 @@ plot(usa_sf)
 ```
 -->
 
+
+## Import von Beispieldaten
+
+```{r,eval=F}
+link<-"https://raw.githubusercontent.com/GeoScripting-WUR/IntroToRaster/gh-pages/data/gewata.zip"
+```
+
+```{r,echo=F}
+link<-"https://raw.githubusercontent.com/GeoScripting-WUR/
+IntroToRaster/gh-pages/data/gewata.zip"
+```
+
+```{r,eval=F}
+download.file(url = link, destfile = 'gewata.zip', method = 'auto')
+unzip('gewata.zip')
+```
+
+
+```{r}
+list.files(pattern = glob2rx('*.tif'))
+```
+
+## [Import von Rasterdaten - `.tif` file](https://geoscripting-wur.github.io/IntroToRaster/)
+
+```{r}
+gewata <- raster::brick('../data/LE71700552001036SGS00_SR_Gewata_INT1U.tif')
+```
+
+## Erste plots erstellen
+
+```{r}
+plot(gewata)
+```
+
+```{r}
+gewata@data
+```
+
+
+<!--
 ## [Indikatoren vom Institut für ökologische Raumforschung (IÖR)](http://www.ioer-monitor.de/)
-
-
 ![](figure/ioermonitor.PNG)
+-->
 
 <!--
 http://www.ioer-monitor.de/indikatoren/#c1793

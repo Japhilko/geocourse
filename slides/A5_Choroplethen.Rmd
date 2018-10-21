@@ -3,6 +3,8 @@ title: "A5 - Choroplethen - `maptools` und `choreplethr`"
 author: "Jan-Philipp Kolb"
 date: "22 Oktober 2018"
 output:
+  slidy_presentation: 
+    keep_md: yes
   beamer_presentation:
     colortheme: beaver
     fonttheme: structurebold
@@ -10,7 +12,6 @@ output:
     fig_caption: no
     keep_tex: yes
     theme: CambridgeUS
-  slidy_presentation: default
 ---
 
 ```{r setup_ch, include=FALSE}
@@ -77,10 +78,10 @@ gini <- read.csv("../data/gini-index_csv.csv")
 ```
 
 ```{r,eval=F}
-link<-"https://raw.githubusercontent.com/Japhilko/geocourse/master/data/gini-index_csv.csv"
+link<-"https://raw.githubusercontent.com/Japhilko/geocourse/
+master/data/gini-index_csv.csv"
 gini <- read.csv(link)
 ```
-
 
 
 ```{r,echo=F}

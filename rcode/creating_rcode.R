@@ -76,7 +76,8 @@ for (i in 1:length(presparts)){
 
 setwd(rcode_path)
 
-purl("../slides/C2_hierarchMods.Rmd",documentation = 2)
+purl("../slides/A3_DataPUF.Rmd",documentation = 2)
+purl("../slides/A4_tmap.Rmd",documentation = 2)
 purl("../slides/D1_webScrapping.Rmd",documentation = 2)
 purl("../slides/D2_dataCleaning.Rmd",documentation = 2)
 

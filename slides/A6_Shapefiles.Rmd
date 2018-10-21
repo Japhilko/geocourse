@@ -3,6 +3,8 @@ title: "A6 - Shapefiles"
 author: "Jan-Philipp Kolb"
 date: "22 Oktober 2018"
 output:
+  slidy_presentation: 
+    keep_md: yes
   beamer_presentation:
     colortheme: beaver
     fonttheme: structurebold
@@ -10,7 +12,6 @@ output:
     fig_caption: no
     keep_tex: yes
     theme: CambridgeUS
-  slidy_presentation: default
 ---
 
 ```{r setup_shapefiles, include=FALSE}
@@ -227,6 +228,30 @@ plot(ma_map2)
 ```
 
 
+## Exkurs: der Befehl `agrep`
+
+```{r}
+agrep("Freiburg",plz@data$PLZORT99)
+```
+
+```{r}
+agrep("Freiburg",plz@data$PLZORT99,value=T)
+```
+
+## Die Funktion `grep`
+
+### Der exakte match
+
+```{r}
+grep("Freiburg",plz@data$PLZORT99,value=T)
+```
+
+```{r}
+agrep("Freiburg",plz@data$PLZORT99,value=T,
+      max.distance = 0.2)
+```
+
+
 ## A6A Übung - PLZ Bereiche herunterladen
 
 - Lade den Shapefile mit den PLZ-Bereichen [**hier**](http://arnulf.us/PLZ) herunter.
@@ -320,8 +345,7 @@ setwd("D:/Daten/Daten/GeoDaten/vg250_ebenen")
 
 
 ```{r,cache=F,message=F,warning=F,eval=F}
-library(maptools)
-krs <- readShapePoly("vg250_krs.shp")
+krs <- maptools::readShapePoly("vg250_krs.shp")
 plot(krs)
 ```
 
@@ -343,7 +367,6 @@ dat <- maptools::readShapePoly("VG250_F.shp")
 
 ```{r,eval=F}
 fds <- substr(krs@data$AGS,1,2)
-
 plot(krs[fds=="05",])
 ```
 
@@ -408,6 +431,13 @@ data(world.cities)
 map("france")
 map.cities(world.cities,col="blue")
 ```
+
+## Die Funktion `rgb`
+
+```{r}
+map.cities(world.cities,col=rgb(0,0,1,.2),pch=20,cex=4)
+```
+
 
 ## Das Rstudio Addin `colourpicker`
 

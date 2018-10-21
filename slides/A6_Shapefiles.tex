@@ -230,7 +230,7 @@ in Deutschland}}}
 \begin{itemize}
 \tightlist
 \item
-  Wir verwenden das Paket maptools` um die Daten einzulesen:
+  Wir verwenden das Paket \texttt{maptools} um die Daten einzulesen:
 \end{itemize}
 
 \begin{Shaded}
@@ -432,6 +432,79 @@ Shapefiles}
 
 \end{frame}
 
+\begin{frame}[fragile]{Exkurs: der Befehl \texttt{agrep}}
+\protect\hypertarget{exkurs-der-befehl-agrep}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{agrep}\NormalTok{(}\StringTok{"Freiburg"}\NormalTok{,plz}\OperatorTok{@}\NormalTok{data}\OperatorTok{$}\NormalTok{PLZORT99)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1]  363  660  661 1349 5074 5798 5799 5800 5801 5802 5803 5804 5805 5806
+## [15] 5807 5808 5809
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{agrep}\NormalTok{(}\StringTok{"Freiburg"}\NormalTok{,plz}\OperatorTok{@}\NormalTok{data}\OperatorTok{$}\NormalTok{PLZORT99,}\DataTypeTok{value=}\NormalTok{T)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "Freyburg/ Unstrut"    "Freiberg"             "Freiberg"            
+##  [4] "Freiburg (Elbe)"      "Freiberg am Neckar"   "Freiburg im Breisgau"
+##  [7] "Freiburg im Breisgau" "Freiburg im Breisgau" "Freiburg im Breisgau"
+## [10] "Freiburg im Breisgau" "Freiburg im Breisgau" "Freiburg im Breisgau"
+## [13] "Freiburg im Breisgau" "Freiburg im Breisgau" "Freiburg im Breisgau"
+## [16] "Freiburg im Breisgau" "Freiburg im Breisgau"
+\end{verbatim}
+
+\end{frame}
+
+\begin{frame}[fragile]{Die Funktion \texttt{grep}}
+\protect\hypertarget{die-funktion-grep}{}
+
+\begin{block}{Der exakte match}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{grep}\NormalTok{(}\StringTok{"Freiburg"}\NormalTok{,plz}\OperatorTok{@}\NormalTok{data}\OperatorTok{$}\NormalTok{PLZORT99,}\DataTypeTok{value=}\NormalTok{T)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "Freiburg (Elbe)"      "Freiburg im Breisgau" "Freiburg im Breisgau"
+##  [4] "Freiburg im Breisgau" "Freiburg im Breisgau" "Freiburg im Breisgau"
+##  [7] "Freiburg im Breisgau" "Freiburg im Breisgau" "Freiburg im Breisgau"
+## [10] "Freiburg im Breisgau" "Freiburg im Breisgau" "Freiburg im Breisgau"
+## [13] "Freiburg im Breisgau"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{agrep}\NormalTok{(}\StringTok{"Freiburg"}\NormalTok{,plz}\OperatorTok{@}\NormalTok{data}\OperatorTok{$}\NormalTok{PLZORT99,}\DataTypeTok{value=}\NormalTok{T,}
+      \DataTypeTok{max.distance =} \FloatTok{0.2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "Frohburg"             "Freyburg/ Unstrut"    "Freiberg"            
+##  [4] "Freiberg"             "Freiburg (Elbe)"      "Ehrenburg"           
+##  [7] "Gnarrenburg"          "Bad Driburg"          "Derenburg"           
+## [10] "Freiberg am Neckar"   "Freiburg im Breisgau" "Freiburg im Breisgau"
+## [13] "Freiburg im Breisgau" "Freiburg im Breisgau" "Freiburg im Breisgau"
+## [16] "Freiburg im Breisgau" "Freiburg im Breisgau" "Freiburg im Breisgau"
+## [19] "Freiburg im Breisgau" "Freiburg im Breisgau" "Freiburg im Breisgau"
+## [22] "Freiburg im Breisgau" "Waldkraiburg"         "Kraiburg a. Inn"     
+## [25] "Freihung"
+\end{verbatim}
+
+\end{block}
+
+\end{frame}
+
 \begin{frame}[fragile]{A6A Übung - PLZ Bereiche herunterladen}
 \protect\hypertarget{a6a-ubung---plz-bereiche-herunterladen}{}
 
@@ -472,7 +545,7 @@ Shapefiles}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{A6_Shapefiles_files/figure-beamer/unnamed-chunk-20-1.pdf}
+\includegraphics{A6_Shapefiles_files/figure-beamer/unnamed-chunk-25-1.pdf}
 
 \end{frame}
 
@@ -677,7 +750,7 @@ Datenbanken für Karten
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{A6_Shapefiles_files/figure-beamer/unnamed-chunk-36-1.pdf}
+\includegraphics{A6_Shapefiles_files/figure-beamer/unnamed-chunk-41-1.pdf}
 
 \end{frame}
 
@@ -691,6 +764,15 @@ Datenbanken für Karten
 \end{Shaded}
 
 \includegraphics{figure/colourpicker.PNG}
+
+\end{frame}
+
+\begin{frame}{Weitere Quelle -
+\href{https://www.bundeswahlleiter.de/bundestagswahlen/2017/wahlkreiseinteilung/downloads.html}{Shapefiles
+für Wahlkreise}}
+\protect\hypertarget{weitere-quelle---shapefiles-fur-wahlkreise}{}
+
+\includegraphics{figure/shapefiles_btw.PNG}
 
 \end{frame}
 

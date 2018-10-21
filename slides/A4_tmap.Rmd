@@ -3,13 +3,14 @@ title: "A4 - Das R-Paket tmap"
 author: "Jan-Philipp Kolb"
 date: "22 Oktober 2018"
 output:
+  slidy_presentation: 
+    keep_md: yes
   beamer_presentation: 
     colortheme: beaver
     fonttheme: structurebold
     highlight: espresso
     keep_tex: yes
     theme: CambridgeUS
-  slidy_presentation: default
 ---
 
 ```{r setup_tmap, include=FALSE}

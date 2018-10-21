@@ -1,0 +1,14 @@
+base
+knitr
+sp
+maptools
+colorRamps
+DT
+stringr
+XML
+acs
+choroplethr
+RJSONIO
+WDI
+ggplot2
+choroplethrMaps

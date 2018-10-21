@@ -3,7 +3,10 @@ title: "Daten beschaffen"
 author: "Jan-Philipp Kolb"
 date: "22 Oktober 2018"
 output:
-  beamer_presentation: 
+  slidy_presentation: 
+    highlight: espresso
+    keep_md: yes
+  beamer_presentation:
     colortheme: beaver
     fonttheme: structurebold
     highlight: espresso
@@ -19,6 +22,9 @@ GESIS <- F
 athome <- !GESIS
 ```
 
+## [EU Initiative INSPIRE](http://inspire.ec.europa.eu/reports/Registration_form.pdf)
+
+
 <!--
 ## Datenzugang
 
@@ -30,7 +36,6 @@ athome <- !GESIS
 - On-Site-Nutzung - Arbeitsplätze für Gastwissenschaftler - Kontrollierte Datenfernverarbeitung
 -->
 
-## [EU Initiative INSPIRE](http://inspire.ec.europa.eu/reports/Registration_form.pdf)
 
 ![](figure/inspire.PNG)
 
@@ -54,13 +59,16 @@ Für den Zensus 2011 kann man Daten herunterladen und/oder diese in Karten visua
 ## [Zensus Gemeindeergebnisse](https://www.destatis.de/DE/Methoden/Zensus_/Zensus.html)
 
 ```{r,eval=F,echo=F}
-library(xlsx)
-setwd("D:/GESIS/Vorträge/20171122_userStuttgart/data/")
-bev_dat <- read.xlsx("xlsx_Bevoelkerung.xlsx",3)
+zen_path <- "D:/GESIS/Vorträge/20171122_userStuttgart/data/"
 ```
 
+```{r,eval=F}
+setwd(zen_path)
+bev_dat <- readxl::read_excel("xlsx_Bevoelkerung.xlsx",3)
+DT::datatable(bev_dat[1:1000,1:20])
+```
 
-![](figure/ZensusMigbg.PNG)
+![](figure/ZensusTabEx.PNG)
 
 
 
@@ -111,7 +119,11 @@ bev_dat <- read.xlsx("xlsx_Bevoelkerung.xlsx",3)
 
 - Die Regionaldatenbank [**Genesis**](https://www-genesis.destatis.de/genesis/online)
 
-- Daneben gibt es Angebote der Landesämter bspw das Angebot des [**statistischen Landesamts Rheinland-Pfalz**](https://www.statistik.rlp.de/regionaldaten/)
+![](figure/GENESIS_Datenbank.PNG)
+
+- Daneben gibt es Angebote der Landesämter bspw das Angebot des [**statistischen Landesamts Rheinland-Pfalz**](https://www.statistik.rlp.de/de/regional/meine-heimat/)
+
+![](figure/Meine_heimat.PNG)
 
 ## Eurostat Daten
 
@@ -130,7 +142,7 @@ eurostatpath <- "D:/Eigene Dateien/Dokumente/GitHub/ps_2017_11_user_stuttgart/da
 
 ```{r,eval=T}
 library(xlsx)
-HHsr <- read.xlsx2(paste0(eurostatpath,"HHsavingRate.xls"),1)
+HHsr<-read.xlsx2(paste0(eurostatpath,"HHsavingRate.xls"),1)
 ```
 
 ```{r,echo=F,eval=T}

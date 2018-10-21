@@ -149,10 +149,6 @@
 \begin{document}
 \frame{\titlepage}
 
-\begin{frame}
-
-\end{frame}
-
 \begin{frame}{\href{http://inspire.ec.europa.eu/reports/Registration_form.pdf}{EU
 Initiative INSPIRE}}
 \protect\hypertarget{eu-initiative-inspire}{}
@@ -201,11 +197,19 @@ Karten visualisieren.
 
 \end{frame}
 
-\begin{frame}{\href{https://www.destatis.de/DE/Methoden/Zensus_/Zensus.html}{Zensus
+\begin{frame}[fragile]{\href{https://www.destatis.de/DE/Methoden/Zensus_/Zensus.html}{Zensus
 Gemeindeergebnisse}}
 \protect\hypertarget{zensus-gemeindeergebnisse}{}
 
-\includegraphics{figure/ZensusMigbg.PNG}
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{setwd}\NormalTok{(zen_path)}
+\NormalTok{bev_dat <-}\StringTok{ }\NormalTok{readxl}\OperatorTok{::}\KeywordTok{read_excel}\NormalTok{(}\StringTok{"xlsx_Bevoelkerung.xlsx"}\NormalTok{,}\DecValTok{3}\NormalTok{)}
+\NormalTok{DT}\OperatorTok{::}\KeywordTok{datatable}\NormalTok{(bev_dat[}\DecValTok{1}\OperatorTok{:}\DecValTok{1000}\NormalTok{,}\DecValTok{1}\OperatorTok{:}\DecValTok{20}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figure/ZensusTabEx.PNG}
 
 \end{frame}
 
@@ -301,14 +305,23 @@ amtliche Gemeindeschlüssel}}
 \protect\hypertarget{weitere-amtliche-datenquellen}{}
 
 \begin{itemize}
+\tightlist
 \item
   Die Regionaldatenbank
   \href{https://www-genesis.destatis.de/genesis/online}{\textbf{Genesis}}
+\end{itemize}
+
+\includegraphics{figure/GENESIS_Datenbank.PNG}
+
+\begin{itemize}
+\tightlist
 \item
   Daneben gibt es Angebote der Landesämter bspw das Angebot des
-  \href{https://www.statistik.rlp.de/regionaldaten/}{\textbf{statistischen
+  \href{https://www.statistik.rlp.de/de/regional/meine-heimat/}{\textbf{statistischen
   Landesamts Rheinland-Pfalz}}
 \end{itemize}
+
+\includegraphics{figure/Meine_heimat.PNG}
 
 \end{frame}
 
@@ -322,7 +335,7 @@ amtliche Gemeindeschlüssel}}
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(xlsx)}
-\NormalTok{HHsr <-}\StringTok{ }\KeywordTok{read.xlsx2}\NormalTok{(}\KeywordTok{paste0}\NormalTok{(eurostatpath,}\StringTok{"HHsavingRate.xls"}\NormalTok{),}\DecValTok{1}\NormalTok{)}
+\NormalTok{HHsr<-}\KeywordTok{read.xlsx2}\NormalTok{(}\KeywordTok{paste0}\NormalTok{(eurostatpath,}\StringTok{"HHsavingRate.xls"}\NormalTok{),}\DecValTok{1}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 

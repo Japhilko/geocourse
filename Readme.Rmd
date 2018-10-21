@@ -35,7 +35,7 @@ coursepath <-"https://github.com/Japhilko/geocourse/blob/master/"
 coursepath <-""
 ```
 
-- Was ist das Ziel dieses Kurses und welche Datenquellen werden wir verwenden ([Github](`r paste0(coursepath,"slides/A1_Intro.md")`) | [pdf](`r paste0(coursepath,"slides/A1_Intro.pdf")`) 
+Im ersten Abschnitt geht es um ein paar Vorbereitungen, die Ziele des Kurses werden vorgestellt. Datenquellen werden vorgestellt ([Github](`r paste0(coursepath,"slides/A1_Intro.md")`) | [pdf](`r paste0(coursepath,"slides/A1_Intro.pdf")`) 
 
 
 - [Regionale Information](http://rpubs.com/Japhilko82/gesis_mannheim) - wo sind wir, wo können wir später Mittag essen gehen?
@@ -52,7 +52,7 @@ Zur georgraphischen Visualisierung sind neben Karten auch inhaltliche Daten notw
 
 ### __(A4) Thematische Karten mit dem R-Paket `tmap`__
 
-Zur Erzeugung von schnellen thematischen Karten kann man das Paket `tmap` verwenden ( [Browser](`r paste0(coursepath,"slides/A4_tmap.md")`) | [pdf](`r paste0(coursepath,"slides/tmap.pdf")`) | 
+Zur Erzeugung von schnellen thematischen Karten kann man das Paket `tmap` verwenden ( [Browser](`r paste0(coursepath,"slides/A4_tmap.md")`) | 
 [pdf](`r paste0(coursepath,"slides/A4_tmap.pdf")`) | [rcode](`r paste0(coursepath,"rcode/A4_tmap.R")`))
 
 
@@ -68,15 +68,15 @@ Viele Daten werden im Shapefile Format von ESRI angeboten. Das Format sowie Mög
 [pdf](`r paste0(coursepath,"slides/A6_Shapefiles.pdf")`) | [rcode](`r paste0(coursepath,"rcode/A6_Shapefiles.R")`).
 
 <!--
-- Aufgabe: [Zensus Ergebnisse und Karte miteinander verbinden und einfärben](https://github.com/Japhilko/GeoData/blob/master/2017/tutorial/Aufgabe_Verbindung.Rmd)
+- Aufgabe: [Zensus bnisse und Karte miteinander verbinden und einfärben](https://github.com/Japhilko/GeoData/blob/master/2017/tutorial/Aufgabe_Verbindung.Rmd)
 
 - Aufgabe: [Deutschlands Gemeinden](https://github.com/Japhilko/GeoData/blob/master/2016/tutorial/Aufgabe_Zensus_Ergebnisse.md)
 -->
 
 ### __(A7) Das R-Paket `spdep` - Nachbarschaft und Distanz__ 
 
-- [Browser](`r paste0(coursepath,"slides/spdep.md")`) | [pdf](`r paste0(coursepath,"slides/A7_spdep.pdf")`) |
-[rcode](`r paste0(coursepath,"rcode/A7_spdep.R")`)
+In diesem Abschnitt geht es darum Nachbarn zu finden ([Browser](`r paste0(coursepath,"slides/spdep.md")`) | [pdf](`r paste0(coursepath,"slides/A7_spdep.pdf")`) |
+[rcode](`r paste0(coursepath,"rcode/A7_spdep.R")`))
 
 ### __(A8) Rasterdaten importieren und verarbeiten__
 
