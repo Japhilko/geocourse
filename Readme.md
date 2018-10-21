@@ -27,7 +27,7 @@ Dieser Workshop beschäftigt sich mit der Erfassung und Verarbeitung von räumli
 
 
 
-- Was ist das Ziel dieses Kurses und welche Datenquellen werden wir verwenden ([Github](https://github.com/Japhilko/geocourse/blob/master/slides/A1_Intro.Rmd) | [pdf](https://github.com/Japhilko/geocourse/blob/master/slides/A1_Intro.pdf) 
+- Was ist das Ziel dieses Kurses und welche Datenquellen werden wir verwenden ([Github](https://github.com/Japhilko/geocourse/blob/master/slides/A1_Intro.md) | [pdf](https://github.com/Japhilko/geocourse/blob/master/slides/A1_Intro.pdf) 
 
 
 - [Regionale Information](http://rpubs.com/Japhilko82/gesis_mannheim) - wo sind wir, wo können wir später Mittag essen gehen?
