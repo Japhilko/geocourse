@@ -35,7 +35,7 @@ coursepath <-"https://github.com/Japhilko/geocourse/blob/master/"
 coursepath <-""
 ```
 
-- Was ist das Ziel dieses Kurses und welche Datenquellen werden wir verwenden ([Github](`r paste0(coursepath,"slides/A1_Intro.Rmd")`) | [pdf](`r paste0(coursepath,"slides/A1_Intro.pdf")`) 
+- Was ist das Ziel dieses Kurses und welche Datenquellen werden wir verwenden ([Github](`r paste0(coursepath,"slides/A1_Intro.md")`) | [pdf](`r paste0(coursepath,"slides/A1_Intro.pdf")`) 
 
 
 - [Regionale Information](http://rpubs.com/Japhilko82/gesis_mannheim) - wo sind wir, wo können wir später Mittag essen gehen?
