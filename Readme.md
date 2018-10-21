@@ -27,7 +27,7 @@ Dieser Workshop beschäftigt sich mit der Erfassung und Verarbeitung von räumli
 
 
 
-- Was ist das Ziel dieses Kurses und welche Datenquellen werden wir verwenden ([Github](https://github.com/Japhilko/geocourse/blob/master/slides/A1_Intro.md) | [pdf](https://github.com/Japhilko/geocourse/blob/master/slides/A1_Intro.pdf) 
+Im ersten Abschnitt geht es um ein paar Vorbereitungen, die Ziele des Kurses werden vorgestellt. Datenquellen werden vorgestellt ([Github](https://github.com/Japhilko/geocourse/blob/master/slides/A1_Intro.md) | [pdf](https://github.com/Japhilko/geocourse/blob/master/slides/A1_Intro.pdf) 
 
 
 - [Regionale Information](http://rpubs.com/Japhilko82/gesis_mannheim) - wo sind wir, wo können wir später Mittag essen gehen?
@@ -44,7 +44,7 @@ Zur georgraphischen Visualisierung sind neben Karten auch inhaltliche Daten notw
 
 ### __(A4) Thematische Karten mit dem R-Paket `tmap`__
 
-Zur Erzeugung von schnellen thematischen Karten kann man das Paket `tmap` verwenden ( [Browser](https://github.com/Japhilko/geocourse/blob/master/slides/A4_tmap.md) | [pdf](https://github.com/Japhilko/geocourse/blob/master/slides/tmap.pdf) | 
+Zur Erzeugung von schnellen thematischen Karten kann man das Paket `tmap` verwenden ( [Browser](https://github.com/Japhilko/geocourse/blob/master/slides/A4_tmap.md) | 
 [pdf](https://github.com/Japhilko/geocourse/blob/master/slides/A4_tmap.pdf) | [rcode](https://github.com/Japhilko/geocourse/blob/master/rcode/A4_tmap.R))
 
 
@@ -60,44 +60,41 @@ Viele Daten werden im Shapefile Format von ESRI angeboten. Das Format sowie Mög
 [pdf](https://github.com/Japhilko/geocourse/blob/master/slides/A6_Shapefiles.pdf) | [rcode](https://github.com/Japhilko/geocourse/blob/master/rcode/A6_Shapefiles.R).
 
 <!--
-- Aufgabe: [Zensus Ergebnisse und Karte miteinander verbinden und einfärben](https://github.com/Japhilko/GeoData/blob/master/2017/tutorial/Aufgabe_Verbindung.Rmd)
+- Aufgabe: [Zensus bnisse und Karte miteinander verbinden und einfärben](https://github.com/Japhilko/GeoData/blob/master/2017/tutorial/Aufgabe_Verbindung.Rmd)
 
 - Aufgabe: [Deutschlands Gemeinden](https://github.com/Japhilko/GeoData/blob/master/2016/tutorial/Aufgabe_Zensus_Ergebnisse.md)
 -->
 
 ### __(A7) Das R-Paket `spdep` - Nachbarschaft und Distanz__ 
 
-- [Browser](https://github.com/Japhilko/geocourse/blob/master/slides/spdep.md) | [pdf](https://github.com/Japhilko/geocourse/blob/master/slides/A7_spdep.pdf) |
-[rcode](https://github.com/Japhilko/geocourse/blob/master/rcode/A7_spdep.R)
+In diesem Abschnitt geht es darum Nachbarn zu finden ([Browser](https://github.com/Japhilko/geocourse/blob/master/slides/A7_spdep.md) | [pdf](https://github.com/Japhilko/geocourse/blob/master/slides/A7_spdep.pdf) |
+[rcode](https://github.com/Japhilko/geocourse/blob/master/rcode/A7_spdep.R))
 
 ### __(A8) Rasterdaten importieren und verarbeiten__
 
-- [Github](https://github.com/Japhilko/geocourse/blob/master/slides/A8_Rasterdaten.md) | [pdf](https://github.com/Japhilko/geocourse/blob/master/slides/A8_Rasterdaten.pdf) |
-[rcode](https://github.com/Japhilko/geocourse/blob/master/rcode/A8_Rasterdaten.R)
+In diesem Abschnitt wird vorgestellt, wie man Rasterdaten importieren, bearbeiten und visualisieren kann ([Github](https://github.com/Japhilko/geocourse/blob/master/slides/A8_Rasterdaten.md) | [pdf](https://github.com/Japhilko/geocourse/blob/master/slides/A8_Rasterdaten.pdf) |
+[rcode](https://github.com/Japhilko/geocourse/blob/master/rcode/A8_Rasterdaten.R))
 
 ## __(B) Das OpenStreetMap Projekt und komplexere Schritte__
 
 
-###  __(B1) Openstreetmap__ [Github](slides/OpenStreetMap.md)
+###  __(B1) Openstreetmap__ 
 
-- Was ist das Openstreetmap Projekt 
-
-- [Browser](https://github.com/Japhilko/GeoData/blob/master/2017/slides/OpenStreetMap.md)| [pdf](slides/OpenStreetMap.pdf)
-
-<!--
-### __Overpass__ ([Github](slides/Overpass.md))
--->
-
+Was ist das Openstreetmap Projekt? In diesem Abschnitt wird das Openstreetmap Projekt und der Download der Daten gezeigt ([Github](https://github.com/Japhilko/geocourse/blob/master/slides/B1_OpenStreetMap.md) | [pdf](https://github.com/Japhilko/geocourse/blob/master/slides/B1_OpenStreetMap.pdf) |
+[rcode](https://github.com/Japhilko/geocourse/blob/master/rcode/B1_OpenStreetMap.R)).
 
 ### __(B2) Geokodierung__ 
 
-- [Github](slides/Geokodierung.md)
+Wie werden Adressen geokodiert? Was ist reverse Geokodierung? - ([Github](https://github.com/Japhilko/geocourse/blob/master/slides/B2_Geokodierung.md) | [pdf](https://github.com/Japhilko/geocourse/blob/master/slides/B2_Geokodierung.pdf) |
+[rcode](https://github.com/Japhilko/geocourse/blob/master/rcode/B2_Geokodierung.R))
 
 
 ### __(B3) Das Arbeiten mit OSM API`s__
 
-- Beispiel [*main OSM API*](slides/osm_mainapi.Rmd)
-- Die Nutzung der Overpass API 
+Das Beispiel der [*main OSM API*](https://github.com/Japhilko/geocourse/blob/master/slides/B3_osm_mainapi.md) - ([pdf](https://github.com/Japhilko/geocourse/blob/master/slides/B3_osm_mainapi.pdf))
+
+
+### __(B4) Die Nutzung der Overpass API__
 
 
 

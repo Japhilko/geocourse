@@ -78,8 +78,14 @@ setwd(rcode_path)
 
 purl("../slides/A3_DataPUF.Rmd",documentation = 2)
 purl("../slides/A4_tmap.Rmd",documentation = 2)
-purl("../slides/D1_webScrapping.Rmd",documentation = 2)
-purl("../slides/D2_dataCleaning.Rmd",documentation = 2)
+purl("../slides/A5_Choroplethen.Rmd",documentation = 2)
+purl("../slides/A6_Shapefiles.Rmd",documentation = 2)
+purl("../slides/A7_spdep.Rmd",documentation = 2)
+
+purl("../slides/B1_OpenStreetMap.Rmd",documentation = 2)
+purl("../slides/B2_Geokodierung.Rmd",documentation = 2)
+purl("../slides/B3_osm_mainapi.Rmd",documentation = 2)
+purl("../slides/B4_Overpass.Rmd",documentation = 2)
 
 #-------------------------------------------------#
 # Install necessary packages

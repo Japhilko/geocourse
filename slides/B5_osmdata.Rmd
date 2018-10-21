@@ -3,13 +3,14 @@ title: "B5 Das `osmdata` Paket"
 author: "Jan-Philipp Kolb"
 date: "23 Oktober 2018"
 output:
+  slidy_presentation: 
+    keep_md: yes
   beamer_presentation: 
     colortheme: beaver
     fonttheme: structurebold
     highlight: tango
     keep_tex: yes
     theme: CambridgeUS
-  slidy_presentation: default
 ---
 
 ```{r steup_osmdata, include=FALSE}
@@ -484,19 +485,20 @@ dat_B <- extract_osm_objects (key = 'building', bbox = bbox)
 
 ## Links
 
-- [Github repo of the `osmdata` package](https://github.com/ropensci/osmdata)
-- [Vignette for the package `osmdata`](https://cran.r-project.org/web/packages/osmdata/vignettes/osmdata.html) on [github](https://github.com/ropensci/osmdata/blob/master/vignettes/osmdata.Rmd)
-- [osmdata Homepage](https://ropensci.github.io/osmdata/)
-- [Overpass API - query form](http://overpass-api.de/query_form.html)
-- [Overpass API/Language Guide](https://wiki.openstreetmap.org/wiki/DE:Overpass_API/Language_Guide)
-- [Overpass Turbo](https://wiki.openstreetmap.org/wiki/DE:Overpass_turbo)
+
+- [**Github Ordner für das `osmdata` Paket**](https://github.com/ropensci/osmdata)
+- [**Vignette für das Paket `osmdata`**](https://cran.r-project.org/web/packages/osmdata/vignettes/osmdata.html) auf [**github**](https://github.com/ropensci/osmdata/blob/master/vignettes/osmdata.Rmd)
+- [**osmdata Homepage**](https://ropensci.github.io/osmdata/)
+- [**Overpass API - query form**](http://overpass-api.de/query_form.html)
+- [**Overpass API/Language Guide**](https://wiki.openstreetmap.org/wiki/DE:Overpass_API/Language_Guide)
+- [**Overpass Turbo**](https://wiki.openstreetmap.org/wiki/DE:Overpass_turbo)
 <!--
 https://cran.r-project.org/web/packages/osmdata/osmdata.pdf
 -->
 
 
 
-- [**`osmplotr` tutorial](https://ropensci.org/tutorials/osmplotr_tutorial/)
+- [**`osmplotr` tutorial**](https://ropensci.org/tutorials/osmplotr_tutorial/)
 
 - [**Geocomputation with R**](https://bookdown.org/robinlovelace/geocompr/)
 

@@ -75,65 +75,64 @@ Viele Daten werden im Shapefile Format von ESRI angeboten. Das Format sowie Mög
 
 ### __(A7) Das R-Paket `spdep` - Nachbarschaft und Distanz__ 
 
-In diesem Abschnitt geht es darum Nachbarn zu finden ([Browser](`r paste0(coursepath,"slides/spdep.md")`) | [pdf](`r paste0(coursepath,"slides/A7_spdep.pdf")`) |
+In diesem Abschnitt geht es darum Nachbarn zu finden ([Browser](`r paste0(coursepath,"slides/A7_spdep.md")`) | [pdf](`r paste0(coursepath,"slides/A7_spdep.pdf")`) |
 [rcode](`r paste0(coursepath,"rcode/A7_spdep.R")`))
 
 ### __(A8) Rasterdaten importieren und verarbeiten__
 
-- [Github](`r paste0(coursepath,"slides/A8_Rasterdaten.md")`) | [pdf](`r paste0(coursepath,"slides/A8_Rasterdaten.pdf")`) |
-[rcode](`r paste0(coursepath,"rcode/A8_Rasterdaten.R")`)
+In diesem Abschnitt wird vorgestellt, wie man Rasterdaten importieren, bearbeiten und visualisieren kann ([Github](`r paste0(coursepath,"slides/A8_Rasterdaten.md")`) | [pdf](`r paste0(coursepath,"slides/A8_Rasterdaten.pdf")`) |
+[rcode](`r paste0(coursepath,"rcode/A8_Rasterdaten.R")`))
 
 ## __(B) Das OpenStreetMap Projekt und komplexere Schritte__
 
 
-###  __(B1) Openstreetmap__ [Github](slides/OpenStreetMap.md)
+###  __(B1) Openstreetmap__ 
 
-- Was ist das Openstreetmap Projekt 
-
-- [Browser](https://github.com/Japhilko/GeoData/blob/master/2017/slides/OpenStreetMap.md)| [pdf](slides/OpenStreetMap.pdf)
-
-<!--
-### __Overpass__ ([Github](slides/Overpass.md))
--->
-
+Was ist das Openstreetmap Projekt? In diesem Abschnitt wird das Openstreetmap Projekt und der Download der Daten gezeigt ([Github](`r paste0(coursepath,"slides/B1_OpenStreetMap.md")`) | [pdf](`r paste0(coursepath,"slides/B1_OpenStreetMap.pdf")`) |
+[rcode](`r paste0(coursepath,"rcode/B1_OpenStreetMap.R")`)).
 
 ### __(B2) Geokodierung__ 
 
-- [Github](slides/Geokodierung.md)
+Wie werden Adressen geokodiert? Was ist reverse Geokodierung? - ([Github](`r paste0(coursepath,"slides/B2_Geokodierung.md")`) | [pdf](`r paste0(coursepath,"slides/B2_Geokodierung.pdf")`) |
+[rcode](`r paste0(coursepath,"rcode/B2_Geokodierung.R")`))
 
 
 ### __(B3) Das Arbeiten mit OSM API`s__
 
-- Beispiel [*main OSM API*](slides/osm_mainapi.Rmd)
-- Die Nutzung der Overpass API 
+Das Beispiel der [*main OSM API*](`r paste0(coursepath,"slides/B3_osm_mainapi.md")`) - ([pdf](`r paste0(coursepath,"slides/B3_osm_mainapi.pdf")`) |
+[rcode](`r paste0(coursepath,"rcode/B3_osm_mainapi.R")`))
 
 
+### __(B4) Die Nutzung der Overpass API__
+
+Hier wird die Overpass API von Roland Olbricht vorgestellt - ([Github](`r paste0(coursepath,"slides/B4_Overpass.md")`) | [pdf](`r paste0(coursepath,"slides/B2_Geokodierung.pdf")`) |
+[rcode](`r paste0(coursepath,"rcode/B2_Geokodierung.R")`))
 
 - **Beispiel Hostels in Madrid** ([Browser](https://github.com/Japhilko/GeoData/blob/master/2016/slides/Madrid_hostels.Rmd)),
 - Beispiel: *Points of interest* ([poi](https://rpossib.wordpress.com/2015/09/15/points-of-interest-for-backpackers/)) für Backpacker in Amsterdam
 - Beispiel: [Energieerzeugung](https://rpossib.wordpress.com/2015/11/20/use-openstreetmap-date/)
-- **Aufgabe:** [Darstellung von OSM Daten mit tmap](https://github.com/Japhilko/GeoData/blob/master/2016/tutorial/Aufgabe_osmar.Rmd)
 
 
 
 ### __(B5) Das `osmdata` Paket__ 
 
-- ([Github](slides/osmdata.md))
+Das `osmdata` Paket ist ein Wrapper zur Nutzung der Overpass API. Das Paket wird hier vorgestellt ([Github](`r paste0(coursepath,"slides/B5_osmdata.md")`) | [pdf](`r paste0(coursepath,"slides/B5_osmdata.pdf")`) |
+[rcode](`r paste0(coursepath,"rcode/B5_osmdata.R")`))
 
-### __(B4) Interaktive Karten mit Javascript Bibliotheken__ 
+### __(B6) Interaktive Karten mit Javascript Bibliotheken__ 
 
-- [Github](slides/using_javascript.md) | [pdf](slides/using_javascript.pdf)
-| [rcode](rcode/using_javascript.R)
+- [Github](`r paste0(coursepath,"slides/B6_using_javascript.md")`) | [pdf](`r paste0(coursepath,"slides/B6_using_javascript.pdf")`)
+| [rcode](`r paste0(coursepath,"rcode/B6_using_javascript.R")`)
 - Beispiel - [Campingplätze](http://rpubs.com/Japhilko82/Campsites)
 
 <!--
 ## Räumliche Analysen/Statistik
 -->
 
-### __(B4) Simple Features__ 
+### __(B7) Simple Features__ 
 
-- [Github](slides/simplefeatures.md) | [pdf](slides/simplefeatures.pdf)
-| [rcode](rcode/simplefeatures.R)
+- [Github](`r paste0(coursepath,"slides/B7_simplefeatures.md")`) | [pdf](`r paste0(coursepath,"slides/B7_simplefeatures.pdf")`)
+| [rcode](`r paste0(coursepath,"rcode/B7_simplefeatures.R")`)
 
 
 <!--

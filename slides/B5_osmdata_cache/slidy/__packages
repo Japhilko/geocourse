@@ -1,0 +1,7 @@
+base
+osmdata
+osmplotr
+sf
+tmap
+magrittr
+knitr

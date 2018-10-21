@@ -3,13 +3,14 @@ title: "B2 - Geokodierung"
 author: "Jan-Philipp Kolb"
 date: "23 Oktober 2018"
 output:
+  slidy_presentation: 
+    keep_md: yes
   beamer_presentation: 
     colortheme: beaver
     fonttheme: structurebold
     highlight: espresso
     keep_tex: yes
     theme: CambridgeUS
-  slidy_presentation: default
 ---
 
 ```{r setup_geokodierung, include=FALSE}
@@ -69,23 +70,25 @@ Information from URL : http://maps.googleapis.com/maps/api/geocode/json?address=
 [http://modernsurvivalblog.com](http://modernsurvivalblog.com/survival-skills/basic-map-reading-latitude-longitude/)
 
 
-## Die Distanz zwischen zwei Punkten
-
-### Distanzen für verschiedene Verkehrsmittel
+## Distanzen für verschiedene Verkehrsmittel
 
 ```{r,message=F,eval=googleEX}
 mapdist("Q1, 4 Mannheim","B2, 1 Mannheim")
 ```
 
+![](figure/dist_car.PNG)
+
 ```{r,message=F,eval=googleEX}
 mapdist("Q1, 4 Mannheim","B2, 1 Mannheim",mode="walking")
 ```
 
+![](figure/dist_walking.PNG)
 
 ```{r,message=F,eval=googleEX}
 mapdist("Q1, 4 Mannheim","B2, 1 Mannheim",mode="bicycling")
 ```
 
+![](figure/dist_bike.PNG)
 
 ## Geokodierung mit dem Paket `tmaptools`
 
@@ -227,6 +230,8 @@ geocode_OSM(addr_list_t[1])
 ```
 
 ## Alle Adressen geokodieren
+
+- im Objekt `gc_list` werden die Ergebnisse gespeichert.
 
 ```{r,eval=F}
 gc_list <- list()

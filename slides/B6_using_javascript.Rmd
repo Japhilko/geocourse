@@ -3,11 +3,10 @@ title: "B6 Javascript Bibliotheken nutzen"
 author: "Jan-Philipp Kolb"
 date: "23 Oktober 2018"
 output:
-  beamer_presentation:
+  beamer_presentation: 
     colortheme: beaver
     fonttheme: structurebold
-    highlight: tango
-    fig_caption: no
+    highlight: espresso
     keep_tex: yes
     theme: CambridgeUS
   slidy_presentation: default

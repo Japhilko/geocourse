@@ -3,14 +3,14 @@ title: "B7 Simple Features"
 author: "Jan-Philipp Kolb"
 date: "23 Oktober 2018"
 output:
-  beamer_presentation:
+  slidy_presentation: 
+    keep_md: yes
+  beamer_presentation: 
     colortheme: beaver
     fonttheme: structurebold
-    highlight: tango
-    fig_caption: no
+    highlight: espresso
     keep_tex: yes
     theme: CambridgeUS
-  slidy_presentation: default
 ---
 
 ```{r setup_simplefeatures, include=FALSE}

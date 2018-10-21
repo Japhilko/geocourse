@@ -2,15 +2,18 @@
 title: "B1 - Das Arbeiten mit OSM Daten"
 author: "Jan-Philipp Kolb"
 date: "23 Oktober 2018"
-output: 
-  beamer_presentation: 
+output:
+  slidy_presentation: 
+    highlight: espresso
+    keep_md: yes
+  ioslides_presentation:
+    keep_md: yes
+  beamer_presentation:
     colortheme: beaver
     fonttheme: structurebold
     highlight: espresso
     keep_tex: yes
     theme: CambridgeUS
-  ioslides_presentation: 
-    keep_md: yes
 ---
 
 ```{r setup_osm, include=FALSE}

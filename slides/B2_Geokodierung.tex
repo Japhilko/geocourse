@@ -219,10 +219,8 @@ Information from URL : http://maps.googleapis.com/maps/api/geocode/json?address=
 
 \end{frame}
 
-\begin{frame}[fragile]{Die Distanz zwischen zwei Punkten}
-\protect\hypertarget{die-distanz-zwischen-zwei-punkten}{}
-
-\begin{block}{Distanzen für verschiedene Verkehrsmittel}
+\begin{frame}[fragile]{Distanzen für verschiedene Verkehrsmittel}
+\protect\hypertarget{distanzen-fur-verschiedene-verkehrsmittel}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -230,11 +228,15 @@ Information from URL : http://maps.googleapis.com/maps/api/geocode/json?address=
 \end{Highlighting}
 \end{Shaded}
 
+\includegraphics{figure/dist_car.PNG}
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{mapdist}\NormalTok{(}\StringTok{"Q1, 4 Mannheim"}\NormalTok{,}\StringTok{"B2, 1 Mannheim"}\NormalTok{,}\DataTypeTok{mode=}\StringTok{"walking"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\includegraphics{figure/dist_walking.PNG}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -242,7 +244,7 @@ Information from URL : http://maps.googleapis.com/maps/api/geocode/json?address=
 \end{Highlighting}
 \end{Shaded}
 
-\end{block}
+\includegraphics{figure/dist_bike.PNG}
 
 \end{frame}
 
@@ -397,6 +399,12 @@ Quelle:
 \begin{frame}[fragile]{Alle Adressen geokodieren}
 \protect\hypertarget{alle-adressen-geokodieren}{}
 
+\begin{itemize}
+\tightlist
+\item
+  im Objekt \texttt{gc\_list} werden die Ergebnisse gespeichert.
+\end{itemize}
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{gc_list <-}\StringTok{ }\KeywordTok{list}\NormalTok{()}
@@ -523,11 +531,35 @@ Quelle:
 \begin{frame}[fragile]{Geokodieren mit der API Nominatim}
 \protect\hypertarget{geokodieren-mit-der-api-nominatim}{}
 
+\begin{block}{Zunächst muss der Link erzeugt werden}
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(}\StringTok{"RJSONIO"}\NormalTok{)}
-\NormalTok{con <-}\StringTok{ }\KeywordTok{url}\NormalTok{(}\StringTok{"http://nominatim.openstreetmap.org/search?format=json&}
-\StringTok{           addressdetails=1&extratags=1&q=Amsterdam+Niederlande+Rozengracht+1"}\NormalTok{)}
+\NormalTok{api_adress <-}\StringTok{ "http://nominatim.openstreetmap.org/search?format="}
+\NormalTok{file_format <-}\StringTok{ "json"}
+\NormalTok{search_query <-}\StringTok{ "&addressdetails=1&extratags=1&q="}
+\NormalTok{adress <-}\StringTok{ "Amsterdam+Niederlande+Rozengracht+1"}
+
+\NormalTok{link <-}\StringTok{ }\KeywordTok{paste0}\NormalTok{(api_adress,file_format,search_query,adress)}
+\NormalTok{link}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "http://nominatim.openstreetmap.org/search?format=json&addressdetails=1&extratags=1&q=Amsterdam+Niederlande+Rozengracht+1"
+\end{verbatim}
+
+\end{block}
+
+\end{frame}
+
+\begin{frame}[fragile]{Der Download mit Nominatim}
+\protect\hypertarget{der-download-mit-nominatim}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{con <-}\StringTok{ }\KeywordTok{url}\NormalTok{(link)}
 \NormalTok{geoc <-}\StringTok{ }\KeywordTok{fromJSON}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\KeywordTok{readLines}\NormalTok{(con,}\DataTypeTok{warn=}\NormalTok{F), }
                        \DataTypeTok{collapse =} \StringTok{''}\NormalTok{))}
 \KeywordTok{close}\NormalTok{(con)}
@@ -580,9 +612,10 @@ Quelle:
 
 \NormalTok{geoc2df <-}\StringTok{ }\KeywordTok{with}\NormalTok{(geoc2,}\KeywordTok{data.frame}\NormalTok{(osm_id,lat,lon))}
 \NormalTok{geoc2df}\OperatorTok{$}\NormalTok{house_number <-}\StringTok{  }\NormalTok{geoc2}\OperatorTok{$}\NormalTok{address}\OperatorTok{$}\NormalTok{house_number}
-\KeywordTok{save}\NormalTok{(geoc2df,}\DataTypeTok{file=}\StringTok{"../data/Amsterdam_Rozengracht_geoc2df.RData"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+Wir erhalten nun Daten für mehrere Anschriften:
 
 \begin{longtable}[]{@{}llll@{}}
 \toprule

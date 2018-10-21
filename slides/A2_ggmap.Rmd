@@ -453,8 +453,10 @@ PlotOnStaticMap(MyMap)
 
 ![](figure/Google_error.PNG)
 
-- [**hier**](https://github.com/dkahle/ggmap/issues/83) seht ihr, was ihr tun müsst, falls ihr das Paket dennoch nutzen wollt.
+- [**Hier**](https://github.com/dkahle/ggmap/issues/83) seht ihr, was ihr tun müsst, falls ihr das Paket dennoch nutzen wollt. Und [**hier**](https://console.developers.google.com/) kann man sich registrieren.
 
 - oder ihr könnt das als Anlass sehen OpenStreetMap Daten stärker zu nutzen.
 
-
+<!--
+https://github.com/dkahle/ggmap/issues/51
+-->
