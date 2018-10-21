@@ -280,7 +280,8 @@ von Rasterdaten - \texttt{.tif} file}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{gewata <-}\StringTok{ }\NormalTok{raster}\OperatorTok{::}\KeywordTok{brick}\NormalTok{(}\StringTok{'../data/LE71700552001036SGS00_SR_Gewata_INT1U.tif'}\NormalTok{)}
+\NormalTok{gewata <-}\StringTok{ }\NormalTok{raster}\OperatorTok{::}\KeywordTok{brick}\NormalTok{(}\StringTok{'../data/}
+\StringTok{LE71700552001036SGS00_SR_Gewata_INT1U.tif'}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -295,63 +296,43 @@ von Rasterdaten - \texttt{.tif} file}}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{A8_Rasterdaten_files/figure-beamer/unnamed-chunk-14-1.pdf}
+\includegraphics{A8_Rasterdaten_files/figure-beamer/unnamed-chunk-15-1.pdf}
+
+\end{frame}
+
+\begin{frame}[fragile]{\href{https://pakillo.github.io/R-GIS-tutorial/\#raster}{Worldclim
+Daten importieren}}
+\protect\hypertarget{worldclim-daten-importieren}{}
+
+\includegraphics{figure/WORLDCLIM.PNG}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{gewata}\OperatorTok{@}\NormalTok{data}
+\CommentTok{# this will download }
+\CommentTok{# global data on minimum temperature at 10' resolution}
+\NormalTok{tmin <-}\StringTok{ }\NormalTok{raster}\OperatorTok{::}\KeywordTok{getData}\NormalTok{(}\StringTok{"worldclim"}\NormalTok{, }\DataTypeTok{var =} \StringTok{"tmin"}\NormalTok{, }\DataTypeTok{res =} \DecValTok{10}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-## An object of class ".MultipleRasterData"
-## Slot "values":
-## <0 x 0 matrix>
-## 
-## Slot "offset":
-## [1] 0
-## 
-## Slot "gain":
-## [1] 1
-## 
-## Slot "inmemory":
-## [1] FALSE
-## 
-## Slot "fromdisk":
-## [1] TRUE
-## 
-## Slot "nlayers":
-## [1] 6
-## 
-## Slot "dropped":
-## NULL
-## 
-## Slot "isfactor":
-## [1] FALSE
-## 
-## Slot "attributes":
-## list()
-## 
-## Slot "haveminmax":
-## [1] TRUE
-## 
-## Slot "min":
-## [1]  4  6  3 18  6  2
-## 
-## Slot "max":
-## [1]  39  56  71 102 138 408
-## 
-## Slot "unit":
-## [1] ""
-## 
-## Slot "names":
-## [1] "LE71700552001036SGS00_SR_Gewata_INT1U.1"
-## [2] "LE71700552001036SGS00_SR_Gewata_INT1U.2"
-## [3] "LE71700552001036SGS00_SR_Gewata_INT1U.3"
-## [4] "LE71700552001036SGS00_SR_Gewata_INT1U.4"
-## [5] "LE71700552001036SGS00_SR_Gewata_INT1U.5"
-## [6] "LE71700552001036SGS00_SR_Gewata_INT1U.6"
-\end{verbatim}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tmin1 <-}\StringTok{ }\NormalTok{raster}\OperatorTok{::}\KeywordTok{raster}\NormalTok{( }\StringTok{"../data/wc10/tmin1.bil"}\NormalTok{)}
+\NormalTok{tmin1 <-}\StringTok{ }\NormalTok{tmin1}\OperatorTok{/}\DecValTok{10}
+\end{Highlighting}
+\end{Shaded}
+
+\end{frame}
+
+\begin{frame}[fragile]{Minimum Temperatur plotten}
+\protect\hypertarget{minimum-temperatur-plotten}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(tmin1)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{A8_Rasterdaten_files/figure-beamer/unnamed-chunk-19-1.pdf}
 
 \end{frame}
 

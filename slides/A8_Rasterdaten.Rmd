@@ -100,7 +100,12 @@ list.files(pattern = glob2rx('*.tif'))
 
 ## [Import von Rasterdaten - `.tif` file](https://geoscripting-wur.github.io/IntroToRaster/)
 
-```{r}
+```{r,eval=F}
+gewata <- raster::brick('../data/
+LE71700552001036SGS00_SR_Gewata_INT1U.tif')
+```
+
+```{r,echo=F}
 gewata <- raster::brick('../data/LE71700552001036SGS00_SR_Gewata_INT1U.tif')
 ```
 
@@ -110,9 +115,33 @@ gewata <- raster::brick('../data/LE71700552001036SGS00_SR_Gewata_INT1U.tif')
 plot(gewata)
 ```
 
-```{r}
+```{r,eval=F,echo=F}
 gewata@data
 ```
+
+
+## [Worldclim Daten importieren](https://pakillo.github.io/R-GIS-tutorial/#raster)
+
+![](figure/WORLDCLIM.PNG)
+
+```{r,eval=F}
+# this will download 
+# global data on minimum temperature at 10' resolution
+tmin <- raster::getData("worldclim", var = "tmin", res = 10)
+```
+
+```{r}
+tmin1 <- raster::raster( "../data/wc10/tmin1.bil")
+tmin1 <- tmin1/10
+```
+
+
+## Minimum Temperatur plotten
+
+```{r}
+plot(tmin1)
+```
+
 
 
 <!--
@@ -131,3 +160,5 @@ http://www.ioer-monitor.de/indikatoren/#c1793
 ## Links
 
 - Neon - [**Intro to Raster Data in R**](https://www.neonscience.org/dc-raster-data-r)
+
+- Francisco Rodriguez-Sanchez - [**Spatial data in R: Using R as a GIS**](https://pakillo.github.io/R-GIS-tutorial/#raster)
