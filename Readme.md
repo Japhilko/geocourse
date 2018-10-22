@@ -27,19 +27,18 @@ Dieser Workshop beschäftigt sich mit der Erfassung und Verarbeitung von räumli
 
 
 
-Im ersten Abschnitt geht es um ein paar Vorbereitungen, die Ziele des Kurses werden vorgestellt. Datenquellen werden vorgestellt ([Github](https://github.com/Japhilko/geocourse/blob/master/slides/A1_Intro.md) | [pdf](https://github.com/Japhilko/geocourse/blob/master/slides/A1_Intro.pdf) 
+Im ersten Abschnitt geht es um ein paar Vorbereitungen, die Ziele des Kurses werden vorgestellt. Datenquellen werden vorgestellt ([Github](https://github.com/Japhilko/geocourse/blob/master/slides/A1_Intro.md) | [pdf](https://github.com/Japhilko/geocourse/blob/master/slides/A1_Intro.pdf) )
 
 
 - [Regionale Information](http://rpubs.com/Japhilko82/gesis_mannheim) - wo sind wir, wo können wir später Mittag essen gehen?
 
 ### __(A2) Das Paket [`ggmap`](http://journal.r-project.org/archive/2013-1/kahle-wickham.pdf)__ zur Erzeugung verschiedener Kartentypen. 
 
-Das Paket `ggmap` bietet einen guten Einstieg. Es lassen sich relativ leicht Hintergrundkarten erzeugen ([Browser](https://github.com/Japhilko/geocourse/blob/master/slides/A2_ggmap.md) | [pdf](https://github.com/Japhilko/geocourse/blob/master/slides/ggmap.pdf | [rcode](https://github.com/Japhilko/geocourse/blob/master/slides/A2_ggmap.R)
+Das Paket `ggmap` bietet einen guten Einstieg. Es lassen sich relativ leicht Hintergrundkarten erzeugen ([Gtihub](https://github.com/Japhilko/geocourse/blob/master/slides/A2_ggmap.md) | [pdf](https://github.com/Japhilko/geocourse/blob/master/slides/ggmap.pdf ) | [rcode](https://github.com/Japhilko/geocourse/blob/master/slides/A2_ggmap.R)
 
 ### __(A3) Der Download von (sozial-)wissenschaftlichen Daten__
 
-Zur georgraphischen Visualisierung sind neben Karten auch inhaltliche Daten notwendig ( [Browser](https://github.com/Japhilko/geocourse/blob/master/slides/A4_tmap.md) | [pdf](https://github.com/Japhilko/geocourse/blob/master/slides/A3_DataPUF.md) | 
-[pdf](https://github.com/Japhilko/geocourse/blob/master/slides/A3_DataPUF.pdf) | [rcode](https://github.com/Japhilko/geocourse/blob/master/rcode/A3_DataPUF.R)).
+Zur georgraphischen Visualisierung sind neben Karten auch inhaltliche Daten notwendig ( [Browser](https://github.com/Japhilko/geocourse/blob/master/slides/A4_tmap.md) | [pdf](https://github.com/Japhilko/geocourse/blob/master/slides/A3_DataPUF.md) | [rcode](https://github.com/Japhilko/geocourse/blob/master/rcode/A3_DataPUF.R)).
 
 
 ### __(A4) Thematische Karten mit dem R-Paket `tmap`__
@@ -91,38 +90,40 @@ Wie werden Adressen geokodiert? Was ist reverse Geokodierung? - ([Github](https:
 
 ### __(B3) Das Arbeiten mit OSM API`s__
 
-Das Beispiel der [*main OSM API*](https://github.com/Japhilko/geocourse/blob/master/slides/B3_osm_mainapi.md) - ([pdf](https://github.com/Japhilko/geocourse/blob/master/slides/B3_osm_mainapi.pdf))
+Das Beispiel der [*main OSM API*](https://github.com/Japhilko/geocourse/blob/master/slides/B3_osm_mainapi.md) - ([pdf](https://github.com/Japhilko/geocourse/blob/master/slides/B3_osm_mainapi.pdf) |
+[rcode](https://github.com/Japhilko/geocourse/blob/master/rcode/B3_osm_mainapi.R))
 
 
 ### __(B4) Die Nutzung der Overpass API__
 
-
+Hier wird die Overpass API von Roland Olbricht vorgestellt - ([Github](https://github.com/Japhilko/geocourse/blob/master/slides/B4_Overpass.md) | [pdf](https://github.com/Japhilko/geocourse/blob/master/slides/B2_Geokodierung.pdf) |
+[rcode](https://github.com/Japhilko/geocourse/blob/master/rcode/B2_Geokodierung.R))
 
 - **Beispiel Hostels in Madrid** ([Browser](https://github.com/Japhilko/GeoData/blob/master/2016/slides/Madrid_hostels.Rmd)),
 - Beispiel: *Points of interest* ([poi](https://rpossib.wordpress.com/2015/09/15/points-of-interest-for-backpackers/)) für Backpacker in Amsterdam
 - Beispiel: [Energieerzeugung](https://rpossib.wordpress.com/2015/11/20/use-openstreetmap-date/)
-- **Aufgabe:** [Darstellung von OSM Daten mit tmap](https://github.com/Japhilko/GeoData/blob/master/2016/tutorial/Aufgabe_osmar.Rmd)
 
 
 
 ### __(B5) Das `osmdata` Paket__ 
 
-- ([Github](slides/osmdata.md))
+Das `osmdata` Paket ist ein Wrapper zur Nutzung der Overpass API. Das Paket wird hier vorgestellt ([Github](https://github.com/Japhilko/geocourse/blob/master/slides/B5_osmdata.md) | [pdf](https://github.com/Japhilko/geocourse/blob/master/slides/B5_osmdata.pdf) |
+[rcode](https://github.com/Japhilko/geocourse/blob/master/rcode/B5_osmdata.R))
 
-### __(B4) Interaktive Karten mit Javascript Bibliotheken__ 
+### __(B6) Interaktive Karten mit Javascript Bibliotheken__ 
 
-- [Github](slides/using_javascript.md) | [pdf](slides/using_javascript.pdf)
-| [rcode](rcode/using_javascript.R)
+- [Github](https://github.com/Japhilko/geocourse/blob/master/slides/B6_using_javascript.md) | [pdf](https://github.com/Japhilko/geocourse/blob/master/slides/B6_using_javascript.pdf)
+| [rcode](https://github.com/Japhilko/geocourse/blob/master/rcode/B6_using_javascript.R)
 - Beispiel - [Campingplätze](http://rpubs.com/Japhilko82/Campsites)
 
 <!--
 ## Räumliche Analysen/Statistik
 -->
 
-### __(B4) Simple Features__ 
+### __(B7) Simple Features__ 
 
-- [Github](slides/simplefeatures.md) | [pdf](slides/simplefeatures.pdf)
-| [rcode](rcode/simplefeatures.R)
+- [Github](https://github.com/Japhilko/geocourse/blob/master/slides/B7_simplefeatures.md) | [pdf](https://github.com/Japhilko/geocourse/blob/master/slides/B7_simplefeatures.pdf)
+| [rcode](https://github.com/Japhilko/geocourse/blob/master/rcode/B7_simplefeatures.R)
 
 
 <!--

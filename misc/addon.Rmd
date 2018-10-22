@@ -16,8 +16,6 @@ ToDos
 - Natural Earth Data näher vorstellen - bspw. für Download von Rasterdaten
 - Die Alternative zu match vorstellen
 - colorramps vorstellen
-
-- an einem geeigneten Beispiel auch die Funktionen grep und agrep vorstellen
 -->
 
 

@@ -86,6 +86,7 @@ purl("../slides/B1_OpenStreetMap.Rmd",documentation = 2)
 purl("../slides/B2_Geokodierung.Rmd",documentation = 2)
 purl("../slides/B3_osm_mainapi.Rmd",documentation = 2)
 purl("../slides/B4_Overpass.Rmd",documentation = 2)
+purl("../slides/B5_osmdata.Rmd",documentation = 2)
 
 #-------------------------------------------------#
 # Install necessary packages
