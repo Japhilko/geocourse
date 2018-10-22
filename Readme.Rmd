@@ -42,7 +42,7 @@ Im ersten Abschnitt geht es um ein paar Vorbereitungen, die Ziele des Kurses wer
 
 ### __(A2) Das Paket [`ggmap`](http://journal.r-project.org/archive/2013-1/kahle-wickham.pdf)__ zur Erzeugung verschiedener Kartentypen. 
 
-Das Paket `ggmap` bietet einen guten Einstieg. Es lassen sich relativ leicht Hintergrundkarten erzeugen ([Browser](`r paste0(coursepath,"slides/A2_ggmap.md")`) | [pdf](`r paste0(coursepath,"slides/ggmap.pdf")` | [rcode](`r paste0(coursepath,"slides/A2_ggmap.R")`)
+Das Paket `ggmap` bietet einen guten Einstieg. Es lassen sich relativ leicht Hintergrundkarten erzeugen ([Browser](`r paste0(coursepath,"slides/A2_ggmap.md")`) | [pdf](`r paste0(coursepath,"slides/ggmap.pdf")`) | [rcode](`r paste0(coursepath,"slides/A2_ggmap.R")`)
 
 ### __(A3) Der Download von (sozial-)wissenschaftlichen Daten__
 
