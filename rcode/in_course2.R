@@ -279,3 +279,14 @@ str(map@data$BIL_5.8)
 
 map@data$BIL_5.8 <- as.numeric(as.character(map@data$BIL_5.8))
 sp::spplot(map,"BIL_5.8")
+
+#####
+
+library(jsonlite)
+dat<-jsonlite::fromJSON("../data/amsterdam_busstop.geojson")
+typeof(dat)
+
+######
+
+
+
