@@ -230,6 +230,7 @@ unlist(lapply(dat1,nrow))
 ##                 0
 ```
 
+<!--
 ## Alles in eine Karte plotten
 
 ### [**Der Start mit dem Paket `tmap`](https://cran.r-project.org/web/packages/tmap/vignettes/tmap-getstarted.html)
@@ -240,7 +241,7 @@ library(tmap)
 tm_shape(sfc) 
 tm_bubbles(dat, size=2)
 ```
-
+-->
 
 
 ## Beispiel Fahrradparkplätze
@@ -493,6 +494,7 @@ set_overpass_url(api_list[api_to_use])
 
 
 ## Links
+
 
 - [**Github Ordner für das `osmdata` Paket**](https://github.com/ropensci/osmdata)
 - [**Vignette für das Paket `osmdata`**](https://cran.r-project.org/web/packages/osmdata/vignettes/osmdata.html) auf [**github**](https://github.com/ropensci/osmdata/blob/master/vignettes/osmdata.Rmd)

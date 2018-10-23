@@ -441,7 +441,8 @@ st_layers("../data/Amsterdam_highway_primary.osm")
 
 
 ```r
-dat <- st_read("../data/Amsterdam_highway_primary.osm","lines")
+dat <- st_read("../data/Amsterdam_highway_primary.osm",
+               "lines")
 ```
 
 ```
@@ -454,17 +455,22 @@ dat <- st_read("../data/Amsterdam_highway_primary.osm","lines")
 ## proj4string:    +proj=longlat +datum=WGS84 +no_defs
 ```
 
+## Den Layer plotten
+
+
 ```r
 plot(dat$geometry)
 ```
 
-![](B3_osm_mainapi_files/figure-slidy/unnamed-chunk-30-1.png)<!-- -->
+![](B3_osm_mainapi_files/figure-slidy/unnamed-chunk-31-1.png)<!-- -->
+
 
 ## Import von Layer `points`
 
 
 ```r
-datp <- st_read("../data/Amsterdam_highway_primary.osm","points")
+datp <- st_read("../data/Amsterdam_highway_primary.osm",
+                "points")
 ```
 
 ```
@@ -477,21 +483,32 @@ datp <- st_read("../data/Amsterdam_highway_primary.osm","points")
 ## proj4string:    +proj=longlat +datum=WGS84 +no_defs
 ```
 
+## Den Layer `points` plotten
+
+
 ```r
 plot(dat$geometry,pch=20,col=rgb(0,0,1,.1))
 ```
 
-![](B3_osm_mainapi_files/figure-slidy/unnamed-chunk-31-1.png)<!-- -->
+![](B3_osm_mainapi_files/figure-slidy/unnamed-chunk-33-1.png)<!-- -->
+
 
 ## Mit einem anderen Paket plotten
 
 
 ```r
 library(tmap)
+```
+
+```
+## Warning: package 'tmap' was built under R version 3.5.1
+```
+
+```r
 qtm(dat$geometry)
 ```
 
-![](B3_osm_mainapi_files/figure-slidy/unnamed-chunk-32-1.png)<!-- -->
+![](B3_osm_mainapi_files/figure-slidy/unnamed-chunk-34-1.png)<!-- -->
 
 ## 
 
@@ -530,7 +547,7 @@ datm <- st_read("../data/ams_centraal.osm","multipolygons")
 sp::plot(datm$geometry)
 ```
 
-![](B3_osm_mainapi_files/figure-slidy/unnamed-chunk-34-1.png)<!-- -->
+![](B3_osm_mainapi_files/figure-slidy/unnamed-chunk-36-1.png)<!-- -->
 
 
 ## Mehr Beispiele, wie man mit XML Daten umgeht:

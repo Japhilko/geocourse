@@ -225,10 +225,12 @@ in Deutschland}}}
 \protect\hypertarget{vorwahlbereiche-in-deutschland}{}
 
 \begin{block}{Quelle Ortsnetzbereiche:
-\href{http://www.bundesnetzagentur.de/DE/Sachgebiete/Telekommunikation/Unternehmen_Institutionen/Nummerierung/Rufnummern/ONVerzeichnisse/GISDaten_ONBGrenzen/ONBGrenzen_Basepage.html}{\textbf{Bundesnetzagentur}}}
+\href{https://www.bundesnetzagentur.de/DE/Sachgebiete/Telekommunikation/Unternehmen_Institutionen/Nummerierung/Rufnummern/ONRufnr/ON_Einteilung_ONB/ON_ONB_ONKz_ONBGrenzen_Basepage.html}{\textbf{Bundesnetzagentur}}}
 
 \begin{itemize}
-\tightlist
+\item
+  \href{https://www.bundesnetzagentur.de/SharedDocs/Downloads/DE/Sachgebiete/Telekommunikation/Unternehmen_Institutionen/Nummerierung/Rufnummern/ONVerzeichnisse/ONBGrenzen/ONB-Grenzen-2018.zip?__blob=publicationFile\&v=21}{\textbf{Download}}
+  ONB-Grenzen
 \item
   Wir verwenden das Paket \texttt{maptools} um die Daten einzulesen:
 \end{itemize}
@@ -351,11 +353,20 @@ in Deutschland}}}
 
 \end{frame}
 
-\begin{frame}[fragile]{Paket \texttt{rgdal} - PLZ Datensatz einlesen}
-\protect\hypertarget{paket-rgdal---plz-datensatz-einlesen}{}
+\begin{frame}{Shapefiles für PLZ-Bereiche}
+\protect\hypertarget{shapefiles-fur-plz-bereiche}{}
 
 \begin{block}{\href{http://arnulf.us/PLZ}{\textbf{Quelle}} für PLZ
 Shapefiles}
+
+\includegraphics{figure/Download_plz.PNG}
+
+\end{block}
+
+\end{frame}
+
+\begin{frame}[fragile]{Paket \texttt{rgdal} - PLZ Datensatz einlesen}
+\protect\hypertarget{paket-rgdal---plz-datensatz-einlesen}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -376,8 +387,6 @@ Shapefiles}
 ## with 8270 features
 ## It has 3 fields
 \end{verbatim}
-
-\end{block}
 
 \end{frame}
 
@@ -644,8 +653,7 @@ für Kartographie und Geodäsie (BKG)}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(maptools)}
-\NormalTok{krs <-}\StringTok{ }\KeywordTok{readShapePoly}\NormalTok{(}\StringTok{"vg250_krs.shp"}\NormalTok{)}
+\NormalTok{krs <-}\StringTok{ }\NormalTok{maptools}\OperatorTok{::}\KeywordTok{readShapePoly}\NormalTok{(}\StringTok{"vg250_krs.shp"}\NormalTok{)}
 \KeywordTok{plot}\NormalTok{(krs)}
 \end{Highlighting}
 \end{Shaded}
@@ -678,7 +686,6 @@ Gemeinden Deutschlands}
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{fds <-}\StringTok{ }\KeywordTok{substr}\NormalTok{(krs}\OperatorTok{@}\NormalTok{data}\OperatorTok{$}\NormalTok{AGS,}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{)}
-
 \KeywordTok{plot}\NormalTok{(krs[fds}\OperatorTok{==}\StringTok{"05"}\NormalTok{,])}
 \end{Highlighting}
 \end{Shaded}

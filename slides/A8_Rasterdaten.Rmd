@@ -79,22 +79,23 @@ plot(usa_sf)
 
 ## Import von Beispieldaten
 
-```{r,eval=F}
+```{r,echo=F}
 link<-"https://raw.githubusercontent.com/GeoScripting-WUR/IntroToRaster/gh-pages/data/gewata.zip"
 ```
 
-```{r,echo=F}
+```{r,eval=F}
 link<-"https://raw.githubusercontent.com/GeoScripting-WUR/
 IntroToRaster/gh-pages/data/gewata.zip"
 ```
 
 ```{r,eval=F}
-download.file(url = link, destfile = 'gewata.zip', method = 'auto')
+download.file(url = link, destfile = 'gewata.zip', 
+              method = 'auto')
 unzip('gewata.zip')
 ```
 
 
-```{r}
+```{r,eval=F}
 list.files(pattern = glob2rx('*.tif'))
 ```
 
@@ -162,3 +163,5 @@ http://www.ioer-monitor.de/indikatoren/#c1793
 - Neon - [**Intro to Raster Data in R**](https://www.neonscience.org/dc-raster-data-r)
 
 - Francisco Rodriguez-Sanchez - [**Spatial data in R: Using R as a GIS**](https://pakillo.github.io/R-GIS-tutorial/#raster)
+
+- Robin Lovelace - [**Geocomputation with R**](https://geocompr.robinlovelace.net/)

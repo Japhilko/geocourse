@@ -251,13 +251,15 @@ von Rasterdaten}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{link<-}\StringTok{"https://raw.githubusercontent.com/GeoScripting-WUR/IntroToRaster/gh-pages/data/gewata.zip"}
+\NormalTok{link<-}\StringTok{"https://raw.githubusercontent.com/GeoScripting-WUR/}
+\StringTok{IntroToRaster/gh-pages/data/gewata.zip"}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{download.file}\NormalTok{(}\DataTypeTok{url =}\NormalTok{ link, }\DataTypeTok{destfile =} \StringTok{'gewata.zip'}\NormalTok{, }\DataTypeTok{method =} \StringTok{'auto'}\NormalTok{)}
+\KeywordTok{download.file}\NormalTok{(}\DataTypeTok{url =}\NormalTok{ link, }\DataTypeTok{destfile =} \StringTok{'gewata.zip'}\NormalTok{, }
+              \DataTypeTok{method =} \StringTok{'auto'}\NormalTok{)}
 \KeywordTok{unzip}\NormalTok{(}\StringTok{'gewata.zip'}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -267,10 +269,6 @@ von Rasterdaten}}
 \KeywordTok{list.files}\NormalTok{(}\DataTypeTok{pattern =} \KeywordTok{glob2rx}\NormalTok{(}\StringTok{'*.tif'}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-## character(0)
-\end{verbatim}
 
 \end{frame}
 
@@ -340,11 +338,18 @@ Daten importieren}}
 \protect\hypertarget{links}{}
 
 \begin{itemize}
-\tightlist
 \item
   Neon -
   \href{https://www.neonscience.org/dc-raster-data-r}{\textbf{Intro to
   Raster Data in R}}
+\item
+  Francisco Rodriguez-Sanchez -
+  \href{https://pakillo.github.io/R-GIS-tutorial/\#raster}{\textbf{Spatial
+  data in R: Using R as a GIS}}
+\item
+  Robin Lovelace -
+  \href{https://geocompr.robinlovelace.net/}{\textbf{Geocomputation with
+  R}}
 \end{itemize}
 
 \end{frame}

@@ -711,7 +711,8 @@ mit dem Paket \texttt{sf}}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{dat <-}\StringTok{ }\KeywordTok{st_read}\NormalTok{(}\StringTok{"../data/Amsterdam_highway_primary.osm"}\NormalTok{,}\StringTok{"lines"}\NormalTok{)}
+\NormalTok{dat <-}\StringTok{ }\KeywordTok{st_read}\NormalTok{(}\StringTok{"../data/Amsterdam_highway_primary.osm"}\NormalTok{,}
+               \StringTok{"lines"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -725,13 +726,18 @@ mit dem Paket \texttt{sf}}}
 ## proj4string:    +proj=longlat +datum=WGS84 +no_defs
 \end{verbatim}
 
+\end{frame}
+
+\begin{frame}[fragile]{Den Layer plotten}
+\protect\hypertarget{den-layer-plotten}{}
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{plot}\NormalTok{(dat}\OperatorTok{$}\NormalTok{geometry)}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{B3_osm_mainapi_files/figure-beamer/unnamed-chunk-30-1.pdf}
+\includegraphics{B3_osm_mainapi_files/figure-beamer/unnamed-chunk-31-1.pdf}
 
 \end{frame}
 
@@ -740,7 +746,8 @@ mit dem Paket \texttt{sf}}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{datp <-}\StringTok{ }\KeywordTok{st_read}\NormalTok{(}\StringTok{"../data/Amsterdam_highway_primary.osm"}\NormalTok{,}\StringTok{"points"}\NormalTok{)}
+\NormalTok{datp <-}\StringTok{ }\KeywordTok{st_read}\NormalTok{(}\StringTok{"../data/Amsterdam_highway_primary.osm"}\NormalTok{,}
+                \StringTok{"points"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -754,13 +761,18 @@ mit dem Paket \texttt{sf}}}
 ## proj4string:    +proj=longlat +datum=WGS84 +no_defs
 \end{verbatim}
 
+\end{frame}
+
+\begin{frame}[fragile]{Den Layer \texttt{points} plotten}
+\protect\hypertarget{den-layer-points-plotten}{}
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{plot}\NormalTok{(dat}\OperatorTok{$}\NormalTok{geometry,}\DataTypeTok{pch=}\DecValTok{20}\NormalTok{,}\DataTypeTok{col=}\KeywordTok{rgb}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,.}\DecValTok{1}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{B3_osm_mainapi_files/figure-beamer/unnamed-chunk-31-1.pdf}
+\includegraphics{B3_osm_mainapi_files/figure-beamer/unnamed-chunk-33-1.pdf}
 
 \end{frame}
 
@@ -770,11 +782,20 @@ mit dem Paket \texttt{sf}}}
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(tmap)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'tmap' was built under R version 3.5.1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \KeywordTok{qtm}\NormalTok{(dat}\OperatorTok{$}\NormalTok{geometry)}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{B3_osm_mainapi_files/figure-beamer/unnamed-chunk-32-1.pdf}
+\includegraphics{B3_osm_mainapi_files/figure-beamer/unnamed-chunk-34-1.pdf}
 
 \end{frame}
 
@@ -820,7 +841,7 @@ mit dem Paket \texttt{sf}}}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{B3_osm_mainapi_files/figure-beamer/unnamed-chunk-34-1.pdf}
+\includegraphics{B3_osm_mainapi_files/figure-beamer/unnamed-chunk-36-1.pdf}
 
 \end{frame}
 
@@ -828,6 +849,7 @@ mit dem Paket \texttt{sf}}}
 \protect\hypertarget{mehr-beispiele-wie-man-mit-xml-daten-umgeht}{}
 
 \begin{itemize}[<+->]
+\tightlist
 \item
   Deborah Nolan -
   \href{http://www.stat.berkeley.edu/~statcur/Workshop2/Presentations/XML.pdf}{\textbf{Extracting

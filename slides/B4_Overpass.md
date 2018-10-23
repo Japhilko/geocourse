@@ -291,6 +291,10 @@ BE@data$num_plz[is.na(BE@data$num_plz)] <- 0
 tmap::qtm(BE,fill = "num_plz")
 ```
 
+```
+## Linking to GEOS 3.6.1, GDAL 2.2.3, proj.4 4.9.3
+```
+
 ![](B4_Overpass_files/figure-slidy/unnamed-chunk-19-1.png)<!-- -->
 
 ## Mehr Informationen einbinden
@@ -352,6 +356,10 @@ Tree Cover, needle-leaved, evergreen           1
 
 ```r
 tmap::qtm(PLZ_SG,fill="land_cover.value")
+```
+
+```
+## Legend labels were too wide. The labels have been resized to 0.41, 0.52, 0.43. Increase legend.width (argument of tm_layout) to make the legend wider and therefore the labels larger.
 ```
 
 ![](B4_Overpass_files/figure-slidy/unnamed-chunk-27-1.png)<!-- -->

@@ -565,58 +565,63 @@ Jan-Philipp Kolb
 ##                16                 0                 0                 0 
 ## osm_multipolygons 
 ##                 0</code></pre>
-</div>
-<div id="alles-in-eine-karte-plotten" class="slide section level2">
-<h1>Alles in eine Karte plotten</h1>
-<h3 id="der-start-mit-dem-paket-tmap"><a href="https://cran.r-project.org/web/packages/tmap/vignettes/tmap-getstarted.html">**Der Start mit dem Paket <code>tmap</code></a></h3>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="kw">library</span>(tmap)</a>
-<a class="sourceLine" id="cb20-2" data-line-number="2"><span class="kw">tm_shape</span>(sfc) </a>
-<a class="sourceLine" id="cb20-3" data-line-number="3"><span class="kw">tm_bubbles</span>(dat, <span class="dt">size=</span><span class="dv">2</span>)</a></code></pre></div>
+<!--
+## Alles in eine Karte plotten
+
+### [**Der Start mit dem Paket `tmap`](https://cran.r-project.org/web/packages/tmap/vignettes/tmap-getstarted.html)
+
+
+```r
+library(tmap)
+tm_shape(sfc) 
+tm_bubbles(dat, size=2)
+```
+-->
 </div>
 <div id="beispiel-fahrradparkplatze" class="slide section level2">
 <h1>Beispiel Fahrradparkplätze</h1>
 <ul>
 <li><a href="https://wiki.openstreetmap.org/wiki/Map_Features#Highway"><strong>OSM map features</strong></a></li>
 </ul>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">q &lt;-<span class="st"> </span><span class="kw">add_osm_feature</span> (q, <span class="dt">key =</span> <span class="st">'amenity'</span>,<span class="dt">value =</span> <span class="st">&quot;bicycle_parking&quot;</span>)</a>
-<a class="sourceLine" id="cb21-2" data-line-number="2"><span class="kw">osmdata_xml</span>(q, <span class="st">'../data/Amsterdam_amenity_bicycle_parking.osm'</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1">dat &lt;-<span class="st"> </span>sf<span class="op">::</span><span class="kw">st_read</span> (<span class="st">'../data/Amsterdam_amenity_bicycle_parking.osm'</span>, </a>
-<a class="sourceLine" id="cb22-2" data-line-number="2">                    <span class="dt">layer =</span> <span class="st">'points'</span>, </a>
-<a class="sourceLine" id="cb22-3" data-line-number="3">                    <span class="dt">quiet =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1">q &lt;-<span class="st"> </span><span class="kw">add_osm_feature</span> (q, <span class="dt">key =</span> <span class="st">'amenity'</span>,<span class="dt">value =</span> <span class="st">&quot;bicycle_parking&quot;</span>)</a>
+<a class="sourceLine" id="cb20-2" data-line-number="2"><span class="kw">osmdata_xml</span>(q, <span class="st">'../data/Amsterdam_amenity_bicycle_parking.osm'</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">dat &lt;-<span class="st"> </span>sf<span class="op">::</span><span class="kw">st_read</span> (<span class="st">'../data/Amsterdam_amenity_bicycle_parking.osm'</span>, </a>
+<a class="sourceLine" id="cb21-2" data-line-number="2">                    <span class="dt">layer =</span> <span class="st">'points'</span>, </a>
+<a class="sourceLine" id="cb21-3" data-line-number="3">                    <span class="dt">quiet =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 </div>
 <div id="die-daten-plotten" class="slide section level2">
 <h1>Die Daten plotten</h1>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="kw">library</span>(tmap)</a>
-<a class="sourceLine" id="cb23-2" data-line-number="2"><span class="kw">qtm</span>(dat)</a></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="kw">library</span>(tmap)</a>
+<a class="sourceLine" id="cb22-2" data-line-number="2"><span class="kw">qtm</span>(dat)</a></code></pre></div>
 <p><img src="data:image/png;base64,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" /><!-- --></p>
 </div>
 <div id="sehen-was-dahinter-steckt" class="slide section level2">
 <h1>Sehen was dahinter steckt</h1>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1">dat &lt;-<span class="st"> </span>sf<span class="op">::</span><span class="kw">st_read</span> (<span class="st">'../data/Amsterdam_amenity.osm'</span>, </a>
-<a class="sourceLine" id="cb24-2" data-line-number="2">                    <span class="dt">layer =</span> <span class="st">'points'</span>, </a>
-<a class="sourceLine" id="cb24-3" data-line-number="3">                    <span class="dt">quiet =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="kw">nrow</span>(dat)</a>
-<a class="sourceLine" id="cb25-2" data-line-number="2"><span class="kw">names</span>(dat)</a></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">dat &lt;-<span class="st"> </span>sf<span class="op">::</span><span class="kw">st_read</span> (<span class="st">'../data/Amsterdam_amenity.osm'</span>, </a>
+<a class="sourceLine" id="cb23-2" data-line-number="2">                    <span class="dt">layer =</span> <span class="st">'points'</span>, </a>
+<a class="sourceLine" id="cb23-3" data-line-number="3">                    <span class="dt">quiet =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="kw">nrow</span>(dat)</a>
+<a class="sourceLine" id="cb24-2" data-line-number="2"><span class="kw">names</span>(dat)</a></code></pre></div>
 </div>
 <div id="bars-in-mannheim" class="slide section level2">
 <h1>Bar`s in Mannheim</h1>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1">?add_osm_feature</a></code></pre></div>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1">q &lt;-<span class="st"> </span><span class="kw">opq</span> (<span class="dt">bbox =</span> <span class="st">'Mannheim'</span>)</a>
-<a class="sourceLine" id="cb27-2" data-line-number="2">q &lt;-<span class="st"> </span><span class="kw">add_osm_feature</span> (q, <span class="dt">key =</span><span class="st">&quot;amenity&quot;</span>,<span class="dt">value =</span> <span class="st">'bar'</span>) </a>
-<a class="sourceLine" id="cb27-3" data-line-number="3"><span class="kw">osmdata_xml</span> (q, <span class="st">'data/Mannheim_bar.osm'</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1">dat_bar &lt;-<span class="st"> </span>sf<span class="op">::</span><span class="kw">st_read</span> (<span class="st">'../data/Mannheim_bar.osm'</span>, </a>
-<a class="sourceLine" id="cb28-2" data-line-number="2">                        <span class="dt">layer =</span> <span class="st">'points'</span>, <span class="dt">quiet =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1">?add_osm_feature</a></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1">q &lt;-<span class="st"> </span><span class="kw">opq</span> (<span class="dt">bbox =</span> <span class="st">'Mannheim'</span>)</a>
+<a class="sourceLine" id="cb26-2" data-line-number="2">q &lt;-<span class="st"> </span><span class="kw">add_osm_feature</span> (q, <span class="dt">key =</span><span class="st">&quot;amenity&quot;</span>,<span class="dt">value =</span> <span class="st">'bar'</span>) </a>
+<a class="sourceLine" id="cb26-3" data-line-number="3"><span class="kw">osmdata_xml</span> (q, <span class="st">'data/Mannheim_bar.osm'</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1">dat_bar &lt;-<span class="st"> </span>sf<span class="op">::</span><span class="kw">st_read</span> (<span class="st">'../data/Mannheim_bar.osm'</span>, </a>
+<a class="sourceLine" id="cb27-2" data-line-number="2">                        <span class="dt">layer =</span> <span class="st">'points'</span>, <span class="dt">quiet =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 </div>
 <div id="bus-stations-in-amsterdam" class="slide section level2">
 <h1>Bus stations in Amsterdam</h1>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1">q &lt;-<span class="st"> </span><span class="kw">opq</span> (<span class="dt">bbox =</span> <span class="st">'Amsterdam'</span>)</a>
-<a class="sourceLine" id="cb29-2" data-line-number="2">q &lt;-<span class="st"> </span><span class="kw">add_osm_feature</span> (q, <span class="dt">key =</span><span class="st">&quot;amenity&quot;</span>,</a>
-<a class="sourceLine" id="cb29-3" data-line-number="3">                      <span class="dt">value =</span> <span class="st">'bus_station'</span>) </a>
-<a class="sourceLine" id="cb29-4" data-line-number="4"><span class="kw">osmdata_xml</span> (q, <span class="st">'data/Amsterdam_bus_station.osm'</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1">dat_bus &lt;-<span class="st"> </span>sf<span class="op">::</span><span class="kw">st_read</span> (<span class="st">'../data/Amsterdam_bus_station.osm'</span>, </a>
-<a class="sourceLine" id="cb30-2" data-line-number="2">                        <span class="dt">layer =</span> <span class="st">'points'</span>, <span class="dt">quiet =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb30-3" data-line-number="3"><span class="kw">nrow</span>(dat_bus)</a></code></pre></div>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1">?sf<span class="op">::</span>st_read</a></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1">q &lt;-<span class="st"> </span><span class="kw">opq</span> (<span class="dt">bbox =</span> <span class="st">'Amsterdam'</span>)</a>
+<a class="sourceLine" id="cb28-2" data-line-number="2">q &lt;-<span class="st"> </span><span class="kw">add_osm_feature</span> (q, <span class="dt">key =</span><span class="st">&quot;amenity&quot;</span>,</a>
+<a class="sourceLine" id="cb28-3" data-line-number="3">                      <span class="dt">value =</span> <span class="st">'bus_station'</span>) </a>
+<a class="sourceLine" id="cb28-4" data-line-number="4"><span class="kw">osmdata_xml</span> (q, <span class="st">'data/Amsterdam_bus_station.osm'</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1">dat_bus &lt;-<span class="st"> </span>sf<span class="op">::</span><span class="kw">st_read</span> (<span class="st">'../data/Amsterdam_bus_station.osm'</span>, </a>
+<a class="sourceLine" id="cb29-2" data-line-number="2">                        <span class="dt">layer =</span> <span class="st">'points'</span>, <span class="dt">quiet =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb29-3" data-line-number="3"><span class="kw">nrow</span>(dat_bus)</a></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1">?sf<span class="op">::</span>st_read</a></code></pre></div>
 </div>
 <div id="an-alternative" class="slide section level2">
 <h1>An alternative</h1>
@@ -624,13 +629,13 @@ Jan-Philipp Kolb
 <li><a href="https://github.com/ropensci/osmdata/blob/master/vignettes/osmdata.Rmd">Main vignette <code>osmdata</code></a></li>
 <li><a href="https://cran.r-project.org/web/packages/osmdata/vignettes/osm-sf-translation.html">OpenStreetMap Data Structure</a></li>
 </ul>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1">q &lt;-<span class="st"> </span><span class="kw">opq</span> (<span class="dt">bbox =</span> <span class="st">'Amsterdam'</span>)</a>
-<a class="sourceLine" id="cb32-2" data-line-number="2">q &lt;-<span class="st"> </span><span class="kw">add_osm_feature</span> (q, <span class="dt">key =</span><span class="st">&quot;public_transport&quot;</span>,</a>
-<a class="sourceLine" id="cb32-3" data-line-number="3">                      <span class="dt">value =</span> <span class="st">'station'</span>) </a>
-<a class="sourceLine" id="cb32-4" data-line-number="4"><span class="kw">osmdata_xml</span> (q, <span class="st">'../data/Amsterdam_bus_pubtrans.osm'</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1">dat_bus &lt;-<span class="st"> </span>sf<span class="op">::</span><span class="kw">st_read</span> (<span class="st">'../data/Amsterdam_bus_pubtrans.osm'</span>, </a>
-<a class="sourceLine" id="cb33-2" data-line-number="2">                        <span class="dt">layer =</span> <span class="st">'points'</span>, <span class="dt">quiet =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb33-3" data-line-number="3"><span class="kw">nrow</span>(dat_bus)</a></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1">q &lt;-<span class="st"> </span><span class="kw">opq</span> (<span class="dt">bbox =</span> <span class="st">'Amsterdam'</span>)</a>
+<a class="sourceLine" id="cb31-2" data-line-number="2">q &lt;-<span class="st"> </span><span class="kw">add_osm_feature</span> (q, <span class="dt">key =</span><span class="st">&quot;public_transport&quot;</span>,</a>
+<a class="sourceLine" id="cb31-3" data-line-number="3">                      <span class="dt">value =</span> <span class="st">'station'</span>) </a>
+<a class="sourceLine" id="cb31-4" data-line-number="4"><span class="kw">osmdata_xml</span> (q, <span class="st">'../data/Amsterdam_bus_pubtrans.osm'</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1">dat_bus &lt;-<span class="st"> </span>sf<span class="op">::</span><span class="kw">st_read</span> (<span class="st">'../data/Amsterdam_bus_pubtrans.osm'</span>, </a>
+<a class="sourceLine" id="cb32-2" data-line-number="2">                        <span class="dt">layer =</span> <span class="st">'points'</span>, <span class="dt">quiet =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb32-3" data-line-number="3"><span class="kw">nrow</span>(dat_bus)</a></code></pre></div>
 <!--
 als layer getestet: area, polygon
 -->
@@ -641,43 +646,43 @@ als layer getestet: area, polygon
 <!--
 dat_stoparea <- sf::st_read('data/Amsterdam_pubtrans_stoparea.osm', layer = 'points', quiet = TRUE)
 -->
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1">dat3 &lt;-<span class="st"> </span><span class="kw">opq</span>(<span class="dt">bbox =</span> <span class="st">'Amsterdam'</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb34-2" data-line-number="2"><span class="st">    </span><span class="kw">add_osm_feature</span>(<span class="dt">key =</span> <span class="st">'railway'</span>, </a>
-<a class="sourceLine" id="cb34-3" data-line-number="3">                    <span class="dt">value =</span> <span class="st">'tram_stop'</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb34-4" data-line-number="4"><span class="st">    </span><span class="kw">osmdata_sf</span> ()</a></code></pre></div>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1">dat3<span class="op">$</span>osm_points<span class="op">$</span>geometry</a></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1">dat3 &lt;-<span class="st"> </span><span class="kw">opq</span>(<span class="dt">bbox =</span> <span class="st">'Amsterdam'</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb33-2" data-line-number="2"><span class="st">    </span><span class="kw">add_osm_feature</span>(<span class="dt">key =</span> <span class="st">'railway'</span>, </a>
+<a class="sourceLine" id="cb33-3" data-line-number="3">                    <span class="dt">value =</span> <span class="st">'tram_stop'</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb33-4" data-line-number="4"><span class="st">    </span><span class="kw">osmdata_sf</span> ()</a></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1">dat3<span class="op">$</span>osm_points<span class="op">$</span>geometry</a></code></pre></div>
 </div>
 <div id="das-ergebnis-graphisch-darstellen" class="slide section level2">
 <h1>Das Ergebnis graphisch darstellen</h1>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1"><span class="co"># install.packages(&quot;osmplotr&quot;)</span></a>
-<a class="sourceLine" id="cb36-2" data-line-number="2"><span class="kw">library</span>(<span class="st">&quot;osmplotr&quot;</span>)</a>
-<a class="sourceLine" id="cb36-3" data-line-number="3">bbox &lt;-<span class="st"> </span><span class="kw">getbb</span>(<span class="st">&quot;Amsterdam&quot;</span>)</a>
-<a class="sourceLine" id="cb36-4" data-line-number="4">dat_pa &lt;-<span class="st"> </span><span class="kw">extract_osm_objects</span>(<span class="dt">key=</span><span class="st">'highway'</span>, </a>
-<a class="sourceLine" id="cb36-5" data-line-number="5">                              <span class="dt">value=</span><span class="st">&quot;primary&quot;</span>,</a>
-<a class="sourceLine" id="cb36-6" data-line-number="6">                              <span class="dt">bbox=</span>bbox)</a>
-<a class="sourceLine" id="cb36-7" data-line-number="7">dat_sa &lt;-<span class="st"> </span><span class="kw">extract_osm_objects</span>(<span class="dt">key=</span><span class="st">'highway'</span>, </a>
-<a class="sourceLine" id="cb36-8" data-line-number="8">                              <span class="dt">value=</span><span class="st">&quot;secondary&quot;</span>,</a>
-<a class="sourceLine" id="cb36-9" data-line-number="9">                              <span class="dt">bbox=</span>bbox)</a>
-<a class="sourceLine" id="cb36-10" data-line-number="10">dat_ta &lt;-<span class="st"> </span><span class="kw">extract_osm_objects</span>(<span class="dt">key=</span><span class="st">'highway'</span>, </a>
-<a class="sourceLine" id="cb36-11" data-line-number="11">                              <span class="dt">value=</span><span class="st">&quot;tertiary&quot;</span>,</a>
-<a class="sourceLine" id="cb36-12" data-line-number="12">                              <span class="dt">bbox=</span>bbox)</a></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1"><span class="co"># install.packages(&quot;osmplotr&quot;)</span></a>
+<a class="sourceLine" id="cb35-2" data-line-number="2"><span class="kw">library</span>(<span class="st">&quot;osmplotr&quot;</span>)</a>
+<a class="sourceLine" id="cb35-3" data-line-number="3">bbox &lt;-<span class="st"> </span><span class="kw">getbb</span>(<span class="st">&quot;Amsterdam&quot;</span>)</a>
+<a class="sourceLine" id="cb35-4" data-line-number="4">dat_pa &lt;-<span class="st"> </span><span class="kw">extract_osm_objects</span>(<span class="dt">key=</span><span class="st">'highway'</span>, </a>
+<a class="sourceLine" id="cb35-5" data-line-number="5">                              <span class="dt">value=</span><span class="st">&quot;primary&quot;</span>,</a>
+<a class="sourceLine" id="cb35-6" data-line-number="6">                              <span class="dt">bbox=</span>bbox)</a>
+<a class="sourceLine" id="cb35-7" data-line-number="7">dat_sa &lt;-<span class="st"> </span><span class="kw">extract_osm_objects</span>(<span class="dt">key=</span><span class="st">'highway'</span>, </a>
+<a class="sourceLine" id="cb35-8" data-line-number="8">                              <span class="dt">value=</span><span class="st">&quot;secondary&quot;</span>,</a>
+<a class="sourceLine" id="cb35-9" data-line-number="9">                              <span class="dt">bbox=</span>bbox)</a>
+<a class="sourceLine" id="cb35-10" data-line-number="10">dat_ta &lt;-<span class="st"> </span><span class="kw">extract_osm_objects</span>(<span class="dt">key=</span><span class="st">'highway'</span>, </a>
+<a class="sourceLine" id="cb35-11" data-line-number="11">                              <span class="dt">value=</span><span class="st">&quot;tertiary&quot;</span>,</a>
+<a class="sourceLine" id="cb35-12" data-line-number="12">                              <span class="dt">bbox=</span>bbox)</a></code></pre></div>
 </div>
 <div id="die-graphik-erzeugen" class="slide section level2">
 <h1>Die Graphik erzeugen</h1>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1">map &lt;-<span class="st"> </span><span class="kw">osm_basemap</span>(<span class="dt">bbox =</span> bbox, <span class="dt">bg =</span> <span class="kw">c</span>(<span class="st">&quot;#F5F5DC&quot;</span>))</a>
-<a class="sourceLine" id="cb37-2" data-line-number="2">map &lt;-<span class="st"> </span><span class="kw">add_osm_objects</span>(map, dat_pa, <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;#00008B&quot;</span>))</a>
-<a class="sourceLine" id="cb37-3" data-line-number="3">map &lt;-<span class="st"> </span><span class="kw">add_osm_objects</span>(map, dat_sa, <span class="dt">col =</span> <span class="st">&quot;green&quot;</span>)</a>
-<a class="sourceLine" id="cb37-4" data-line-number="4">map &lt;-<span class="st"> </span><span class="kw">add_osm_objects</span>(map, dat_ta, <span class="dt">col =</span> <span class="st">&quot;lightblue&quot;</span>)</a>
-<a class="sourceLine" id="cb37-5" data-line-number="5">map &lt;-<span class="st"> </span><span class="kw">add_osm_objects</span>(map, dat3<span class="op">$</span>osm_points, <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>))</a>
-<a class="sourceLine" id="cb37-6" data-line-number="6"><span class="kw">print_osm_map</span>(map)</a></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1">map &lt;-<span class="st"> </span><span class="kw">osm_basemap</span>(<span class="dt">bbox =</span> bbox, <span class="dt">bg =</span> <span class="kw">c</span>(<span class="st">&quot;#F5F5DC&quot;</span>))</a>
+<a class="sourceLine" id="cb36-2" data-line-number="2">map &lt;-<span class="st"> </span><span class="kw">add_osm_objects</span>(map, dat_pa, <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;#00008B&quot;</span>))</a>
+<a class="sourceLine" id="cb36-3" data-line-number="3">map &lt;-<span class="st"> </span><span class="kw">add_osm_objects</span>(map, dat_sa, <span class="dt">col =</span> <span class="st">&quot;green&quot;</span>)</a>
+<a class="sourceLine" id="cb36-4" data-line-number="4">map &lt;-<span class="st"> </span><span class="kw">add_osm_objects</span>(map, dat_ta, <span class="dt">col =</span> <span class="st">&quot;lightblue&quot;</span>)</a>
+<a class="sourceLine" id="cb36-5" data-line-number="5">map &lt;-<span class="st"> </span><span class="kw">add_osm_objects</span>(map, dat3<span class="op">$</span>osm_points, <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>))</a>
+<a class="sourceLine" id="cb36-6" data-line-number="6"><span class="kw">print_osm_map</span>(map)</a></code></pre></div>
 <!--
 ![](figure/tramhighway_amsterdam.pdf)
 -->
 </div>
 <div id="get-an-overview-of-the-available-features" class="slide section level2">
 <h1>Get an overview of the available features</h1>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1">features &lt;-<span class="st"> </span><span class="kw">available_features</span>()</a>
-<a class="sourceLine" id="cb38-2" data-line-number="2"><span class="kw">head</span>(features,<span class="dt">n=</span><span class="dv">20</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1">features &lt;-<span class="st"> </span><span class="kw">available_features</span>()</a>
+<a class="sourceLine" id="cb37-2" data-line-number="2"><span class="kw">head</span>(features,<span class="dt">n=</span><span class="dv">20</span>)</a></code></pre></div>
 <pre><code>##  [1] &quot;4wd only&quot;                &quot;abandoned&quot;              
 ##  [3] &quot;abutters&quot;                &quot;access&quot;                 
 ##  [5] &quot;addr&quot;                    &quot;addr:city&quot;              
@@ -691,19 +696,19 @@ dat_stoparea <- sf::st_read('data/Amsterdam_pubtrans_stoparea.osm', layer = 'poi
 </div>
 <div id="changing-the-api" class="slide section level2">
 <h1><a href="https://github.com/ropensci/osmdata/issues/126">Changing the API</a></h1>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1">api_list &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">'http://overpass-api.de/api/interpreter'</span>,</a>
-<a class="sourceLine" id="cb40-2" data-line-number="2">              <span class="st">'https://lz4.overpass-api.de/api/interpreter'</span>,</a>
-<a class="sourceLine" id="cb40-3" data-line-number="3">              <span class="st">'https://z.overpass-api.de/api/interpreter'</span>,</a>
-<a class="sourceLine" id="cb40-4" data-line-number="4">              <span class="st">'https://overpass.kumi.systems/api/interpreter'</span>)</a>
-<a class="sourceLine" id="cb40-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb40-6" data-line-number="6">api_to_use &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(api_list), <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb40-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb40-8" data-line-number="8"><span class="kw">set_overpass_url</span>(api_list[api_to_use]) </a></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1">api_list &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">'http://overpass-api.de/api/interpreter'</span>,</a>
+<a class="sourceLine" id="cb39-2" data-line-number="2">              <span class="st">'https://lz4.overpass-api.de/api/interpreter'</span>,</a>
+<a class="sourceLine" id="cb39-3" data-line-number="3">              <span class="st">'https://z.overpass-api.de/api/interpreter'</span>,</a>
+<a class="sourceLine" id="cb39-4" data-line-number="4">              <span class="st">'https://overpass.kumi.systems/api/interpreter'</span>)</a>
+<a class="sourceLine" id="cb39-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb39-6" data-line-number="6">api_to_use &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(api_list), <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb39-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb39-8" data-line-number="8"><span class="kw">set_overpass_url</span>(api_list[api_to_use]) </a></code></pre></div>
 </div>
 <div id="die-wichtigsten-funktionen-im-paket-osmdata" class="slide section level2">
 <h1>Die wichtigsten Funktionen im Paket <code>osmdata</code></h1>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1"><span class="co"># https://rdrr.io/cran/osmdata/man/osmdata_sp.html</span></a>
-<a class="sourceLine" id="cb41-2" data-line-number="2">?osmdata_sp</a></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1"><span class="co"># https://rdrr.io/cran/osmdata/man/osmdata_sp.html</span></a>
+<a class="sourceLine" id="cb40-2" data-line-number="2">?osmdata_sp</a></code></pre></div>
 </div>
 <div id="links" class="slide section level2">
 <h1>Links</h1>

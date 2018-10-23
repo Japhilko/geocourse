@@ -474,32 +474,23 @@ wikipedia}}
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{ind <-}\StringTok{ }\KeywordTok{match}\NormalTok{(BE}\OperatorTok{@}\NormalTok{data}\OperatorTok{$}\NormalTok{PLZ99_N,}\KeywordTok{names}\NormalTok{(tab_plz))}
-\NormalTok{ind}
+\KeywordTok{head}\NormalTok{(ind)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##   [1]  1  2  3  4  5  6  7  8 NA  9 NA NA NA NA NA 10 11 12 NA 13 14 15 16
-##  [24] 17 18 19 20 21 22 23 24 25 NA 26 27 28 29 NA NA NA NA 30 NA 31 32 33
-##  [47] 34 35 NA NA 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 NA 52 53
-##  [70] NA 54 55 NA NA NA 56 57 58 59 60 NA NA NA NA NA 61 NA NA NA 62 NA NA
-##  [93] NA NA NA NA NA NA NA 63 NA NA 64 NA 65 NA NA NA 66 NA NA NA NA 67 NA
-## [116] NA 68 NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA
-## [139] NA 69 70 NA 71 72 73 74 75 NA 76 NA NA NA NA NA NA NA NA NA NA NA NA
-## [162] 77 NA 78 79 NA NA NA NA 80 NA NA NA NA 81 NA 82 83 84 NA NA NA NA NA
-## [185] NA NA NA 85 NA NA
+## [1] 1 2 3 4 5 6
 \end{verbatim}
 
-\end{frame}
-
-\begin{frame}[fragile]{Daten anspielen}
-\protect\hypertarget{daten-anspielen}{}
+\begin{block}{Daten anspielen}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{BE}\OperatorTok{@}\NormalTok{data}\OperatorTok{$}\NormalTok{num_plz <-}\StringTok{ }\NormalTok{tab_plz[ind]}
 \end{Highlighting}
 \end{Shaded}
+
+\end{block}
 
 \end{frame}
 
@@ -513,6 +504,10 @@ wikipedia}}
 \NormalTok{tmap}\OperatorTok{::}\KeywordTok{qtm}\NormalTok{(BE,}\DataTypeTok{fill =} \StringTok{"num_plz"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+## Linking to GEOS 3.6.1, GDAL 2.2.3, proj.4 4.9.3
+\end{verbatim}
 
 \includegraphics{B4_Overpass_files/figure-beamer/unnamed-chunk-19-1.pdf}
 
@@ -571,8 +566,17 @@ R-Paket \texttt{RDSTK}}}
 
 \end{frame}
 
-\begin{frame}{Die Daten für Stuttgart}
+\begin{frame}[fragile]{Die Daten für Stuttgart}
 \protect\hypertarget{die-daten-fur-stuttgart}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tab_landcover <-}\StringTok{ }\KeywordTok{table}\NormalTok{(PLZ_SG}\OperatorTok{$}\NormalTok{land_cover.value)}
+\NormalTok{df_landcover <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(tab_landcover)}
+\KeywordTok{colnames}\NormalTok{(df_landcover)[}\DecValTok{1}\NormalTok{] <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Type_landcover"}\NormalTok{)}
+\KeywordTok{kable}\NormalTok{(df_landcover)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{longtable}[]{@{}lr@{}}
 \toprule
