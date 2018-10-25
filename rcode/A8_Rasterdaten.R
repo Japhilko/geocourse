@@ -1,0 +1,167 @@
+#' ---
+#' title: "A8 Rasterdaten"
+#' author: "Jan-Philipp Kolb"
+#' date: "22 Oktober 2018"
+#' output:
+#'   beamer_presentation: 
+#'     colortheme: beaver
+#'     fonttheme: structurebold
+#'     highlight: espresso
+#'     keep_tex: yes
+#'     theme: CambridgeUS
+#'   slidy_presentation: default
+#' ---
+#' 
+## ----setup, include=FALSE------------------------------------------------
+knitr::opts_chunk$set(echo = T)
+
+#' 
+#' 
+#' ## [Manipulation von Rasterdaten](http://rspatial.org/spatial/rst/8-rastermanip.html)
+#' 
+## ------------------------------------------------------------------------
+library(raster)
+x <- raster()
+x
+
+#' 
+#' ## Andere Parameter wählen
+#' 
+## ------------------------------------------------------------------------
+x1 <- raster(ncol=36, nrow=18, xmn=-1000, xmx=1000, ymn=-100, ymx=900)
+x1
+
+#' 
+#' 
+#' ## Den Zellen Werte zuordnen
+#' 
+## ------------------------------------------------------------------------
+r <- raster(ncol=10, nrow=10)
+ncell(r)
+hasValues(r)
+
+#' 
+## ------------------------------------------------------------------------
+values(r) <- runif(ncell(r))
+hasValues(r)
+
+#' 
+#' ## Das Ergebnis visualisieren
+#' 
+#' 
+## ------------------------------------------------------------------------
+plot(r, main='Raster with 100 cells')
+
+#' 
+#' <!--
+#' ##  Ein Beispieldatensatz
+#' 
+## ----eval=FALSE, include=FALSE-------------------------------------------
+## install.packages("rnaturalearth")
+
+#' 
+#' 
+## ------------------------------------------------------------------------
+library(rnaturalearth)
+usa <- ne_countries(country = "United States of America") # United States borders
+class(usa)
+
+#' 
+#' ## [](https://geocompr.robinlovelace.net/read-write.html)
+#' 
+## ------------------------------------------------------------------------
+library(sf)
+usa_sf <- st_as_sf(usa)
+plot(usa_sf)
+
+#' -->
+#' 
+#' 
+#' ## Import von Beispieldaten
+#' 
+## ----echo=F--------------------------------------------------------------
+link<-"https://raw.githubusercontent.com/GeoScripting-WUR/IntroToRaster/gh-pages/data/gewata.zip"
+
+#' 
+## ----eval=F--------------------------------------------------------------
+## link<-"https://raw.githubusercontent.com/GeoScripting-WUR/
+## IntroToRaster/gh-pages/data/gewata.zip"
+
+#' 
+## ----eval=F--------------------------------------------------------------
+## download.file(url = link, destfile = 'gewata.zip',
+##               method = 'auto')
+## unzip('gewata.zip')
+
+#' 
+#' 
+## ----eval=F--------------------------------------------------------------
+## list.files(pattern = glob2rx('*.tif'))
+
+#' 
+#' ## [Import von Rasterdaten - `.tif` file](https://geoscripting-wur.github.io/IntroToRaster/)
+#' 
+## ----eval=F--------------------------------------------------------------
+## gewata <- raster::brick('../data/
+## LE71700552001036SGS00_SR_Gewata_INT1U.tif')
+
+#' 
+## ----echo=F--------------------------------------------------------------
+gewata <- raster::brick('../data/LE71700552001036SGS00_SR_Gewata_INT1U.tif')
+
+#' 
+#' ## Erste plots erstellen
+#' 
+## ------------------------------------------------------------------------
+plot(gewata)
+
+#' 
+## ----eval=F,echo=F-------------------------------------------------------
+## gewata@data
+
+#' 
+#' 
+#' ## [Worldclim Daten importieren](https://pakillo.github.io/R-GIS-tutorial/#raster)
+#' 
+#' ![](figure/WORLDCLIM.PNG)
+#' 
+## ----eval=F--------------------------------------------------------------
+## # this will download
+## # global data on minimum temperature at 10' resolution
+## tmin <- raster::getData("worldclim", var = "tmin", res = 10)
+
+#' 
+## ------------------------------------------------------------------------
+tmin1 <- raster::raster( "../data/wc10/tmin1.bil")
+tmin1 <- tmin1/10
+
+#' 
+#' 
+#' ## Minimum Temperatur plotten
+#' 
+## ------------------------------------------------------------------------
+plot(tmin1)
+
+#' 
+#' 
+#' 
+#' <!--
+#' ## [Indikatoren vom Institut für ökologische Raumforschung (IÖR)](http://www.ioer-monitor.de/)
+#' ![](figure/ioermonitor.PNG)
+#' -->
+#' 
+#' <!--
+#' http://www.ioer-monitor.de/indikatoren/#c1793
+#' https://monitor.ioer.de/frontend/data/anleitung_import_qgis.pdf
+#' https://monitor.ioer.de/?raeumliche_gliederung=raster&klassenanzahl=7&opacity=0.8&zoom=6&lat=51.33061163769853&lng=10.458984375000002&ind=B02DT&baselayer=webatlas&time=2011&raumgl=bld&klassifizierung=haeufigkeit&darstellung=auto&ags_array=&glaettung=0&rasterweite=0&
+#' http://www.ioer-monitor.de/indikatoren/#c1793
+#' -->
+#' 
+#' 
+#' ## Links
+#' 
+#' - Neon - [**Intro to Raster Data in R**](https://www.neonscience.org/dc-raster-data-r)
+#' 
+#' - Francisco Rodriguez-Sanchez - [**Spatial data in R: Using R as a GIS**](https://pakillo.github.io/R-GIS-tutorial/#raster)
+#' 
+#' - Robin Lovelace - [**Geocomputation with R**](https://geocompr.robinlovelace.net/)

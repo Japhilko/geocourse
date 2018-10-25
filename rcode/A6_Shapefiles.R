@@ -3,8 +3,6 @@
 #' author: "Jan-Philipp Kolb"
 #' date: "22 Oktober 2018"
 #' output:
-#'   slidy_presentation: 
-#'     keep_md: yes
 #'   beamer_presentation:
 #'     colortheme: beaver
 #'     fonttheme: structurebold
@@ -12,6 +10,8 @@
 #'     fig_caption: no
 #'     keep_tex: yes
 #'     theme: CambridgeUS
+#'   slidy_presentation: 
+#'     keep_md: yes
 #' ---
 #' 
 ## ----setup_shapefiles, include=FALSE-------------------------------------
@@ -67,8 +67,9 @@ show_solution <- F
 #' 
 #' ## [**Vorwahlbereiche in Deutschland**](http://www.bundesnetzagentur.de/SharedDocs/Downloads/DE/Sachgebiete/Telekommunikation/Unternehmen_Institutionen/Nummerierung/Rufnummern/ONVerzeichnisse/ONBGrenzen/ONB_Grenzen.html)
 #' 
-#' ### Quelle Ortsnetzbereiche: [**Bundesnetzagentur**](http://www.bundesnetzagentur.de/DE/Sachgebiete/Telekommunikation/Unternehmen_Institutionen/Nummerierung/Rufnummern/ONVerzeichnisse/GISDaten_ONBGrenzen/ONBGrenzen_Basepage.html)
+#' ### Quelle Ortsnetzbereiche: [**Bundesnetzagentur**](https://www.bundesnetzagentur.de/DE/Sachgebiete/Telekommunikation/Unternehmen_Institutionen/Nummerierung/Rufnummern/ONRufnr/ON_Einteilung_ONB/ON_ONB_ONKz_ONBGrenzen_Basepage.html)
 #' 
+#' - [**Download**](https://www.bundesnetzagentur.de/SharedDocs/Downloads/DE/Sachgebiete/Telekommunikation/Unternehmen_Institutionen/Nummerierung/Rufnummern/ONVerzeichnisse/ONBGrenzen/ONB-Grenzen-2018.zip?__blob=publicationFile&v=21) ONB-Grenzen
 #' 
 ## ----echo=F,eval=GESIS---------------------------------------------------
 geodata_path <- "D:/Daten/Daten/GeoDaten/"
@@ -178,9 +179,16 @@ plot(vwb6[Com=="Kaiserslautern",],col="blue",add=T)
 #' ![Drei Städte](figure/DreiStaedte.PNG)
 #' -->
 #' 
-#' ## Paket `rgdal` - PLZ Datensatz einlesen
+#' 
+#' ## Shapefiles für PLZ-Bereiche
 #' 
 #' ### [**Quelle**](http://arnulf.us/PLZ) für PLZ Shapefiles
+#' 
+#' ![](figure/Download_plz.PNG)
+#' 
+#' 
+#' ## Paket `rgdal` - PLZ Datensatz einlesen
+#' 
 #' 
 ## ----eval=athome,echo=F--------------------------------------------------
 data_path <- "D:/GESIS/data/"
@@ -431,13 +439,13 @@ data(world.cities)
 map("france")
 map.cities(world.cities,col="blue")
 
-#' 
+#' <!--
 #' ## Die Funktion `rgb`
 #' 
 ## ------------------------------------------------------------------------
 map.cities(world.cities,col=rgb(0,0,1,.2),pch=20,cex=4)
 
-#' 
+#' -->
 #' 
 #' ## Das Rstudio Addin `colourpicker`
 #' 

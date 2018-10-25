@@ -1,0 +1,492 @@
+#' ---
+#' title: "B6 Javascript Bibliotheken nutzen"
+#' author: "Jan-Philipp Kolb"
+#' date: "23 Oktober 2018"
+#' output:
+#'   beamer_presentation: 
+#'     colortheme: beaver
+#'     fonttheme: structurebold
+#'     highlight: espresso
+#'     keep_tex: yes
+#'     theme: CambridgeUS
+#'   slidy_presentation: default
+#' ---
+#' 
+## ----setup_usingjavascript1, include=FALSE-------------------------------
+knitr::opts_chunk$set(echo = T,cache=T,warning=F)
+htmlpres <- F
+library(knitr)
+
+#' 
+#' 
+#' ## Beispiel zu Campingplätzen
+#' 
+#' - Die Daten stammen von:
+#' 
+#' <http://www.openstreetmap.de/>
+#' 
+#' - Dabei wird die Overpass API genutzt:
+#' 
+#' <http://wiki.openstreetmap.org/wiki/Overpass_API>
+#' 
+## ----echo=F,eval=T-------------------------------------------------------
+url <- "https://raw.githubusercontent.com/Japhilko/GeoData/master/2015/data/CampSites_Germany.csv"
+
+#' 
+## ----eval=F--------------------------------------------------------------
+## url <- "https://raw.githubusercontent.com/Japhilko/
+## GeoData/master/2015/data/CampSites_Germany.csv"
+
+#' 
+## ----eval=T--------------------------------------------------------------
+CampSites <- read.csv(url)
+
+#' 
+#' 
+#' ## Überblick über Daten zu Campingplätzen
+#' 
+## ----echo=F,eval=T-------------------------------------------------------
+kable(CampSites[1:8,1:4])
+
+#' 
+#' 
+#' ## Notwendige Pakete
+#' 
+#' ### [**magrittr**](https://cran.r-project.org/web/packages/magrittr/index.html) - für den Pipe Operator in R:
+#' 
+## ----warning=F-----------------------------------------------------------
+library("magrittr")
+
+#' 
+#' 
+#' [leaflet](https://rstudio.github.io/leaflet/) - um  interaktive Karten mit der JavaScript Bibliothek 'Leaflet' zu erzeugen
+#' 
+## ----warning=F-----------------------------------------------------------
+library("leaflet")
+
+#' 
+#' 
+#' ## Eine erste interaktive Karte
+#' 
+## ----eval=htmlpres-------------------------------------------------------
+leaflet()%>%
+  addTiles()
+
+#' 
+#' ![Hallo Leaflet](figure/FirstLeaflet.PNG)
+#' 
+#' ## Auf eine Stadt zoomen
+#' 
+## ----eval=htmlpres-------------------------------------------------------
+leaflet() %>%
+  addTiles() %>%
+  addMarkers(lng=8.456597, lat=49.48738,
+             popup="Wo wir sind")
+
+#' 
+#' ![](figure/leafletMZESMA.PNG)
+#' 
+#' ## Eine interaktive Karte
+#' 
+## ----eval=htmlpres-------------------------------------------------------
+m <- leaflet() %>%
+  addTiles() %>%  
+  addMarkers(lng=CampSites$lon, 
+             lat=CampSites$lat, 
+             popup=CampSites$name)
+m
+
+#' 
+#' 
+#' ## Das Paket `leaflet` - Visualisierung von Geokodierung
+#' 
+## ------------------------------------------------------------------------
+library("tmaptools")
+gc_tma <- geocode_OSM("Mannheim, GESIS")
+
+#' 
+#' 
+#' 
+## ----eval=htmlpres-------------------------------------------------------
+library(leaflet)
+library(magrittr)
+m <- leaflet() %>%
+addTiles() %>%
+addMarkers(lng=8.463061 , lat=49.485736 , 
+           popup="GESIS Mannheim")
+m
+
+#' 
+#' 
+#' 
+#' ## [Stamen als Hintergrundkarte](https://rstudio.github.io/leaflet/basemaps.html)
+#' 
+## ----eval=htmlpres-------------------------------------------------------
+m %>% addProviderTiles("Stamen.Toner")
+
+#' 
+#' ![Eine Stamen Karte als Hintergrund](figure/InteractiveStamen.PNG)
+#' 
+#' ## CartoDB als Hintergrund
+#' 
+## ----eval=htmlpres-------------------------------------------------------
+m %>% addProviderTiles("CartoDB.Positron")
+
+#' 
+#' ![CartoDB als Hintergrund](figure/CartoDBInteractive.PNG)
+#' 
+#' - [CartoDB](https://carto.com/attribution)
+#' 
+#' - [Info zu Map Tiles](https://www.mapbox.com/help/how-web-maps-work/)
+#' 
+#' 
+#' ## [Mehr Hintergründe](http://leaflet-extras.github.io/leaflet-providers/preview/index.html)
+#' 
+#' 
+## ----eval=htmlpres-------------------------------------------------------
+m %>% addProviderTiles("NASAGIBS.ViirsEarthAtNight2012")
+
+#' 
+#' ![Lichter der Nacht](figure/LightsInteractive.PNG)
+#' 
+#' 
+#' 
+#' 
+#' ## Mehr Informationen hinzufügen
+#' 
+## ----eval=htmlpres-------------------------------------------------------
+popupInfo <- paste(CampSites$name,"\n",CampSites$website)
+
+#' 
+## ----eval=htmlpres-------------------------------------------------------
+m <- leaflet() %>%
+  addTiles() %>%  # Add default OpenStreetMap map tiles
+  addMarkers(lng=CampSites$lon, 
+             lat=CampSites$lat, 
+             popup=popupInfo)
+m
+
+#' 
+#' Das Ergebnis ist hier:
+#' 
+#' <http://rpubs.com/Japhilko82/CampSitesHL>
+#' 
+#' ## Die resultierende Karte
+#' 
+#' ![Campingplätze in Deutschland](figure/Germany_Campsites.PNG)
+#' 
+#' ## Popups in einer interactiven Karte
+#' 
+#' ![Camping Mannheim](figure/Camping_Mannheim.PNG)
+#' 
+#' Ich hab die Ergebnisse hochgeladen:
+#' 
+#' <http://rpubs.com/Japhilko82/Campsites>
+#' 
+#' ## Wie man auf Rpubs publizieren kann
+#' 
+#' ![Publizieren auf Rpubs](figure/PublishCampSitesGermany.PNG)
+#' 
+#' 
+#' ## Ein weiteres Beispiel - Weltkulturerbe
+#' 
+## ----cache=T-------------------------------------------------------------
+url <- "https://raw.githubusercontent.com/Japhilko/
+GeoData/master/2015/data/whcSites.csv"
+
+whcSites <- read.csv(url) 
+
+#' 
+#' 
+#' 
+#' 
+#' ## Eine interaktive Karte erstellen
+#' 
+## ----eval=htmlpres-------------------------------------------------------
+m <- leaflet() %>%
+  addTiles() %>%  # Add default OpenStreetMap map tiles
+  addMarkers(lng=whcSites$lon, 
+             lat=whcSites$lat, 
+             popup=whcSites$name_en)
+m
+
+#' 
+#' ## Die Karte zeigen
+#' 
+#' ![Weltkulturerbestätten](figure/WHCPopUps.PNG) 
+#' 
+#' ## Farbe hinzu
+#' 
+## ----eval=htmlpres-------------------------------------------------------
+whcSites$color <- "red"
+whcSites$color[whcSites$category=="Cultural"] <- "blue"
+whcSites$color[whcSites$category=="Mixed"] <- "orange"
+
+#' 
+#' ## Eine Karte mit Farbe erzeugen
+#' 
+## ----eval=htmlpres-------------------------------------------------------
+m1 <- leaflet() %>%
+  addTiles() %>%  
+  addCircles(lng=whcSites$lon, 
+             lat=whcSites$lat, 
+             popup=whcSites$name_en,
+             color=whcSites$color)
+m1
+
+#' 
+#' ## Die Karte zeigen
+#' 
+#' ![Karte Weltkulturerbe](figure/WHCcircles.PNG) 
+#' 
+#' ## [Die Karte abspeichern](http://www.r-bloggers.com/interactive-mapping-with-leaflet-in-r-2/)
+#' 
+#' ![Als Website speichern](figure/snapshot2.png)
+#' 
+#' 
+#' ## Das Paket `mapview` - Beispieldatensatz Franken
+#' 
+## ----eval=htmlpres-------------------------------------------------------
+library(mapview)
+
+mapview(franconia)
+
+#' 
+#' ![](figure/franconia.PNG)
+#' 
+#' 
+#' ## GADM und `mapview`
+#' 
+## ----eval=htmlpres-------------------------------------------------------
+mapview(leaflet::gadmCHE)
+
+#' 
+#' ![](figure/gadm_mapview.PNG)
+#' 
+#' ## Das Paket `mapview` - Funktion `editMap`
+#' 
+#' <!--
+#' folgendes stammt aus dem Helpfile
+#' -->
+#' 
+## ----eval=htmlpres-------------------------------------------------------
+library(mapedit)
+lf <- mapview()
+drawing <- lf %>%
+  editMap()
+
+#' 
+#' ![](figure/editmap.PNG)
+#' 
+#' 
+#' ## Das Paket `mapview`
+#' 
+## ------------------------------------------------------------------------
+(load("../data/spatsamp_68239.RData"))
+
+#' 
+## ----eval=htmlpres-------------------------------------------------------
+mapview(spatsamp)
+
+#' 
+#' ![](figure/spatsamp.PNG)
+#' 
+## ----eval=F,echo=F-------------------------------------------------------
+## library(sf)
+## locations_sf <- st_as_sf(locations, coords = c("lon", "lat"), crs = 4326)
+
+#' 
+#' 
+## ----eval=F,echo=F-------------------------------------------------------
+## install.packages("lwgeom")
+
+#' 
+#' 
+#' 
+#' 
+#' 
+#' 
+#' ## Das Paket `geojsonR`
+#' 
+#' - JavaScript Object Notation
+#' 
+#' <!--
+#' https://cran.r-project.org/web/packages/geojsonR/vignettes/the_geojsonR_package.html
+#' 
+#' ma:geojsonr
+#' 
+#' https://wiki.openstreetmap.org/wiki/Overpass_turbo/GeoJSON
+#' https://github.com/tyrasd/osmtogeojson
+#' 
+#' https://www.compose.com/articles/how-to-transform-and-use-openstreetmap-data-into-geojson-using-gdal/
+#' -->
+#' 
+## ----eval=F--------------------------------------------------------------
+## install.packages("geojsonR")
+## citation("geojsonR")
+
+#' 
+## ------------------------------------------------------------------------
+library(geojsonR)
+
+#' 
+#' 
+#' - [**Geokodierung**](https://github.com/mlampros/shiny-server)
+#' 
+#' <!--
+#' https://lampros.shinyapps.io/shiny_geocoding/
+#' -->
+#' 
+## ----echo=F--------------------------------------------------------------
+
+
+#' 
+#' - [**geojson**](https://lampros.shinyapps.io/shiny_geojson/)
+#' - [**geojsonr Selector**](http://labs.easyblog.it/maps/leaflet-geojson-selector/)
+#' 
+#' ![](figure/geojsonr.PNG)
+#' 
+#' ## Wo bekomme ich ein geojson
+#' 
+#' - Ein [**OSM map feature**](https://wiki.openstreetmap.org/wiki/Map_Features) heraus suchen 
+#' - z.B. `key=highway`, `value=bus_stop`
+#' - Auf [**Overpass Turbo**](https://overpass-turbo.eu/) gehen und das Objekt herunterladen
+#' 
+## ------------------------------------------------------------------------
+busstops <- "../data/Amsterdam_bus_stop.geojson"
+bus_stops <- geojsonio::geojson_read(busstops,
+  what = "sp")
+
+#' 
+#' 
+#' ## Die Punkte plotten
+#' 
+## ------------------------------------------------------------------------
+sp::plot(bus_stops)
+
+#' 
+#' ## Eine interaktive Karte erzeugen
+#' 
+## ----eval=F--------------------------------------------------------------
+## mapview(bus_stops)
+
+#' 
+#' ![](figure/interaktive_busstops_amsterdam.PNG)
+#' 
+#' <!--
+#' ## Eine direkte Abfrage
+#' 
+## ----eval=F--------------------------------------------------------------
+## # http://overpass-api.de/query_form.html
+## firstpart <- "http://overpass-api.de/api/interpreter?data="
+## gcs <- geojsonio::geojson_read(paste0(firstpart,"node['name'='Gielgen'](50.7,7.1,50.8,7.2);out;",
+##                                what="sp",method="web"))
+## 
+## 
+## 
+## gcs <- geojsonio::geojson_read("http://nominatim.openstreetmap.org/search?format=json&addressdetails=1&extratags=1&q=Amsterdam+Niederlande+Rozengracht+1",what="sp")
+
+#' -->
+#' ## [Das Paket `lawn`](https://cran.r-project.org/web/packages/lawn/index.html)
+#' 
+#' - [**Vignette**](https://cran.r-project.org/web/packages/lawn/vignettes/lawn_vignette.html) für das Paket `lawn`
+#' 
+#' - Mit dem Paket `lawn` kann die Javascript-Bibliothek turf.js in R eingebunden werden. 
+#' - Weitere genutzte Javascript Bibliotheken (geojson-random und geojsonhint), werden verwendet um GeoJSON-Objekte zufällig zu erzeugen bzw. um die GeoJSON Objekte einzufärben.
+#' 
+## ----eval=F--------------------------------------------------------------
+## install.packages("lawn")
+## citation("lawn")
+
+#' 
+#' 
+## ------------------------------------------------------------------------
+library(lawn)
+
+#' 
+#' 
+#' ## Ein zufälliges Beispiel Objekt erstellen
+#' 
+#' - Mit der Funktion `gr_polygon` kann ein Beispielobjekt erzeugt werden. 
+#' - Anschließend kann man sich das Objekt mit der generischen Funktion `view` plotten.
+#' 
+## ----eval=htmlpres-------------------------------------------------------
+a <- gr_polygon(n = 1, vertices = 5, max_radial_length = 5)
+view(a)
+
+#' 
+## ----eval=htmlpres-------------------------------------------------------
+b <- gr_polygon(n = 1)
+view(b)
+
+#' 
+#' <!--
+#' https://github.com/node-geojson/geojson-random
+#' 
+#' https://wiki.openstreetmap.org/wiki/Overpass_turbo/GeoJSON
+#' 
+#' https://wiki.openstreetmap.org/wiki/GeoJSON
+#' 
+#' -->
+#' 
+#' ## Interaktive Deutschland Karte 
+#' 
+## ----eval=htmlpres-------------------------------------------------------
+gcs <- geojsonio::geojson_read("../data/ddat.geojson",what="sp")
+mapview(gcs)
+
+#' 
+#' ![](figure/ddat_geojson.PNG)
+#' 
+#' ## Das Paket `jsonlite`
+#' 
+#' - A Robust, High Performance JSON Parser and Generator for R
+#' 
+## ------------------------------------------------------------------------
+library(jsonlite)
+geoc <- read_json("../data/ddat.geojson")
+
+#' 
+#' <!--
+#' https://github.com/Robinlovelace/Creating-maps-in-R/blob/master/R/shp-to-geojson.R
+#' -->
+#' 
+## ------------------------------------------------------------------------
+citation("jsonlite")
+
+#' 
+#' 
+#' ## Das Paket `RJSONIO`
+#' 
+## ------------------------------------------------------------------------
+library("RJSONIO")
+con <- url("http://nominatim.openstreetmap.org/search?format=json&
+addressdetails=1&extratags=1&q=Amsterdam+Niederlande+Rozengracht+1")
+geoc <- fromJSON(paste(readLines(con,warn=F), 
+                       collapse = ''))
+close(con)
+
+#' 
+## ------------------------------------------------------------------------
+geoc[[10]]$address
+
+#' 
+#' ## Es muss nicht immer R sein
+#' 
+#' ### [Daten visualisieren mit CartoDB](https://japhilko.carto.com/dashboard)
+#' 
+#' ![](figure/CartoDB.PNG)
+#' 
+#' ## Links und Quellen
+#' 
+#' - [**R-bloggers**](http://www.r-bloggers.com/the-leaflet-package-for-online-mapping-in-r/) Artikel zu Leaflet
+#' 
+#' - [**Einführung in Leaflet für R**](https://rstudio.github.io/leaflet/)
+#' 
+#' - [**Offline Karten mit RgoogleMaps und leaflet**](https://blog.hwr-berlin.de/codeandstats/category/scientific-software/r/)
+#' 
+#' - [**Github Ordner für das lwan Paket**](https://github.com/ropensci/lawn)
+#' 
+#' <!--
+#' https://github.com/tyrasd/osmtogeojson
+#' -->

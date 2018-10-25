@@ -2,15 +2,17 @@
 #' title: "A7 Die R-Pakete `sp` und `spdep`"
 #' author: "Jan-Philipp Kolb"
 #' date: "22 Oktober 2018"
-#' output: 
-#'   beamer_presentation: 
+#' output:
+#'   slidy_presentation:
+#'     highlight: espresso
+#'   ioslides_presentation:
+#'     keep_md: yes
+#'   beamer_presentation:
 #'     colortheme: beaver
 #'     fonttheme: structurebold
 #'     highlight: espresso
 #'     keep_tex: yes
 #'     theme: CambridgeUS
-#'   ioslides_presentation: 
-#'     keep_md: yes
 #' ---
 #' 
 #' 
@@ -209,7 +211,7 @@ plot(Africa,col=Af_color)
 
 #' 
 #' 
-#' ## A7A Ãœbung - Nachbarschaften in London
+#' ## A7A Übung - Nachbarschaften in London
 #' 
 #' <!--
 #' https://github.com/Robinlovelace/Creating-maps-in-R

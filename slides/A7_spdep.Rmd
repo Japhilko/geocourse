@@ -211,7 +211,7 @@ plot(Africa,col=Af_color)
 ```
 
 
-## A7A Ãœbung - Nachbarschaften in London
+## A7A Übung - Nachbarschaften in London
 
 <!--
 https://github.com/Robinlovelace/Creating-maps-in-R

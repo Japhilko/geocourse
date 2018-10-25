@@ -1,0 +1,462 @@
+#' ---
+#' title: "A2 - Das `ggmap` Paket"
+#' author: "Jan-Philipp Kolb"
+#' date: "22 Oktober 2018"
+#' output:
+#'   slidy_presentation: 
+#'     keep_md: yes
+#'   beamer_presentation: 
+#'     colortheme: beaver
+#'     fonttheme: structurebold
+#'     highlight: espresso
+#'     keep_tex: yes
+#'     theme: CambridgeUS
+#' ---
+#' 
+## ----setup_ggmap, include=FALSE------------------------------------------
+knitr::opts_chunk$set(echo = TRUE,message=F,warning=F,cache=T,fig.height=4)
+Ex <- F
+
+#' 
+## ----echo=F,warning=F----------------------------------------------------
+library(knitr)
+
+#' 
+#' 
+#' 
+#' ## Inhalt dieses Abschnitts
+#' 
+#' Arten von räumlichen Daten: 
+#' 
+#' - [**Straßenkarten**](https://www.nceas.ucsb.edu/~frazier/RSpatialGuides/ggmap/ggmapCheatsheet.pdf) 
+#' - [**Satelliten Bilder**](http://www.mostlymuppet.com/tag/maps/)
+#' - [**Physische Daten und Karten**](http://gis.stackexchange.com/questions/3083/what-makes-a-map-beautiful/45518#45518)
+#' - [**Abstrakte Karten**](http://www.designfaves.com/2014/03/abstracted-maps-reveal-cities-personalities)
+#' - ...
+#' 
+#' Das R-paket [**`ggmap`**](http://journal.r-project.org/archive/2013-1/kahle-wickham.pdf) wird im folgenden genutzt um verschiedene Kartentypen darzustellen.
+#' 
+#' Mit [**`qmap`**](http://www.inside-r.org/packages/cran/ggmap/docs/qmap) kann man eine schnelle Karte erzeugen.
+#' 
+#' ## Installieren des Paketes
+#' 
+#' ### Zur Erstellung der Karten brauchen wir die Pakete `ggmap` und `ggplot2`:
+#' 
+#' Entwicklungsversion installieren:
+#' 
+## ----eval=F--------------------------------------------------------------
+## devtools::install_github("dkahle/ggmap")
+## devtools::install_github("hadley/ggplot2")
+
+#' 
+#' 
+#' Version vom CRAN Server installieren
+#' 
+## ----eval=F--------------------------------------------------------------
+## install.packages("ggmap")
+
+#' 
+#' ## Paket `ggmap` - Hallo Welt
+#' 
+#' - Um das Paket zu laden verwenden wir den Befehl `library`
+#' 
+## ----message=F,warning=F-------------------------------------------------
+library(ggmap)
+
+#' 
+#' Und schon kann die erste Karte erstellt werden:
+#' 
+## ----message=F,eval=F----------------------------------------------------
+## qmap("Mannheim")
+
+#' 
+## ----echo=F,message=F,warning=F,cache=T,eval=F---------------------------
+## MA_map <- qmap("Mannheim")
+
+#' 
+#' 
+#' ![](figure/Mannheim_ggmap.pdf)
+#' 
+#' ## Karte für eine Sehenswürdigkeit
+#' 
+## ----eval=Ex-------------------------------------------------------------
+qmap("Berlin Brandenburger Tor")
+
+#' 
+#' 
+#' 
+## ----eval=F,echo=F-------------------------------------------------------
+## pdf("figure/BBT_ggmap.pdf")
+## BBT
+## dev.off()
+## 
+## png("figure/BBT_ggmap.png")
+## BBT
+## dev.off()
+
+#' 
+#' 
+#' ![](figure/BBT_ggmap.pdf)
+#' 
+#' ## Karte für einen ganzen Staat
+#' 
+## ----message=F,eval=Ex---------------------------------------------------
+qmap("Germany")
+
+#' 
+## ----eval=F,echo=F-------------------------------------------------------
+## germany <- qmap("Germany")
+## save(germany,file="../data/germany.RData")
+## 
+## pdf("figure/germany.pdf")
+## germany
+## dev.off()
+## 
+## png("figure/germany.png")
+## germany
+## dev.off()
+
+#' 
+#' - Wir brauchen ein anderes *zoom level*
+#' 
+#' ![](figure/germany.pdf)
+#' 
+#' 
+#' ## Ein anderes *zoom level*
+#' 
+#' - level 3 - Kontinent / level 10 - Stadt / level 21 - Gebäude
+#' 
+## ----message=F,eval=Ex---------------------------------------------------
+qmap("England", zoom = 6)
+
+#' 
+## ----echo=F--------------------------------------------------------------
+# https://www.nceas.ucsb.edu/~frazier/RSpatialGuides/ggmap/ggmapCheatsheet.pdf
+
+#' 
+#' ![](figure/EnglandMap.PNG)
+#' 
+#' 
+#' ## Hilfe bekommen wir mit dem Fragezeichen
+#' 
+## ----eval=F--------------------------------------------------------------
+## ?qmap
+
+#' 
+#' Verschiedene Abschnitte in der Hilfe:
+#' 
+#' - Description
+#' - Usage
+#' - Arguments
+#' - Value
+#' - Author(s)
+#' - See Also
+#' - Examples
+#' 
+#' <!--
+#' ## Ein anderes *zoom level*
+#' 
+## ----message=F,eval=F----------------------------------------------------
+## qmap("Hamburg", zoom = 12)
+
+#' 
+## ----eval=F,echo=F-------------------------------------------------------
+## ham_map_z12 <- qmap("Hamburg", zoom = 12)
+## save(ham_map_z12,file="../data/ham_map_z12.RData")
+## 
+## pdf("figure/ham_map_z12.pdf")
+## ham_map_z20
+## dev.off()
+## 
+## png("figure/ham_map_z12.png")
+## ham_map_z12
+## dev.off()
+## 
+
+#' 
+#' ![](figure/ham_map_z12.pdf)
+#' -->
+#' 
+#' ## Ganz nah dran
+#' 
+## ----message=F,eval=F----------------------------------------------------
+## qmap('Mannheim', zoom = 20)
+
+#' 
+## ----eval=F,echo=F-------------------------------------------------------
+## ham_map_z20 <- qmap('Mannheim', zoom = 13)
+## save(ham_map_sat,file="../data/ham_map_sat.RData")
+## 
+## pdf("figure/ham_map_z20.pdf")
+## ham_map_z20
+## dev.off()
+## 
+## png("figure/ham_map_z20.png")
+## ham_map_z20
+## dev.off()
+
+#' 
+#' ![](figure/ham_map_z20.pdf)
+#' 
+#' 
+#' ## `ggmap` - maptype satellite
+#' 
+## ----message=F,eval=F----------------------------------------------------
+## qmap('Hamburg', zoom = 14, maptype="satellite")
+
+#' 
+## ----eval=F,echo=F-------------------------------------------------------
+## ham_map_sat <- qmap('Hamburg', zoom = 14, maptype="satellite")
+## save(ham_map_sat,file="../data/ham_map_sat.RData")
+## 
+## pdf("figure/ham_map_sat.pdf")
+## ham_map_sat
+## dev.off()
+## 
+## png("figure/ham_map_sat.png")
+## ham_map_sat
+## dev.off()
+## 
+
+#' 
+#' ![](figure/ham_map_sat.pdf)
+#' 
+#' 
+#' ## `ggmap` - maptype satellite zoom 20
+#' 
+## ----message=F,eval=F----------------------------------------------------
+## qmap('Hamburg', zoom = 20, maptype="hybrid")
+
+#' 
+## ----eval=F,echo=F-------------------------------------------------------
+## ham_map <- qmap('Hamburg', zoom = 20, maptype="hybrid")
+## save(ham_map,file="../data/ham_map.RData")
+## 
+## pdf("figure/ham_map.pdf")
+## ham_map
+## dev.off()
+## 
+## png("figure/ham_map.png")
+## ham_map
+## dev.off()
+## 
+
+#' 
+#' ![](figure/ham_map.pdf)
+#' 
+#' 
+#' ## Terrain/physical maps
+#' 
+#' - Aus Physischen Karten kann man Informationen über Berge, Flüsse und Seen ablesen. 
+#' 
+#' - Farben werden oft genutzt um Höhenunterschiede zu visualisieren
+#' 
+## ----eval=F--------------------------------------------------------------
+## qmap('Arequipa', maptype="terrain")
+
+#' 
+#' 
+#' ## Eine physische Karte von Arequipa
+#' 
+#' ![](figure/Areqipa.pdf)
+#' 
+#' <!--
+#' ### `ggmap` - terrain map
+#' 
+## ----message=F,cache=T,eval=F--------------------------------------------
+## qmap('Donnersberg', zoom = 14, maptype="terrain")
+
+#' 
+## ----echo=F,eval=F-------------------------------------------------------
+## btg_map <- qmap('Berchtesgarden', maptype="terrain")
+
+#' -->
+#' 
+#' 
+#' <!--
+## ----eval=F,echo=F-------------------------------------------------------
+## Schriesheim <- qmap('Schriesheim', zoom = 14,
+##  maptype="terrain")
+## 
+## save(Schriesheim,file="../data/Schriesheim.RData")
+## 
+## pdf("figure/Schriesheim.pdf")
+## Schriesheim
+## dev.off()
+## 
+## png("figure/Schriesheim.png")
+## Schriesheim
+## dev.off()
+
+#' -->
+#' <!--
+#' ![](figure/Schriesheim.pdf)
+#' -->
+#' 
+#' ## Abstrahierte Karten ([http://www.designfaves.com](http://www.designfaves.com/2014/03/abstracted-maps-reveal-cities-personalities))
+#' 
+#' 
+#' - Abstraktion wird genutzt um nur essentielle Informationen darzustellen. 
+#' - Bsp. U-Bahn Karten - wichtig sind Richtungen und Orientierung
+#' - Im folgenden werden Karten vorgestellt, die sich gut als Hintergrundkarten eignen.
+#' 
+#' 
+#' ![New York](figure/NYabstracted.jpg)
+#' 
+#' ## ggmap - maptype watercolor
+#' 
+## ----message=F,eval=F----------------------------------------------------
+## qmap('Los Angeles', zoom = 14,
+##  maptype="watercolor",source="stamen")
+
+#' 
+#' ![](figure/lastamen.png)
+#' 
+#' <!--
+#' ## ggmap - source stamen
+#' 
+## ----message=F,eval=F----------------------------------------------------
+## qmap('Mannheim', zoom = 14,
+##  maptype="toner",source="stamen")
+
+#' 
+#' 
+#' ## ggmap - maptype toner-lite
+#' 
+## ----message=F,eval=F----------------------------------------------------
+## qmap('Mannheim', zoom = 14,
+##  maptype="toner-lite",source="stamen")
+
+#' 
+#' ## ggmap - maptype toner-hybrid
+#' 
+## ----message=F,eval=F----------------------------------------------------
+## qmap('Mannheim', zoom = 14,
+##  maptype="toner-hybrid",source="stamen")
+
+#' 
+#' 
+#' ## ggmap - maptype terrain-lines
+#' 
+## ----message=F,eval=F----------------------------------------------------
+## qmap('Mannheim', zoom = 14,
+##  maptype="terrain-lines",source="stamen")
+
+#' -->
+#' 
+#' ## Graphiken speichern
+#' 
+#' ![RstudioExport](figure/RstudioExport.PNG)
+#' 
+#' 
+#' ## ggmap - ein Objekt erzeugen
+#' 
+#' - `<-` ist der Zuweisungspfeil um ein Objekt zu erzeugen
+#' - Dieses Vorgehen macht bspw. Sinn, wenn mehrere Karten nebeneinander gebraucht werden.
+#' 
+## ----warning=F,message=F,eval=F------------------------------------------
+## MA_map <- qmap('Mannheim',
+##                zoom = 14,
+##                maptype="toner",
+##                source="stamen")
+
+#' 
+#' 
+#' <!--
+#' ## 
+#' 
+## ------------------------------------------------------------------------
+library(ggmap)
+
+#' 
+## ----eval=F--------------------------------------------------------------
+## ?qmap
+
+#' 
+## ----triermap,eval=F-----------------------------------------------------
+## triermap <- qmap(location = "Trier", zoom = 14,scale=2)
+
+#' 
+## ----eval=F,echo=F-------------------------------------------------------
+## pdf("figure/triermap.pdf")
+## triermap
+## dev.off()
+
+#' 
+#' -->
+#' 
+#' ## [Eine Karte für Trier](https://blog.dominodatalab.com/geographic-visualization-with-rs-ggmaps/)
+#' 
+## ----USAMap,eval=F,echo=F------------------------------------------------
+## usa_center = as.numeric(geocode("United States"))
+## USAMap = ggmap(get_googlemap(center=usa_center, scale=2,
+##                              zoom=4), extent="normal")
+## USAMap
+
+#' 
+## ----eval=F,echo=F-------------------------------------------------------
+## pdf("figure/USAMap.pdf")
+## USAMap
+## dev.off()
+
+#' 
+#' - Mit dem Befehl `OSM_scale_lookup` bekommt man heraus, welchen Wert man für `scale` angeben muss.
+#' 
+## ----eval=F--------------------------------------------------------------
+## OSM_scale_lookup(zoom = 10)
+## qmap(location = "Trier", zoom = 10, source = "osm",
+##      scale=575000)
+
+#' 
+#' <!--
+#' ## A2A Aufgabe - Nutzung von `ggmap`
+#' 
+#' 
+#' - Erzeuge mit dem Paket `ggmap` eine Karte von einem Ort, der Dir besonders gut gefällt und speichere diesen als Objekt im Workspace und als .png-Graphik.
+#' -->
+#' 
+#' 
+#' ## Cheatsheet
+#' 
+#' - Cheatsheet zu [data visualisation](https://www.rstudio.com/wp-content/uploads/2015/04/ggplot2-cheatsheet.pdf)
+#' 
+#' <https://www.rstudio.com/>
+#' 
+#' ![Cheatsheet](figure/ggplot2-cheatsheet.png)
+#' 
+#' 
+#' 
+#' 
+## ----eval=F,echo=F-------------------------------------------------------
+## library("RgoogleMaps")
+## MyMap <- GetMap.bbox(4.5168, 52.022,destfile = "Amsterdam.png",zoom=14)
+## PlotOnStaticMap(MyMap)
+
+#' 
+#' 
+#' ## Resourcen und Literatur
+#' 
+#' 
+#' - Artikel von [**David Kahle und Hadley Wickham**](http://journal.r-project.org/archive/2013-1/kahle-wickham.pdf) zur Nutzung von `ggmap`.
+#' 
+#' 
+#' - [**Schnell eine Karte bekommen** ](http://rpackages.ianhowson.com/cran/ggmap/man/get_map.html)
+#' 
+#' 
+#' - Kev Johnson - [**Karten mit R**](http://www.kevjohnson.org/making-maps-in-r-part-2/) erstellen (Zweiter Teil)
+#' 
+#' 
+#' ## Das was ihr gerade gesehen habt...
+#' 
+#' - ... hat bis vor kurzem gut funktioniert
+#' - nun haben sich die [**Google Bedingungen geändert**](https://stackoverflow.com/questions/19827598/error-in-get-map-using-ggmap-in-r)
+#' 
+#' ![](figure/Google_error.PNG)
+#' 
+#' - [**Hier**](https://github.com/dkahle/ggmap/issues/83) seht ihr, was ihr tun müsst, falls ihr das Paket dennoch nutzen wollt. Und [**hier**](https://console.developers.google.com/) kann man sich registrieren.
+#' 
+#' - oder ihr könnt das als Anlass sehen OpenStreetMap Daten stärker zu nutzen.
+#' 
+#' <!--
+#' https://github.com/dkahle/ggmap/issues/51
+#' -->

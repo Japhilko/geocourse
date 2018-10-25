@@ -3,8 +3,6 @@
 #' author: "Jan-Philipp Kolb"
 #' date: "23 Oktober 2018"
 #' output:
-#'   slidy_presentation: 
-#'     keep_md: yes
 #'   beamer_presentation: 
 #'     colortheme: beaver
 #'     fonttheme: structurebold
@@ -12,6 +10,8 @@
 #'     incremental: yes
 #'     keep_tex: yes
 #'     theme: CambridgeUS
+#'   slidy_presentation: 
+#'     keep_md: yes
 #' ---
 #' 
 ## ----setup_mainosmapi, include=FALSE-------------------------------------
@@ -290,16 +290,30 @@ st_layers("../data/Amsterdam_highway_primary.osm")
 #' ## Import von Layer `lines`
 #' 
 ## ------------------------------------------------------------------------
-dat <- st_read("../data/Amsterdam_highway_primary.osm","lines")
+dat <- st_read("../data/Amsterdam_highway_primary.osm",
+               "lines")
+
+#' 
+#' ## Den Layer plotten
+#' 
+## ------------------------------------------------------------------------
 plot(dat$geometry)
 
+#' 
 #' 
 #' ## Import von Layer `points`
 #' 
 ## ------------------------------------------------------------------------
-datp <- st_read("../data/Amsterdam_highway_primary.osm","points")
+datp <- st_read("../data/Amsterdam_highway_primary.osm",
+                "points")
+
+#' 
+#' ## Den Layer `points` plotten
+#' 
+## ------------------------------------------------------------------------
 plot(dat$geometry,pch=20,col=rgb(0,0,1,.1))
 
+#' 
 #' 
 #' ## Mit einem anderen Paket plotten
 #' 
@@ -323,8 +337,6 @@ sp::plot(datm$geometry)
 #' ## Mehr Beispiele, wie man mit XML Daten umgeht:
 #' 
 #' - Deborah Nolan - [**Extracting data from XML**](http://www.stat.berkeley.edu/~statcur/Workshop2/Presentations/XML.pdf)
-#' 
-#' 
 #' - Duncan Temple Lang - [**A Short Introduction to the XML package for R**](http://www.omegahat.net/RSXML/shortIntro.pdf)
 #' 
 #' 

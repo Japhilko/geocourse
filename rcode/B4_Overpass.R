@@ -3,14 +3,14 @@
 #' author: "Jan-Philipp Kolb"
 #' date: "23 Oktober 2018"
 #' output:
-#'   slidy_presentation: 
-#'     keep_md: yes
 #'   beamer_presentation: 
 #'     colortheme: beaver
 #'     fonttheme: structurebold
 #'     highlight: espresso
 #'     keep_tex: yes
 #'     theme: CambridgeUS
+#'   slidy_presentation: 
+#'     keep_md: yes
 #' ---
 #' 
 ## ----setup, include=FALSE------------------------------------------------
@@ -194,10 +194,10 @@ load("../data/BE.RData")
 #' 
 ## ------------------------------------------------------------------------
 ind <- match(BE@data$PLZ99_N,names(tab_plz))
-ind
+head(ind)
 
 #' 
-#' ## Daten anspielen
+#' ### Daten anspielen
 #' 
 ## ------------------------------------------------------------------------
 BE@data$num_plz <- tab_plz[ind]
@@ -267,7 +267,7 @@ tmap::qtm(PLZ_SG,fill="bakery")
 #' 
 #' ## Die Daten für Stuttgart
 #' 
-## ----echo=F--------------------------------------------------------------
+## ----echo=T--------------------------------------------------------------
 tab_landcover <- table(PLZ_SG$land_cover.value)
 df_landcover <- data.frame(tab_landcover)
 colnames(df_landcover)[1] <- c("Type_landcover")
@@ -279,7 +279,7 @@ kable(df_landcover)
 #' 
 #' - Daten von [European Commission Land Resource Management Unit Global Land Cover 2000.](http://bioval.jrc.ec.europa.eu/products/glc2000/products.php)
 #' 
-## ------------------------------------------------------------------------
+## ----message=F,warning=F-------------------------------------------------
 tmap::qtm(PLZ_SG,fill="land_cover.value")
 
 #' 

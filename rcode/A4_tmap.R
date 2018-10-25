@@ -3,14 +3,14 @@
 #' author: "Jan-Philipp Kolb"
 #' date: "22 Oktober 2018"
 #' output:
-#'   slidy_presentation: 
-#'     keep_md: yes
 #'   beamer_presentation: 
 #'     colortheme: beaver
 #'     fonttheme: structurebold
 #'     highlight: espresso
 #'     keep_tex: yes
 #'     theme: CambridgeUS
+#'   slidy_presentation: 
+#'     keep_md: yes
 #' ---
 #' 
 ## ----setup_tmap, include=FALSE-------------------------------------------
@@ -493,8 +493,14 @@ qtm(Europe,c("Val2007M12","Val2013M01"))
 #' 
 #' ## A4A Übung: Visualisierung von Eurostat Daten
 #' 
+#' ### Erster Teil
+#' 
 #' - Verbinde die Statistik zur Sparquote mit den Kartendaten.
 #' - Stelle die Daten in einer Karte dar.
+#' 
+#' ### Zweiter Teil
+#' 
+#' - Such Daten, in denen der Ländername enthalten ist und versuche diesen Datensatz mit `tmap` zu visualisieren.
 #' 
 #' ## Kleine und viele Karten
 #' 

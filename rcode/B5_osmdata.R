@@ -213,6 +213,7 @@ dat1 <- opq(bbox = 'Ladenburg') %>%
 unlist(lapply(dat1,nrow))
 
 #' 
+#' <!--
 #' ## Alles in eine Karte plotten
 #' 
 #' ### [**Der Start mit dem Paket `tmap`](https://cran.r-project.org/web/packages/tmap/vignettes/tmap-getstarted.html)
@@ -222,7 +223,7 @@ unlist(lapply(dat1,nrow))
 ## tm_shape(sfc)
 ## tm_bubbles(dat, size=2)
 
-#' 
+#' -->
 #' 
 #' 
 #' ## Beispiel Fahrradparkplätze
