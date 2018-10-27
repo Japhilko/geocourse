@@ -453,4 +453,26 @@ http://www.visualizing.org/visualizations/mapping-wikipedia-timeline
 http://www.visualizing.org/visualizations/luminous-cities-flickr-tags
 http://www.josis.org/index.php/josis/article/view/13/26
 http://www.jaroffacts.com/open.php?tag=vernacular
+
+https://www.r-bloggers.com/visualizing-gis-data-with-r-and-open-street-map/
+
+%https://de.wikipedia.org/wiki/Ajax_%28Programmierung%29
+
+% A screenshot of the result of this code snippet is visible in Figure~\ref{figure:citycenterAmsterdam_int}.
+
+
+%\begin{figure}[htbp]
+%\centering
+%	\includegraphics[width=.7\textwidth]{figure/Amsterdam_leaflet.PNG}
+%	  \caption{Interactive map of Amsterdam - data from OSM}
+%  \label{figure:citycenterAmsterdam_int}
+%\end{figure}
+
+
+%  querying  the  name  of  the  reference  object  which  in turn yields a list of candidate entities
+
+% \cite{at:Kahle} wrote the package \pkg{ggmap} including the function \code{}
+
+% https://developers.google.com/maps/documentation/geocoding/intro?csw=1
+
 -->
