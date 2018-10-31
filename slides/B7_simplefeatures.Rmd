@@ -357,6 +357,12 @@ roads2 <- datl[datl$highway %in% c("tertiary","secondary",
 demo(nc, ask = FALSE, echo = FALSE)
 ```
 
+```{r,eval=F,echo=F}
+library(sf)
+st_layers("../data/mannheim_busstop.geojson")
+ma_busstop <- st_read("../data/mannheim_busstop.geojson")
+```
+
 
 ## Die Vignetten für das Paket `sf`
 

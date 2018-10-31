@@ -109,7 +109,8 @@ Hippolyte Pruvost and Peter Mooney: Exploring Data Model Relations in OpenStreet
 
 - Es gibt verschiedene Möglichkeiten die OSM-Daten zu bekommen. 
 - Metro Extracts bietet rechteckige Ausschnitte für eine Stadt oder Region von Interesse auf der ganzen Welt.
-- Grundsätzlich werden die Rohdaten werden im *Protocolbuffer Binary Format* (PBF)  oder im *Extensible Markup Language* (XML) Format angeboten. 
+- Grundsätzlich werden die Rohdaten im *Protocolbuffer Binary Format* (PBF)  oder im *Extensible Markup Language* (XML) Format angeboten. 
+- Die [**Keyhole Markup Language**](https://de.wikipedia.org/wiki/Keyhole_Markup_Language) (KML) ist eine Auszeichnungssprache zur Beschreibung von Geodaten. Diese wurde bei Google Earth angewendet. KML befolgt die XML-Syntax.
 
 
 ## Download von OpenStreetMap Daten - [Metro extracts](https://mapzen.com/) 
