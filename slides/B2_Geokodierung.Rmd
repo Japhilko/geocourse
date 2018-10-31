@@ -437,7 +437,8 @@ install.packages("googleway")
 library(googleway)
 ```
 
-- Ein API Schlüssel ist notwendig um die meisten Funktionen des Paketes zu nutzen. 
+- Ein [**API Schlüssel**](https://developers.google.com/maps/documentation/javascript/tutorial) ist notwendig um die meisten Funktionen des Paketes zu nutzen. 
+- In der [**Vignette zum Paket**](https://cran.r-project.org/web/packages/googleway/vignettes/googleway-vignette.html#api-key) ist zu sehen, wie man das Paket nutzen kann.
 
 
 ```{r,eval=F,echo=F}
