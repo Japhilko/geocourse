@@ -441,6 +441,10 @@ library(googleway)
 - In der [**Vignette zum Paket**](https://cran.r-project.org/web/packages/googleway/vignettes/googleway-vignette.html#api-key) ist zu sehen, wie man das Paket nutzen kann.
 
 
+<!--
+https://developers.google.com/maps/documentation/javascript/get-api-key
+-->
+
 ```{r,eval=F,echo=F}
 install.packages("rgeolocate")
 # install.packages("ipapi")
